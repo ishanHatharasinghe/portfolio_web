@@ -21,7 +21,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      className="text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden min-h-screen flex items-center justify-center"
     >
       <div className="container mx-auto max-w-screen-xl px-8 sm:px-12 lg:px-16 xl:px-24 rounded-xl shadow-2xl bg-opacity-10">
         {/* Header Section */}

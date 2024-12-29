@@ -6,6 +6,13 @@ const handleOpenPDF = () => {
   window.open(cv, "_blank"); // Open PDF in new tab
 };
 
+const handleScrollToContact = () => {
+  const contactSection = document.getElementById("contact");
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const Home = () => {
   return (
     <section
@@ -43,12 +50,12 @@ const Home = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <a
-              href="#Contact"
+            <button
+              onClick={handleScrollToContact}
               className="bg-gradient-to-r from-[#1900FFFF] to-[#FA1515FF] text-white py-3 px-8 rounded-3xl flex justify-center items-center hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none font-semibold tracking-wider"
             >
               Contact Me
-            </a>
+            </button>
 
             <button
               onClick={handleOpenPDF}
