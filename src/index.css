@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Animation for Rocket Movement */
+@keyframes moveRocket {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Apply Custom Animation */
+@layer utilities {
+  .animate-rocket {
+    animation: moveRocket 4s ease-in-out infinite;
+  }
+}
+
+@keyframes fallingStar {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Bold.ttf") format("Poppins-bold"),
+    url("./fonts/Poppins-Medium.ttf") format("Poppins-medium");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.font-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(to right, #26000bff, #10002dff);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
