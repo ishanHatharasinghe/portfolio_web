@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import ProjectsData from "./components/ProjectsData";
 import SkillsData from "./components/SkillsData";
 import Contact from "./components/Contact";
+import Copyright from "./components/Copyright";
 import WorkExperience from "./components/WorkExperience";
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -60,6 +61,8 @@ function App() {
         {/* Changed ID to match */}
         <Contact />
       </section>
+
+      <Copyright />
     </>
   );
 }
