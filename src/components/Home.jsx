@@ -45,7 +45,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <a
               href="#Contact"
-              className="bg-gradient-to-r from-[#1900FFFF] to-[#FA1515FF] text-white py-3 px-8 rounded-3xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none font-semibold tracking-wider"
+              className="bg-gradient-to-r from-[#1900FFFF] to-[#FA1515FF] text-white py-3 px-8 rounded-3xl flex justify-center items-center hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none font-semibold tracking-wider"
             >
               Contact Me
             </a>

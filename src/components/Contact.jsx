@@ -29,7 +29,8 @@ const Contact = () => {
           <h2 className="hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold mb-4 text-[#f3e8ff]">
             Contact Information
           </h2>
-          <div className="h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto"></div>
+
+          <div className="flex justify-center items-center h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto"></div>
         </div>
 
         {/* Contact Info Section */}
@@ -79,7 +80,7 @@ const Contact = () => {
           <h3 className="text-2xl font-bold text-[#f3e8ff] mb-6 text-center">
             Follow Me On
           </h3>
-          <div className="flex justify-center gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {/* LinkedIn */}
             <div
               className="flex flex-col items-center p-6 rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-blue-500"
