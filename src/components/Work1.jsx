@@ -27,6 +27,13 @@ const Work1 = () => {
     );
   };
 
+  const openLocation = () => {
+    window.open(
+      "https://www.google.com/maps/dir//Trace+Expert+City,+AC19,+Colombo/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3ae2591076e625a3:0xad34e9e40449036b?sa=X&ved=1t:57443&ictx=111",
+      "_blank"
+    );
+  };
+
   return (
     <>
       <div className="mb-5">
@@ -86,6 +93,16 @@ const Work1 = () => {
           Electronics Engineering Intern - Sri Lanka Telecom PLC, Digital LAB,
           The Embryo Innovation Centre, Trace Expert City, Maradana, Colombo
         </p>
+      </div>
+
+      {/* View Location Button */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={openLocation}
+          className="bg-[#FF0000FF] text-white font-bold py-2 px-8 rounded-lg shadow-md transform hover:scale-105 transition-all duration-200"
+        >
+          View Location
+        </button>
       </div>
     </>
   );

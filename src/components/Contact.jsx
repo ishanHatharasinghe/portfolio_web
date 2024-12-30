@@ -1,22 +1,64 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   FaEnvelope,
   FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaFacebook,
-  FaInstagram
+  FaInstagram,
+  FaWhatsapp
 } from "react-icons/fa";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
+  const [message, setMessage] = useState("");
+  const [sendStatus, setSendStatus] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true
     });
   }, []);
+
+  const handleSendFeedback = (e) => {
+    e.preventDefault();
+
+    const confirmSend = window.confirm(
+      "Are you sure you want to send this feedback?"
+    );
+    if (!confirmSend) return;
+
+    emailjs
+      .sendForm(
+        "service_wr5ibr1", // Updated service ID
+        "template_t4m2e7x", // Updated template ID
+        e.target,
+        "rY68waKeCsmk0DMYX" // Updated public key
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          showNotificationPopup("Successfully sent!");
+        },
+        (error) => {
+          console.log(error.text);
+          showNotificationPopup("Failed to send. Please try again.");
+        }
+      );
+  };
+
+  const showNotificationPopup = (message) => {
+    setShowNotification(true);
+    setSendStatus(message);
+
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
+  };
 
   return (
     <section
@@ -47,6 +89,14 @@ const Contact = () => {
           <p className="text-lg text-gray-300 text-center">
             533, Samagi Mawatha, <br /> Beralapanathara
           </p>
+          <a
+            href="https://www.google.com/maps/dir/6.301967,80.610486/Beralapanathara,+Matara+-+Hakmana+Road/@6.309715,80.5673928,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3ae3e29df098bdef:0x1f156755cd0421b5!2m2!1d80.6043!2d6.32296?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300"
+          >
+            View Location
+          </a>
         </div>
 
         {/* Telephone */}
@@ -73,6 +123,12 @@ const Contact = () => {
           <p className="text-lg text-gray-300 text-center">
             ishanhatharasinghe222@gmail.com
           </p>
+          <a
+            href="mailto:ishanhatharasinghe222@gmail.com"
+            className="bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300 mt-2"
+          >
+            Send an Email
+          </a>
         </div>
       </div>
 
@@ -127,7 +183,7 @@ const Contact = () => {
             <FaInstagram className="text-6xl text-[#E4405F] mb-4 transform transition-transform duration-300 ease-in-out hover:scale-125" />
             <h3 className="text-xl font-bold text-[#f3e8ff] mb-2">Instagram</h3>
             <a
-              href="https://www.instagram.com/.i_s_h_a_n._?igsh=MWd6bG9rN3VyZW83cQ=="
+              href="https://www.instagram.com/ishan_hatharasinghe/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300"
@@ -135,7 +191,55 @@ const Contact = () => {
               Visit Instagram
             </a>
           </div>
+
+          {/* WhatsApp */}
+          <div
+            className="flex flex-col items-center p-6 rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-green-500"
+            data-aos="fade-up"
+            data-aos-delay="1200"
+          >
+            <FaWhatsapp className="text-6xl text-[#25D366] mb-4 transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            <h3 className="text-xl font-bold text-[#f3e8ff] mb-2">WhatsApp</h3>
+            <a
+              href="https://wa.me/0703052181"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300"
+            >
+              Send a Message
+            </a>
+          </div>
         </div>
+      </div>
+
+      {/* Feedback Section */}
+      <div className="mt-12">
+        <h3 className="text-2xl font-bold text-[#f3e8ff] mb-6 text-center">
+          Leave Your Feedback
+        </h3>
+        <form onSubmit={handleSendFeedback}>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Write your message here..."
+            className="w-full bg-[#20232A] text-white p-4 rounded-md mb-4"
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          ></textarea>
+          <div className="flex justify-center items-center">
+            <button
+              type="submit"
+              className="bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#00A74BFF] transition duration-300"
+            >
+              Send Feedback
+            </button>
+          </div>
+        </form>
+        {showNotification && (
+          <div className="mt-4 text-center text-xl text-white bg-[#009669FF] p-3 rounded-md shadow-lg animate-pulse">
+            {sendStatus}
+          </div>
+        )}
       </div>
     </section>
   );
