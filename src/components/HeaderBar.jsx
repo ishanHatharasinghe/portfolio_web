@@ -127,7 +127,6 @@ function Header() {
           {/* Designer Mode Button (Mobile) */}
           <a
             href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
-            target="_blank"
             rel="noopener noreferrer"
             className="block text-center bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300 mx-4 my-2"
           >
