@@ -1,6 +1,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import cv from "./../assets/cv.pdf";
+import bg from "./../assets/bg2.jpg"; // Import the background image
 
 const handleOpenPDF = () => {
   window.open(cv, "_blank"); // Open PDF in new tab
@@ -18,11 +19,16 @@ const Home = () => {
     <section
       id="home"
       className="h-screen w-full flex justify-center items-center text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }} // Apply the background image here
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-screen-xl px-8 sm:px-12 lg:px-16 xl:px-24 relative z-10">
         {/* Left Column: Typewriter Text */}
-        <div className="flex flex-col justify-center text-left">
-          <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-6 text-[#f3e8ff] tracking-wide text-shadow-md">
+        <div className="flex flex-col justify-center text-left h-full">
+          <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-6 text-[#f3e8ff] tracking-wide text-shadow-md max-w-full">
             <Typewriter
               options={{
                 strings: [
@@ -40,8 +46,8 @@ const Home = () => {
         </div>
 
         {/* Right Column: Description and Buttons */}
-        <div className="flex flex-col justify-center text-justify">
-          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#E6FF82FF] transition-all duration-100 transform hover:scale-105">
+        <div className="flex flex-col justify-center text-justify h-full">
+          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
             UG in HND Engineering (Electrical and Electronics) | UG in BIT
             University of Moratuwa | Data Science, Cloud, and Electronics
             Engineering Intern (SLTMobitel Digital Lab - Embryo Innovation

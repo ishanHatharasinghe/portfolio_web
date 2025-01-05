@@ -15,12 +15,7 @@
   }
 }
 
-/* Apply Custom Animation */
-@layer utilities {
-  .animate-rocket {
-    animation: moveRocket 4s ease-in-out infinite;
-  }
-}
+
 
 @keyframes fallingStar {
   0% {
@@ -52,9 +47,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(to right, #110000ff, #01082aff);
+  background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
 }
 
 html {
   scroll-behavior: smooth;
+}
+/* Glow effect */
+.glow-effect {
+  box-shadow: 0 0 2px rgb(0, 30, 255);
 }

@@ -15,6 +15,7 @@ import proteus from "./../assets/Skills/proteus.png";
 import python from "./../assets/Skills/python.png";
 import solidworks from "./../assets/Skills/solidworks.png";
 import react from "./../assets/Skills/react.png";
+import flutter from "./../assets/Skills/flutter.png";
 
 const SkillsData = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const SkillsData = () => {
   const skills = [
     { img: arduino, name: "Arduino" },
     { img: react, name: "React" },
+    { img: flutter, name: "Flutter" },
     { img: python, name: "Python" },
     { img: autocad, name: "AutoCAD" },
     { img: solidworks, name: "SolidWorks" },
@@ -48,7 +50,7 @@ const SkillsData = () => {
           My Skills
         </h2>
         <div className="h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"></div>
-        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#E6FF82FF] transition-all duration-100 transform hover:scale-105 font-poppins">
+        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105 font-poppins">
           Here are some of the technical skills I have acquired over time. I
           have worked with a variety of tools and technologies to bring
           innovative ideas to life.
@@ -60,7 +62,7 @@ const SkillsData = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center p-4 bg-gradient-to-r from-[#0b0e2a] to-[#22000e] rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-red-500"
+            className="flex flex-col items-center justify-center p-4 bg-gradient-to-r from-[#0C0035FF] to-[#160000FF] rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-115  hover:shadow-red-500"
             data-aos="fade-up"
             data-aos-delay={`${index * 100}`}
             data-aos-duration="1000"

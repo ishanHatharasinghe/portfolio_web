@@ -1,4 +1,5 @@
-import myimage from "./../assets/myimage.jpg";
+import myimage from "./../assets/myimage2.jpg";
+import bg from "./../assets/bg3.jpg"; // Import the background image
 import "./../index.css";
 
 const AboutMe = () => {
@@ -6,6 +7,11 @@ const AboutMe = () => {
     <section
       id="about"
       className="h-screen w-full flex justify-center items-center text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }} // Set the background image
     >
       {/* Content Area */}
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 items-center relative z-20">
@@ -29,7 +35,7 @@ const AboutMe = () => {
             <div className="h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mb-4"></div>
           </div>
 
-          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#E6FF82FF] transition-all duration-100 transform hover:scale-105 font-poppins">
+          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105 font-poppins">
             A committed, passionate, and talented seeker with technical
             expertise and the capacity to lead and collaborate with others in a
             team. Equipped with communication skills, leadership, and teamwork

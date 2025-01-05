@@ -21,14 +21,6 @@ function App() {
 
   return (
     <>
-      {/* Moving Gradient Background */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
-        {/* Gradient Circles */}
-        <div className="absolute w-72 h-72 bg-gradient-to-r from-[#6F00FFFF] to-[#EEFA15FF] opacity-50 rounded-full blur-3xl animate-move-1"></div>
-        <div className="absolute w-64 h-64 bg-gradient-to-r from-[#6F00FFFF] to-[#FA1515FF] opacity-50 rounded-full blur-xl animate-move-2"></div>
-        <div className="absolute w-80 h-80 bg-gradient-to-r from-[#6F00FFFF] to-[#1D15FAFF] opacity-50 rounded-full blur-2xl animate-move-3"></div>
-      </div>
-
       {/* Page Content */}
       <Header />
 

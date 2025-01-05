@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./../index.css";
-import logo from "./../assets/logo.png";
+import logo from "./../assets/myimage.jpg";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,16 +17,22 @@ function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#030029FF] to-[#3C002FFF] shadow-lg">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#000000FF] to-[#000000FF] shadow-lg glow-effect">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between rounded-lg">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-[#f3e8ff] flex items-center transform hover:scale-110 transition-transform duration-300">
-          <img src={logo} alt="Portfolio Logo" className="h-7 w-auto" />
-          <span className="hover:text-[#FF0000FF] text-lg">Portfolio</span>
+        {/* Logo and Title */}
+        <div className="flex items-center transform hover:scale-110 transition-transform duration-300">
+          <img
+            src={logo}
+            alt="Ishan Nilaksha Logo"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <span className="ml-2 text-2xl font-bold text-[#f3e8ff] hover:text-[#2200FFFF] transform hover:scale-101 transition-transform duration-300">
+            Ishan Nilaksha
+          </span>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 text-[#f3e8ff] font-medium">
+        <nav className="hidden md:flex space-x-6 text-[#f3e8ff] font-medium items-center">
           {[
             "Home",
             "About",
@@ -40,11 +46,21 @@ function Header() {
               onClick={() =>
                 scrollToSection(item.toLowerCase().replace(" ", "-"))
               }
-              className="hover:text-[#FF0000FF] transition duration-300 ease-in-out rounded-md px-2 py-1"
+              className="text-[#FFFFFF] hover:text-[#FFFFFFFF] hover:bg-[#00008B] transition duration-300 ease-in-out rounded-md px-2 py-1"
             >
               {item}
             </button>
           ))}
+
+          {/* Designer Mode Button */}
+          <a
+            href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300"
+          >
+            Designer Mode
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -102,11 +118,21 @@ function Header() {
               onClick={() =>
                 scrollToSection(item.toLowerCase().replace(" ", "-"))
               }
-              className="block px-10 py-2 hover:bg-[#FF0000FF] text-[#e5e7eb] transition duration-200 rounded-md mx-4 my-1"
+              className="block px-10 py-2 text-[#FFFFFF] hover:text-[#FFFFFFFF] hover:bg-[#00008B] transition duration-200 rounded-md mx-4 my-1"
             >
               {item}
             </button>
           ))}
+
+          {/* Designer Mode Button (Mobile) */}
+          <a
+            href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300 mx-4 my-2"
+          >
+            Designer Mode
+          </a>
         </nav>
       )}
     </header>
