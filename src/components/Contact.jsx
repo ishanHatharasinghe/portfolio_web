@@ -162,7 +162,7 @@ const Contact = () => {
             placeholder="Write your message here..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full p-4 rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#4400FFFF] mb-4"
+            className="w-full p-4 rounded-md border-2 border-gray-500 bg-[#010010FF] text-white focus:outline-none focus:border-[#FFFFFFFF] mb-4"
             required
           ></textarea>
           <button
@@ -173,7 +173,9 @@ const Contact = () => {
           </button>
         </form>
         {showNotification && (
-          <div className="mt-4 text-center font-semibold">{sendStatus}</div>
+          <div className="mt-4 text-center font-semibold text-[#FF0000FF]">
+            {sendStatus}
+          </div>
         )}
       </div>
     </section>
