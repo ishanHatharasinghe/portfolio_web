@@ -55,7 +55,6 @@ function Header() {
           {/* Designer Mode Button */}
           <a
             href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
-            target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300"
           >
@@ -128,8 +127,9 @@ function Header() {
           <a
             href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
             rel="noopener noreferrer"
-            className="block text-center bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300 mx-4 my-2"
+            className="font-bold block px-10 py-2 text-[#FFFFFF] hover:text-[#FFFFFFFF] bg-[#0000FFFF] hover:bg-[#45007DFF] transition duration-200 rounded-md mx-4 my-1"
           >
+            {" "}
             Designer Mode
           </a>
         </nav>

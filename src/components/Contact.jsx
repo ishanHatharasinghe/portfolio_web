@@ -82,69 +82,62 @@ const Contact = () => {
 
       {/* Contact Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Address */}
         <ContactCard
-          icon={<FaMapMarkerAlt className="text-6xl text-[#FF0000FF]" />}
+          icon={<FaMapMarkerAlt />}
           title="Address"
           details="533, Samagi Mawatha, Beralapanathara"
           link="https://www.google.com/maps"
-          linkText="View Location"
         />
-
-        {/* Telephone */}
         <ContactCard
-          icon={<FaPhoneAlt className="text-6xl text-[#00FF00FF]" />}
+          icon={<FaPhoneAlt />}
           title="Contact No."
           details="0703052181"
         />
-
-        {/* Email */}
         <ContactCard
-          icon={<FaEnvelope className="text-6xl text-[#FFFF00FF]" />}
+          icon={<FaEnvelope />}
           title="E-mail"
           details="ishanhatharasinghe222@gmail.com"
           link="mailto:ishanhatharasinghe222@gmail.com"
-          linkText="Send an Email"
         />
       </div>
 
       {/* Social Media */}
       <div className="mt-12 text-center">
         <h3 className="text-2xl font-bold text-[#f3e8ff] mb-6">Follow Me On</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-6">
           <SocialCard
-            icon={<FaLinkedin className="text-6xl text-[#0A66C2]" />}
-            title="LinkedIn"
+            icon={<FaLinkedin />}
+            color="#0A66C2"
             link="https://www.linkedin.com/in/ishan-nilaksha-686461308/"
           />
           <SocialCard
-            icon={<FaFacebook className="text-6xl text-[#1877F2]" />}
-            title="Facebook"
+            icon={<FaFacebook />}
+            color="#1877F2"
             link="https://www.facebook.com"
           />
           <SocialCard
-            icon={<FaInstagram className="text-6xl text-[#E4405F]" />}
-            title="Instagram"
+            icon={<FaInstagram />}
+            color="#E4405F"
             link="https://www.instagram.com/ishan_hatharasinghe/"
           />
           <SocialCard
-            icon={<FaWhatsapp className="text-6xl text-[#25D366]" />}
-            title="WhatsApp"
+            icon={<FaWhatsapp />}
+            color="#25D366"
             link="https://wa.me/0703052181"
           />
           <SocialCard
-            icon={<FaGithub className="text-6xl text-[#333]" />}
-            title="GitHub"
+            icon={<FaGithub />}
+            color="#333"
             link="https://github.com/ishanHatharasinghe"
           />
           <SocialCard
-            icon={<FaBehance className="text-6xl text-[#1769FF]" />}
-            title="Behance"
+            icon={<FaBehance />}
+            color="#1769FF"
             link="https://www.behance.net/ishannilaksha"
           />
           <SocialCard
-            icon={<SiFiverr className="text-6xl text-[#1DBF73]" />}
-            title="Fiverr"
+            icon={<SiFiverr />}
+            color="#1DBF73"
             link="https://www.fiverr.com/sellers/vector_ix/"
           />
         </div>
@@ -182,34 +175,29 @@ const Contact = () => {
   );
 };
 
-const ContactCard = ({ icon, title, details, link, linkText }) => (
+const ContactCard = ({ icon, title, details, link }) => (
   <div
     className="flex flex-col items-center p-6 rounded-md shadow-lg transform hover:scale-105 hover:shadow-xl transition-all duration-300"
     data-aos="fade-up"
   >
-    {icon}
+    <div className="text-6xl text-white mb-2">{icon}</div>
     <h3 className="text-2xl font-bold text-[#f3e8ff] mb-2">{title}</h3>
     <p className="text-lg text-gray-300 text-center">{details}</p>
-    {link && (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-4 bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300"
-      >
-        {linkText}
-      </a>
-    )}
   </div>
 );
 
-const SocialCard = ({ icon, title, link }) => (
-  <ContactCard
-    icon={icon}
-    title={title}
-    link={link}
-    linkText={`Visit ${title}`}
-  />
+const SocialCard = ({ icon, color, link }) => (
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`group w-20 h-20 flex items-center justify-center rounded-lg bg-black text-white text-4xl transition-all transform hover:scale-110`}
+    style={{ transition: "background-color 0.3s" }}
+    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = color)}
+    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#000")}
+  >
+    {icon}
+  </a>
 );
 
 export default Contact;
