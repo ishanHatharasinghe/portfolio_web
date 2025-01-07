@@ -7,6 +7,7 @@ import SkillsData from "./components/SkillsData";
 import Contact from "./components/Contact";
 import Copyright from "./components/Copyright";
 import WorkExperience from "./components/WorkExperience";
+import ContactLinks from "./components/ContactLinks";
 import "aos/dist/aos.css";
 import AOS from "aos";
 
@@ -21,6 +22,9 @@ function App() {
 
   return (
     <>
+      <div className="absolute inset-y-0 left-4 flex items-center z-30 hidden sm:block">
+        <ContactLinks />
+      </div>
       {/* Page Content */}
       <Header />
 

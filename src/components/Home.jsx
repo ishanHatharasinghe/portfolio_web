@@ -33,7 +33,7 @@ const Home = () => {
               options={{
                 strings: [
                   "Hi! I'm Ishan Hatharasinghe.",
-                  "I'm an Electronic Engineer",
+                  "I'm an Electronics Engineer",
                   "Welcome to my Portfolio."
                 ],
                 autoStart: true,

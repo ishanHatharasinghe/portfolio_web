@@ -15,8 +15,6 @@
   }
 }
 
-
-
 @keyframes fallingStar {
   0% {
     transform: translateY(-100vh);
@@ -56,4 +54,37 @@ html {
 /* Glow effect */
 .glow-effect {
   box-shadow: 0 0 2px rgb(0, 30, 255);
+}
+
+
+
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+  height: 10px; /* Height of the scrollbar for horizontal scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* Background of the track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #04001a; /* Color of the thumb (the draggable part) */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1e00ff; /* Hover effect on the thumb */
+}
+
+::-webkit-scrollbar-button {
+  display: none; /* Hides the buttons on the scrollbar */
+}
+
+body {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #000000 #000000; /* Firefox */
 }

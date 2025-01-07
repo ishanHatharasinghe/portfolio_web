@@ -43,14 +43,14 @@ const SkillsData = () => {
   return (
     <section
       id="skills"
-      className=" text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      className="text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
     >
       <div className="container mx-auto text-center mb-12">
-        <h2 className="hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold mb-4 text-[#f3e8ff] font-poppins">
+        <h2 className="hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold mb-4 text-[#f3e8ff]">
           My Skills
         </h2>
         <div className="h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"></div>
-        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105 font-poppins">
+        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
           Here are some of the technical skills I have acquired over time. I
           have worked with a variety of tools and technologies to bring
           innovative ideas to life.
@@ -62,10 +62,10 @@ const SkillsData = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center p-4 bg-gradient-to-r from-[#0C0035FF] to-[#160000FF] rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-115  hover:shadow-red-500"
-            data-aos="fade-up"
-            data-aos-delay={`${index * 100}`}
-            data-aos-duration="1000"
+            className="flex flex-col items-center justify-center p-4 bg-gradient-to-r from-[#0C0035FF] to-[#160000FF] rounded-md shadow-lg transform transition-all duration-300 ease-in-out hover:scale-115 hover:shadow-red-500"
+            data-aos={index % 2 === 0 ? "fade-left" : "fade-right"} // Alternate directions
+            data-aos-delay={`${index * 100}`} // Delay for staggered animation
+            data-aos-duration="1000" // Animation duration
           >
             <img
               src={skill.img}

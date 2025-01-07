@@ -83,18 +83,18 @@ const Contact = () => {
       {/* Contact Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <ContactCard
-          icon={<FaMapMarkerAlt />}
+          icon={<FaMapMarkerAlt className="text-4xl" />} // Adjusted size
           title="Address"
           details="533, Samagi Mawatha, Beralapanathara"
           link="https://www.google.com/maps"
         />
         <ContactCard
-          icon={<FaPhoneAlt />}
+          icon={<FaPhoneAlt className="text-4xl" />} // Adjusted size
           title="Contact No."
           details="0703052181"
         />
         <ContactCard
-          icon={<FaEnvelope />}
+          icon={<FaEnvelope className="text-4xl" />} // Adjusted size
           title="E-mail"
           details="ishanhatharasinghe222@gmail.com"
           link="mailto:ishanhatharasinghe222@gmail.com"
@@ -180,7 +180,7 @@ const ContactCard = ({ icon, title, details, link }) => (
     className="flex flex-col items-center p-6 rounded-md shadow-lg transform hover:scale-105 hover:shadow-xl transition-all duration-300"
     data-aos="fade-up"
   >
-    <div className="text-6xl text-white mb-2">{icon}</div>
+    <div className="text-4xl text-white mb-2">{icon}</div>
     <h3 className="text-2xl font-bold text-[#f3e8ff] mb-2">{title}</h3>
     <p className="text-lg text-gray-300 text-center">{details}</p>
   </div>
