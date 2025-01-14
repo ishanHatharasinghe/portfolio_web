@@ -1,7 +1,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import cv from "./../assets/cv.pdf";
-import bg from "./../assets/bg2.jpg"; // Import the background image
+import bg from "./../assets/bg5.jpg";
 
 const handleOpenPDF = () => {
   window.open(cv, "_blank"); // Open PDF in new tab

@@ -8,6 +8,8 @@ import Contact from "./components/Contact";
 import Copyright from "./components/Copyright";
 import WorkExperience from "./components/WorkExperience";
 import ContactLinks from "./components/ContactLinks";
+import Education from "./components/Education";
+import LicensesCertifications from "./components/LicensesCertifications";
 import "aos/dist/aos.css";
 import AOS from "aos";
 
@@ -36,11 +38,19 @@ function App() {
         <AboutMe />
       </section>
 
+      <section id="education" data-aos="fade-up">
+        <Education />
+      </section>
+
       <section id="skills" data-aos="fade-up">
         <SkillsData />
       </section>
 
-      <section id="work-experience" data-aos="fade-up">
+      <section id="licenses-certifications" data-aos="fade-up">
+        <LicensesCertifications />
+      </section>
+
+      <section id="workexperience" data-aos="fade-up">
         {" "}
         {/* Changed ID to match */}
         <WorkExperience />

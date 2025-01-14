@@ -14,14 +14,14 @@ const Copyright = ({ designerName, contactHref, homeHref }) => {
         </p>
         <p className="text-sm sm:text-base">
           Designed by{" "}
-          <span className="text-[#ff0a0a] hover:text-[#ffffff] font-bold">
+          <span className="text-[#0084FFFF] hover:text-[#ffffff] font-bold">
             {designerName}
           </span>
         </p>
         <div className="mt-6">
           <a
             href={homeHref}
-            className="text-[#ff0a0a] hover:text-[#ffffff] font-semibold transition duration-300"
+            className="text-[#0084FFFF] hover:text-[#ffffff] font-semibold transition duration-300"
             aria-label="home"
           >
             Home
@@ -29,7 +29,7 @@ const Copyright = ({ designerName, contactHref, homeHref }) => {
 
           <a
             href={contactHref}
-            className="text-[#ff0a0a] hover:text-[#ffffff] font-semibold transition duration-300 ml-4"
+            className="text-[#0084FFFF] hover:text-[#ffffff] font-semibold transition duration-300 ml-4"
             aria-label="Contact Me"
           >
             Contact Me

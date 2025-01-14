@@ -16,37 +16,43 @@ function Header() {
     }
   };
 
+  const navItems = [
+    "Home",
+    "About",
+    "Education",
+    "Skills",
+    "Licenses & Certifications",
+    "Work Experience",
+    "Projects",
+    "Contact"
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#000000FF] to-[#000000FF] shadow-lg glow-effect">
+    <header className="sticky top-0 z-50 bg-gray-900 shadow-lg glow-effect">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between rounded-lg">
         {/* Logo and Title */}
         <div className="flex items-center transform hover:scale-110 transition-transform duration-300">
           <img
             src={logo}
             alt="Ishan Nilaksha Logo"
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-6 w-6 rounded-full object-cover border-2 border-gray-700"
           />
-          <span className="ml-2 text-2xl font-bold text-[#f3e8ff] hover:text-[#2200FFFF] transform hover:scale-101 transition-transform duration-300">
+          <span className="ml-2 text-xl font-bold text-gray-200 hover:text-blue-400 transition duration-300">
             Ishan Nilaksha
           </span>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 text-[#f3e8ff] font-medium items-center">
-          {[
-            "Home",
-            "About",
-            "Skills",
-            "Work Experience",
-            "Projects",
-            "Contact"
-          ].map((item) => (
+        <nav className="hidden md:flex space-x-6 text-gray-200 font-medium items-center">
+          {navItems.map((item) => (
             <button
               key={item}
               onClick={() =>
-                scrollToSection(item.toLowerCase().replace(" ", "-"))
+                scrollToSection(
+                  item.toLowerCase().replace(/ & /g, "-").replace(" ", "-")
+                )
               }
-              className="text-[#FFFFFF] hover:text-[#FFFFFFFF] hover:bg-[#00008B] transition duration-300 ease-in-out rounded-md px-2 py-1"
+              className="text-gray-200 hover:text-blue-400 hover:bg-gray-800 transition duration-300 ease-in-out rounded-md px-3 py-2"
             >
               {item}
             </button>
@@ -56,7 +62,7 @@ function Header() {
           <a
             href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
             rel="noopener noreferrer"
-            className="bg-white text-[#030029FF] font-semibold px-4 py-2 rounded-md hover:bg-[#030029FF] hover:text-white transition duration-300"
+            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
           >
             Designer Mode
           </a>
@@ -66,7 +72,7 @@ function Header() {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-[#f3e8ff] focus:outline-none"
+            className="text-gray-200 focus:outline-none"
           >
             {isMenuOpen ? (
               <svg
@@ -103,21 +109,16 @@ function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <nav className="md:hidden bg-[#090018FF] border-t border-[#f3e8ff] shadow-md rounded-b-lg">
-          {[
-            "Home",
-            "About",
-            "Skills",
-            "Work Experience",
-            "Projects",
-            "Contact"
-          ].map((item) => (
+        <nav className="md:hidden bg-gray-800 border-t border-gray-700 shadow-md rounded-b-lg">
+          {navItems.map((item) => (
             <button
               key={item}
               onClick={() =>
-                scrollToSection(item.toLowerCase().replace(" ", "-"))
+                scrollToSection(
+                  item.toLowerCase().replace(/ & /g, "-").replace(" ", "-")
+                )
               }
-              className="block px-10 py-2 text-[#FFFFFF] hover:text-[#FFFFFFFF] hover:bg-[#00008B] transition duration-200 rounded-md mx-4 my-1"
+              className="block px-10 py-2 text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition duration-200 rounded-md mx-4 my-1"
             >
               {item}
             </button>
@@ -127,9 +128,8 @@ function Header() {
           <a
             href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
             rel="noopener noreferrer"
-            className="font-bold block px-10 py-2 text-[#FFFFFF] hover:text-[#FFFFFFFF] bg-[#0000FFFF] hover:bg-[#45007DFF] transition duration-200 rounded-md mx-4 my-1"
+            className="font-bold block px-10 py-2 text-gray-200 hover:text-blue-400 bg-gray-700 hover:bg-blue-600 transition duration-200 rounded-md mx-4 my-1"
           >
-            {" "}
             Designer Mode
           </a>
         </nav>
