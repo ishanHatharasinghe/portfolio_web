@@ -66,7 +66,7 @@ const Home = () => {
                   "<span style='color: #3cb371;'>I'm a UI/UX Designer</span>",
                   "<span style='color: #ff4500;'>I'm a Web Developer</span>",
                   "<span style='color: #20b2aa;'>I'm a Graphic Designer</span>",
-                  "<span style='color: #ff1493;'>Welcome to my Portfolio...</span>"
+                  "<span style='color: #4F14FFFF;'>Welcome to my Portfolio...</span>"
                 ],
                 autoStart: true,
                 loop: true,

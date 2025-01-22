@@ -99,7 +99,7 @@ const Work1 = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={openLocation}
-          className="bg-[#FF0000FF] text-white font-bold py-2 px-8 rounded-lg shadow-md transform hover:scale-105 transition-all duration-200"
+          className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-150%] hover:before:translate-x-[150%] before:transition-transform before:duration-700 before:skew-x-[-20deg]"
         >
           View Location
         </button>

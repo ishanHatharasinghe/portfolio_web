@@ -67,17 +67,12 @@ const ProjectsData = () => {
           >
             Projects
           </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-12 h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"
-          />
+
           <motion.p
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105"
+            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6  transition-all duration-100 transform "
           >
             Explore some of my recent works, where I applied technical skills
             and creativity to deliver impactful solutions.
@@ -132,18 +127,28 @@ const ProjectsData = () => {
         </div>
       </motion.div>
 
-      {/* Popup Modal */}
       {showPopup && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-[#000718FF] p-8 rounded-lg max-w-3xl w-full">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="relative bg-[#1A1A2E] text-white rounded-lg shadow-lg p-6 sm:p-8 max-w-3xl w-full mx-4"
+          >
+            {/* Close Button */}
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 text-white text-2xl"
+              className="absolute top-4 right-4 text-white text-xl sm:text-2xl hover:text-red-500 transition-all duration-200"
+              aria-label="Close"
             >
               &times;
             </button>
-            <div>{popupContent}</div>
-          </div>
+
+            {/* Popup Content */}
+            <div className="max-h-[70vh] overflow-y-auto p-2 sm:p-4">
+              {popupContent}
+            </div>
+          </motion.div>
         </div>
       )}
     </section>

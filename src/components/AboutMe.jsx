@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import bg from "./../assets/bg6.jpg";
-import my from "./../assets/bg.jpg";
+import my from "./../assets/myimage2.jpg";
 import "./aboutus.css";
 
 const styles = {

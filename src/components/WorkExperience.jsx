@@ -1,7 +1,7 @@
 import "aos/dist/aos.css";
 import Work1 from "./../components/Work1";
 import { motion } from "framer-motion";
-import bg from "./../assets/bg6.jpg";
+import bg from "./../assets/bg5.jpg";
 
 const WorkExperience = () => {
   return (

@@ -15,7 +15,7 @@ import {
 import { SiFiverr } from "react-icons/si"; // Fiverr icon from react-icons/si
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import bg from "./../assets/bg6.jpg"; // Use the same background image as Home
+import bg from "./../assets/bg5.jpg"; // Use the same background image as Home
 
 const Contact = () => {
   const [message, setMessage] = useState("");
