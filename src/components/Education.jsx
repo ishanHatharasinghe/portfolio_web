@@ -1,115 +1,111 @@
+import { useEffect } from "react";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { useState } from "react";
-import BIT from "./../assets/Education/bit.png";
-import HND from "./../assets/Education/hnd.jpeg";
+import BIT from "./../assets/Education/group2.jpg";
+import HND from "./../assets/Education/group1.jpg";
 
 const EducationData = () => {
-  // State to toggle visibility of each education item
-  const [showHND, setShowHND] = useState(false);
-  const [showBIT, setShowBIT] = useState(false);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }, []);
 
   return (
     <section
       id="education"
-      className="min-h-screen  text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden h-full"
+      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden"
     >
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold  text-[#f3e8ff]">
-          Education
-        </h2>
-        <div className="mb-12 h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"></div>
-        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
-          Discover my academic journey, where I gained foundational knowledge
-          and skills to build my professional expertise.
-        </p>
+      {/* Background overlay with subtle animation */}
+      <div className="absolute inset-0 bg-[url('/bg.jpg')] bg-cover bg-center opacity-20 animate-pulse" />
+
+      {/* Content Container */}
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="font-poppins text-4xl sm:text-6xl font-bold text-[#f3e8ff] mb-6 transition-transform hover:scale-105 duration-300">
+            Education Journey
+          </h2>
+
+          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] max-w-2xl mx-auto">
+            My academic path has equipped me with both theoretical knowledge and
+            practical skills, forming the foundation of my professional
+            expertise.
+          </p>
+        </div>
+
+        {/* Education Cards Container */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* HND Card */}
+          <div
+            data-aos="fade-right"
+            className="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl overflow-hidden shadow-xl transition-transform hover:scale-105 duration-300"
+          >
+            <div className="h-48 overflow-hidden">
+              <img
+                src={HND}
+                alt="HND Studies"
+                className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">🎓</span>
+                <h3 className="text-xl font-semibold text-[#f3e8ff]">
+                  Higher National Diploma
+                </h3>
+              </div>
+              <div className="space-y-3">
+                <p className="text-[#a5b4fc] font-medium">
+                  Electrical and Electronics Engineering
+                </p>
+                <p className="text-sm text-[#94a3b8]">
+                  Advanced Technological Institute, Labuduwa, Galle
+                </p>
+                <p className="text-sm leading-relaxed text-[#cbd5e1]">
+                  Specialized in Telecommunication and Electronics, gaining
+                  hands-on experience and industry-relevant technical expertise
+                  through practical applications and project-based learning.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* BIT Card */}
+          <div
+            data-aos="fade-left"
+            className="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl overflow-hidden shadow-xl transition-transform hover:scale-105 duration-300"
+          >
+            <div className="h-48 overflow-hidden">
+              <img
+                src={BIT}
+                alt="BIT Studies"
+                className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6">
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">📘</span>
+                <h3 className="text-xl font-semibold text-[#f3e8ff]">
+                  Bachelor of Information Technology
+                </h3>
+              </div>
+              <div className="space-y-3">
+                <p className="text-[#a5b4fc] font-medium">
+                  Computer Science and Technology
+                </p>
+                <p className="text-sm text-[#94a3b8]">University of Moratuwa</p>
+                <p className="text-sm leading-relaxed text-[#cbd5e1]">
+                  Mastered advanced concepts in computer science, including
+                  cloud computing, artificial intelligence, and data structures,
+                  building a strong foundation for creating scalable solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* Higher National Diploma Section */}
-      <section
-        id="HND"
-        data-aos="fade-up"
-        className="border p-6 rounded-lg mb-6 transition-all duration-300 ease-in-out hover:shadow-xl"
-      >
-        <div
-          className="flex items-center justify-between cursor-pointer"
-          onClick={() => setShowHND(!showHND)}
-          aria-expanded={showHND}
-          aria-controls="hnd-content"
-        >
-          <h3 className="text-xl font-semibold">
-            🎓 Higher National Diploma In Electrical and Electronics
-            Engineering, Advanced Technological Institute, Labuduwa, Galle
-          </h3>
-          <span
-            className={`transform transition-transform duration-300 ${
-              showHND ? "rotate-90 text-[#00FF7F]" : "rotate-0"
-            }`}
-          >
-            ➤
-          </span>
-        </div>
-        {showHND && (
-          <div
-            id="hnd-content"
-            className="mt-4 bg-[#000718FF] p-4 rounded-md text-[#D1D5DB] transition-all duration-500 ease-in-out"
-          >
-            <img
-              src={HND}
-              alt="HND Certificate"
-              className="w-full h-48 object-cover rounded-lg mb-4"
-            />
-            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-              Completed my Higher National Diploma with a specialization in
-              Electrical and Electronics Engineering, focusing on
-              Telecommunication and Electronics. This program equipped me with
-              practical knowledge and industry-relevant skills.
-            </p>
-          </div>
-        )}
-      </section>
-
-      {/* Bachelor of Information Technology Section */}
-      <section
-        id="BIT"
-        data-aos="fade-up"
-        className="border p-6 rounded-lg mb-6 transition-all duration-300 ease-in-out hover:shadow-xl"
-      >
-        <div
-          className="flex items-center justify-between cursor-pointer"
-          onClick={() => setShowBIT(!showBIT)}
-          aria-expanded={showBIT}
-          aria-controls="bit-content"
-        >
-          <h3 className="text-xl font-semibold">
-            📘 Bachelor of Information Technology (BIT), University Of Moratuwa
-          </h3>
-          <span
-            className={`transform transition-transform duration-300 ${
-              showBIT ? "rotate-90 text-[#00FF7F]" : "rotate-0"
-            }`}
-          >
-            ➤
-          </span>
-        </div>
-        {showBIT && (
-          <div
-            id="bit-content"
-            className="mt-4 bg-[#000718FF] p-4 rounded-md text-[#D1D5DB] transition-all duration-500 ease-in-out"
-          >
-            <img
-              src={BIT}
-              alt="BIT Certificate"
-              className="w-full h-48 object-cover rounded-lg mb-4"
-            />
-            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-              Earned my Bachelor of Information Technology, where I deepened my
-              understanding of computer science, cloud computing, artificial
-              intelligence, and data structures. This program provided me with a
-              solid foundation for building scalable and efficient solutions.
-            </p>
-          </div>
-        )}
-      </section>
     </section>
   );
 };

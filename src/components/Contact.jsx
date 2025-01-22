@@ -14,6 +14,8 @@ import {
 } from "react-icons/fa";
 import { SiFiverr } from "react-icons/si"; // Fiverr icon from react-icons/si
 import emailjs from "emailjs-com";
+import { motion } from "framer-motion";
+import bg from "./../assets/bg6.jpg"; // Use the same background image as Home
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -66,111 +68,100 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-16"
     >
-      {/* Header */}
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold  text-[#f3e8ff]">
-          Contact Information
-        </h2>
-        <div className="mb-12 h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"></div>
-        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
-          Get in touch with me through the following contact methods and social
-          media.
-        </p>
-      </div>
-
-      {/* Contact Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <ContactCard
-          icon={<FaMapMarkerAlt className="text-4xl" />} // Adjusted size
-          title="Address"
-          details="533, Samagi Mawatha, Beralapanathara"
-          link="https://www.google.com/maps"
-        />
-        <ContactCard
-          icon={<FaPhoneAlt className="text-4xl" />} // Adjusted size
-          title="Contact No."
-          details="0703052181"
-        />
-        <ContactCard
-          icon={<FaEnvelope className="text-4xl" />} // Adjusted size
-          title="E-mail"
-          details="ishanhatharasinghe222@gmail.com"
-          link="mailto:ishanhatharasinghe222@gmail.com"
+      {/* Animated Background Overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "100%",
+            height: "100%"
+          }}
         />
       </div>
 
-      {/* Social Media */}
-      <div className="mt-12 text-center">
-        <h3 className="text-2xl font-bold text-[#f3e8ff] mb-6">Follow Me On</h3>
-        <div className="flex flex-wrap justify-center gap-6">
-          <SocialCard
-            icon={<FaLinkedin />}
-            color="#0A66C2"
-            link="https://www.linkedin.com/in/ishan-nilaksha-686461308/"
-          />
-          <SocialCard
-            icon={<FaFacebook />}
-            color="#1877F2"
-            link="https://www.facebook.com"
-          />
-          <SocialCard
-            icon={<FaInstagram />}
-            color="#E4405F"
-            link="https://www.instagram.com/ishan_hatharasinghe/"
-          />
-          <SocialCard
-            icon={<FaWhatsapp />}
-            color="#25D366"
-            link="https://wa.me/0703052181"
-          />
-          <SocialCard
-            icon={<FaGithub />}
-            color="#333"
-            link="https://github.com/ishanHatharasinghe"
-          />
-          <SocialCard
-            icon={<FaBehance />}
-            color="#1769FF"
-            link="https://www.behance.net/ishannilaksha"
-          />
-          <SocialCard
-            icon={<SiFiverr />}
-            color="#1DBF73"
-            link="https://www.fiverr.com/sellers/vector_ix/"
-          />
-        </div>
-      </div>
-
-      {/* Feedback Form */}
-      <div className="mt-12">
-        <h3 className="text-2xl font-bold text-[#f3e8ff] mb-6 text-center">
-          Leave Your Feedback
-        </h3>
-        <form onSubmit={handleSendFeedback}>
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Write your message here..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="w-full p-4 rounded-md border-2 border-gray-500 bg-[#010010FF] text-white focus:outline-none focus:border-[#FFFFFFFF] mb-4"
-            required
-          ></textarea>
-          <button
-            type="submit"
-            className="w-full bg-[#0015FFFF] text-white font-bold py-2 px-4 rounded-md hover:bg-[#FF0000FF] transition duration-300"
+      {/* Content Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
+      >
+        {/* Header */}
+        <div className="text-center mb-12">
+          <motion.h2
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 font-poppins text-4xl sm:text-6xl font-bold text-[#f3e8ff]"
           >
-            Send Feedback
-          </button>
-        </form>
-        {showNotification && (
-          <div className="mt-4 text-center font-semibold text-[#FF0000FF]">
-            {sendStatus}
+            Contact Information
+          </motion.h2>
+
+          <motion.p
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed"
+          >
+            Get in touch with me through the following contact methods and
+            social media.
+          </motion.p>
+        </div>
+        {/* Social Media */}
+        <div className="mt-12 text-center">
+          <div className="flex flex-wrap justify-center gap-6">
+            <SocialCard
+              icon={<FaLinkedin />}
+              color="#0A66C2"
+              link="https://www.linkedin.com/in/ishan-nilaksha-686461308/"
+            />
+            <SocialCard
+              icon={<FaFacebook />}
+              color="#1877F2"
+              link="https://www.facebook.com"
+            />
+            <SocialCard
+              icon={<FaInstagram />}
+              color="#E4405F"
+              link="https://www.instagram.com/ishan_hatharasinghe/"
+            />
+            <SocialCard
+              icon={<FaWhatsapp />}
+              color="#25D366"
+              link="https://wa.me/0703052181"
+            />
+            <SocialCard
+              icon={<FaGithub />}
+              color="#333"
+              link="https://github.com/ishanHatharasinghe"
+            />
+            <SocialCard
+              icon={<FaBehance />}
+              color="#1769FF"
+              link="https://www.behance.net/ishannilaksha"
+            />
+            <SocialCard
+              icon={<SiFiverr />}
+              color="#1DBF73"
+              link="https://www.fiverr.com/sellers/vector_ix/"
+            />
           </div>
-        )}
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,77 +1,122 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import cv from "./../assets/cv.pdf";
-import bg from "./../assets/bg5.jpg";
-
-const handleOpenPDF = () => {
-  window.open(cv, "_blank"); // Open PDF in new tab
-};
-
-const handleScrollToContact = () => {
-  const contactSection = document.getElementById("contact");
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: "smooth" });
-  }
-};
+import bg from "./../assets/bg6.jpg";
+import { FaDownload, FaEnvelope } from "react-icons/fa";
 
 const Home = () => {
+  const handleOpenPDF = () => {
+    window.open(cv, "_blank");
+  };
+
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="home"
-      className="h-screen w-full flex justify-center items-center text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }} // Apply the background image here
+      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden"
     >
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-screen-xl px-8 sm:px-12 lg:px-16 xl:px-24 relative z-10">
-        {/* Left Column: Typewriter Text */}
-        <div className="flex flex-col justify-center text-left h-full">
-          <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-6 text-[#f3e8ff] tracking-wide text-shadow-md max-w-full">
+      {/* Animated Background Overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "100%",
+            height: "100%"
+          }}
+        />
+      </div>
+
+      {/* Content Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
+      >
+        {/* Single Column Layout */}
+        <div className="space-y-6 text-center">
+          <motion.h1
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mt-16"
+          >
             <Typewriter
               options={{
                 strings: [
-                  "Hi! I'm Ishan Hatharasinghe.",
-                  "I'm an Electronics Engineer",
-                  "Welcome to my Portfolio."
+                  "<span style='color: #ff6347;'>Hi! I'm Ishan Hatharasinghe</span>",
+                  "<span style='color: #8a2be2;'>I'm an Electronics Engineer</span>",
+                  "<span style='color: #3cb371;'>I'm a UI/UX Designer</span>",
+                  "<span style='color: #ff4500;'>I'm a Web Developer</span>",
+                  "<span style='color: #20b2aa;'>I'm a Graphic Designer</span>",
+                  "<span style='color: #ff1493;'>Welcome to my Portfolio...</span>"
                 ],
                 autoStart: true,
                 loop: true,
-                delay: 50,
-                deleteSpeed: 100
+                delay: 100, // Slower typing speed
+                deleteSpeed: 40, // Slower delete speed
+                wrapperClassName: "typewriter-text",
+                cursorClassName: "typewriter-cursor"
               }}
             />
-          </h1>
-        </div>
+          </motion.h1>
 
-        {/* Right Column: Description and Buttons */}
-        <div className="flex flex-col justify-center text-justify h-full">
-          <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
+          <motion.p
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gray-300 text-sm sm:text-base md:text-lg font-semibold leading-relaxed"
+          >
             UG in HND Engineering (Electrical and Electronics) | UG in BIT
             University of Moratuwa | Data Science, Cloud, and Electronics
             Engineering Intern (SLTMobitel Digital Lab - Embryo Innovation
             Center, Maradana) | Freelancer Graphic Designer
-          </p>
+          </motion.p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-6 mt-6"
+          >
             <button
               onClick={handleScrollToContact}
-              className="bg-gradient-to-r from-[#1900FFFF] to-[#FA1515FF] text-white py-3 px-8 rounded-3xl flex justify-center items-center hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none font-semibold tracking-wider"
+              className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              aria-label="Contact me"
             >
+              <FaEnvelope />
               Contact Me
             </button>
 
             <button
               onClick={handleOpenPDF}
-              className="bg-gradient-to-r from-[#1900FFFF] to-[#FA1515FF] text-white py-3 px-8 rounded-3xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none  font-semibold tracking-wider"
+              className="flex items-center gap-3 px-6 py-3 border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300 transform hover:scale-105"
+              aria-label="Download CV"
             >
+              <FaDownload />
               Download CV
             </button>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

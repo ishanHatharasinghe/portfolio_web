@@ -1,105 +1,150 @@
-import { useState } from "react";
-import pdf4 from "./../assets/Licenses & Certifications/Front-End_Web_Development_E-Certificate.pdf";
-import pdf5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.pdf";
-import pdf1 from "./../assets/Licenses & Certifications/Python_for_Beginners_E-Certificate.pdf";
-import pdf2 from "./../assets/Licenses & Certifications/Python_Programming_E-Certificate.pdf";
-import pdf3 from "./../assets/Licenses & Certifications/Web_Design_for_Beginners_E-Certificate.pdf";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import certificate1 from "./../assets/Licenses & Certifications/Python_for_Beginners_E-Certificate.jpg";
+import certificate2 from "./../assets/Licenses & Certifications/Python_Programming_E-Certificate.jpg";
+import certificate3 from "./../assets/Licenses & Certifications/Web_Design_for_Beginners_E-Certificate.jpg";
+import certificate4 from "./../assets/Licenses & Certifications/Front-End_Web_Development_E-Certificate.jpg";
+import certificate5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.jpg";
+import bg from "./../assets/bg6.jpg"; // Import the same background image used in the Home component
 
 const LicensesCertifications = () => {
-  const [expanded, setExpanded] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const certifications = [
     {
       id: 1,
       title: "Python for Beginners",
       description: "An introductory course on Python programming fundamentals.",
-      link: pdf1
+      image: certificate1
     },
     {
       id: 2,
       title: "Python Programming",
       description:
         "A comprehensive course on Python, covering advanced concepts and practical applications.",
-      link: pdf2
+      image: certificate2
     },
     {
       id: 3,
       title: "Web Design for Beginners",
       description:
         "Learn the basics of web design, including HTML, CSS, and user-friendly layouts.",
-      link: pdf3
+      image: certificate3
     },
     {
       id: 4,
       title: "Front-End Web Development",
       description:
         "Master front-end development skills like HTML, CSS, and JavaScript to build interactive websites.",
-      link: pdf4
+      image: certificate4
     },
     {
       id: 5,
       title: "Introduction to Cybersecurity",
       description:
         "Understand fundamental concepts of cybersecurity, including risk management and threat mitigation.",
-      link: pdf5
+      image: certificate5
     }
   ];
 
   return (
     <section
       id="licenses-certifications"
-      className="text-white py-16 px-6 sm:px-8 lg:px-16 xl:px-24 relative overflow-hidden"
+      className="relative w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#0041CEFF] text-white overflow-hidden py-20" // Increased top and bottom padding
     >
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold  text-[#f3e8ff]">
-          Licenses & Certifications
-        </h2>
-        <div className="mb-12 h-2 w-80 sm:w-96 lg:w-120 bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] rounded-md shadow-lg mx-auto mb-6"></div>
-        <p className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 hover:text-[#5E63FFFF] transition-all duration-100 transform hover:scale-105">
-          Showcase of certifications that highlight my technical expertise and
-          dedication to continuous learning.
-        </p>
+      {/* Animated Background Overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "100%",
+            height: "100%"
+          }}
+        />
       </div>
 
-      {certifications.map((cert) => (
-        <section
-          key={cert.id}
-          className="border p-6 rounded-lg mb-6 transition-all duration-300 ease-in-out hover:shadow-xl"
-          data-aos="fade-up"
-        >
-          <div
-            className="flex items-center justify-between cursor-pointer"
-            onClick={() => setExpanded(expanded === cert.id ? null : cert.id)}
-            aria-expanded={expanded === cert.id}
-            aria-controls={`cert-content-${cert.id}`}
+      {/* Content Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
+      >
+        {/* Section Title */}
+        <div className="space-y-6 text-center">
+          <motion.h2
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mt-16"
           >
-            <h3 className="text-xl font-semibold">{cert.title}</h3>
-            <span
-              className={`transform transition-transform duration-300 ${
-                expanded === cert.id ? "rotate-90 text-[#FF0000]" : "rotate-0"
-              }`}
-            >
-              ➤
-            </span>
-          </div>
-          {expanded === cert.id && (
+            Licenses & Certifications
+          </motion.h2>
+
+          <motion.p
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6  transition-all duration-100 transform "
+          >
+            Showcase of certifications that highlight my technical expertise and
+            dedication to continuous learning.
+          </motion.p>
+        </div>
+
+        {/* Certification Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certifications.map((cert) => (
             <div
-              id={`cert-content-${cert.id}`}
-              className="mt-4 bg-[#000718FF] p-4 rounded-md text-[#D1D5DB] transition-all duration-500 ease-in-out"
+              key={cert.id}
+              className="border p-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl bg-[#1F2937] cursor-pointer"
+              onClick={() => setSelectedImage(cert.image)}
             >
-              <p className="mb-4">{cert.description}</p>
-              <a
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-gradient-to-r from-[#FF0000FF] to-[#4400FFFF] text-white py-2 px-4 rounded-md hover:opacity-90 transition-all duration-300"
-              >
-                View Certificate
-              </a>
+              <img
+                src={cert.image}
+                alt={cert.title}
+                className="w-full h-48 object-cover rounded-md mb-4"
+              />
+              <h3 className="text-xl font-semibold text-white">{cert.title}</h3>
+              <p className="text-sm text-[#D1D5DB] mt-2">{cert.description}</p>
             </div>
-          )}
-        </section>
-      ))}
+          ))}
+        </div>
+
+        {/* Modal */}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative">
+              <img
+                src={selectedImage}
+                alt="Full View"
+                className="max-w-full max-h-screen rounded-lg"
+              />
+              <button
+                className="absolute top-4 right-4 bg-white text-black rounded-full px-4 py-2 font-semibold hover:bg-gray-200 transition"
+                onClick={() => setSelectedImage(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </motion.div>
     </section>
   );
 };

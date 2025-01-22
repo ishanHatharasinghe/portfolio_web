@@ -1,18 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./../index.css";
 import logo from "./../assets/myimage.jpg";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
+  const [isScrollingUp, setIsScrollingUp] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrollingUp(currentScrollY < lastScrollY);
+      setLastScrollY(currentScrollY);
+      setScrollPosition(currentScrollY);
+
+      const sections = navItems.map((item) =>
+        document.getElementById(
+          item.toLowerCase().replace(/ & /g, "-").replace(" ", "-")
+        )
+      );
+
+      const currentSection = sections.reduce((acc, section) => {
+        if (!section) return acc;
+        const bounds = section.getBoundingClientRect();
+        if (bounds.top <= 100 && bounds.bottom >= 100) {
+          return section.id;
+        }
+        return acc;
+      }, activeSection);
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection, lastScrollY]);
 
   const scrollToSection = (id) => {
-    console.log(`Navigating to section: ${id}`);
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false); // Close the mobile menu after clicking
-    } else {
-      console.warn(`Section with id "${id}" not found.`);
+      setIsMenuOpen(false);
+      setActiveSection(id);
     }
   };
 
@@ -28,112 +59,220 @@ function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-900 shadow-lg glow-effect">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between rounded-lg">
-        {/* Logo and Title */}
-        <div className="flex items-center transform hover:scale-110 transition-transform duration-300">
-          <img
-            src={logo}
-            alt="Ishan Nilaksha Logo"
-            className="h-6 w-6 rounded-full object-cover border-2 border-gray-700"
-          />
-          <span className="ml-2 text-xl font-bold text-gray-200 hover:text-blue-400 transition duration-300">
-            Ishan Nilaksha
-          </span>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 text-gray-200 font-medium items-center">
-          {navItems.map((item) => (
-            <button
-              key={item}
-              onClick={() =>
-                scrollToSection(
-                  item.toLowerCase().replace(/ & /g, "-").replace(" ", "-")
-                )
-              }
-              className="text-gray-200 hover:text-blue-400 hover:bg-gray-800 transition duration-300 ease-in-out rounded-md px-3 py-2"
-            >
-              {item}
-            </button>
-          ))}
-
-          {/* Designer Mode Button */}
-          <a
-            href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
-            rel="noopener noreferrer"
-            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrollPosition > 50
+          ? `${
+              isScrollingUp
+                ? "translate-y-0 bg-black/80 backdrop-blur-lg shadow-lg shadow-blue-500/10"
+                : "-translate-y-full"
+            }`
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo and Title */}
+          <div
+            className="flex items-center group cursor-pointer"
+            onClick={() => scrollToSection("home")}
           >
-            Designer Mode
-          </a>
-        </nav>
+            <div className="relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full animate-pulse"></div>
+              <img
+                src={logo}
+                alt="Ishan Nilaksha Logo"
+                className="relative h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover border-2 border-gray-800 group-hover:border-blue-500 transition duration-300"
+              />
+            </div>
+            <div className="ml-3 flex flex-col sm:flex-row sm:items-center">
+              <span className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-300 group-hover:from-blue-400 group-hover:to-purple-500 transition duration-300">
+                Ishan Nilaksha
+              </span>
+              <span className="hidden sm:block text-sm text-gray-400 ml-2">
+                |
+              </span>
+              <span className="text-xs sm:text-sm text-gray-400 sm:ml-2">
+                Portfolio
+              </span>
+            </div>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            <div className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full p-1">
+              {navItems.map((item) => {
+                const itemId = item
+                  .toLowerCase()
+                  .replace(/ & /g, "-")
+                  .replace(" ", "-");
+                const isActive = activeSection === itemId;
+
+                return (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(itemId)}
+                    className={`relative px-3 py-2 text-sm rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-blue-500/20"
+                        : "text-gray-300 hover:text-white hover:bg-gray-700/30"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Designer Mode Button */}
+            <a
+              href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative ml-4 inline-flex items-center px-6 py-2 overflow-hidden rounded-full group"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600"></span>
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+              </span>
+              <span className="relative text-white font-medium text-sm">
+                Designer Mode
+              </span>
+            </a>
+          </nav>
+
+          {/* Tablet Navigation */}
+          <nav className="hidden md:flex lg:hidden items-center space-x-2">
+            <div className="relative group">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex items-center space-x-2 px-4 py-2 bg-gray-800/30 backdrop-blur-sm rounded-full hover:bg-gray-700/30 transition duration-300"
+              >
+                <span className="text-gray-300 text-sm">Menu</span>
+                <svg
+                  className={`w-4 h-4 text-gray-300 transform transition-transform duration-300 ${
+                    isMenuOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800/95 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-700/30 overflow-hidden">
+                  {navItems.map((item) => {
+                    const itemId = item
+                      .toLowerCase()
+                      .replace(/ & /g, "-")
+                      .replace(" ", "-");
+                    const isActive = activeSection === itemId;
+
+                    return (
+                      <button
+                        key={item}
+                        onClick={() => scrollToSection(itemId)}
+                        className={`w-full text-left px-4 py-2.5 text-sm transition duration-200 ${
+                          isActive
+                            ? "bg-gradient-to-r from-blue-500/20 to-purple-600/20 text-blue-400"
+                            : "text-gray-300 hover:bg-gray-700/50 hover:text-white"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    );
+                  })}
+
+                  <a
+                    href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2.5 text-sm bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:from-blue-600 hover:to-purple-700 transition duration-300"
+                  >
+                    Designer Mode
+                  </a>
+                </div>
+              )}
+            </div>
+          </nav>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-200 focus:outline-none"
+            className="md:hidden relative w-10 h-10 rounded-full bg-gray-800/30 backdrop-blur-sm hover:bg-gray-700/30 transition duration-300 focus:outline-none"
           >
-            {isMenuOpen ? (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
+            <div className="absolute inset-0 rounded-full overflow-hidden">
+              <div className="flex flex-col items-center justify-center h-full space-y-1.5">
+                <span
+                  className={`block w-5 h-0.5 bg-gray-300 transform transition-all duration-300 ${
+                    isMenuOpen ? "rotate-45 translate-y-2" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block w-5 h-0.5 bg-gray-300 transform transition-all duration-300 ${
+                    isMenuOpen ? "opacity-0" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block w-5 h-0.5 bg-gray-300 transform transition-all duration-300 ${
+                    isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
+                ></span>
+              </div>
+            </div>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <nav className="md:hidden bg-gray-800 border-t border-gray-700 shadow-md rounded-b-lg">
-          {navItems.map((item) => (
-            <button
-              key={item}
-              onClick={() =>
-                scrollToSection(
-                  item.toLowerCase().replace(/ & /g, "-").replace(" ", "-")
-                )
-              }
-              className="block px-10 py-2 text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition duration-200 rounded-md mx-4 my-1"
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen
+              ? "max-h-screen opacity-100 mt-4"
+              : "max-h-0 opacity-0 overflow-hidden"
+          }`}
+        >
+          <nav className="bg-gray-800/95 backdrop-blur-lg rounded-2xl p-2 border border-gray-700/30">
+            {navItems.map((item) => {
+              const itemId = item
+                .toLowerCase()
+                .replace(/ & /g, "-")
+                .replace(" ", "-");
+              const isActive = activeSection === itemId;
+
+              return (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(itemId)}
+                  className={`w-full text-left px-4 py-3 rounded-xl text-sm transition duration-200 ${
+                    isActive
+                      ? "bg-gradient-to-r from-blue-500/20 to-purple-600/20 text-blue-400"
+                      : "text-gray-300 hover:bg-gray-700/50 hover:text-white"
+                  }`}
+                >
+                  {item}
+                </button>
+              );
+            })}
+
+            <a
+              href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-sm font-medium text-center hover:from-blue-600 hover:to-purple-700 transition duration-300"
             >
-              {item}
-            </button>
-          ))}
-
-          {/* Designer Mode Button (Mobile) */}
-          <a
-            href="https://ishanhatharasinghe.github.io/graphic_portfolio_web"
-            rel="noopener noreferrer"
-            className="font-bold block px-10 py-2 text-gray-200 hover:text-blue-400 bg-gray-700 hover:bg-blue-600 transition duration-200 rounded-md mx-4 my-1"
-          >
-            Designer Mode
-          </a>
-        </nav>
-      )}
+              Designer Mode
+            </a>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
