@@ -109,7 +109,7 @@ const LicensesCertifications = () => {
           {certifications.map((cert) => (
             <div
               key={cert.id}
-              className="border p-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl bg-[#1F2937] cursor-pointer"
+              className=" p-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#0B002CFF] cursor-pointer"
               onClick={() => setSelectedImage(cert.image)}
             >
               <img

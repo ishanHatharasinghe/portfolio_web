@@ -16,7 +16,7 @@ const EducationData = () => {
   return (
     <section
       id="education"
-      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24"
+      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-14 sm:py-12 md:py-16 lg:py-24"
     >
       {/* Background overlay with subtle animation */}
       <div className="absolute inset-0 bg-[url('/bg.jpg')] bg-cover bg-center opacity-20 animate-pulse" />
@@ -36,7 +36,7 @@ const EducationData = () => {
         </div>
 
         {/* Education Cards Container */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {/* HND Card */}
           <div
             data-aos="fade-right"
