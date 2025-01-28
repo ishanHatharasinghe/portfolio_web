@@ -48,44 +48,30 @@ const skills = {
 };
 
 const SkillsCard = ({ skill, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div
-      className="w-64 bg-[#1a1a2e] rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="w-44 bg-[#060017FF] rounded-2xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl transform hover:scale-105"
       data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
       data-aos-delay={`${index * 100}`}
       data-aos-duration="800"
     >
       <div className="relative p-6">
-        <div className="bg-gradient-to-br from-[#2a2a4e] to-[#1f1f35] p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+        {/* Image Section */}
+        <div className="bg-gradient-to-br from-[#2a2a4e] to-[#1f1f35] p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
           <img
             src={skill.img}
             alt={skill.name}
-            className={`w-12 h-12 object-contain transition-transform duration-300 ${
-              isHovered ? "scale-110" : ""
-            }`}
+            className="w-14 h-14 object-contain transform transition-transform duration-300 hover:scale-110"
           />
         </div>
 
-        <h3 className="text-xl font-semibold text-center text-[#f3e8ff] mb-4">
+        {/* Skill Name */}
+        <h3 className="text-2xl font-semibold text-center text-[#f3e8ff] mb-4 transition-transform hover:scale-105 duration-300">
           {skill.name}
         </h3>
 
-        <div className="relative w-full h-2 bg-[#3a3a54] rounded-full overflow-hidden">
-          <div
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full transition-all duration-1000 ease-out"
-            style={{
-              width: isHovered ? `${skill.percentage}%` : "0%"
-            }}
-          />
-        </div>
-
-        <span className="block text-center mt-2 text-[#e5e7eb]">
-          {skill.percentage}%
-        </span>
+        {/* Hover Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#19003F] via-[#03001B] to-[#06173C] opacity-0 hover:opacity-30 transition-all duration-300 rounded-xl" />
       </div>
     </div>
   );
@@ -171,7 +157,7 @@ const SkillsData = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-8 justify-items-center">
           {filterSkills().map((skill, index) => (
             <SkillsCard key={skill.name} skill={skill} index={index} />
           ))}
