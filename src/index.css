@@ -15,14 +15,6 @@
   }
 }
 
-@keyframes fallingStar {
-  0% {
-    transform: translateY(-100vh);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
 @font-face {
   font-family: "Poppins";
   src: url("./fonts/Poppins-Bold.ttf") format("Poppins-bold"),
@@ -41,12 +33,7 @@
   font-weight: 500;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
-}
+
 
 html {
   scroll-behavior: smooth;
@@ -84,10 +71,7 @@ html {
   display: none; /* Hides the buttons on the scrollbar */
 }
 
-body {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #000000 #000000; /* Firefox */
-}
+
 
 /* From Uiverse.io by Priyanshu02020 */ 
 #heart {
@@ -172,4 +156,12 @@ body {
   100% {
     transform: scale(1.2);
   }
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  
+  background-color: black;
 }

@@ -1,82 +1,125 @@
 import "aos/dist/aos.css";
-import Work1 from "./../components/Work1";
+import bg from "./../assets/Work1/bg.jpg";
 import { motion } from "framer-motion";
-import bg from "./../assets/bg5.jpg";
+import robot from "./../assets/Work1/scene-with-futuristic-robot-used-construction-industry.png";
+import Img1 from "./../assets/Work1/1.jpg";
+import Img2 from "./../assets/Work1/2.jpg";
+import Img3 from "./../assets/Work1/3.jpg";
 
-const WorkExperience = () => {
+const ProfessionalJourney = () => {
   return (
-    <section
-      id="work-experience"
-      className="relative min-h-full w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-16"
-    >
-      {/* Animated Background Overlay */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          initial={{ scale: 1 }}
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "100%"
-          }}
+    <section className="h-full relative min-h-screen w-full bg-black overflow-hidden">
+      {/* Background with gradient overlay */}
+      <div className="absolute inset-0">
+        {/* Background Image */}
+        <img
+          src={bg}
+          alt="background"
+          className="w-full h-full object-cover opacity-80"
+        />
+        {/* Robot Image (Over Background) */}
+        <img
+          src={robot}
+          alt="robot"
+          className="absolute inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
         />
       </div>
+      {/* Main Content Container */}
+      <div className="relative min-h-screen flex flex-col justify-center items-center px-6 mt-16 z-10">
+        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+          {/* Desktop Layout */}
+          <div className="hidden md:flex flex-row gap-1 items-center">
+            <div>
+              <div className="w-[500px]"></div>
+            </div>
+            <div>
+              {/* Title and Description */}
+              <div className="bg-black/40 backdrop-blur-md rounded-[2rem] p-8">
+                <h1 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+                  Professional Journey
+                </h1>
+                <p className="text-[16px] text-gray-300 leading-relaxed">
+                  My academic path has equipped me with both theoretical
+                  knowledge and practical skills, forming the foundation of my
+                  professional expertise.
+                </p>
+                {/* SLT Digital LAB Section */}
+                <div className="mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem]">
+                  <h2 className="text-2xl text-white font-italiana mb-7">
+                    SLT Digital LAB
+                  </h2>
+                  <p className="text-gray-300">
+                    Electronics Engineering Intern - Sri Lanka Telecom PLC,
+                    Digital LAB, The Embryo Innovation Centre, Trace Expert
+                    City, Maradana, Colombo
+                  </p>
+                  {/* Image Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                    {[Img1, Img2, Img3].map((img, index) => (
+                      <div
+                        key={index}
+                        className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        <img
+                          src={img}
+                          alt={`Image ${index + 1}`}
+                          className="w-full h-[160px] object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* Content Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
-      >
-        <div className="text-center space-y-6">
-          {/* Title */}
-          <motion.h2
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold text-[#f3e8ff]"
-          >
-            Work Experience
-          </motion.h2>
+          {/* Mobile Layout */}
+          <div className="md:hidden flex flex-col items-center justify-center w-full">
+            {/* Titles */}
+            <div className="w-full text-center mb-8">
+              <h1 className="font-italiana text-4xl text-white tracking-wide">
+                Professional Journey
+              </h1>
+              <p className="text-[16px] text-gray-300 leading-relaxed">
+                My academic path has equipped me with both theoretical knowledge
+                and practical skills, forming the foundation of my professional
+                expertise.
+              </p>
+            </div>
 
-          {/* Description */}
-          <motion.p
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6 transition-all duration-100 transform "
-          >
-            Below are my key work experiences, showcasing my skills and
-            achievements across various roles.
-          </motion.p>
+            {/* SLT Digital LAB Section */}
+            <div className="w-full bg-black/40 backdrop-blur-md rounded-[2rem] p-6 border border-white/10">
+              <h2 className="text-2xl text-white font-italiana mb-4">
+                SLT Digital LAB
+              </h2>
+              <p className="text-gray-300">
+                Electronics Engineering Intern - Sri Lanka Telecom PLC, Digital
+                LAB, The Embryo Innovation Centre, Trace Expert City, Maradana,
+                Colombo
+              </p>
+              {/* Image Grid */}
+              <div className="grid grid-cols-1 gap-6 mt-6">
+                {[Img1, Img2, Img3].map((img, index) => (
+                  <div
+                    key={index}
+                    className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <img
+                      src={img}
+                      alt={`Image ${index + 1}`}
+                      className="w-full h-[200px] object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Project Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-center">
-          <section
-            id="Work1"
-            data-aos="fade-up" // Using fade-up for swipe-up effect
-          >
-            <Work1 />
-          </section>
-
-          {/* Additional work experience sections can be added here */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-center"></div>
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
 
-export default WorkExperience;
+export default ProfessionalJourney;

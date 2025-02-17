@@ -1,157 +1,114 @@
-import React, { useState } from "react";
-import ProjectVpms from "./../components/projectvpms";
-import Projectllm from "./../components/projectllm";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
 import { motion } from "framer-motion";
-import bg from "./../assets/bg6.jpg";
-import ProjectVpmslogo from "./../assets/Project1/logo.png";
-import Projectllmlogo from "./../assets/Project2/logo.png";
+import my from "./../assets/Project1/Slide1.JPG";
+import my2 from "./../assets/Project2/1.png";
+import bg from "./../assets/Home Section/bg.png";
+import robot from "./../assets/robot3.png";
 
 const ProjectsData = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupContent, setPopupContent] = useState(null);
-
-  const handleClick = (project) => {
-    setPopupContent(project);
-    setShowPopup(true);
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-    setPopupContent(null);
+  // Placeholder function for pending projects
+  const handlePendingClick = () => {
+    alert("This project is still in progress!");
   };
 
   return (
-    <section
+    <div
       id="projects"
-      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-16"
+      className="h-full relative min-h-screen w-full bg-black overflow-hidden"
     >
-      {/* Animated Background Overlay */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          initial={{ scale: 1 }}
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "100%"
-          }}
+      {/* Background with gradient overlay */}
+      <div className="absolute inset-0">
+        {/* Background Image */}
+        <img
+          src={bg}
+          alt="background"
+          className="w-full h-full object-cover opacity-80"
+        />
+
+        {/* Robot Image (Over Background) */}
+        <img
+          src={robot}
+          alt="robot"
+          className="absolute inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
         />
       </div>
-
-      {/* Content Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
-      >
-        {/* Projects Title */}
-        <div className="space-y-6 text-center">
-          <motion.h2
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 hover:scale-110 font-poppins text-4xl sm:text-6xl font-bold text-[#f3e8ff]"
-          >
-            Projects
-          </motion.h2>
-
-          <motion.p
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed mb-6  transition-all duration-100 transform "
-          >
+      <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
+        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+          <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide text-center">
+            Creative Ventures
+          </h2>
+          <p className="text-[16px] text-gray-300 leading-relaxed text-center mb-7">
             Explore some of my recent works, where I applied technical skills
             and creativity to deliver impactful solutions.
-          </motion.p>
-        </div>
+          </p>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* ProjectVpms Section */}
-          <section
-            id="ProjectVpms"
-            data-aos="fade-up"
-            className="border p-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl"
-          >
-            <div className="bg-[#000718FF] p-4 rounded-md text-[#D1D5DB]">
-              <motion.img
-                src={ProjectVpmslogo}
-                alt="ProjectVpms Logo"
-                className="cursor-pointer hover:scale-105 transition-all duration-200 w-20 h-20 mx-auto"
-                onClick={() => handleClick(<ProjectVpms />)}
-              />
-              <h3
-                className="text-center text-xl font-semibold mt-4 text-[#e5e7eb] cursor-pointer hover:scale-105"
-                onClick={() => handleClick(<ProjectVpms />)}
-              >
-                Project VPMS
-              </h3>
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Project 1: Vehicle Parking Management System */}
+            <div className="group relative w-full h-full">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Card content */}
+              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <img
+                  src={my}
+                  alt="profile"
+                  className="w-full rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-[1.05]"
+                />
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  Vehicle Parking Management System (VPMS)
+                </h1>
+                <h5 className="font-semibold text-xs md:text-sm text-gray-300 mb-3">
+                  University of Moratuwa
+                </h5>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                  A desktop application designed to automate parking operations,
+                  built with C# and SQL.
+                </p>
+                <a
+                  href="https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Read More →
+                </a>
+              </div>
             </div>
-          </section>
 
-          {/* Projectllm Section */}
-          <section
-            id="Projectllm"
-            data-aos="fade-up"
-            className="border p-6 rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl"
-          >
-            <div className="bg-[#000718FF] p-4 rounded-md text-[#D1D5DB]">
-              <motion.img
-                src={Projectllmlogo}
-                alt="Project LLM Logo"
-                className="cursor-pointer hover:scale-105 transition-all duration-200 w-20 h-20 mx-auto"
-                onClick={() => handleClick(<Projectllm />)}
-              />
-              <h3
-                className="text-center text-xl font-semibold mt-4 text-[#e5e7eb] cursor-pointer hover:scale-105"
-                onClick={() => handleClick(<Projectllm />)}
-              >
-                Project LLM
-              </h3>
+            {/* Project 2: Large Language Model (LLM) */}
+            <div className="group relative w-full h-full">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Card content */}
+              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <img
+                  src={my2}
+                  alt="profile"
+                  className="w-full rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-[1.05]"
+                />
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  Large Language Model (LLM)
+                </h1>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                  A system designed to read documents and answer questions using
+                  Python, React, FastAPI, and APIs from Gemini, OpenAI, and
+                  Hugging Face.
+                </p>
+                <a
+                  href="https://example.com/llm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Read More →
+                </a>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
-      </motion.div>
-
-      {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="relative bg-[#1A1A2E] text-white rounded-lg shadow-lg p-6 sm:p-8 max-w-3xl w-full mx-4"
-          >
-            {/* Close Button */}
-            <button
-              onClick={closePopup}
-              className="absolute top-4 right-4 text-white text-xl sm:text-2xl hover:text-red-500 transition-all duration-200"
-              aria-label="Close"
-            >
-              &times;
-            </button>
-
-            {/* Popup Content */}
-            <div className="max-h-[70vh] overflow-y-auto p-2 sm:p-4">
-              {popupContent}
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </section>
+      </div>
+    </div>
   );
 };
 

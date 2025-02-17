@@ -62,12 +62,8 @@ function Header() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrollPosition > 50
-          ? `${
-              isScrollingUp
-                ? "translate-y-0 bg-black/80 backdrop-blur-lg shadow-lg shadow-blue-500/10"
-                : "-translate-y-full"
-            }`
-          : "bg-transparent"
+          ? "translate-y-0 bg-black/80 backdrop-blur-lg shadow-lg shadow-blue-500/10"
+          : "translate-y-0 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
@@ -78,7 +74,6 @@ function Header() {
             onClick={() => scrollToSection("home")}
           >
             <div className="relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full animate-pulse"></div>
               <img
                 src={logo}

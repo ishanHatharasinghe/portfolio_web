@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'italiana': ['Italiana'],
+      },
       keyframes: {
         move1: {
           "0%, 100%": { transform: "translate(0, 0)" },

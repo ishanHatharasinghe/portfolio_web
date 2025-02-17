@@ -15,7 +15,7 @@ import {
 import { SiFiverr } from "react-icons/si"; // Fiverr icon from react-icons/si
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import bg from "./../assets/bg5.jpg"; // Use the same background image as Home
+import bg from "./../assets/Contact/bg.jpg";
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -31,12 +31,10 @@ const Contact = () => {
 
   const handleSendFeedback = (e) => {
     e.preventDefault();
-
     const confirmSend = window.confirm(
       "Are you sure you want to send this feedback?"
     );
     if (!confirmSend) return;
-
     emailjs
       .sendForm(
         "service_wr5ibr1", // Service ID
@@ -59,7 +57,6 @@ const Contact = () => {
   const showNotificationPopup = (message) => {
     setSendStatus(message);
     setShowNotification(true);
-
     setTimeout(() => {
       setShowNotification(false);
     }, 5000);
@@ -68,31 +65,20 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#19003FFF] via-[#03001BFF] to-[#06173CFF] text-white overflow-hidden py-16"
+      className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden py-16"
     >
-      {/* Animated Background Overlay */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          initial={{ scale: 1 }}
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "100%"
-          }}
+      {/* Background with gradient overlay and blur */}
+      <div className="absolute inset-0">
+        {/* Background Image with Blur */}
+        <img
+          src={bg}
+          alt="background"
+          className="w-full h-full object-cover backdrop-blur-lg opacity-80"
         />
-      </div>
 
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/30 backdrop-blur-sm"></div>
+      </div>
       {/* Content Container */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -102,24 +88,13 @@ const Contact = () => {
       >
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.h2
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="py-10 px-6 sm:px-8 lg:px-16 xl:px-24 font-poppins text-4xl sm:text-6xl font-bold text-[#f3e8ff]"
-          >
-            Contact Information
-          </motion.h2>
-
-          <motion.p
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-sm sm:text-base lg:text-lg text-[#e5e7eb] leading-relaxed"
-          >
+          <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide text-center">
+            Get in Touch
+          </h2>
+          <p className="text-[16px] text-gray-300 leading-relaxed text-center mb-7">
             Get in touch with me through the following contact methods and
             social media.
-          </motion.p>
+          </p>
         </div>
         {/* Social Media */}
         <div className="mt-12 text-center">

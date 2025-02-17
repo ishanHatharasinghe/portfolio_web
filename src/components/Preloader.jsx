@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import bg from "./../assets/bg6.jpg";
+import "./loader.css";
 
 const styles = {
   pagePadding: {
@@ -26,9 +27,9 @@ const Preloader = ({ onLoadingComplete }) => {
           onLoadingComplete();
           return 100;
         }
-        return prev + 1; // Increment loading by 1
+        return prev + 1;
       });
-    }, 30); // Adjust the interval speed as needed
+    }, 30);
 
     return () => clearInterval(timer);
   }, [onLoadingComplete]);
@@ -45,7 +46,7 @@ const Preloader = ({ onLoadingComplete }) => {
 
   return (
     <div
-      className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-black to-blue-950 z-50 overflow-hidden"
+      className="fixed inset-0 flex flex-col items-center justify-center z-50 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Animated Background Overlay */}
@@ -121,7 +122,7 @@ const Preloader = ({ onLoadingComplete }) => {
 
       {/* Loading Text */}
       <motion.div
-        className="mt-6 text-blue-400 font-mono text-2xl tracking-widest"
+        className="mt-1 text-blue-400 font-mono text-2xl tracking-widest"
         animate={{
           opacity: [0.5, 1, 0.5],
           scale: [0.98, 1, 0.98]
