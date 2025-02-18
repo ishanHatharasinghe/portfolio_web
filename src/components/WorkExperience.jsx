@@ -5,8 +5,31 @@ import robot from "./../assets/Work1/scene-with-futuristic-robot-used-constructi
 import Img1 from "./../assets/Work1/1.jpg";
 import Img2 from "./../assets/Work1/2.jpg";
 import Img3 from "./../assets/Work1/3.jpg";
+import Img4 from "./../assets/Work1/1.jpg";
+import Img5 from "./../assets/Work1/2.jpg";
+import Img6 from "./../assets/Work1/3.jpg";
+import { useState } from "react";
 
 const ProfessionalJourney = () => {
+  const [activeSection, setActiveSection] = useState(0);
+
+  const sections = [
+    {
+      title: "SLT Digital LAB",
+      description:
+        "Electronics Engineering Intern - Sri Lanka Telecom PLC, Digital LAB, The Embryo Innovation Centre, Trace Expert City, Maradana, Colombo",
+      images: [Img1, Img2, Img3]
+    }
+  ];
+
+  const handleNext = () => {
+    setActiveSection((prev) => (prev + 1) % sections.length);
+  };
+
+  const handlePrev = () => {
+    setActiveSection((prev) => (prev - 1 + sections.length) % sections.length);
+  };
+
   return (
     <section className="h-full relative min-h-screen w-full bg-black overflow-hidden">
       {/* Background with gradient overlay */}
@@ -43,19 +66,32 @@ const ProfessionalJourney = () => {
                   knowledge and practical skills, forming the foundation of my
                   professional expertise.
                 </p>
-                {/* SLT Digital LAB Section */}
-                <div className="mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem]">
+                {/* Swipeable Sections */}
+                <div className="mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem] relative">
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={handlePrev}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+                  >
+                    &#10095;
+                  </button>
+
+                  {/* Active Section */}
                   <h2 className="text-2xl text-white font-italiana mb-7">
-                    SLT Digital LAB
+                    {sections[activeSection].title}
                   </h2>
                   <p className="text-gray-300">
-                    Electronics Engineering Intern - Sri Lanka Telecom PLC,
-                    Digital LAB, The Embryo Innovation Centre, Trace Expert
-                    City, Maradana, Colombo
+                    {sections[activeSection].description}
                   </p>
                   {/* Image Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
-                    {[Img1, Img2, Img3].map((img, index) => (
+                    {sections[activeSection].images.map((img, index) => (
                       <div
                         key={index}
                         className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
@@ -70,10 +106,21 @@ const ProfessionalJourney = () => {
                     ))}
                   </div>
                 </div>
+                {/* Coordination Dots */}
+                <div className="flex justify-center mt-6">
+                  {sections.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveSection(index)}
+                      className={`w-2 h-2 rounded-full mx-1 ${
+                        activeSection === index ? "bg-white" : "bg-gray-500"
+                      }`}
+                    ></button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-
           {/* Mobile Layout */}
           <div className="md:hidden flex flex-col items-center justify-center w-full">
             {/* Titles */}
@@ -87,20 +134,32 @@ const ProfessionalJourney = () => {
                 expertise.
               </p>
             </div>
+            {/* Swipeable Sections */}
+            <div className="w-full bg-black/40 backdrop-blur-md rounded-[2rem] p-6 border border-white/10 relative">
+              {/* Navigation Arrows */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+              >
+                &#10094;
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+              >
+                &#10095;
+              </button>
 
-            {/* SLT Digital LAB Section */}
-            <div className="w-full bg-black/40 backdrop-blur-md rounded-[2rem] p-6 border border-white/10">
+              {/* Active Section */}
               <h2 className="text-2xl text-white font-italiana mb-4">
-                SLT Digital LAB
+                {sections[activeSection].title}
               </h2>
               <p className="text-gray-300">
-                Electronics Engineering Intern - Sri Lanka Telecom PLC, Digital
-                LAB, The Embryo Innovation Centre, Trace Expert City, Maradana,
-                Colombo
+                {sections[activeSection].description}
               </p>
               {/* Image Grid */}
               <div className="grid grid-cols-1 gap-6 mt-6">
-                {[Img1, Img2, Img3].map((img, index) => (
+                {sections[activeSection].images.map((img, index) => (
                   <div
                     key={index}
                     className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
@@ -112,6 +171,18 @@ const ProfessionalJourney = () => {
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-40 transition-all duration-300"></div>
                   </div>
+                ))}
+              </div>
+              {/* Coordination Dots */}
+              <div className="flex justify-center mt-6">
+                {sections.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveSection(index)}
+                    className={`w-2 h-2 rounded-full mx-1 ${
+                      activeSection === index ? "bg-white" : "bg-gray-500"
+                    }`}
+                  ></button>
                 ))}
               </div>
             </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import my from "./../assets/Project1/Slide1.JPG";
-import my2 from "./../assets/Project2/1.png";
+import my2 from "./../assets/Project2/page.jpg";
+import my3 from "./../assets/Project3/page.jpeg";
 import bg from "./../assets/Home Section/bg.png";
 import robot from "./../assets/robot3.png";
 
@@ -76,7 +77,41 @@ const ProjectsData = () => {
               </div>
             </div>
 
-            {/* Project 2: Large Language Model (LLM) */}
+            {/* Project 2: MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM */}
+            <div className="group relative w-full h-full">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Card content */}
+              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <img
+                  src={my3}
+                  alt="profile"
+                  className="w-full rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-[1.05]"
+                />
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM
+                </h1>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                  The Mobitel AI-driven Edge Sales Management System is a
+                  comprehensive mobile application designed to assist SIM
+                  dealers in Sri Lanka. Many dealers lack awareness of prepaid
+                  and postpaid packages, leading to inefficiencies in customer
+                  service and sales. This system introduces an intelligent
+                  package recommendation engine to suggest the best plans based
+                  on platform preferences, budget, and communication needs
+                  (voice and SMS).
+                </p>
+                <a
+                  href="https://example.com/llm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Read More →
+                </a>
+              </div>
+            </div>
+            {/* Project 3: Large Language Model (LLM) */}
             <div className="group relative w-full h-full">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

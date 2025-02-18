@@ -63,29 +63,17 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden py-16"
-    >
-      {/* Background with gradient overlay and blur */}
-      <div className="absolute inset-0">
-        {/* Background Image with Blur */}
+    <div className="h-screen bg-black text-white p-8 relative">
+      {/* Background with gradient overlay */}
+      <div className="absolute inset-0 ">
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover backdrop-blur-lg opacity-80"
+          className="w-full h-full object-cover opacity-60"
         />
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/30 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black-1/10 via-transparent to-transparent" />
       </div>
-      {/* Content Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center justify-center gap-8 sm:gap-10 lg:gap-12"
-      >
+      <div className="flex flex-col items-center justify-center rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide text-center">
@@ -136,8 +124,8 @@ const Contact = () => {
             />
           </div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </div>
   );
 };
 

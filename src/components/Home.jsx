@@ -7,8 +7,81 @@ import aw from "./../assets/Home Section/aw.png";
 import lm from "./../assets/Home Section/lm.png";
 import { ArrowRight } from "lucide-react";
 import "./button.css";
+import { useState, useEffect } from "react";
 
+import resumePDF from "./../assets/cv.pdf";
 const Home = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0); // Fixed variable name
+  const [activeSection, setActiveSection] = useState("home");
+  const [isScrollingUp, setIsScrollingUp] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0); // Fixed variable name
+  const FooterLink = ({ href, label }) => (
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"
+      >
+        <span>{label}</span>
+      </a>
+    </li>
+  );
+  const navItems = [
+    "Home",
+    "About",
+    "Education",
+    "Skills",
+    "Licenses & Certifications", // Removed extra spaces
+    "Work Experience",
+    "Projects",
+    "Contact"
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrollingUp(currentScrollY < lastScrollY); // Fixed comparison operator
+      setLastScrollY(currentScrollY);
+      setScrollPosition(currentScrollY);
+
+      // Map navItems to their corresponding DOM elements
+      const sections = navItems.map((item) =>
+        document.getElementById(
+          item.toLowerCase().replace(/ & /g, "-").replace(" ", "-") // Fixed regex
+        )
+      );
+
+      // Find the current active section based on scroll position
+      const currentSection = sections.reduce((acc, section) => {
+        if (!section) return acc; // Skip missing sections
+        const bounds = section.getBoundingClientRect();
+        if (bounds.top >= 100) {
+          return section.id;
+        }
+        return acc;
+      }, activeSection);
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection, lastScrollY]);
+
+  // Function to scroll to a specific section
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
+      setActiveSection(id);
+    } else {
+      console.error(`Section with id "${id}" not found.`); // Debugging for missing sections
+    }
+  };
+
   return (
     <div className="h-full relative min-h-full w-full bg-black overflow-hidden">
       {/* Background with gradient overlay */}
@@ -22,7 +95,7 @@ const Home = () => {
       </div>
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-12 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           {/* Top header */}
           <div className="w-full text-center">
             <h3 className="font-italiana text-gray-200 text-sm md:text-base font-extralight tracking-wider">
@@ -47,7 +120,17 @@ const Home = () => {
                     />
                     I CRAFT THE FUTURE ONE INNOVATIVE SOLUTION AT A TIME
                   </p>
-                  <button className="button">Connect with me</button>
+                  <div className="flex flex-col gap-2 ">
+                    <button
+                      className="button"
+                      onClick={() => scrollToSection("contact")}
+                    >
+                      Connect with me
+                    </button>
+                    <button className="button" href={resumePDF}>
+                      Download resume
+                    </button>
+                  </div>
                 </div>
               </div>
               {/* Title section */}
@@ -119,7 +202,7 @@ const Home = () => {
                 {/* Robot glow */}
                 <div className="absolute w-[100%] h-[100%] bg-orange-500/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative transition-transform duration-500 group-hover:scale-[1.05]">
-                  <img src={robot} alt="robot" className="h-[90vh] w-[45vw]" />
+                  <img src={robot} alt="robot" className="h-[100vh] w-[55vw]" />
                 </div>
               </div>
             </div>
@@ -150,15 +233,25 @@ const Home = () => {
                     />
                     I CRAFT THE FUTURE ONE INNOVATIVE SOLUTION AT A TIME
                   </p>
-                  <button className="button">Connect with me</button>
+                  <div className="flex flex-col gap-2 ">
+                    <button
+                      className="button"
+                      onClick={() => scrollToSection("contact")}
+                    >
+                      Connect with me
+                    </button>
+                    <button className="button" href={resumePDF}>
+                      Download resume
+                    </button>
+                  </div>
                 </div>
               </div>
               {/* Project Cards */}
-              <div className="w-full flex flex-col gap-4">
+              <div className="w-auto flex flex-col gap-2">
                 {/* Card 1 */}
-                <div className="relative border border-white/10 bg-black/40 backdrop-blur-md rounded-[2rem] p-4 transition-transform duration-500 group-hover:scale-[1.05]">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl overflow-hidden transition-transform duration-500 group-hover:scale-[1.1]">
+                <div className="relative border border-white/10 bg-black/40 backdrop-blur-sm rounded-2xl p-3 transition-transform duration-300 group-hover:scale-[1.03]">
+                  <div className="flex items-center gap-3 mb-2 justify-center">
+                    <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]">
                       <img
                         src={slt}
                         alt="Masked Image"
@@ -166,19 +259,19 @@ const Home = () => {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <h3 className="flex flex-row gap-[100px] font-italiana text-white font-light">
-                        RESENT PROJECT <ArrowRight className="w-5" />
+                      <h3 className="flex flex-row gap-2 font-italiana text-white text-xs font-light">
+                        RECENT PROJECT <ArrowRight className="w-3" />
                       </h3>
-                      <p className="text-gray-400 text-sm">
-                        market edge sales management system
+                      <p className="text-gray-400 text-xs">
+                        Market Edge Sales Management System
                       </p>
                     </div>
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="relative border border-white/10 bg-black/40 backdrop-blur-md rounded-[2rem] p-4 transition-transform duration-500 group-hover:scale-[1.05]">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl overflow-hidden transition-transform duration-500 group-hover:scale-[1.1]">
+                <div className="relative border border-white/10 bg-black/40 backdrop-blur-sm rounded-2xl p-3 transition-transform duration-300 group-hover:scale-[1.03]">
+                  <div className="flex items-center gap-3 mb-2 justify-center">
+                    <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]">
                       <img
                         src={lm}
                         alt="Masked Image"
@@ -186,11 +279,11 @@ const Home = () => {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <h3 className="flex flex-row gap-[100px] font-italiana text-white font-light">
-                        Lassana Moments <ArrowRight className="w-5" />
+                      <h3 className="flex flex-row gap-2 font-italiana text-white text-xs font-light">
+                        Lassana Moments <ArrowRight className="w-3" />
                       </h3>
-                      <p className="text-gray-400 text-sm">
-                        The Platform for find your Photographer
+                      <p className="text-gray-400 text-xs">
+                        The Platform for Finding Your Photographer
                       </p>
                     </div>
                   </div>

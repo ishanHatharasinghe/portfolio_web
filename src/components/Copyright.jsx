@@ -1,355 +1,346 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import "./button.css";
 import {
   Github,
   Linkedin,
+  Twitter,
   Mail,
-  Home,
-  ArrowUp,
-  Phone,
-  MapPin,
-  Calendar,
-  ExternalLink
+  ChevronUp,
+  ExternalLink,
+  Shield,
+  Clock,
+  HelpCircle,
+  Download
 } from "lucide-react";
+import emailjs from "emailjs-com";
 
-const ProfessionalFooter = ({
-  designerName,
-  contactHref,
-  homeHref,
-  githubUrl,
-  linkedinUrl,
-  email,
-  phone,
-  location,
-  companyName,
-  services
+const XoraProfessionalFooter = ({
+  companyName = "Ishan Hatharasinghe",
+  contactEmail = "ishanhatharasinghe222@gmail.com",
+  githubUrl = "https://github.com/ishanHatharasinghe",
+  linkedinUrl = "https://linkedin.com/in/ishan-hatharasinghe",
+  twitterUrl = "https://twitter.com/ishan_h"
 }) => {
   const currentYear = new Date().getFullYear();
+  const [subscribeEmail, setSubscribeEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Handle Subscribe Button Click - preserving original email functionality
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    if (!subscribeEmail) {
+      alert("Please enter your email.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const templateParams = {
+      to_email: contactEmail, // Receiving email address
+      from_email: subscribeEmail, // Email entered by the subscriber
+      message: `Subscription request from ${subscribeEmail}.`
+    };
+
+    emailjs
+      .send(
+        "service_wr5ibr1", // Provided Service ID
+        "template_t4m2e7x", // Replace with your EmailJS Template ID
+        templateParams,
+        "rY68waKeCsmk0DMYX" // Replace with your EmailJS User ID
+      )
+      .then(
+        (result) => {
+          console.log("Email sent successfully!", result.text);
+          alert(
+            `Thank you for subscribing with ${subscribeEmail}! I'll get back to you soon.`
+          );
+          setSubscribeEmail("");
+          setSubmitStatus("success");
+          setIsSubmitting(false);
+        },
+        (error) => {
+          console.error("Failed to send email.", error.text);
+          alert("Oops! Something went wrong. Please try again later.");
+          setSubmitStatus("error");
+          setIsSubmitting(false);
+        }
+      );
+  };
+
+  // Animation Variants
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
-    <footer className="relative bg-gradient-to-b from-[#010017] to-[#020024] text-white">
-      {/* Decorative Top Border */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0084FFFF] to-transparent opacity-50" />
-      {/* Main Content */}
-      <div className="container mx-auto px-6 py-16">
-        {/* Desktop Layout */}
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#1A1E2D] to-[#0F1219] text-white">
+      {/* Improved Glow Effects with new colors */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF6B6B]/10 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-0 right-1/4 w-112 h-112 bg-[#4ECDC4]/10 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-[#FFE66D]/5 rounded-full blur-[80px]"></div>
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
+        {/* Main Content Grid */}
         <motion.div
+          className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
+          viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Company Info */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
-              {companyName || designerName}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Transforming ideas into innovative solutions through cutting-edge
-              technology and creative design.
-            </p>
-            <div className="flex space-x-4 pt-4">
-              {githubUrl && (
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              )}
-              {linkedinUrl && (
-                <a
-                  href={linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              )}
+          {/* Column 1: About Me - Increased width */}
+          <motion.div variants={itemVariants} className="md:col-span-4">
+            <div className="flex items-center mb-6">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M20 5L5 12.5L20 20L35 12.5L20 5Z" fill="#FF6B6B" />
+                <path
+                  d="M5 27.5L20 35L35 27.5L20 20L5 27.5Z"
+                  fill="#FF6B6B"
+                  fillOpacity="0.5"
+                />
+              </svg>
+              <span className="ml-3 text-2xl font-bold tracking-wide">
+                {companyName}
+              </span>
             </div>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              A passionate developer and designer focused on creating impactful
+              solutions through technology and creativity. I specialize in
+              building user-centered experiences that blend aesthetics with
+              functionality.
+            </p>
           </motion.div>
-          {/* Services */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
-              Services
+
+          {/* Column 2: My Expertise */}
+          <motion.div variants={itemVariants} className="md:col-span-2">
+            <h3 className="text-lg font-semibold mb-6 text-[#FF6B6B]">
+              My Expertise
             </h3>
-            <ul className="space-y-3">
-              {services?.map((service, index) => (
-                <li
-                  key={index}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  <span>{service}</span>
-                </li>
-              ))}
+            <ul className="space-y-4">
+              <FooterLink href="#automation" label="Electronics Engineering" />
+              <FooterLink href="#web-development" label="Web Development" />
+              <FooterLink href="#ui-ux-design" label="UI/UX Design" />
+              <FooterLink href="#graphic-design" label="Graphic Design" />
             </ul>
           </motion.div>
-          {/* Quick Links */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
+
+          {/* Column 3: Resources */}
+          <motion.div variants={itemVariants} className="md:col-span-2">
+            <h3 className="text-lg font-semibold mb-6 text-[#4ECDC4]">
               Quick Links
             </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={homeHref}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  <span>Home</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contactHref}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  <span>Contact</span>
-                </a>
-              </li>
+            <ul className="space-y-4">
+              <FooterLink href="home" label="Home" />
+              <FooterLink href="#projects" label="Projects" />
+
+              <FooterLink href="#contact" label="Contact" />
             </ul>
           </motion.div>
-          {/* Contact Info */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">Contact</h3>
-            <ul className="space-y-3">
-              {email && (
-                <li className="flex items-center text-gray-400">
-                  <Mail className="w-4 h-4 mr-2" />
-                  <a
-                    href={`mailto:${email}`}
-                    className="hover:text-[#0084FFFF] transition-colors duration-300"
-                  >
-                    {email}
-                  </a>
-                </li>
-              )}
-              {phone && (
-                <li className="flex items-center text-gray-400">
-                  <Phone className="w-4 h-4 mr-2" />
-                  <a
-                    href={`tel:${phone}`}
-                    className="hover:text-[#0084FFFF] transition-colors duration-300"
-                  >
-                    {phone}
-                  </a>
-                </li>
-              )}
-              {location && (
-                <li className="flex items-start text-gray-400">
-                  <MapPin className="w-4 h-4 mr-2 mt-1" />
-                  <span>{location}</span>
-                </li>
-              )}
-              <li className="flex items-center text-gray-400">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>Available: Mon - Fri</span>
+
+          {/* Column 4: Contact - Improved styling */}
+          <motion.div variants={itemVariants} className="md:col-span-4">
+            <h3 className="text-lg font-semibold mb-6 text-[#FFE66D]">
+              Get in Touch
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex items-center text-gray-300 hover:text-white transition-colors group">
+                <div className="mr-2 p-2 bg-[#1A1E2D] rounded-full group-hover:bg-[#FF6B6B]/20 transition-colors">
+                  <Mail size={16} />
+                </div>
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {contactEmail}
+                </a>
+              </li>
+              <li className="flex items-center text-gray-300 hover:text-white transition-colors group">
+                <div className="mr-2 p-2 bg-[#1A1E2D] rounded-full group-hover:bg-[#4ECDC4]/20 transition-colors">
+                  <ExternalLink size={16} />
+                </div>
+                <a
+                  href={"https://www.linkedin.com/in/ishan-nilaksha-686461308/"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  LinkedIn Profile
+                </a>
               </li>
             </ul>
           </motion.div>
         </motion.div>
 
-        {/* Mobile Layout */}
+        {/* Newsletter Subscription - Improved UI */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-16 pt-8 border-t border-[#2A303C] grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        >
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Stay Updated</h3>
+            <p className="text-gray-300 leading-relaxed">
+              Subscribe to my newsletter for updates on projects, blog posts,
+              and more. Never miss out on new developments and insights.
+            </p>
+          </div>
+          <div className="flex flex-row gap-2 relative">
+            <input
+              type="email"
+              value={subscribeEmail}
+              onChange={(e) => setSubscribeEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="w-full bg-[#1A1E2D] border border-[#2A303C] px-4 py-3 pr-32 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] placeholder-gray-500 transition-all"
+            />
+            <button
+              className="button"
+              onClick={handleSubscribe}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  ></path>
+                </svg>
+              ) : (
+                "Subscribe"
+              )}
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Features - Enhanced with box backgrounds */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="md:hidden flex flex-col space-y-8 mb-16"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-16 pt-8 border-t border-[#2A303C] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
         >
-          {/* Company Info */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
-              {companyName || designerName}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Transforming ideas into innovative solutions through cutting-edge
-              technology and creative design.
-            </p>
-            <div className="flex space-x-4 pt-4">
-              {githubUrl && (
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              )}
-              {linkedinUrl && (
-                <a
-                  href={linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              )}
-            </div>
-          </motion.div>
-          {/* Services */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
-              Services
-            </h3>
-            <ul className="space-y-3">
-              {services?.map((service, index) => (
-                <li
-                  key={index}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  <span>{service}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-          {/* Quick Links */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={homeHref}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  <span>Home</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contactHref}
-                  className="flex items-center text-gray-400 hover:text-[#0084FFFF] transition-colors duration-300"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  <span>Contact</span>
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-          {/* Contact Info */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-[#0084FFFF] mb-6">Contact</h3>
-            <ul className="space-y-3">
-              {email && (
-                <li className="flex items-center text-gray-400">
-                  <Mail className="w-4 h-4 mr-2" />
-                  <a
-                    href={`mailto:${email}`}
-                    className="hover:text-[#0084FFFF] transition-colors duration-300"
-                  >
-                    {email}
-                  </a>
-                </li>
-              )}
-              {phone && (
-                <li className="flex items-center text-gray-400">
-                  <Phone className="w-4 h-4 mr-2" />
-                  <a
-                    href={`tel:${phone}`}
-                    className="hover:text-[#0084FFFF] transition-colors duration-300"
-                  >
-                    {phone}
-                  </a>
-                </li>
-              )}
-              {location && (
-                <li className="flex items-start text-gray-400">
-                  <MapPin className="w-4 h-4 mr-2 mt-1" />
-                  <span>{location}</span>
-                </li>
-              )}
-              <li className="flex items-center text-gray-400">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>Available: Mon - Fri</span>
-              </li>
-            </ul>
-          </motion.div>
+          <FeatureCard
+            icon={<Clock className="text-[#FF6B6B]" />}
+            title="Always Available"
+            description="Reach out anytime for collaborations or inquiries. Quick response guaranteed."
+          />
+          <FeatureCard
+            icon={<Shield className="text-[#4ECDC4]" />}
+            title="Secure Projects"
+            description="Your data and projects are safe with industry-standard security practices."
+          />
+          <FeatureCard
+            icon={<HelpCircle className="text-[#FFE66D]" />}
+            title="Support"
+            description="Dedicated support for all projects, even after completion."
+          />
+          <FeatureCard
+            icon={<Download className="text-[#FF6B6B]" />}
+            title="Portfolio"
+            description="Access my work instantly or download for offline viewing."
+          />
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800/50 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-400 text-center md:text-left">
-              &copy; {currentYear} {companyName || designerName}. All Rights
-              Reserved.
-            </p>
-            <div className="flex items-center space-x-6 mt-4 md:mt-0">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={scrollToTop}
-                className="bg-[#0084FFFF] hover:bg-white hover:text-[#0084FFFF] text-white rounded-full p-2 transition-colors duration-300"
-                aria-label="Scroll to top"
-              >
-                <ArrowUp className="w-4 h-4" />
-              </motion.button>
-            </div>
-          </div>
-        </div>
+        <motion.div
+          variants={itemVariants}
+          className="mt-16 pt-8 border-t border-[#2A303C] flex flex-col md:flex-row justify-between items-center"
+        >
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">
+            © {currentYear} Ishan Hatharasinghe. All rights reserved.
+          </p>
+        </motion.div>
       </div>
     </footer>
   );
 };
 
-ProfessionalFooter.defaultProps = {
-  designerName: "Ishan Hatharasinghe",
-  contactHref: "#contact",
-  homeHref: "#home",
-  githubUrl: "",
-  linkedinUrl: "",
-  email: "",
-  phone: "",
-  location: "",
-  companyName: "",
-  services: [
-    "Electronics Engineering",
-    "Web Development",
-    "Graphic Design",
-    "UI/UX Design"
-  ]
-};
+// Enhanced Feature Card Component
+const FeatureCard = ({ icon, title, description }) => (
+  <motion.div
+    className="text-center p-6 rounded-xl bg-[#1A1E2D]/50 hover:bg-[#1A1E2D] border border-[#2A303C]/50 transition-all duration-300"
+    variants={{
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    }}
+    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+  >
+    <div className="w-12 h-12 bg-[#1A1E2D] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#FF6B6B]/5">
+      <div>{icon}</div>
+    </div>
+    <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">
+      {title}
+    </h4>
+    <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+  </motion.div>
+);
 
-ProfessionalFooter.propTypes = {
-  designerName: PropTypes.string,
-  contactHref: PropTypes.string,
-  homeHref: PropTypes.string,
+// Enhanced Footer Link Component
+const FooterLink = ({ href, label }) => (
+  <li>
+    <a
+      href={href}
+      className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+    >
+      <span className="inline-block transition-transform group-hover:translate-x-1">
+        {label}
+      </span>
+    </a>
+  </li>
+);
+
+// Enhanced Social Link Component
+const SocialLink = ({ href, icon }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-[#1A1E2D] hover:bg-[#FF6B6B] hover:bg-opacity-20 p-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-[#FF6B6B]/20"
+  >
+    {icon}
+  </a>
+);
+
+XoraProfessionalFooter.propTypes = {
+  companyName: PropTypes.string,
+  contactEmail: PropTypes.string,
   githubUrl: PropTypes.string,
   linkedinUrl: PropTypes.string,
-  email: PropTypes.string,
-  phone: PropTypes.string,
-  location: PropTypes.string,
-  companyName: PropTypes.string,
-  services: PropTypes.arrayOf(PropTypes.string)
+  twitterUrl: PropTypes.string
 };
 
-export default ProfessionalFooter;
+export default XoraProfessionalFooter;

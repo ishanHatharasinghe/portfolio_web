@@ -26,29 +26,29 @@ function App() {
         <section id="home">
           <Home />
         </section>
-        <section id="about" data-aos="fade-up">
+        <section id="about">
           <AboutMe />
         </section>
-        <section id="education" data-aos="fade-up">
+        <section id="education">
           <Education />
         </section>
-        <section id="skills" data-aos="fade-up">
+        <section id="skills">
           <SkillsData />
         </section>
-        <section id="licenses-certifications" data-aos="fade-up">
+        <section id="licenses-certifications">
           <LicensesCertifications />
         </section>
 
-        <section id="work-experience" data-aos="fade-up">
+        <section id="work-experience">
           <WorkExperience />
         </section>
-        <section id="projects" data-aos="fade-up">
+        <section id="projects">
           <ProjectsData />
         </section>
-        <section id="contact" data-aos="fade-up">
+        <section id="contact">
           <Contact />
         </section>
-        {/* Optionally include the footer */}
+
         <Copyright />
       </div>
     </>

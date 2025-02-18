@@ -15,7 +15,7 @@ const HeroSection = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-red-500/20 via-transparent to-transparent" />
       </div>
-      <div className="rounded-[70px] w-full h-full p-10 border border-2 mb-4 border-gray-700/30 relative z-10">
+      <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
         {/* Main Content */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Desktop Layout */}
