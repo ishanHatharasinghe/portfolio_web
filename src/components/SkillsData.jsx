@@ -19,6 +19,12 @@ import solidworks from "./../assets/Skills/solidworks.png";
 import react from "./../assets/Skills/react.png";
 import flutter from "./../assets/Skills/flutter.png";
 
+import ps from "./../assets/Skills/ps.png";
+import ai from "./../assets/Skills/ai.png";
+import figma from "./../assets/Skills/figma.png";
+import id from "./../assets/Skills/id.png";
+import xd from "./../assets/Skills/xd.png";
+
 const SkillCard = ({ image, name, category, proficiency }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -133,7 +139,17 @@ const Skills = () => {
       image: flutter,
       category: "development",
       proficiency: 85
-    }
+    },
+    { name: "Adobe Photoshop", image: ps, category: "design", proficiency: 95 },
+    { name: "Adobe Indesign", image: id, category: "design", proficiency: 75 },
+    {
+      name: "Adobe Illustrator",
+      image: ai,
+      category: "design",
+      proficiency: 90
+    },
+    { name: "Figma", image: figma, category: "design", proficiency: 80 },
+    { name: "Adobe Xd", image: xd, category: "design", proficiency: 80 }
   ];
 
   const filteredSkills =

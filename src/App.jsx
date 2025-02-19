@@ -15,8 +15,7 @@ import Copyright from "./components/Copyright";
 import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
 import LicensesCertifications from "./components/LicensesCertifications";
-import Preloader from "./components/Preloader";
-
+import Designs from "./components/designpage";
 function App() {
   return (
     <>
@@ -29,21 +28,23 @@ function App() {
         <section id="about">
           <AboutMe />
         </section>
-        <section id="education">
+        <section id="education-journey">
           <Education />
         </section>
-        <section id="skills">
+        <section id="dexterity">
           <SkillsData />
         </section>
-        <section id="licenses-certifications">
+        <section id="professional-designations">
           <LicensesCertifications />
         </section>
-
-        <section id="work-experience">
+        <section id="professional-journey">
           <WorkExperience />
         </section>
-        <section id="projects">
+        <section id="creative-ventures">
           <ProjectsData />
+        </section>
+        <section id="design-scape">
+          <Designs />
         </section>
         <section id="contact">
           <Contact />

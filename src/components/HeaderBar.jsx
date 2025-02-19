@@ -2,6 +2,18 @@ import { useState, useEffect, useRef } from "react";
 import "./header.css";
 import "./button.css";
 import logo from "./../assets/logo.png";
+import {
+  Home,
+  User,
+  Book,
+  Briefcase,
+  Award,
+  Code,
+  Paintbrush,
+  Palette,
+  Mail,
+  MonitorSmartphone
+} from "lucide-react";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,14 +25,15 @@ function Header() {
 
   // Define your navigation items
   const navItems = [
-    "Home",
-    "About",
-    "Education",
-    "Skills",
-    "Licenses & Certifications",
-    "Work Experience",
-    "Projects",
-    "Contact"
+    { name: "Home", icon: <Home className="w-8 h-4" /> },
+    { name: "About", icon: <User className="w-8 h-4" /> },
+    { name: "Education Journey", icon: <Book className="w-8 h-4" /> },
+    { name: "Dexterity", icon: <MonitorSmartphone className="w-8 h-4" /> },
+    { name: "Professional Designations", icon: <Award className="w-8 h-4" /> },
+    { name: "Professional Journey", icon: <Briefcase className="w-8 h-4" /> },
+    { name: "Creative Ventures", icon: <Paintbrush className="w-8 h-4" /> },
+    { name: "Design Scape", icon: <Palette className="w-8 h-4" /> },
+    { name: "Contact", icon: <Mail className="w-8 h-4" /> }
   ];
 
   // Handle click outside of mobile menu to close it
@@ -51,7 +64,7 @@ function Header() {
           // Get all sections and determine which one is in view
           const sections = navItems
             .map((item) => {
-              const id = item
+              const id = item.name
                 .toLowerCase()
                 .replace(/ & /g, "-")
                 .replace(/\s+/g, "-");
@@ -209,7 +222,7 @@ function Header() {
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="font-thin hidden sm:inline-block">
+          <span className="text-sm font-thin hidden sm:inline-block">
             the intersection | <span className="text-sm">Portfolio</span>
           </span>
         </div>
@@ -217,10 +230,11 @@ function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-1 lg:space-x-3">
           {navItems.map((item) => {
-            const itemId = item
+            const itemId = item.name
               .toLowerCase()
               .replace(/ & /g, "-")
               .replace(/\s+/g, "-");
+
             const isActive = activeSection === itemId;
 
             return (
@@ -228,7 +242,7 @@ function Header() {
                 key={itemId}
                 onClick={() => scrollToSection(itemId)}
                 onKeyDown={(e) => handleKeyDown(e, itemId)}
-                className={`relative px-4 py-2 text-sm rounded-lg transition-all duration-300 overflow-hidden
+                className={`relative px-4 py-2 text-sm rounded-lg transition-all duration-300 overflow-hidden flex items-center space-x-2
                   ${
                     isActive
                       ? "text-white bg-gradient-to-r from-blue-600/60 to-blue-800/40 shadow-lg shadow-blue-500/20 font-medium"
@@ -236,8 +250,8 @@ function Header() {
                   }`}
                 aria-current={isActive ? "page" : undefined}
               >
-                <span className="relative z-10">{item}</span>
-                {/* Animated underline */}
+                {item.icon}
+                <span className="relative z-10 text-xs">{item.name}</span>
                 <span
                   className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-400 transition-all duration-300 ${
                     isActive ? "w-1/2 transform -translate-x-1/2" : "w-0"
@@ -291,7 +305,7 @@ function Header() {
         >
           <div className="p-4 space-y-2">
             {navItems.map((item, index) => {
-              const itemId = item
+              const itemId = item.name
                 .toLowerCase()
                 .replace(/ & /g, "-")
                 .replace(/\s+/g, "-");
@@ -301,7 +315,7 @@ function Header() {
                   key={itemId}
                   onClick={() => scrollToSection(itemId)}
                   onKeyDown={(e) => handleKeyDown(e, itemId)}
-                  className={`w-full text-left font-bol text-white px-4 py-3 rounded-lg text-sm transition-all duration-300 
+                  className={`w-full text-left font-bol text-white px-4 py-3 rounded-lg text-sm transition-all duration-300 flex items-center space-x-2
                     ${
                       isActive
                         ? "bg-gradient-to-r from-blue-600/60 to-blue-800/40 text-blue-400 font-medium"
@@ -318,7 +332,8 @@ function Header() {
                   role="menuitem"
                   aria-current={isActive ? "page" : undefined}
                 >
-                  {item}
+                  {item.icon}
+                  <span>{item.name}</span>
                 </button>
               );
             })}

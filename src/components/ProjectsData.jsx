@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import my from "./../assets/Project1/Slide1.JPG";
 import my2 from "./../assets/Project2/page.jpg";
 import my3 from "./../assets/Project3/page.jpeg";
+import my4 from "./../assets/Project4/page.jpg";
 import bg from "./../assets/Home Section/bg.png";
 import robot from "./../assets/robot3.png";
 
+import { ArrowRight, Code, Cpu, Palette, Boxes } from "lucide-react";
 const ProjectsData = () => {
   // Placeholder function for pending projects
   const handlePendingClick = () => {
@@ -50,7 +52,7 @@ const ProjectsData = () => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Card content */}
-              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
                 <img
                   src={my}
                   alt="profile"
@@ -62,27 +64,31 @@ const ProjectsData = () => {
                 <h5 className="font-semibold text-xs md:text-sm text-gray-300 mb-3">
                   University of Moratuwa
                 </h5>
-                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
                   A desktop application designed to automate parking operations,
                   built with C# and SQL.
                 </p>
-                <a
-                  href="https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  Read More →
-                </a>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href="https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">C#, SQL</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Project 2: MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM */}
             <div className="group relative w-full h-full">
-              {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              {/* Card content */}
-              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
                 <img
                   src={my3}
                   alt="profile"
@@ -91,7 +97,7 @@ const ProjectsData = () => {
                 <h1 className="font-bold text-white text-lg md:text-xl text-center">
                   MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM
                 </h1>
-                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
                   The Mobitel AI-driven Edge Sales Management System is a
                   comprehensive mobile application designed to assist SIM
                   dealers in Sri Lanka. Many dealers lack awareness of prepaid
@@ -101,22 +107,69 @@ const ProjectsData = () => {
                   on platform preferences, budget, and communication needs
                   (voice and SMS).
                 </p>
-                <a
-                  href="https://example.com/llm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  Read More →
-                </a>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href="https://example.com/llm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">
+                      React, JavaScript, Google Script
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            {/* Project 3: Large Language Model (LLM) */}
+
+            {/* Project 3: LassanaMoments */}
             <div className="group relative w-full h-full">
-              {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              {/* Card content */}
-              <div className="flex flex-col items-center justify-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-transform duration-500 group-hover:scale-[1.05] h-full">
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <img
+                  src={my4}
+                  alt="profile"
+                  className="w-full rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-[1.05]"
+                />
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  LassanaMoments
+                </h1>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
+                  In the contemporary digital era, the demand for professional
+                  photography services has significantly increased. However,
+                  photographers in Sri Lanka face challenges in securing clients
+                  at the right time and at a fair rate. To address this issue,
+                  The AlphaWizards team, a group of passionate BIT
+                  undergraduates, has collaboratively designed and developed an
+                  innovative Photographic Portal, Lassana Momentz project.
+                </p>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href="https://example.com/llm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">
+                      React, JavaScript, Firebase
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Project 4: Large Language Model (LLM) */}
+            <div className="group relative w-full h-full">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
                 <img
                   src={my2}
                   alt="profile"
@@ -125,19 +178,27 @@ const ProjectsData = () => {
                 <h1 className="font-bold text-white text-lg md:text-xl text-center">
                   Large Language Model (LLM)
                 </h1>
-                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed">
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
                   A system designed to read documents and answer questions using
                   Python, React, FastAPI, and APIs from Gemini, OpenAI, and
                   Hugging Face.
                 </p>
-                <a
-                  href="https://example.com/llm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  Read More →
-                </a>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href="https://example.com/llm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">
+                      React, JavaScript, Python, FastAPI
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

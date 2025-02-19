@@ -33,7 +33,7 @@ const Home = () => {
     "About",
     "Education",
     "Skills",
-    "Licenses & Certifications", // Removed extra spaces
+    "Licenses & Certifications",
     "Work Experience",
     "Projects",
     "Contact"
@@ -98,7 +98,7 @@ const Home = () => {
         <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           {/* Top header */}
           <div className="w-full text-center">
-            <h3 className="font-italiana text-gray-200 text-sm md:text-base font-extralight tracking-wider">
+            <h3 className="font-italiana text-white text-sm md:text-base font-extralight tracking-wider">
               Electronics Engineer | Software Developer | Designer
             </h3>
           </div>
@@ -147,7 +147,7 @@ const Home = () => {
                     </h1>
                   </div>
                   {/* Subtitle */}
-                  <p className="absolute top-30 right-0 text-right font-italiana text-gray-400 text-[20px] md:text-lg tracking-wider">
+                  <p className="absolute top-30 right-0 text-right font-italiana text-white text-sm md:text-lg tracking-wider">
                     of electronics and code
                   </p>
                 </div>
