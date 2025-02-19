@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Share, Github, X, ExternalLink } from "lucide-react";
-
+import { IoIosHeart } from "react-icons/io";
 import my from "./../assets/Project1/1.jpg";
 import my2 from "./../assets/Project2/page.jpg";
 import my3 from "./../assets/Project3/page.jpeg";
@@ -101,34 +101,55 @@ import gallery5_55 from "./../assets/Designs5/light (25).jpg";
 import gallery5_56 from "./../assets/Designs5/light (26).jpg";
 import gallery5_57 from "./../assets/Designs5/light (27).jpg";
 import bg from "./../assets/Education/bg.jpeg";
+
 const ProjectsData = () => {
+  // Use lazy initialization so that saved data is loaded immediately.
+  const [likes, setLikes] = useState(() => {
+    const savedLikes = localStorage.getItem("likes");
+    return savedLikes ? JSON.parse(savedLikes) : {};
+  });
+  const [likedProjects, setLikedProjects] = useState(() => {
+    const savedLikedProjects = localStorage.getItem("likedProjects");
+    return savedLikedProjects ? JSON.parse(savedLikedProjects) : {};
+  });
   const [selectedProject, setSelectedProject] = useState(null);
-  const [likes, setLikes] = useState({});
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [likedProjects, setLikedProjects] = useState({}); // Store liked state
+
+  // Save likes to localStorage when updated.
+  useEffect(() => {
+    localStorage.setItem("likes", JSON.stringify(likes));
+  }, [likes]);
+
+  // Save likedProjects to localStorage when updated.
+  useEffect(() => {
+    localStorage.setItem("likedProjects", JSON.stringify(likedProjects));
+  }, [likedProjects]);
 
   const handleLikeClick = (projectId) => {
+    const isLiked = likedProjects[projectId];
+
     setLikedProjects((prev) => ({
       ...prev,
-      [projectId]: !prev[projectId] // Toggle liked status
+      [projectId]: !isLiked
     }));
 
-    setLikes((prev) => ({
-      ...prev,
-      [projectId]: prev[projectId]
-        ? prev[projectId] - 1
-        : (prev[projectId] || 0) + 1
-    }));
+    setLikes((prev) => {
+      const currentLikes = prev[projectId] || 0;
+      return !isLiked
+        ? { ...prev, [projectId]: currentLikes + 1 }
+        : { ...prev, [projectId]: Math.max(currentLikes - 1, 0) };
+    });
   };
 
+  // Ensure that each project has a unique ID.
   const projects = [
     {
       id: 1,
       image: my,
       title: "Vehicle Parking Management System (VPMS)",
-
       technologies: ["Figma"],
       category: "Desktop Application",
+      description: "A robust system for managing vehicle parking efficiently.",
       galleryImages: [
         gallery1_1,
         gallery1_2,
@@ -143,9 +164,9 @@ const ProjectsData = () => {
       id: 2,
       image: gallery2_1,
       title: "AlphaWizzards Portfolio",
-
       technologies: ["Figma"],
       category: "Website",
+      description: "A sleek and modern portfolio design for AlphaWizzards.",
       galleryImages: [
         gallery2_1,
         gallery2_2,
@@ -163,12 +184,12 @@ const ProjectsData = () => {
       ]
     },
     {
-      id: 2,
+      id: 3,
       image: gallery5_1,
       title: "Lassana Moments",
-
       technologies: ["Figma"],
       category: "Website",
+      description: "A beautiful website capturing memorable moments.",
       galleryImages: [
         gallery5_1,
         gallery5_2,
@@ -230,17 +251,16 @@ const ProjectsData = () => {
       ]
     },
     {
-      id: 3,
+      id: 4,
       image: gallery3_1,
       title: "LassanaMoments Admin Dashboard",
-
       technologies: ["Figma"],
       category: "Website",
+      description: "An intuitive admin dashboard for LassanaMoments.",
       galleryImages: [
         gallery3_1,
         gallery3_2,
         gallery3_3,
-
         gallery3_5,
         gallery3_6,
         gallery3_7,
@@ -248,12 +268,12 @@ const ProjectsData = () => {
       ]
     },
     {
-      id: 4,
+      id: 5,
       image: gallery4_1,
       title: "Falling Detection",
-
       technologies: ["Figma"],
       category: "Mobile Application",
+      description: "A mobile application to detect falls in real-time.",
       galleryImages: [gallery4_1, gallery4_2, gallery4_3]
     }
   ];
@@ -266,14 +286,13 @@ const ProjectsData = () => {
           <div>
             <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
               Journey of UI/UX
-              <h1 className="font-italiana text-7xl md:text-9xl text-white mb-6">
+              <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
                 DesignScape
-              </h1>
+              </h2>
             </span>
-
-            <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[16px] text-gray-300 leading-relaxed mt-3 items-center text-center">
               Explore my portfolio of innovative solutions where technology
-              meets creativity
+              meets creativity.
             </p>
           </div>
 
@@ -350,24 +369,16 @@ const ProjectsData = () => {
                             }}
                             className="flex items-center gap-1 text-gray-300 hover:text-pink-500 transition-colors"
                           >
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleLikeClick(project.id);
-                              }}
-                              className="flex items-center gap-1 transition-colors"
-                            >
-                              <Heart
-                                className={`w-6 h-6 transition-transform ${
-                                  likedProjects[project.id]
-                                    ? "text-red-500 scale-110"
-                                    : "text-gray-300"
-                                }`}
-                              />
-                              <span className="text-sm text-gray-300">
-                                {likes[project.id] || 0}
-                              </span>
-                            </button>
+                            <IoIosHeart
+                              className={`w-6 h-6 transition-transform ${
+                                likedProjects[project.id]
+                                  ? "text-red-500 scale-110"
+                                  : "text-gray-300"
+                              }`}
+                            />
+                            <span className="text-sm text-gray-300">
+                              {likes[project.id] || 0}
+                            </span>
                           </button>
                         </div>
                         <div className="flex gap-2">
@@ -396,7 +407,7 @@ const ProjectsData = () => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-gray-900 rounded-3xl p-12 w-full max-w-full max-h-[90vh] overflow-y-auto"
+                className="bg-gray-900 rounded-3xl p-12 w-full max-w-full max-h-[90vh] overflow-y-auto relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
