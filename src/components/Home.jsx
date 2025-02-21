@@ -214,7 +214,7 @@ const Home = () => {
                 <h1 className="font-italiana text-5xl md:text-[200px] text-white tracking-wide">
                   At the intersection
                 </h1>
-                <p className="font-italiana text-gray-400 text-base md:text-lg tracking-wider">
+                <p className="font-italiana text-white text-base md:text-lg tracking-wider">
                   of electronics and code
                 </p>
               </div>

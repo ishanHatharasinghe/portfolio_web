@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import bg from "./assets/bg7.jpg";
-
 import Header from "./components/HeaderBar";
 import AboutMe from "./components/AboutUs";
 import Home from "./components/Home";
@@ -16,6 +14,7 @@ import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
 import LicensesCertifications from "./components/LicensesCertifications";
 import Designs from "./components/designpage";
+import VideoScreen from "./components/videos";
 function App() {
   return (
     <>
@@ -25,6 +24,11 @@ function App() {
         <section id="home">
           <Home />
         </section>
+
+        <section id="videosection">
+          <VideoScreen />
+        </section>
+
         <section id="about">
           <AboutMe />
         </section>
