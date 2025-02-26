@@ -12,7 +12,8 @@ import {
   Paintbrush,
   Palette,
   Mail,
-  MonitorSmartphone
+  MonitorSmartphone,
+  MessageSquareQuote
 } from "lucide-react";
 
 function Header() {
@@ -23,17 +24,46 @@ function Header() {
   const navRef = useRef(null);
   const scrollThreshold = 50; // Pixel threshold for scroll effects
 
-  // Define your navigation items
+  // Define your navigation items - added Testimonials section
   const navItems = [
-    { name: "Home", icon: <Home className="w-8 h-4" /> },
-    { name: "About", icon: <User className="w-8 h-4" /> },
-    { name: "Education Journey", icon: <Book className="w-8 h-4" /> },
-    { name: "Dexterity", icon: <MonitorSmartphone className="w-8 h-4" /> },
-    { name: "Professional Designations", icon: <Award className="w-8 h-4" /> },
-    { name: "Professional Journey", icon: <Briefcase className="w-8 h-4" /> },
-    { name: "Creative Ventures", icon: <Paintbrush className="w-8 h-4" /> },
-    { name: "Design Scape", icon: <Palette className="w-8 h-4" /> },
-    { name: "Contact", icon: <Mail className="w-8 h-4" /> }
+    { icon: <Home className="w-5 h-5" />, id: "home", tooltip: "Home" },
+    { icon: <User className="w-5 h-5" />, id: "about", tooltip: "About" },
+    {
+      icon: <Book className="w-5 h-5" />,
+      id: "education-journey",
+      tooltip: "Education Journey"
+    },
+    {
+      icon: <MonitorSmartphone className="w-5 h-5" />,
+      id: "dexterity",
+      tooltip: "Dexterity"
+    },
+    {
+      icon: <Award className="w-5 h-5" />,
+      id: "professional-designations",
+      tooltip: "Professional Designations"
+    },
+    {
+      icon: <Briefcase className="w-5 h-5" />,
+      id: "professional-journey",
+      tooltip: "Professional Journey"
+    },
+    {
+      icon: <Paintbrush className="w-5 h-5" />,
+      id: "creative-ventures",
+      tooltip: "Creative Ventures"
+    },
+    {
+      icon: <Palette className="w-5 h-5" />,
+      id: "design-scape",
+      tooltip: "Design Scape"
+    },
+    {
+      icon: <MessageSquareQuote className="w-5 h-5" />,
+      id: "testimonials",
+      tooltip: "Testimonials"
+    },
+    { icon: <Mail className="w-5 h-5" />, id: "contact", tooltip: "Contact" }
   ];
 
   // Handle click outside of mobile menu to close it
@@ -63,13 +93,7 @@ function Header() {
 
           // Get all sections and determine which one is in view
           const sections = navItems
-            .map((item) => {
-              const id = item.name
-                .toLowerCase()
-                .replace(/ & /g, "-")
-                .replace(/\s+/g, "-");
-              return document.getElementById(id);
-            })
+            .map((item) => document.getElementById(item.id))
             .filter(Boolean);
 
           if (sections.length) {
@@ -191,10 +215,10 @@ function Header() {
 
       <nav
         ref={navRef}
-        className={`fixed left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/60 to-black w-[90%] md:w-[85%] lg:w-[90%] flex justify-between items-center p-2 md:p-3 transition-all duration-300 ${
+        className={`fixed left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-[85%] lg:w-[80%] flex justify-between items-center p-2 md:p-3 transition-all duration-500 ${
           scrollPosition > scrollThreshold
-            ? "bg-white/10 backdrop-blur-lg rounded-xl shadow-lg border border-white/10"
-            : "bg-transparent"
+            ? "bg-black/70 backdrop-blur-lg rounded-xl shadow-lg border border-white/10"
+            : "bg-black/40 backdrop-blur-sm"
         } top-1 md:top-2 opacity-100`}
         role="navigation"
         aria-label="Main navigation"
@@ -209,10 +233,10 @@ function Header() {
           aria-label="Go to home section"
         >
           {/* Logo image with fallback */}
-          <div className="w-7 h-7 mr-2 rounded-full overflow-hidden  flex items-center justify-center">
+          <div className="w-7 h-7 mr-2 rounded-full overflow-hidden flex items-center justify-center">
             <img
               src={logo}
-              alt="Ishan Nilaksha"
+              alt="Logo"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.style.display = "none";
@@ -227,36 +251,31 @@ function Header() {
           </span>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-1 lg:space-x-3">
+        {/* Desktop Navigation - Icon only with tooltips */}
+        <div className="hidden md:flex items-center justify-center p-1 bg-black/40 backdrop-blur-md rounded-full shadow-inner border border-white/5">
           {navItems.map((item) => {
-            const itemId = item.name
-              .toLowerCase()
-              .replace(/ & /g, "-")
-              .replace(/\s+/g, "-");
-
-            const isActive = activeSection === itemId;
+            const isActive = activeSection === item.id;
 
             return (
               <button
-                key={itemId}
-                onClick={() => scrollToSection(itemId)}
-                onKeyDown={(e) => handleKeyDown(e, itemId)}
-                className={`relative px-4 py-2 text-sm rounded-lg transition-all duration-300 overflow-hidden flex items-center space-x-2
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                onKeyDown={(e) => handleKeyDown(e, item.id)}
+                className={`relative p-2 mx-1 rounded-full transition-all duration-300 group
                   ${
                     isActive
-                      ? "text-white bg-gradient-to-r from-blue-600/60 to-blue-800/40 shadow-lg shadow-blue-500/20 font-medium"
-                      : "text-gray-300 hover:text-white hover:bg-gray-700/30"
+                      ? "text-white bg-gradient-to-r from-blue-600/80 to-blue-800/60 shadow-lg shadow-blue-500/20"
+                      : "text-gray-400 hover:text-white hover:bg-gray-700/30"
                   }`}
                 aria-current={isActive ? "page" : undefined}
+                aria-label={item.tooltip}
               >
                 {item.icon}
-                <span className="relative z-10 text-xs">{item.name}</span>
-                <span
-                  className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-400 transition-all duration-300 ${
-                    isActive ? "w-1/2 transform -translate-x-1/2" : "w-0"
-                  }`}
-                />
+
+                {/* Tooltip */}
+                <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                  {item.tooltip}
+                </span>
               </button>
             );
           })}
@@ -265,7 +284,7 @@ function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden relative w-10 h-10 rounded-lg bg-gray-800/30 backdrop-blur-sm hover:bg-gray-700/30 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="md:hidden relative w-10 h-10 rounded-lg bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -290,11 +309,11 @@ function Header() {
           </div>
         </button>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Show text labels on mobile for better usability */}
         <div
           id="mobile-menu"
           ref={menuRef}
-          className={`absolute top-full mt-2 right-0 left-0 md:hidden bg-black/80 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden transition-all duration-300 origin-top ${
+          className={`absolute top-full mt-2 right-0 w-64 md:hidden bg-black/90 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden transition-all duration-300 origin-top ${
             isMenuOpen
               ? "max-h-[80vh] opacity-100"
               : "max-h-0 opacity-0 pointer-events-none"
@@ -303,22 +322,18 @@ function Header() {
           aria-orientation="vertical"
           aria-labelledby="mobile-menu-button"
         >
-          <div className="p-4 space-y-2">
+          <div className="p-3 space-y-1">
             {navItems.map((item, index) => {
-              const itemId = item.name
-                .toLowerCase()
-                .replace(/ & /g, "-")
-                .replace(/\s+/g, "-");
-              const isActive = activeSection === itemId;
+              const isActive = activeSection === item.id;
               return (
                 <button
-                  key={itemId}
-                  onClick={() => scrollToSection(itemId)}
-                  onKeyDown={(e) => handleKeyDown(e, itemId)}
-                  className={`w-full text-left font-bol text-white px-4 py-3 rounded-lg text-sm transition-all duration-300 flex items-center space-x-2
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  onKeyDown={(e) => handleKeyDown(e, item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all duration-300 flex items-center space-x-3
                     ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-600/60 to-blue-800/40 text-blue-400 font-medium"
+                        ? "bg-gradient-to-r from-blue-600/60 to-blue-800/40 text-white font-medium"
                         : "text-gray-300 hover:bg-gray-700/50 hover:text-white"
                     }
                     transform transition-transform`}
@@ -333,7 +348,7 @@ function Header() {
                   aria-current={isActive ? "page" : undefined}
                 >
                   {item.icon}
-                  <span>{item.name}</span>
+                  <span>{item.tooltip}</span>
                 </button>
               );
             })}

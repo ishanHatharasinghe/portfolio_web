@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import Testimonials from "./components/Testimonials";
+import GetTestimonials from "./components/getTestimonials";
 import Header from "./components/HeaderBar";
 import AboutMe from "./components/AboutUs";
 import Home from "./components/Home";
@@ -50,6 +51,10 @@ function App() {
         <section id="design-scape">
           <Designs />
         </section>
+        <section id="testimonials">
+          <Testimonials />
+        </section>
+
         <section id="contact">
           <Contact />
         </section>

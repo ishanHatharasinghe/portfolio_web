@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Share, Github, X, ExternalLink } from "lucide-react";
+import {
+  Heart,
+  Share,
+  Github,
+  X,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight
+} from "lucide-react";
 import { IoIosHeart } from "react-icons/io";
 import my from "./../assets/Project1/1.jpg";
 import my2 from "./../assets/Project2/page.jpg";
@@ -114,6 +122,7 @@ const ProjectsData = () => {
   });
   const [selectedProject, setSelectedProject] = useState(null);
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   // Save likes to localStorage when updated.
   useEffect(() => {
@@ -139,6 +148,22 @@ const ProjectsData = () => {
         ? { ...prev, [projectId]: currentLikes + 1 }
         : { ...prev, [projectId]: Math.max(currentLikes - 1, 0) };
     });
+  };
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prevIndex) =>
+      prevIndex < selectedProject.galleryImages.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  const handlePreviousImage = () => {
+    setSelectedImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : selectedProject.galleryImages.length - 1
+    );
   };
 
   // Ensure that each project has a unique ID.
@@ -434,11 +459,32 @@ const ProjectsData = () => {
                   </div>
 
                   {/* Main Image */}
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title + " main image"}
-                    className="w-full rounded-2xl"
-                  />
+                  <div className="relative">
+                    <img
+                      src={selectedProject.galleryImages[selectedImageIndex]}
+                      alt={selectedProject.title + " main image"}
+                      className="w-full rounded-2xl"
+                    />
+                    {/* Navigation Arrows */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePreviousImage();
+                      }}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNextImage();
+                      }}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </div>
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2">
@@ -461,7 +507,8 @@ const ProjectsData = () => {
                           key={index}
                           src={img}
                           alt={`Gallery ${index + 1}`}
-                          className="w-full rounded-xl"
+                          className="w-full rounded-xl cursor-pointer"
+                          onClick={() => handleImageClick(index)}
                         />
                       ))}
                     </div>
