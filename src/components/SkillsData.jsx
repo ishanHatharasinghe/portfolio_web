@@ -18,6 +18,7 @@ import python from "./../assets/Skills/python.png";
 import solidworks from "./../assets/Skills/solidworks.png";
 import react from "./../assets/Skills/react.png";
 import flutter from "./../assets/Skills/flutter.png";
+import php from "./../assets/Skills/php.png";
 
 import ps from "./../assets/Skills/ps.png";
 import ai from "./../assets/Skills/ai.png";
@@ -127,6 +128,7 @@ const Skills = () => {
       proficiency: 88
     },
     { name: "Python", image: python, category: "development", proficiency: 95 },
+    { name: "PHP", image: php, category: "development", proficiency: 85 },
     {
       name: "SolidWorks",
       image: solidworks,

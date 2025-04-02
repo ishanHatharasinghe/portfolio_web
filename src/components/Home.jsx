@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "./../assets/Home Section/bg.png";
-import my from "./../assets/Home Section/my.png";
+import my from "./../assets/Home Section/my2.png";
 import robot from "./../assets/Home Section/robot.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
