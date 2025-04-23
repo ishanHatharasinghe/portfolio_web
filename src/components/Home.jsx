@@ -4,7 +4,7 @@ import my from "./../assets/Home Section/my2.png";
 import robot from "./../assets/Home Section/robot.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
-import lm from "./../assets/Home Section/lm.png";
+import txmeter from "./../assets/Home Section/txmeter.png";
 import { ArrowRight } from "lucide-react";
 import "./button.css";
 import { useState, useEffect } from "react";
@@ -181,17 +181,17 @@ const Home = () => {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-xl overflow-hidden transition-transform duration-500 group-hover:scale-[1.1]">
                       <img
-                        src={lm}
+                        src={txmeter}
                         alt="Masked Image"
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="flex flex-col">
-                      <h3 className="flex flex-row gap-[100px] font-italiana text-white font-light">
-                        Lassana Moments <ArrowRight className="w-5" />
+                      <h3 className="flex flex-row gap-2 font-italiana text-white text-xs font-light">
+                        Taximeter <ArrowRight className="w-3" />
                       </h3>
-                      <p className="text-gray-400 text-sm">
-                        The Platform for find your Photographer
+                      <p className="text-gray-400 text-xs">
+                        The Platform for Fuel Price Manager
                       </p>
                     </div>
                   </div>
@@ -273,17 +273,17 @@ const Home = () => {
                   <div className="flex items-center gap-3 mb-2 justify-center">
                     <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]">
                       <img
-                        src={lm}
+                        src={txmeter}
                         alt="Masked Image"
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="flex flex-col">
                       <h3 className="flex flex-row gap-2 font-italiana text-white text-xs font-light">
-                        Lassana Moments <ArrowRight className="w-3" />
+                        Taximeter <ArrowRight className="w-3" />
                       </h3>
                       <p className="text-gray-400 text-xs">
-                        The Platform for Finding Your Photographer
+                        The Platform for Fuel Price Manager
                       </p>
                     </div>
                   </div>

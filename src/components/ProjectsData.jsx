@@ -1,9 +1,18 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { motion } from "framer-motion";
 import my from "./../assets/Project1/Slide1.JPG";
 import my2 from "./../assets/Project2/page.jpg";
 import my3 from "./../assets/Project3/page.jpeg";
 import my4 from "./../assets/Project4/page.jpg";
+import my5 from "./../assets/Project 5 taxi meter/1.jpg";
+import my6 from "./../assets/Project 5 taxi meter/2.jpg";
+import my7 from "./../assets/Project 5 taxi meter/3.jpg";
+import my8 from "./../assets/Project 5 taxi meter/4.jpg";
 import bg from "./../assets/Home Section/bg.png";
 import robot from "./../assets/robot3.png";
 
@@ -80,6 +89,84 @@ const ProjectsData = () => {
                   <div className="flex items-center mt-3 text-white">
                     <Boxes className="w-4 h-4" />
                     <p className="text-[11px] p-2 font-thin">C#, SQL</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Project Taxi Meter */}
+            <div className="group relative w-full h-full">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Card content */}
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  pagination={{ clickable: true }}
+                  className="w-full rounded-2xl mb-4"
+                >
+                  <SwiperSlide>
+                    <img
+                      src={my5}
+                      alt="my5"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my6}
+                      alt="my6"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my7}
+                      alt="my7"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my8}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                </Swiper>
+
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  TaxiMeter
+                </h1>
+                <h5 className="font-semibold text-xs md:text-sm text-gray-300 mb-3">
+                  HND in Electrical and Electronics Engineering
+                </h5>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
+                  Fuel Price Manager is your all-in-one solution to stay
+                  informed, plan smarter, and save more when it comes to fuel
+                  expenses across Sri Lanka. Whether you're a daily commuter,
+                  logistics operator, or just want to track fuel trends, our app
+                  helps you monitor real-time fuel prices, receive alerts on
+                  price changes, and compare rates across fuel types and
+                  locations.
+                </p>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">
+                      React, JavaScript, Firebase
+                    </p>
                   </div>
                 </div>
               </div>
