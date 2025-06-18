@@ -13,6 +13,25 @@ import my5 from "./../assets/Project 5 taxi meter/1.jpg";
 import my6 from "./../assets/Project 5 taxi meter/2.jpg";
 import my7 from "./../assets/Project 5 taxi meter/3.jpg";
 import my8 from "./../assets/Project 5 taxi meter/4.jpg";
+import my9 from "./../assets/Project 6 SAEDS/1.JPG";
+import my10 from "./../assets/Project 6 SAEDS/2.JPG";
+import my11 from "./../assets/Project 6 SAEDS/3.JPG";
+import my12 from "./../assets/Project 6 SAEDS/4.JPG";
+import my13 from "./../assets/Project 6 SAEDS/5.JPG";
+import my14 from "./../assets/Project 6 SAEDS/6.JPG";
+import my15 from "./../assets/Project 6 SAEDS/7.JPG";
+import my16 from "./../assets/Project 6 SAEDS/8.JPG";
+import my17 from "./../assets/Project 6 SAEDS/9.JPG";
+import my18 from "./../assets/Project 6 SAEDS/10.JPG";
+import my19 from "./../assets/Project 6 SAEDS/11.JPG";
+import my20 from "./../assets/Project 6 SAEDS/12.JPG";
+import my21 from "./../assets/Project 6 SAEDS/13.JPG";
+import my22 from "./../assets/Project 6 SAEDS/14.JPG";
+import my23 from "./../assets/Project 6 SAEDS/15.JPG";
+import my24 from "./../assets/Project 6 SAEDS/16.JPG";
+import my26 from "./../assets/Project 6 SAEDS/17.JPG";
+import my27 from "./../assets/Project 6 SAEDS/18.JPG";
+
 import bg from "./../assets/Home Section/bg.png";
 import robot from "./../assets/robot3.png";
 
@@ -167,6 +186,180 @@ const ProjectsData = () => {
                     <p className="text-[11px] p-2 font-thin">
                       React, JavaScript, Firebase
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Project SAEDS */}
+            <div className="group relative w-full h-full">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Card content */}
+              <div className="flex flex-col items-center relative bg-gray-800/40 backdrop-blur-xl rounded-[2rem] p-6 border border-gray-700/40 shadow-md transition-transform duration-500 group-hover:scale-[1.05] h-full">
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  pagination={{ clickable: true }}
+                  className="w-full rounded-2xl mb-4"
+                >
+                  <SwiperSlide>
+                    <img
+                      src={my9}
+                      alt="my9"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my10}
+                      alt="my6"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my11}
+                      alt="my7"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my12}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my13}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my14}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my15}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my16}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my17}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my18}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my19}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my20}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my21}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my22}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my23}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my24}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <img
+                      src={my26}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      src={my27}
+                      alt="my8"
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
+                  </SwiperSlide>
+                </Swiper>
+
+                <h1 className="font-bold text-white text-lg md:text-xl text-center">
+                  Smart Automated Elephant Deterrent System
+                </h1>
+                <h5 className="font-semibold text-xs md:text-sm text-gray-300 mb-3">
+                  HND in Electrical and Electronics Engineering
+                </h5>
+                <p className="text-white/80 text-xs md:text-sm text-center leading-relaxed my-4">
+                  Human-elephant conflict in Sri Lanka is a growing crisis, with
+                  elephants destroying crops, property, and even risking lives.
+                  Traditional electric fences are inefficient and often fail.
+                  Our Smart Automated Elephant Deterrent System combines
+                  cutting-edge tech to protect villages while conserving energy
+                  and wildlife!.
+                </p>
+                <div className="mt-auto flex flex-col items-center">
+                  <a
+                    href="https://www.linkedin.com/posts/ishan-nilaksha-686461308_techforgood-wildlifeconservation-smartfarming-activity-7332505340820742144-ftA3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm sm:text-base text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  >
+                    Read More →
+                  </a>
+                  <div className="flex items-center mt-3 text-white">
+                    <Boxes className="w-4 h-4" />
+                    <p className="text-[11px] p-2 font-thin">Arduino, GPS</p>
                   </div>
                 </div>
               </div>
