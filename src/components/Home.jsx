@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "./../assets/Home Section/bg2.jpg";
+import bg from "./../assets/Home Section/bg3.jpg";
 import my from "./../assets/Home Section/my.png";
 import robot from "./../assets/Home Section/robot.png";
 import slt from "./../assets/Home Section/slt.png";
@@ -89,16 +89,16 @@ const Home = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-90"
+          className="blur-[9px] w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-700/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-orange-700/20 via-transparent to-transparent" />
       </div>
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[70px] w-full h-full p-6 border border-1 mb-4 border-white-700/90">
           {/* Top header */}
           <div className="w-full text-center">
-            <h3 className="font-italiana text-white text-sm md:text-base font-extralight tracking-wider">
+            <h3 className="p-4 font-italiana text-white text-sm md:text-base font-extralight tracking-wider">
               Electronics Engineer | Software Developer | Designer
             </h3>
           </div>
@@ -247,7 +247,7 @@ const Home = () => {
                 <div className="absolute w-[100%] h-[100%] bg-orange-500/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative transition-transform duration-500 group-hover:scale-[1.05]">
                   {/* <img src={robot} alt="robot" className="h-[100vh] w-[55vw]" />*/}
-                  <img src={robot} alt="robot" className="h-[100vh]  " />
+                  <img src={robot} alt="robot" className="h-[120vh]  " />
                 </div>
               </div>
             </div>
