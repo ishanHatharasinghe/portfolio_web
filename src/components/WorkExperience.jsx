@@ -38,7 +38,7 @@ const ProfessionalJourney = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-80"
+          className="blur-[3px] w-full h-full object-cover "
         />
         {/* Robot Image (Over Background) */}
         <img

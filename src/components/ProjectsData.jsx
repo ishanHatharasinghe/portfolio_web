@@ -43,7 +43,7 @@ import member6 from "./../assets/About/6.jpg";
 import member7 from "./../assets/About/7.jpg";
 import member8 from "./../assets/About/8.jpg";
 
-import bg from "./../assets/Home Section/bg.png";
+import bg from "./../assets/Home Section/bg4.jpg";
 import robot from "./../assets/robot3.png";
 
 import {
@@ -333,7 +333,7 @@ const ProjectsData = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-80"
+          className="blur-[5px] w-full h-full object-cover opacity-80"
         />
         <img
           src={robot}

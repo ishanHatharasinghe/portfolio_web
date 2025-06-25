@@ -125,14 +125,14 @@ const HeroSection = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-60 transition-transform duration-100"
+          className="w-full h-full object-cover opacity-90 transition-transform duration-100"
           style={{
             transform: `translate(${(mousePosition.x - 50) * 0.02}px, ${
               (mousePosition.y - 50) * 0.02
             }px) scale(1.05)`
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-red-500/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-red-800/20 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-purple-900/10" />
       </div>
 
