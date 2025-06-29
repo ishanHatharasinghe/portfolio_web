@@ -1,27 +1,25 @@
 import { useState, useEffect } from "react";
-import {
-  User,
-  Calendar,
-  MessageSquare,
-  Star,
-  Send,
-  Briefcase
-} from "lucide-react";
+import { User, Briefcase, Send } from "lucide-react";
 import bg from "./../assets/Testimonials/bg.jpg";
+import { db, ref, onValue, push } from "././firebase";
+import "./../index.css";
+import "./button.css";
 
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     Name: "",
-    Comment: "",
-    Occupation: ""
+    Email: "",
+    Occupation: "",
+    Post: "",
+    Institution: "",
+    Comment: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState("");
 
-  // List of common occupations for the dropdown
   const occupations = [
     "Select an occupation",
     "Accountant",
@@ -66,38 +64,29 @@ const TestimonialsSection = () => {
   ];
 
   useEffect(() => {
-    fetch(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQMtTuoOoyofIm1xUeNA9T8_oUPJaFhhxRCYhE6VwPNrrVraEjCvXWXgQ7-adH2juPFi7AOe3cnFdKd/pub?gid=0&single=true&output=csv"
-    )
-      .then((response) => response.text())
-      .then((csvData) => {
-        const rows = csvData.split("\n");
-        const result = rows.slice(1).map((row) => {
-          // Split the row by commas and handle quoted fields
-          const columns = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-          const [name, dateAndTime, Comment, Occupation] = columns.map(
-            (field) => field.trim().replace(/^"|"$/g, "")
-          );
-          return { name, dateAndTime, Comment, Occupation };
-        });
+    const testimonialsRef = ref(db, "testimonials");
+    onValue(testimonialsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const result = Object.values(data).reverse();
         setTestimonials(result);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching CSV data:", error);
-        setIsLoading(false);
-      });
+      }
+      setIsLoading(false);
+    });
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !formData.Name ||
-      !formData.Comment ||
+      !formData.Email ||
       !formData.Occupation ||
-      formData.Occupation === "Select an occupation"
+      formData.Occupation === "Select an occupation" ||
+      !formData.Post ||
+      !formData.Institution ||
+      !formData.Comment
     ) {
-      setError("Name, Comment, and Occupation are required.");
+      setError("All fields are required.");
       return;
     }
 
@@ -105,21 +94,27 @@ const TestimonialsSection = () => {
     setError("");
 
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbwgmEnoPZmXPXZJmwklFhOZSONadozihLPk_QXZiEOlRk8OdBh1m9OIiazwRPXFqt7a6g/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData)
-        }
-      );
-
+      await push(ref(db, "testimonials"), {
+        name: formData.Name,
+        email: formData.Email,
+        Occupation: formData.Occupation,
+        post: formData.Post,
+        institution: formData.Institution,
+        Comment: formData.Comment,
+        dateAndTime: new Date().toLocaleString()
+      });
       setSuccessMessage("Thank you for your testimonial!");
-      setFormData({ Name: "", Comment: "", Occupation: "" });
-    } catch (error) {
-      console.error("Error submitting testimonial:", error);
-      setError("Failed to submit testimonial. Please try again.");
+      setFormData({
+        Name: "",
+        Email: "",
+        Occupation: "",
+        Post: "",
+        Institution: "",
+        Comment: ""
+      });
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong!");
     } finally {
       setIsSubmitting(false);
     }
@@ -133,41 +128,34 @@ const TestimonialsSection = () => {
     );
   }
 
-  // Get the latest 5 testimonials
   const latestTestimonials = testimonials.slice(0, 6);
 
   return (
     <div className="min-h-screen w-full relative">
-      {/* Background with gradient overlay */}
       <div className="absolute inset-0">
         <img
           src={bg}
           alt="background"
           className="w-full h-full object-cover opacity-60"
         />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/20 to-black opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/40 to-black opacity-80" />
       </div>
 
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16">
-        {/* Header Section */}
         <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 backdrop-blur-sm bg-black/30">
           <div className="max-w-7xl mx-auto">
-            {/* Header Section */}
             <div>
               <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
                 <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
                   Testimonials
                 </h2>
               </span>
-              <p className="mb-12 text-[16px] text-gray-300 leading-relaxed mt-3 items-center text-center">
+              <p className="mb-12 text-[16px] text-gray-300 leading-relaxed mt-3 text-center">
                 Comments from our customers
               </p>
             </div>
 
-            {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Form Section - Left Side */}
               <div className="bg-gray-900/40 p-6 rounded-lg shadow-lg backdrop-blur-sm">
                 <h2 className="text-xl font-semibold text-white mb-4">
                   Share Your Experience
@@ -192,12 +180,26 @@ const TestimonialsSection = () => {
                     </label>
                     <input
                       type="text"
-                      name="Name"
                       value={formData.Name}
                       onChange={(e) =>
                         setFormData({ ...formData, Name: e.target.value })
                       }
-                      className="w-full px-3 py-2 bg-gray-900/40 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/40 focus:border-transparent text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.Email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, Email: e.target.value })
+                      }
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
                       required
                     />
                   </div>
@@ -207,17 +209,16 @@ const TestimonialsSection = () => {
                       Occupation
                     </label>
                     <select
-                      name="Occupation"
                       value={formData.Occupation}
                       onChange={(e) =>
                         setFormData({ ...formData, Occupation: e.target.value })
                       }
-                      className="w-full px-3 py-2 bg-gray-900/40 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/40 focus:border-transparent text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
                       required
                     >
-                      {occupations.map((occupation, index) => (
-                        <option key={index} value={occupation}>
-                          {occupation}
+                      {occupations.map((occ, i) => (
+                        <option key={i} value={occ}>
+                          {occ}
                         </option>
                       ))}
                     </select>
@@ -225,16 +226,48 @@ const TestimonialsSection = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-1">
+                      Post
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.Post}
+                      onChange={(e) =>
+                        setFormData({ ...formData, Post: e.target.value })
+                      }
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                      Institution
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.Institution}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          Institution: e.target.value
+                        })
+                      }
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Comment
                     </label>
                     <textarea
-                      name="Comment"
+                      rows="3"
                       value={formData.Comment}
                       onChange={(e) =>
                         setFormData({ ...formData, Comment: e.target.value })
                       }
-                      className="w-full px-3 py-2 bg-gray-900/40 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/40 focus:border-transparent text-white placeholder-gray-400"
-                      rows="3"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
                       required
                     />
                   </div>
@@ -256,7 +289,6 @@ const TestimonialsSection = () => {
                 </form>
               </div>
 
-              {/* Latest Testimonials - Right Side with 2-column grid */}
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4">
                   Recent Testimonials
@@ -265,12 +297,12 @@ const TestimonialsSection = () => {
                   {latestTestimonials.map((testimonial, index) => (
                     <div
                       key={index}
-                      className="bg-gray-900/40 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm"
+                      className="bg-gray-800/60 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm"
                     >
                       <div className="flex items-center mb-3">
-                        <div className="h-8 w-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 p-0.5 flex-shrink-0">
-                          <div className="h-full w-full rounded-full bg-gray-900/40 flex items-center justify-center">
-                            <User className="h-4 w-4 text-purple-300" />
+                        <div className="h-8 w-8 rounded-full bg-purple-600 p-0.5 flex-shrink-0">
+                          <div className="h-full w-full rounded-full bg-gray-900 flex items-center justify-center">
+                            <User className="h-4 w-4 text-white" />
                           </div>
                         </div>
                         <div className="ml-2 overflow-hidden">
@@ -279,7 +311,7 @@ const TestimonialsSection = () => {
                           </h3>
                           {testimonial.Occupation && (
                             <div className="flex items-center text-xs text-gray-400">
-                              <Briefcase className="h-3 w-3 mr-1 flex-shrink-0" />
+                              <Briefcase className="h-3 w-3 mr-1" />
                               <span className="truncate">
                                 {testimonial.Occupation}
                               </span>
@@ -287,21 +319,22 @@ const TestimonialsSection = () => {
                           )}
                         </div>
                       </div>
-
-                      <div className="flex-grow">
-                        <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
-                          {testimonial.Comment}
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {testimonial.Comment}
+                      </p>
+                      {testimonial.post && (
+                        <p className="text-xs text-purple-300 mt-2">
+                          Post: {testimonial.post}
                         </p>
-                      </div>
-
-                      <div className="mt-3 pt-2 border-t border-gray-700/50">
-                        <div className="flex items-center justify-between">
-                          <div className="flex space-x-1"></div>
-                          <span className="text-xs text-purple-400 font-medium">
-                            #{String(index + 1).padStart(2, "0")}
-                          </span>
-                        </div>
-                      </div>
+                      )}
+                      {testimonial.institution && (
+                        <p className="text-xs text-purple-300">
+                          Institution: {testimonial.institution}
+                        </p>
+                      )}
+                      <span className="mt-3 text-xs text-gray-400 font-medium">
+                        {testimonial.dateAndTime}
+                      </span>
                     </div>
                   ))}
                 </div>
