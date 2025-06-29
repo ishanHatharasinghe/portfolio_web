@@ -2,7 +2,7 @@ import { useEffect, Suspense, lazy } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css"; // Add scroll-behavior here
-
+import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 // Lazy-loaded components for performance
 const Header = lazy(() => import("./components/HeaderBar"));
 const Home = lazy(() => import("./components/Home"));
@@ -27,6 +27,7 @@ function App() {
 
   return (
     <div>
+      <FloatingSocialSidebar />
       {/* Suspense fallback for lazy-loaded components */}
       <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
         <Header />

@@ -5,7 +5,6 @@ import {
   Book,
   Briefcase,
   Award,
-  Code,
   Paintbrush,
   Palette,
   Mail,
@@ -17,10 +16,14 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+
+  const searchInputRef = useRef(null);
   const menuRef = useRef(null);
   const navRef = useRef(null);
 
-  // Define your navigation items
   const navItems = [
     { icon: <Home className="w-4 h-4" />, id: "home", tooltip: "Home" },
     { icon: <User className="w-4 h-4" />, id: "about", tooltip: "About" },
@@ -62,125 +65,152 @@ function Header() {
     { icon: <Mail className="w-4 h-4" />, id: "contact", tooltip: "Contact" }
   ];
 
-  // Handle click outside of mobile menu to close it
+  // Scroll & active section detection
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrollPosition(y);
+      const sections = navItems
+        .map((i) => document.getElementById(i.id))
+        .filter(Boolean);
+      const viewport = window.innerHeight;
+      let current = activeSection;
+      sections.forEach((sec) => {
+        const b = sec.getBoundingClientRect();
+        const visible = Math.min(b.bottom, viewport) - Math.max(b.top, 0);
+        const ratio = visible > 0 ? visible / Math.min(b.height, viewport) : 0;
+        if (ratio > 0.5 || (b.top <= 100 && b.bottom >= 100)) current = sec.id;
+      });
+      if (current !== activeSection) setActiveSection(current);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [activeSection, navItems]);
+
+  // Smooth scroll & highlight
+  const scrollToSection = (id, highlightText = "") => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    const yOffset = -80;
+    const top = sec.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top, behavior: "smooth" });
+    setActiveSection(id);
+    window.history.pushState(null, null, `#${id}`);
+    if (highlightText) highlightInSection(sec, highlightText);
+  };
+
+  const highlightInSection = (section, text) => {
+    if (!text) return;
+    const regex = new RegExp(`(${text})`, "gi");
+    // remove old highlights
+    section.querySelectorAll(".search-highlight").forEach((el) => {
+      const parent = el.parentNode;
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    });
+    // highlight new
+    const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) =>
+        regex.test(node.textContent)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((textNode) => {
+      const frag = document.createDocumentFragment();
+      let last = 0,
+        match;
+      regex.lastIndex = 0;
+      while ((match = regex.exec(textNode.textContent))) {
+        const before = textNode.textContent.slice(last, match.index);
+        if (before) frag.appendChild(document.createTextNode(before));
+        const span = document.createElement("span");
+        span.className = "search-highlight bg-yellow-300";
+        span.textContent = match[0];
+        frag.appendChild(span);
+        last = regex.lastIndex;
+      }
+      const after = textNode.textContent.slice(last);
+      if (after) frag.appendChild(document.createTextNode(after));
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
+    setTimeout(() => {
+      section.querySelectorAll(".search-highlight").forEach((el) => {
+        const p = el.parentNode;
+        p.replaceChild(document.createTextNode(el.textContent), el);
+        p.normalize();
+      });
+    }, 3000);
+  };
+
+  // Perform search
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) {
+      setSearchResults([]);
+      setShowResults(false);
+      return;
+    }
+    const results = navItems
+      .map(({ id, tooltip }) => {
+        const sec = document.getElementById(id);
+        if (!sec) return null;
+        const txt = sec.innerText.toLowerCase();
+        const idx = txt.indexOf(q);
+        if (idx === -1) return null;
+        const start = Math.max(0, idx - 30),
+          end = Math.min(txt.length, idx + q.length + 30);
+        let snip = sec.innerText.slice(start, end);
+        if (start > 0) snip = "…" + snip;
+        if (end < txt.length) snip = snip + "…";
+        return { id, tooltip, snippet: snip };
+      })
+      .filter(Boolean);
+    setSearchResults(results);
+    setShowResults(true);
+  };
+
+  // Close search results on outside click
+  useEffect(() => {
+    const onClick = (e) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(e.target)
+      ) {
+        setShowResults(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  // Mobile menu outside click
+  useEffect(() => {
+    const onClick = (e) => {
       if (
         menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        !event.target.closest('button[aria-controls="mobile-menu"]')
+        !menuRef.current.contains(e.target) &&
+        !e.target.closest('button[aria-controls="mobile-menu"]')
       ) {
         setIsMenuOpen(false);
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Update scroll position and active section
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          setScrollPosition(currentScrollY);
-
-          // Get all sections and determine which one is in view
-          const sections = navItems
-            .map((item) => document.getElementById(item.id))
-            .filter(Boolean);
-
-          if (sections.length) {
-            const viewportHeight = window.innerHeight;
-            const currentSection = sections.reduce((acc, section) => {
-              const bounds = section.getBoundingClientRect();
-              const visiblePortion =
-                Math.min(bounds.bottom, viewportHeight) -
-                Math.max(bounds.top, 0);
-              const isVisible = visiblePortion > 0;
-              const visibilityRatio = isVisible
-                ? visiblePortion / Math.min(bounds.height, viewportHeight)
-                : 0;
-
-              if (
-                visibilityRatio > 0.5 ||
-                (bounds.top <= 100 && bounds.bottom >= 100)
-              ) {
-                return section.id;
-              }
-              return acc;
-            }, activeSection);
-
-            if (currentSection !== activeSection) {
-              setActiveSection(currentSection);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [activeSection, navItems]);
-
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      // Add offset to account for navigation
-      const yOffset = -80;
-      const y =
-        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth"
-      });
-
-      setIsMenuOpen(false);
-      setActiveSection(id);
-
-      // Update URL hash without jumping
-      window.history.pushState(null, null, `#${id}`);
-    }
-  };
-
-  // Handle keyboard navigation
-  const handleKeyDown = (e, id) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      scrollToSection(id);
-    }
-  };
-
-  // Check URL hash on initial load
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash) {
-      setTimeout(() => {
-        scrollToSection(hash);
-      }, 500);
-    }
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
   // Close mobile menu on resize
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+    const onResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) setIsMenuOpen(false);
     };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, [isMenuOpen]);
 
-  // Calculate scroll progress for the progress bar
+  // Scroll progress bar
   const scrollProgress = Math.min(
     (scrollPosition /
       (document.documentElement.scrollHeight - window.innerHeight)) *
@@ -190,7 +220,7 @@ function Header() {
 
   return (
     <>
-      {/* Progress bar - at top */}
+      {/* Progress bar */}
       <div
         style={{
           width: `${scrollProgress}%`,
@@ -201,7 +231,7 @@ function Header() {
           left: 0,
           zIndex: 1000,
           transition: "width 0.3s ease-in-out",
-          boxShadow: "0 0 10px rgba(249, 115, 22, 0.5)"
+          boxShadow: "0 0 10px rgba(249,115,22,0.5)"
         }}
         role="progressbar"
         aria-valuenow={scrollProgress}
@@ -210,125 +240,175 @@ function Header() {
         aria-label="Scroll progress"
       />
 
-      {/* Compact Bottom Navigation */}
+      {/* Bottom nav + search */}
       <nav
         ref={navRef}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/90 via-black/80 to-black/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5"
-        role="navigation"
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/90 via-black/80 to-black/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
         aria-label="Main navigation"
       >
-        {/* Logo - Home button */}
-        <div className="flex items-center">
-          <button
-            onClick={() => scrollToSection("home")}
-            onKeyDown={(e) => handleKeyDown(e, "home")}
-            className={`p-2 rounded-full transition-all duration-300 mr-2 ${
-              activeSection === "home"
-                ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
-                : "text-gray-400 hover:text-white hover:bg-white/10"
-            }`}
-            aria-label="Home"
-          >
-            <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-              IN
-            </div>
-          </button>
-
-          {/* Desktop Navigation - Compact */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navItems.slice(1).map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  onKeyDown={(e) => handleKeyDown(e, item.id)}
-                  className={`relative p-2 rounded-full transition-all duration-300 group ${
-                    isActive
-                      ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
-                      : "text-gray-400 hover:text-white hover:bg-white/10"
-                  }`}
-                  aria-label={item.tooltip}
-                >
-                  {item.icon}
-
-                  {/* Tooltip */}
-                  <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                    {item.tooltip}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 ml-2"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <div className="w-4 h-3 flex flex-col justify-between">
-              <span
-                className={`h-0.5 w-full bg-current rounded transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-1" : ""
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full bg-current rounded transition-all duration-300 ${
-                  isMenuOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full bg-current rounded transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-1" : ""
-                }`}
-              />
-            </div>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          id="mobile-menu"
-          ref={menuRef}
-          className={`absolute bottom-full mb-2 right-0 w-48 md:hidden bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden transition-all duration-300 border border-white/20 ${
-            isMenuOpen
-              ? "max-h-96 opacity-100 scale-100"
-              : "max-h-0 opacity-0 scale-95 pointer-events-none"
+        {/* Home logo */}
+        <button
+          onClick={() => scrollToSection("home")}
+          className={`p-2 rounded-full transition mr-2 ${
+            activeSection === "home"
+              ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
+              : "text-gray-400 hover:text-white hover:bg-white/10"
           }`}
+          aria-label="Home"
         >
-          <div className="p-2 space-y-1">
-            {navItems.slice(1).map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-300 flex items-center space-x-3 ${
-                    isActive
-                      ? "bg-gradient-to-r from-orange-600/70 to-amber-600/30 text-white"
-                      : "text-gray-300 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {item.icon}
-                  <span className="text-xs">{item.tooltip}</span>
-                </button>
-              );
-            })}
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-xs">
+            IN
           </div>
+        </button>
+
+        {/* Desktop icons */}
+        <div className="hidden md:flex items-center space-x-1">
+          {navItems.slice(1).map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`relative p-2 rounded-full transition ${
+                activeSection === item.id
+                  ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
+                  : "text-gray-400 hover:text-white hover:bg-white/10"
+              }`}
+              aria-label={item.tooltip}
+            >
+              {item.icon}
+              <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition">
+                {item.tooltip}
+              </span>
+            </button>
+          ))}
         </div>
+
+        {/* Mobile menu toggle */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        >
+          <div className="w-4 h-3 flex flex-col justify-between">
+            <span
+              className={`h-0.5 w-full bg-current rounded transition ${
+                isMenuOpen ? "rotate-45 translate-y-1" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full bg-current rounded transition ${
+                isMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full bg-current rounded transition ${
+                isMenuOpen ? "-rotate-45 -translate-y-1" : ""
+              }`}
+            />
+          </div>
+        </button>
+
+        {/* Search form */}
+        <form
+          onSubmit={handleSearch}
+          className="relative ml-3"
+          ref={searchInputRef}
+          role="search"
+          aria-label="Website search"
+        >
+          <input
+            type="search"
+            autoComplete="off"
+            placeholder="Search site..."
+            className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowResults(searchResults.length > 0)}
+          />
+          <button
+            type="submit"
+            className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition"
+            aria-label="Submit search"
+          >
+            Search
+          </button>
+
+          {/* Results drop upward */}
+          {showResults && (
+            <ul
+              id="search-results"
+              role="listbox"
+              className="absolute bottom-full mb-1 w-80 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-orange-500 text-white z-50"
+            >
+              {searchResults.length === 0 && (
+                <li className="px-3 py-2 text-gray-400">No results found.</li>
+              )}
+              {searchResults.map(({ id, tooltip, snippet }) => (
+                <li
+                  key={id}
+                  role="option"
+                  tabIndex={0}
+                  className="cursor-pointer px-3 py-2 hover:bg-orange-600"
+                  onClick={() => {
+                    scrollToSection(id, searchQuery);
+                    setShowResults(false);
+                    setSearchQuery("");
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      scrollToSection(id, searchQuery);
+                      setShowResults(false);
+                      setSearchQuery("");
+                    }
+                  }}
+                >
+                  <strong>{tooltip}</strong>
+                  <p className="text-xs mt-1 line-clamp-2">{snippet}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </form>
       </nav>
 
-      {/* Back to top button - smaller */}
+      {/* Mobile menu */}
+      <div
+        id="mobile-menu"
+        ref={menuRef}
+        className={`absolute bottom-full mb-2 right-0 w-48 md:hidden bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden transition-all duration-300 border border-white/20 ${
+          isMenuOpen
+            ? "max-h-96 opacity-100 scale-100"
+            : "max-h-0 opacity-0 scale-95 pointer-events-none"
+        }`}
+      >
+        <div className="p-2 space-y-1">
+          {navItems.slice(1).map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition ${
+                activeSection === item.id
+                  ? "bg-gradient-to-r from-orange-600/70 to-amber-600/30 text-white"
+                  : "text-gray-300 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              {item.icon}
+              <span className="text-xs">{item.tooltip}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-orange-600/80 to-amber-600/40 text-white transition-all duration-300 shadow-lg flex items-center justify-center z-40 ${
+        className={`fixed bottom-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-orange-600/80 to-amber-600/40 text-white shadow-lg flex items-center justify-center transition ${
           scrollPosition > window.innerHeight / 2
             ? "opacity-100 scale-100"
             : "opacity-0 scale-90 pointer-events-none"
-        }`}
+        } z-40`}
         aria-label="Back to top"
       >
         <svg
@@ -345,6 +425,12 @@ function Header() {
           />
         </svg>
       </button>
+
+      {/* Highlight & clamp styles */}
+      <style>{`
+        .search-highlight { background-color: #fde68a; border-radius: 0.2rem; transition: background-color 0.3s;}
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+      `}</style>
     </>
   );
 }
