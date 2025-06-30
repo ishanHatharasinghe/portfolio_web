@@ -302,7 +302,7 @@ function Header() {
           <div
             id="mobile-menu"
             ref={menuRef}
-            className={`absolute bottom-full mb-2 right-0 w-48 origin-bottom transform transition-all duration-300 bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/20 z-50 ${
+            className={`absolute bottom-full mb-3 left-[1px] w-48 origin-bottom transform transition-all duration-300 bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/20 z-50 ${
               isMenuOpen
                 ? "max-h-96 opacity-100 scale-100"
                 : "max-h-0 opacity-0 scale-95 pointer-events-none"
