@@ -2,7 +2,19 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Code, Cpu, Palette, Boxes } from "lucide-react";
 
-// Assets import
+import factoryio from "./../assets/Skills/factoryio.png";
+import vb from "./../assets/Skills/vb.png";
+import xampp from "./../assets/Skills/xampp.png";
+import sql from "./../assets/Skills/sql.png";
+import webstrom from "./../assets/Skills/webstrom.png";
+import intellij from "./../assets/Skills/intellij.png";
+import tailwindcss from "./../assets/Skills/tailwindcss.png";
+import postman from "./../assets/Skills/postman.png";
+import firebase from "./../assets/Skills/firebase.png";
+import cplus from "./../assets/Skills/cplus.png";
+import googlesheet from "./../assets/Skills/googlesheet.png";
+import vscode from "./../assets/Skills/vscode.png";
+import vs from "./../assets/Skills/vs.png";
 import arduino from "./../assets/Skills/arduino.png";
 import autocad from "./../assets/Skills/autocad.png";
 import c from "./../assets/Skills/c.png";
@@ -19,12 +31,13 @@ import solidworks from "./../assets/Skills/solidworks.png";
 import react from "./../assets/Skills/react.png";
 import flutter from "./../assets/Skills/flutter.png";
 import php from "./../assets/Skills/php.png";
-
 import ps from "./../assets/Skills/ps.png";
 import ai from "./../assets/Skills/ai.png";
 import figma from "./../assets/Skills/figma.png";
 import id from "./../assets/Skills/id.png";
 import xd from "./../assets/Skills/xd.png";
+import canva from "./../assets/Skills/canva.png";
+import androidStudio from "./../assets/Skills/androidStudio.png";
 
 const SkillCard = ({ image, name, category, proficiency }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -35,20 +48,15 @@ const SkillCard = ({ image, name, category, proficiency }) => {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      {/* Background Glow Effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-orange-500/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      {/* Card Content */}
-      <div className="relative border border-white/10 bg-black/40 backdrop-blur-md rounded-2xl p-4 transition-transform duration-500 h-full">
-        <div className="flex flex-col items-center gap-3">
-          {/* Skill Icon */}
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-orange-500/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative border border-white/10 bg-black/40 backdrop-blur-md rounded-xl p-3 transition-transform duration-500 h-full">
+        <div className="flex flex-col items-center gap-2">
           <img
             src={image}
             alt={name}
-            className="w-16 h-16 object-contain transition-transform duration-500 group-hover:scale-110"
+            className="w-14 h-14 object-contain transition-transform duration-500 group-hover:scale-110"
           />
-          {/* Skill Name */}
-          <p className="text-gray-300 text-sm font-medium">{name}</p>
-          {/* Hoverable Proficiency Bar */}
+          <p className="text-gray-300 text-xs text-center">{name}</p>
           <AnimatePresence>
             {isHovered && (
               <motion.div
@@ -63,7 +71,7 @@ const SkillCard = ({ image, name, category, proficiency }) => {
                     style={{ width: `${proficiency}%` }}
                   />
                 </div>
-                <p className="text-xs text-gray-400 mt-2">
+                <p className="text-xs text-gray-400 mt-1">
                   {proficiency}% Proficiency
                 </p>
               </motion.div>
@@ -87,12 +95,13 @@ const CategoryButton = ({ icon: Icon, label, isActive, onClick }) => (
     } transition-colors duration-300`}
   >
     <Icon size={16} />
-    <span className="">{label}</span>
+    <span>{label}</span>
   </motion.button>
 );
 
 const Skills = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+
   const categories = [
     { id: "all", label: "All Skills", icon: Boxes },
     { id: "development", label: "Development", icon: Code },
@@ -108,39 +117,110 @@ const Skills = () => {
       proficiency: 90
     },
     { name: "AutoCAD", image: autocad, category: "design", proficiency: 85 },
-    { name: "C/C++", image: c, category: "development", proficiency: 95 },
-    { name: "CSS", image: css, category: "development", proficiency: 88 },
-    { name: "Docker", image: docker, category: "development", proficiency: 82 },
-    {
-      name: "FastAPI",
-      image: fastapi,
-      category: "development",
-      proficiency: 87
-    },
-    { name: "HTML", image: html, category: "development", proficiency: 92 },
-    { name: "Java", image: java, category: "development", proficiency: 85 },
-    { name: "JavaScript", image: js, category: "development", proficiency: 90 },
-    { name: "Neo4j", image: neo4j, category: "development", proficiency: 80 },
     {
       name: "Proteus",
       image: proteus,
       category: "electronics",
       proficiency: 88
     },
-    { name: "Python", image: python, category: "development", proficiency: 95 },
-    { name: "PHP", image: php, category: "development", proficiency: 85 },
     {
-      name: "SolidWorks",
-      image: solidworks,
-      category: "design",
-      proficiency: 83
+      name: "Factory I/O",
+      image: factoryio,
+      category: "development",
+      proficiency: 78
     },
+    { name: "C++", image: cplus, category: "development", proficiency: 90 },
+    { name: "C#", image: c, category: "development", proficiency: 95 },
+    { name: "HTML", image: html, category: "development", proficiency: 92 },
+    { name: "CSS", image: css, category: "development", proficiency: 88 },
+    { name: "Java", image: java, category: "development", proficiency: 85 },
+    { name: "PHP", image: php, category: "development", proficiency: 85 },
     { name: "React", image: react, category: "development", proficiency: 92 },
+    { name: "JavaScript", image: js, category: "development", proficiency: 90 },
+    {
+      name: "Tailwind CSS",
+      image: tailwindcss,
+      category: "development",
+      proficiency: 90
+    },
+    {
+      name: "Firebase",
+      image: firebase,
+      category: "development",
+      proficiency: 80
+    },
+    {
+      name: "FastAPI",
+      image: fastapi,
+      category: "development",
+      proficiency: 87
+    },
+    { name: "Neo4j", image: neo4j, category: "development", proficiency: 80 },
+    { name: "Python", image: python, category: "development", proficiency: 95 },
     {
       name: "Flutter",
       image: flutter,
       category: "development",
       proficiency: 85
+    },
+    {
+      name: "VS Code",
+      image: vscode,
+      category: "development",
+      proficiency: 95
+    },
+    {
+      name: "Visual Studio",
+      image: vs,
+      category: "development",
+      proficiency: 90
+    },
+    {
+      name: "Visual Basic",
+      image: vb,
+      category: "development",
+      proficiency: 75
+    },
+    {
+      name: "IntelliJ IDEA",
+      image: intellij,
+      category: "development",
+      proficiency: 85
+    },
+    {
+      name: "WebStorm",
+      image: webstrom,
+      category: "development",
+      proficiency: 80
+    },
+
+    {
+      name: "Android Studio",
+      image: androidStudio,
+      category: "development",
+      proficiency: 80
+    },
+
+    { name: "XAMPP", image: xampp, category: "development", proficiency: 75 },
+    { name: "SQL", image: sql, category: "development", proficiency: 80 },
+    {
+      name: "Postman",
+      image: postman,
+      category: "development",
+      proficiency: 85
+    },
+    { name: "Docker", image: docker, category: "development", proficiency: 82 },
+    {
+      name: "Google Sheets",
+      image: googlesheet,
+      category: "development",
+      proficiency: 70
+    },
+    {
+      name: "SolidWorks",
+      image: solidworks,
+      category: "design",
+      proficiency: 83
     },
     { name: "Adobe Photoshop", image: ps, category: "design", proficiency: 95 },
     { name: "Adobe Indesign", image: id, category: "design", proficiency: 75 },
@@ -151,7 +231,8 @@ const Skills = () => {
       proficiency: 90
     },
     { name: "Figma", image: figma, category: "design", proficiency: 80 },
-    { name: "Adobe Xd", image: xd, category: "design", proficiency: 80 }
+    { name: "Adobe Xd", image: xd, category: "design", proficiency: 80 },
+    { name: "Canva", image: canva, category: "design", proficiency: 70 }
   ];
 
   const filteredSkills =
@@ -161,18 +242,14 @@ const Skills = () => {
 
   return (
     <div className="min-h-screen w-full bg-black overflow-hidden relative">
-      {/* Decorative Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80 z-0" />
-      {/* Main Content */}
       <div className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 z-10">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="rounded-[70px] w-full max-w-6xl mx-auto p-12 border-2 border-gray-700/30 bg-black/50 backdrop-blur-lg shadow-2xl"
+          className="rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-gray-700/30 bg-black/50 backdrop-blur-lg shadow-2xl"
         >
-          {/* Title */}
           <div className="w-full text-center mb-16">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
@@ -189,7 +266,6 @@ const Skills = () => {
             </p>
           </div>
 
-          {/* Category Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -207,10 +283,9 @@ const Skills = () => {
             ))}
           </motion.div>
 
-          {/* Skills Grid */}
           <motion.div
             layout
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-6xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5 max-w-7xl mx-auto"
           >
             <AnimatePresence mode="wait">
               {filteredSkills.map((skill, index) => (
@@ -220,7 +295,7 @@ const Skills = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  transition={{ duration: 0.3, delay: index * 0.02 }}
                 >
                   <SkillCard {...skill} />
                 </motion.div>
@@ -230,7 +305,6 @@ const Skills = () => {
         </motion.div>
       </div>
 
-      {/* Comet Animation */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div

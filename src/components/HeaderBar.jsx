@@ -9,7 +9,8 @@ import {
   Palette,
   Mail,
   MonitorSmartphone,
-  MessageSquareQuote
+  MessageSquareQuote,
+  Search
 } from "lucide-react";
 
 function Header() {
@@ -65,7 +66,6 @@ function Header() {
     { icon: <Mail className="w-4 h-4" />, id: "contact", tooltip: "Contact" }
   ];
 
-  // Scroll & active section detection
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -87,7 +87,6 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [activeSection, navItems]);
 
-  // Smooth scroll & highlight
   const scrollToSection = (id, highlightText = "") => {
     const sec = document.getElementById(id);
     if (!sec) return;
@@ -102,13 +101,11 @@ function Header() {
   const highlightInSection = (section, text) => {
     if (!text) return;
     const regex = new RegExp(`(${text})`, "gi");
-    // remove old highlights
     section.querySelectorAll(".search-highlight").forEach((el) => {
       const parent = el.parentNode;
       parent.replaceChild(document.createTextNode(el.textContent), el);
       parent.normalize();
     });
-    // highlight new
     const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, {
       acceptNode: (node) =>
         regex.test(node.textContent)
@@ -144,7 +141,6 @@ function Header() {
     }, 3000);
   };
 
-  // Perform search
   const handleSearch = (e) => {
     e.preventDefault();
     const q = searchQuery.trim().toLowerCase();
@@ -172,7 +168,6 @@ function Header() {
     setShowResults(true);
   };
 
-  // Close search results on outside click
   useEffect(() => {
     const onClick = (e) => {
       if (
@@ -186,7 +181,6 @@ function Header() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  // Mobile menu outside click
   useEffect(() => {
     const onClick = (e) => {
       if (
@@ -201,7 +195,6 @@ function Header() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 768 && isMenuOpen) setIsMenuOpen(false);
@@ -210,7 +203,6 @@ function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, [isMenuOpen]);
 
-  // Scroll progress bar
   const scrollProgress = Math.min(
     (scrollPosition /
       (document.documentElement.scrollHeight - window.innerHeight)) *
@@ -220,7 +212,6 @@ function Header() {
 
   return (
     <>
-      {/* Progress bar */}
       <div
         style={{
           width: `${scrollProgress}%`,
@@ -240,13 +231,11 @@ function Header() {
         aria-label="Scroll progress"
       />
 
-      {/* Bottom nav + search */}
       <nav
         ref={navRef}
         className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/90 via-black/80 to-black/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
         aria-label="Main navigation"
       >
-        {/* Home logo */}
         <button
           onClick={() => scrollToSection("home")}
           className={`p-2 rounded-full transition mr-2 ${
@@ -261,7 +250,6 @@ function Header() {
           </div>
         </button>
 
-        {/* Desktop icons */}
         <div className="hidden md:flex items-center space-x-1">
           {navItems.slice(1).map((item) => (
             <button
@@ -275,14 +263,10 @@ function Header() {
               aria-label={item.tooltip}
             >
               {item.icon}
-              <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition">
-                {item.tooltip}
-              </span>
             </button>
           ))}
         </div>
 
-        {/* Mobile menu toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition"
@@ -309,32 +293,29 @@ function Header() {
           </div>
         </button>
 
-        {/* Search form */}
         <form
           onSubmit={handleSearch}
-          className="relative ml-3"
+          className="relative ml-3 flex items-center"
           ref={searchInputRef}
           role="search"
           aria-label="Website search"
         >
           <input
             type="search"
-            autoComplete="off"
             placeholder="Search site..."
-            className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm"
+            className="hidden md:block rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowResults(searchResults.length > 0)}
           />
           <button
             type="submit"
-            className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition"
+            className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition flex items-center justify-center"
             aria-label="Submit search"
           >
-            Search
+            <Search className="w-4 h-4" />
           </button>
 
-          {/* Results drop upward */}
           {showResults && (
             <ul
               id="search-results"
@@ -373,7 +354,6 @@ function Header() {
         </form>
       </nav>
 
-      {/* Mobile menu */}
       <div
         id="mobile-menu"
         ref={menuRef}
@@ -401,7 +381,6 @@ function Header() {
         </div>
       </div>
 
-      {/* Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={`fixed bottom-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-orange-600/80 to-amber-600/40 text-white shadow-lg flex items-center justify-center transition ${
@@ -426,7 +405,6 @@ function Header() {
         </svg>
       </button>
 
-      {/* Highlight & clamp styles */}
       <style>{`
         .search-highlight { background-color: #fde68a; border-radius: 0.2rem; transition: background-color 0.3s;}
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
