@@ -41,7 +41,7 @@ function Header() {
     {
       icon: <Award className="w-4 h-4" />,
       id: "professional-designations",
-      tooltip: "Professional Designations"
+      tooltip: "Certifications"
     },
     {
       icon: <Briefcase className="w-4 h-4" />,
@@ -212,6 +212,7 @@ function Header() {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
       <div
         style={{
           width: `${scrollProgress}%`,
@@ -231,11 +232,13 @@ function Header() {
         aria-label="Scroll progress"
       />
 
+      {/* Nav Bar */}
       <nav
         ref={navRef}
         className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/90 via-black/80 to-black/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
         aria-label="Main navigation"
       >
+        {/* Home logo */}
         <button
           onClick={() => scrollToSection("home")}
           className={`p-2 rounded-full transition mr-2 ${
@@ -250,6 +253,7 @@ function Header() {
           </div>
         </button>
 
+        {/* Desktop nav icons */}
         <div className="hidden md:flex items-center space-x-1">
           {navItems.slice(1).map((item) => (
             <button
@@ -267,32 +271,93 @@ function Header() {
           ))}
         </div>
 
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition"
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          <div className="w-4 h-3 flex flex-col justify-between">
-            <span
-              className={`h-0.5 w-full bg-current rounded transition ${
-                isMenuOpen ? "rotate-45 translate-y-1" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-current rounded transition ${
-                isMenuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-current rounded transition ${
-                isMenuOpen ? "-rotate-45 -translate-y-1" : ""
-              }`}
-            />
-          </div>
-        </button>
+        {/* Mobile toggle & menu */}
+        <div className="relative md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <div className="w-4 h-3 flex flex-col justify-between">
+              <span
+                className={`h-0.5 w-full bg-current rounded transition ${
+                  isMenuOpen ? "rotate-45 translate-y-1" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current rounded transition ${
+                  isMenuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current rounded transition ${
+                  isMenuOpen ? "-rotate-45 -translate-y-1" : ""
+                }`}
+              />
+            </div>
+          </button>
 
+          <div
+            id="mobile-menu"
+            ref={menuRef}
+            className={`absolute bottom-full mb-2 right-0 w-48 origin-bottom transform transition-all duration-300 bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/20 z-50 ${
+              isMenuOpen
+                ? "max-h-96 opacity-100 scale-100"
+                : "max-h-0 opacity-0 scale-95 pointer-events-none"
+            }`}
+          >
+            <div className="p-2 space-y-1">
+              {/* Mobile Menu Nav Items */}
+              {navItems.slice(1).map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    scrollToSection(item.id);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-orange-600/70 to-amber-600/30 text-white"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {item.icon}
+                  <span className="text-xs">{item.tooltip}</span>
+                </button>
+              ))}
+
+              {/* Search bar visible inside mobile menu */}
+              <form
+                onSubmit={handleSearch}
+                className="relative mt-2 flex items-center"
+                role="search"
+                aria-label="Website search"
+              >
+                <input
+                  type="search"
+                  autoComplete="off"
+                  placeholder="Search site..."
+                  className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm w-full"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setShowResults(searchResults.length > 0)}
+                />
+                <button
+                  type="submit"
+                  className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition flex items-center justify-center"
+                  aria-label="Submit search"
+                >
+                  <Search className="w-4 h-4" />
+                  <span className="ml-1 hidden sm:inline">Search</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Search form for desktop and tablets */}
         <form
           onSubmit={handleSearch}
           className="relative ml-3 flex items-center"
@@ -302,8 +367,10 @@ function Header() {
         >
           <input
             type="search"
+            autoComplete="off"
             placeholder="Search site..."
-            className="hidden md:block rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm"
+            className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm
+              w-28 sm:w-48 md:w-64"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowResults(searchResults.length > 0)}
@@ -314,13 +381,14 @@ function Header() {
             aria-label="Submit search"
           >
             <Search className="w-4 h-4" />
+            <span className="ml-1 hidden sm:inline">Search</span>
           </button>
 
           {showResults && (
             <ul
               id="search-results"
               role="listbox"
-              className="absolute bottom-full mb-1 w-80 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-orange-500 text-white z-50"
+              className="absolute bottom-full mb-1 w-72 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-orange-500 text-white z-50"
             >
               {searchResults.length === 0 && (
                 <li className="px-3 py-2 text-gray-400">No results found.</li>
@@ -354,33 +422,7 @@ function Header() {
         </form>
       </nav>
 
-      <div
-        id="mobile-menu"
-        ref={menuRef}
-        className={`absolute bottom-full mb-2 right-0 w-48 md:hidden bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden transition-all duration-300 border border-white/20 ${
-          isMenuOpen
-            ? "max-h-96 opacity-100 scale-100"
-            : "max-h-0 opacity-0 scale-95 pointer-events-none"
-        }`}
-      >
-        <div className="p-2 space-y-1">
-          {navItems.slice(1).map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition ${
-                activeSection === item.id
-                  ? "bg-gradient-to-r from-orange-600/70 to-amber-600/30 text-white"
-                  : "text-gray-300 hover:bg-white/10 hover:text-white"
-              }`}
-            >
-              {item.icon}
-              <span className="text-xs">{item.tooltip}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
+      {/* Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={`fixed bottom-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-orange-600/80 to-amber-600/40 text-white shadow-lg flex items-center justify-center transition ${
