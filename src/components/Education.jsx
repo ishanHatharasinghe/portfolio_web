@@ -6,7 +6,47 @@ import robot from "./../assets/Home Section/robot3.png";
 import { ArrowRight, ExternalLink, GraduationCap } from "lucide-react";
 import "./button.css";
 
+// Add these imports at the top with others
+import e1 from "./../assets/events/1.jpg";
+import e2 from "./../assets/events/2.jpg";
+import e3 from "./../assets/events/3.jpg";
+import e4 from "./../assets/events/4.jpg";
+import e5 from "./../assets/events/5.jpg";
+import e6 from "./../assets/events/6.jpg";
+import e7 from "./../assets/events/7.jpg";
+import e8 from "./../assets/events/8.jpg";
+import e9 from "./../assets/events/9.jpg";
+import { useState } from "react"; // Ensure React state is imported
+
+const eventImages = [e1, e2, e3, e4, e5, e6, e7, e8, e9];
+
 const Education = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  // Open image and store index
+  const openImage = (img, index) => {
+    setSelectedImage(img);
+    setSelectedIndex(index);
+  };
+
+  // Navigate prev image with wrap-around
+  const prevImage = (e) => {
+    e.stopPropagation();
+    const prevIndex =
+      (selectedIndex - 1 + eventImages.length) % eventImages.length;
+    setSelectedIndex(prevIndex);
+    setSelectedImage(eventImages[prevIndex]);
+  };
+
+  // Navigate next image with wrap-around
+  const nextImage = (e) => {
+    e.stopPropagation();
+    const nextIndex = (selectedIndex + 1) % eventImages.length;
+    setSelectedIndex(nextIndex);
+    setSelectedImage(eventImages[nextIndex]);
+  };
+
   return (
     <div className="h-full relative min-h-screen w-full bg-black overflow-hidden">
       {/* Background with enhanced gradient overlay */}
@@ -264,6 +304,198 @@ const Education = () => {
           </div>
         </div>
       </div>
+
+      {/* Modern Event Section */}
+      <div className="bg-black relative z-20 w-full h-full p-3 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 ">
+        {/* Event Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* First Column - Event Card */}
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md border border-gray-700/50 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1">
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            {/* Content */}
+            <div className="relative z-10 p-6 h-full flex flex-col">
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300 border border-blue-500/30">
+                    Exhibition
+                  </span>
+                  <span className="text-xs text-gray-500">May 2025</span>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Inventx 2025: The Engineering Exhibition
+                </h3>
+                <p className="text-sm text-gray-400 mb-6">
+                  Higher National Diploma in Engineering, ATI Labuduwa
+                </p>
+              </div>
+
+              {/* Image Grid */}
+              <div className="grid grid-cols-3 gap-2">
+                {eventImages.slice(0, 3).map((img, index) => (
+                  <div
+                    key={index}
+                    className="aspect-square relative rounded-lg overflow-hidden cursor-pointer transform transition-all hover:scale-105 hover:z-10 hover:shadow-lg"
+                    onClick={() => openImage(img, index)}
+                  >
+                    <img
+                      src={img}
+                      alt={`Event ${index + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="mt-6 pt-4 border-t border-gray-800/50 flex justify-between items-center">
+                <a
+                  href="https://www.facebook.com/share/p/1Bz6umM3UK/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                >
+                  View on Facebook
+                  <ExternalLink className="ml-1.5 h-4 w-4 opacity-70 group-hover/link:opacity-100 transition-opacity" />
+                </a>
+                <button
+                  onClick={() => openImage(eventImages[0], 0)}
+                  className="text-xs text-gray-400 hover:text-white transition-colors"
+                >
+                  View all photos
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Second Column - Upcoming Event Placeholder */}
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-md border border-dashed border-gray-700/50 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+            <div className="relative z-10">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-800/50 border border-gray-700/50 mb-4">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-300 mb-1">
+                Upcoming Event
+              </h3>
+              <p className="text-sm text-gray-500 max-w-xs mx-auto">
+                This space is reserved for future events and exhibitions
+              </p>
+              <div className="mt-4">
+                <button className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full text-gray-400 bg-gray-800/30 hover:bg-gray-700/50 transition-colors">
+                  Notify me
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Third Column - Community Placeholder */}
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-md border border-dashed border-gray-700/50 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+            <div className="relative z-10">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-800/50 border border-gray-700/50 mb-4">
+                <svg
+                  className="h-6 w-6 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-300 mb-1">
+                Community Events
+              </h3>
+              <p className="text-sm text-gray-500 max-w-xs mx-auto">
+                Future space for workshops, meetups, and community engagements
+              </p>
+              <div className="mt-4">
+                <button className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full text-gray-400 bg-gray-800/30 hover:bg-gray-700/50 transition-colors">
+                  Get involved
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-lg bg-black/90">
+          {/* Close button */}
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 p-2 rounded-full bg-black/50 hover:bg-black/80 text-white transition-colors"
+            aria-label="Close"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Navigation arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-4 md:left-8 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all hover:scale-110"
+            aria-label="Previous Image"
+          >
+            <ArrowRight className="rotate-180 w-6 h-6" />
+          </button>
+
+          {/* Image container */}
+          <div className="relative max-w-4xl w-full h-full max-h-[90vh] flex items-center justify-center">
+            <img
+              src={selectedImage}
+              alt="Event photo"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {/* Image counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-sm px-3 py-1 rounded-full">
+              {selectedIndex + 1} / {eventImages.length}
+            </div>
+          </div>
+
+          <button
+            onClick={nextImage}
+            className="absolute right-4 md:right-8 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all hover:scale-110"
+            aria-label="Next Image"
+          >
+            <ArrowRight className="w-6 h-6" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
