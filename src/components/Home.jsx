@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "./../assets/Home Section/bg3.jpg";
-import my from "./../assets/Home Section/my.png";
+import my from "./../assets/Home Section/my2.png";
 import robot from "./../assets/Home Section/robot.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
@@ -110,15 +110,8 @@ const Home = () => {
             <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-[70px] w-full px-4 flex justify-center">
               {/* Enhanced Profile card */}
               <div className="group relative w-60 md:w-80 mt-[300px] z-30">
-                {/* Multi-layered glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-purple-500/20 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-l from-cyan-400/20 to-orange-400/10 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-80 transition-all duration-500 delay-100" />
-
                 {/* Enhanced card content */}
-                <div className="flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700 group-hover:scale-[1.08] group-hover:rotate-1 shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30">
-                  {/* Inner glow */}
-                  <div className="absolute inset-1 rounded-[1.8rem] bg-gradient-to-t from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
+                <div className="flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700  shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30">
                   <p className="mb-3 font-italiana text-gray-300 text-[13px] md:text-sm text-center leading-relaxed relative z-10">
                     <div className="relative overflow-hidden rounded-2xl mb-4 group/img">
                       <img
@@ -299,10 +292,6 @@ const Home = () => {
 
               {/* Enhanced Mobile Profile Card */}
               <div className="group relative w-full max-w-xs mx-auto mb-5">
-                {/* Multi-layered glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/25 to-purple-500/15 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-l from-cyan-400/15 to-orange-400/10 rounded-[2rem] blur-lg opacity-0 group-hover:opacity-80 transition-opacity duration-700" />
-
                 {/* Enhanced card content */}
                 <div className="flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-4 transition-all duration-500 group-hover:scale-[1.08] shadow-xl shadow-purple-500/20">
                   <div className="absolute inset-1 rounded-[1.8rem] bg-gradient-to-t from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -314,7 +303,6 @@ const Home = () => {
                         alt="profile"
                         className="w-full rounded-2xl transition-all duration-500 group-hover:scale-[1.05] group-hover:brightness-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
                       I CRAFT THE FUTURE ONE INNOVATIVE SOLUTION AT A TIME

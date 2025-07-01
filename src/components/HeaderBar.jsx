@@ -12,6 +12,7 @@ import {
   MessageSquareQuote,
   Search
 } from "lucide-react";
+import throttle from "lodash.throttle"; // 🆕 Add lodash.throttle to reduce scroll event spam
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,26 +68,29 @@ function Header() {
   ];
 
   useEffect(() => {
-    const onScroll = () => {
+    const handleScroll = throttle(() => {
       const y = window.scrollY;
       setScrollPosition(y);
+
       const sections = navItems
         .map((i) => document.getElementById(i.id))
         .filter(Boolean);
       const viewport = window.innerHeight;
-      let current = activeSection;
-      sections.forEach((sec) => {
-        const b = sec.getBoundingClientRect();
-        const visible = Math.min(b.bottom, viewport) - Math.max(b.top, 0);
-        const ratio = visible > 0 ? visible / Math.min(b.height, viewport) : 0;
-        if (ratio > 0.5 || (b.top <= 100 && b.bottom >= 100)) current = sec.id;
-      });
-      if (current !== activeSection) setActiveSection(current);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [activeSection, navItems]);
 
+      for (let sec of sections) {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          if (activeSection !== sec.id) setActiveSection(sec.id);
+          break;
+        }
+      }
+    }, 200);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection]);
+
+  // 🧠 Optional - leave your `highlightInSection` as-is (can be slow if many text nodes)
   const scrollToSection = (id, highlightText = "") => {
     const sec = document.getElementById(id);
     if (!sec) return;
@@ -94,7 +98,6 @@ function Header() {
     const top = sec.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top, behavior: "smooth" });
     setActiveSection(id);
-    window.history.pushState(null, null, `#${id}`);
     if (highlightText) highlightInSection(sec, highlightText);
   };
 
@@ -149,59 +152,41 @@ function Header() {
       setShowResults(false);
       return;
     }
+
     const results = navItems
       .map(({ id, tooltip }) => {
         const sec = document.getElementById(id);
         if (!sec) return null;
-        const txt = sec.innerText.toLowerCase();
+        const txt = sec.innerText?.toLowerCase();
         const idx = txt.indexOf(q);
         if (idx === -1) return null;
-        const start = Math.max(0, idx - 30),
-          end = Math.min(txt.length, idx + q.length + 30);
-        let snip = sec.innerText.slice(start, end);
-        if (start > 0) snip = "…" + snip;
-        if (end < txt.length) snip = snip + "…";
+        let snip = txt.slice(Math.max(0, idx - 30), idx + q.length + 30);
         return { id, tooltip, snippet: snip };
       })
       .filter(Boolean);
+
     setSearchResults(results);
     setShowResults(true);
   };
 
+  // ✅ Close search and mobile menu on outside click
   useEffect(() => {
-    const onClick = (e) => {
-      if (
-        searchInputRef.current &&
-        !searchInputRef.current.contains(e.target)
-      ) {
-        setShowResults(false);
-      }
+    const clickListener = (e) => {
+      if (!searchInputRef.current?.contains(e.target)) setShowResults(false);
+      if (!menuRef.current?.contains(e.target)) setIsMenuOpen(false);
     };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("mousedown", clickListener);
+    return () => document.removeEventListener("mousedown", clickListener);
   }, []);
 
-  useEffect(() => {
-    const onClick = (e) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(e.target) &&
-        !e.target.closest('button[aria-controls="mobile-menu"]')
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, []);
-
+  // ✅ Auto-close menu on desktop resize
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768 && isMenuOpen) setIsMenuOpen(false);
+      if (window.innerWidth >= 768) setIsMenuOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [isMenuOpen]);
+  }, []);
 
   const scrollProgress = Math.min(
     (scrollPosition /

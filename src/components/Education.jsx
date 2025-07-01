@@ -16,9 +16,13 @@ import e6 from "./../assets/events/6.jpg";
 import e7 from "./../assets/events/7.jpg";
 import e8 from "./../assets/events/8.jpg";
 import e9 from "./../assets/events/9.jpg";
+import e10 from "./../assets/events/10.jpg";
+import e11 from "./../assets/events/11.jpg";
+import e12 from "./../assets/events/12.jpg";
+
 import { useState } from "react"; // Ensure React state is imported
 
-const eventImages = [e1, e2, e3, e4, e5, e6, e7, e8, e9];
+const eventImages = [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12];
 
 const Education = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -69,7 +73,7 @@ const Education = () => {
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-6 border-2 mb-4 border-gray-700/30 backdrop-blur-sm">
+        <div className="rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 backdrop-blur-sm">
           {/* Top header */}
           <div className="w-full text-center"></div>
 
@@ -371,67 +375,51 @@ const Education = () => {
             </div>
           </div>
 
-          {/* Second Column - Upcoming Event Placeholder */}
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-md border border-dashed border-gray-700/50 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-            <div className="relative z-10">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-800/50 border border-gray-700/50 mb-4">
-                <svg
-                  className="h-6 w-6 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium text-gray-300 mb-1">
-                Upcoming Event
-              </h3>
-              <p className="text-sm text-gray-500 max-w-xs mx-auto">
-                This space is reserved for future events and exhibitions
-              </p>
-              <div className="mt-4">
-                <button className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full text-gray-400 bg-gray-800/30 hover:bg-gray-700/50 transition-colors">
-                  Notify me
-                </button>
-              </div>
-            </div>
-          </div>
+          {/* Second Column - Field Visit Event */}
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md border border-gray-700/50 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          {/* Third Column - Community Placeholder */}
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-md border border-dashed border-gray-700/50 flex flex-col items-center justify-center p-8 text-center min-h-[300px]">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-            <div className="relative z-10">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-800/50 border border-gray-700/50 mb-4">
-                <svg
-                  className="h-6 w-6 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
+            <div className="relative z-10 p-6 h-full flex flex-col">
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-900/30 text-green-300 border border-green-500/30">
+                    Field Visit
+                  </span>
+                  <span className="text-xs text-gray-500">December 2023</span>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Field Visit: Kulasinghe Moragahakanda Reservoir
+                </h3>
+                <p className="text-sm text-gray-400 mb-6">
+                  Higher National Diploma in Engineering, ATI Labuduwa
+                </p>
               </div>
-              <h3 className="text-lg font-medium text-gray-300 mb-1">
-                Community Events
-              </h3>
-              <p className="text-sm text-gray-500 max-w-xs mx-auto">
-                Future space for workshops, meetups, and community engagements
-              </p>
-              <div className="mt-4">
-                <button className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full text-gray-400 bg-gray-800/30 hover:bg-gray-700/50 transition-colors">
-                  Get involved
+
+              {/* Image Grid */}
+              <div className="grid grid-cols-3 gap-2">
+                {eventImages.slice(9, 12).map((img, index) => (
+                  <div
+                    key={index}
+                    className="aspect-square relative rounded-lg overflow-hidden cursor-pointer transform transition-all hover:scale-105 hover:z-10 hover:shadow-lg"
+                    onClick={() => openImage(img, 9 + index)}
+                  >
+                    <img
+                      src={img}
+                      alt={`Field Visit ${index + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-gray-800/50 flex justify-between items-center">
+                <button
+                  onClick={() => openImage(eventImages[9], 9)}
+                  className="text-xs text-gray-400 hover:text-white transition-colors"
+                >
+                  View all photos
                 </button>
               </div>
             </div>

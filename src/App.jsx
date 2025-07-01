@@ -1,9 +1,10 @@
 import { useEffect, Suspense, lazy } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./index.css"; // Add scroll-behavior here
+import "./index.css";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
-// Lazy-loaded components for performance
+
+// Lazy-loaded components
 const Header = lazy(() => import("./components/HeaderBar"));
 const Home = lazy(() => import("./components/Home"));
 const AboutMe = lazy(() => import("./components/AboutUs"));
@@ -28,57 +29,39 @@ function App() {
   return (
     <div>
       <FloatingSocialSidebar />
-      {/* Suspense fallback for lazy-loaded components */}
+
       <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
         <Header />
 
-        <section id="home">
-          <Home />
-        </section>
-
-        <section id="videosection">
-          <VideoScreen />
-        </section>
-
-        <section id="about">
-          <AboutMe />
-        </section>
-
-        <section id="education-journey">
-          <Education />
-        </section>
-
-        <section id="dexterity">
-          <SkillsData />
-        </section>
-
-        <section id="professional-designations">
-          <LicensesCertifications />
-        </section>
-
-        <section id="professional-journey">
-          <WorkExperience />
-        </section>
-
-        <section id="creative-ventures">
-          <ProjectsData />
-        </section>
-
-        <section id="design-scape">
-          <Designs />
-        </section>
-
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-
-        <section id="contact">
-          <Contact />
-        </section>
+        <main>
+          <Section id="home" Component={Home} />
+          <Section id="videosection" Component={VideoScreen} />
+          <Section id="about" Component={AboutMe} />
+          <Section id="education-journey" Component={Education} />
+          <Section id="dexterity" Component={SkillsData} />
+          <Section
+            id="professional-designations"
+            Component={LicensesCertifications}
+          />
+          <Section id="professional-journey" Component={WorkExperience} />
+          <Section id="creative-ventures" Component={ProjectsData} />
+          <Section id="design-scape" Component={Designs} />
+          <Section id="testimonials" Component={Testimonials} />
+          <Section id="contact" Component={Contact} />
+        </main>
 
         <Copyright />
       </Suspense>
     </div>
+  );
+}
+
+// Helper for cleaner code
+function Section({ id, Component }) {
+  return (
+    <section id={id}>
+      <Component />
+    </section>
   );
 }
 

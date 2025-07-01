@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import profilePic from "./../assets/myimage2.jpg";
+import profilePic from "./../assets/About/myimage2.jpg";
 import logo from "./../assets/Home Section/aw.png";
 import codecoveLogo from "./../assets/About/logo.jpg";
 import bg from "./../assets/Home Section/bg.jpg";
