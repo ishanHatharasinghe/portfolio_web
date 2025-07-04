@@ -8,7 +8,9 @@ export default {
     extend: {
       fontFamily: {
         'italiana': ['Italiana'],
+        'Hugiller': ['"Hugiller DEMO"', 'cursive'],
       },
+      
       keyframes: {
         move1: {
           "0%, 100%": { transform: "translate(0, 0)" },

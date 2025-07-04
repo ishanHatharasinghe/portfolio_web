@@ -2,7 +2,7 @@ import React from "react";
 import bg from "./../assets/Education/bg2.jpg";
 import my from "./../assets/Education/group1.jpg";
 import my2 from "./../assets/Education/group2.jpg";
-import robot from "./../assets/Home Section/robot3.png";
+import robot from "./../assets/Home Section/robot.png";
 import { ArrowRight, ExternalLink, GraduationCap } from "lucide-react";
 import "./button.css";
 
@@ -215,7 +215,7 @@ const Education = () => {
                   <img
                     src={robot}
                     alt="robot"
-                    className="h-[100vh] filter drop-shadow-lg"
+                    className="mt-14 h-[130vh] w-auto filter drop-shadow-lg"
                   />
                 </div>
               </div>

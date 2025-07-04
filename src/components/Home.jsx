@@ -1,7 +1,7 @@
 import React from "react";
 import bg from "./../assets/Home Section/bg3.jpg";
 import my from "./../assets/Home Section/my2.png";
-import robot from "./../assets/Home Section/robot.png";
+import robot from "./../assets/Home Section/robot3.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
 import txmeter from "./../assets/Home Section/txmeter.png";
@@ -201,9 +201,13 @@ const Home = () => {
 
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center justify-between mb-2"></div>
+                          <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+                            MOBITEL Market Edge Sales Management System
+                          </h3>
                           <ArrowRight className="w-5 h-5 text-white/60 transition-all duration-500 group-hover/card:text-cyan-400 group-hover/card:translate-x-2 group-hover/card:scale-110 drop-shadow-lg" />
-                          <p className="text-gray-300 text-base font-medium bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent drop-shadow-sm">
-                            Market Edge Sales Management System
+
+                          <p className="text-gray-400 text-xs leading-relaxed bg-gradient-to-r from-gray-400 to-gray-300 bg-clip-text text-transparent">
+                            AI-Powered Sales System
                           </p>
                           <div className="mt-3 flex gap-2">
                             <span className="px-3 py-1 bg-gradient-to-r from-purple-500/30 to-purple-600/20 text-purple-200 text-xs rounded-full border border-purple-400/40 shadow-lg shadow-purple-500/20 backdrop-blur-sm">
@@ -353,14 +357,14 @@ const Home = () => {
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-                              RECENT PROJECT
+                              MOBITEL Market Edge Sales Management System
                             </h3>
                             <div className="flex items-center group/arrow">
                               <ArrowRight className="w-3 h-3 text-white/70 transition-all duration-400 group-hover/card:text-purple-400 group-hover/card:translate-x-1 group-hover/card:scale-110" />
                             </div>
                           </div>
                           <p className="text-gray-300 text-xs bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                            Market Edge Sales Management System
+                            AI-Powered Sales Solution
                           </p>
                           <div className="mt-1.5 flex gap-1">
                             <span className="px-2 py-0.5 bg-gradient-to-r from-purple-500/25 to-purple-600/20 text-purple-200 text-xs rounded-full border border-purple-400/30 shadow-sm shadow-purple-500/20">
