@@ -219,6 +219,44 @@ const Education = () => {
                   />
                 </div>
               </div>
+              {/* Floating Education Cards */}
+              <div className="absolute top-[80%] left-[48.3%] -translate-x-1/2 z-30 flex gap-2 items-center">
+                {/* SFS Academy Card */}
+                <div className="bg-blue/20 backdrop-blur-md p-2 rounded-2xl shadow-lg w-[220px] hover:scale-105 transition-transform duration-300 border border-white/30 flex flex-col items-center">
+                  <img
+                    src="https://studyway-resources.s3.amazonaws.com/profilePictures/1706767693615.jpg"
+                    alt="SFS Academy"
+                    className="w-16 h-16 object-cover rounded-full mb-2 border border-white shadow-md"
+                  />
+                  <h3 className="text-base font-semibold text-white text-center">
+                    SFS Academy
+                  </h3>
+                  <p className="text-xs text-white/80 mt-1 text-center">
+                    AutoCAD Certificate Course
+                  </p>
+                  <p className="text-[10px] text-white/60 mt-1 text-center">
+                    2024
+                  </p>
+                </div>
+
+                {/* Sri Lanka Tech Authority NVQ Card */}
+                <div className="bg-blue/20 backdrop-blur-md p-2 rounded-2xl shadow-lg w-[220px] hover:scale-105 transition-transform duration-300 border border-white/30 flex flex-col items-center">
+                  <img
+                    src="https://play-lh.googleusercontent.com/kDP1mkQAMF7kW8Xgi2Ld77wdcOMtt_AvrgCK0wuG65IekDRm2-wFXzFq8PQuL7htrXs"
+                    alt="VTA Sri Lanka"
+                    className="w-16 h-16 object-cover rounded-full mb-2 border border-white shadow-md"
+                  />
+                  <h3 className="text-base font-semibold text-white text-center">
+                    VTA Sri Lanka
+                  </h3>
+                  <p className="text-xs text-white/80 mt-1 text-center">
+                    NVQ Level 4 - ICT Technician
+                  </p>
+                  <p className="text-[10px] text-white/60 mt-1 text-center">
+                    2020 - 2021
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Mobile Layout with modern enhancements */}
@@ -278,6 +316,7 @@ const Education = () => {
                       className="w-full rounded-2xl transition-all duration-500 group-hover:scale-[1.02] shadow-lg"
                     />
                   </div>
+
                   <h1 className="font-bold text-white text-lg text-center bg-gradient-to-r from-purple-200 to-cyan-200 bg-clip-text text-transparent">
                     Higher National Diploma Electrical and Electronics
                     Engineering
