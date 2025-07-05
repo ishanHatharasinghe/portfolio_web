@@ -323,7 +323,7 @@ const ProjectsData = () => {
 
           {/* Projects Grid */}
           <div className="flex justify-center w-full">
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
@@ -339,45 +339,45 @@ const ProjectsData = () => {
                     onClick={() => setSelectedProject(project)}
                   >
                     {/* Background Glow */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
                     {/* Card Content */}
-                    <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-3xl p-6 border border-gray-700/40 shadow-lg transition-all duration-500 group-hover:transform group-hover:scale-[1.02] h-full">
+                    <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-xl p-4 border border-gray-700/40 shadow-lg transition-all duration-500 group-hover:transform group-hover:scale-[1.02] h-full">
                       {/* Category Badge */}
-                      <div className="absolute -top-3 right-6 bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-1 rounded-full">
+                      <div className="absolute -top-4 right-4 bg-gradient-to-r from-purple-800 to-cyan-800 px-3 py-0.5 rounded-full">
                         <span className="text-xs font-semibold text-white">
                           {project.category}
                         </span>
                       </div>
 
                       {/* Project Image */}
-                      <div className="relative overflow-hidden rounded-2xl mb-6">
+                      <div className="relative overflow-hidden rounded-lg mb-4">
                         <img
                           src={project.image}
                           alt={project.title + " image"}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 rounded-lg"
+                          className="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-110 rounded-lg"
                         />
                         {hoveredProject === project.id && (
                           <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-lg">
-                            <ExternalLink className="w-8 h-8 text-white" />
+                            <ExternalLink className="w-6 h-6 text-white" />
                           </div>
                         )}
                       </div>
 
                       {/* Project Info */}
-                      <h2 className="font-bold text-white text-xl mb-3 line-clamp-2">
+                      <h2 className="font-bold text-white text-base mb-2 line-clamp-2">
                         {project.title}
                       </h2>
-                      <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                      <p className="text-gray-300 text-xs mb-3 line-clamp-2">
                         {project.description}
                       </p>
 
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-1 mb-3">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 text-xs rounded-full bg-gray-800 text-gray-300"
+                            className="px-2 py-0.5 text-xs rounded-full bg-gray-800 text-gray-300"
                           >
                             {tech}
                           </span>
@@ -386,7 +386,7 @@ const ProjectsData = () => {
 
                       {/* Footer */}
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
@@ -395,18 +395,18 @@ const ProjectsData = () => {
                             className="flex items-center gap-1 text-gray-300 hover:text-pink-500 transition-colors"
                           >
                             <IoIosHeart
-                              className={`w-6 h-6 transition-transform ${
+                              className={`w-5 h-5 transition-transform ${
                                 likedProjects[project.id]
                                   ? "text-red-500 scale-110"
                                   : "text-gray-300"
                               }`}
                             />
-                            <span className="text-sm text-gray-300">
+                            <span className="text-xs text-gray-300">
                               {likes[project.id] || 0}
                             </span>
                           </button>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
                           <Github className="w-4 h-4 text-gray-300 hover:text-white transition-colors cursor-pointer" />
                         </div>
                       </div>

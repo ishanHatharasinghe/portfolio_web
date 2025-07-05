@@ -52,6 +52,8 @@ import report from "./../assets/Project 6 SAEDS/Smart Automated Elephant Deterre
 import presentation from "./../assets/Project 6 SAEDS/Project Presentation.pdf";
 import report2 from "./../assets/Project 5 taxi meter/taxi meter project report.pdf";
 import presentation2 from "./../assets/Project 5 taxi meter/smart taxi meter presentation.pdf";
+import report3 from "./../assets/Project1/Final Report.pdf";
+import presentation3 from "./../assets/Project1/presentation.pdf";
 
 import { Boxes, ExternalLink, FileText, Presentation } from "lucide-react";
 
@@ -68,7 +70,9 @@ const ProjectsData = () => {
       images: [my],
       members: [member1],
       category: "Desktop Application",
-      gradient: "from-blue-500/20 to-purple-500/20"
+      gradient: "from-blue-500/20 to-purple-500/20",
+      reportLink: report3,
+      presentationLink: presentation3
     },
     {
       id: 2,
@@ -80,7 +84,7 @@ const ProjectsData = () => {
       link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
       images: [my5, my6, my7, my8],
       members: [member1],
-      category: "Mobile Application",
+      category: "Web Application + IOT Device",
       gradient: "from-emerald-500/20 to-teal-500/20",
       reportLink: report2,
       presentationLink: presentation2
@@ -129,7 +133,7 @@ const ProjectsData = () => {
       link: "https://example.com/llm",
       images: [my3],
       members: [member1],
-      category: "AI Application",
+      category: "Web Application",
       gradient: "from-violet-500/20 to-purple-500/20"
     },
     {
@@ -346,7 +350,7 @@ const ProjectsData = () => {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
             <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
               Creative Ventures
@@ -356,7 +360,7 @@ const ProjectsData = () => {
               and creativity to deliver impactful solutions.
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
             {projectsData.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}

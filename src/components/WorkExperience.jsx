@@ -32,22 +32,21 @@ const ProfessionalJourney = () => {
 
   return (
     <section className="h-full relative min-h-screen w-full bg-black overflow-hidden">
-      {/* Background with gradient overlay */}
+      {/* Background */}
       <div className="absolute inset-0">
-        {/* Background Image */}
         <img
           src={bg}
           alt="background"
-          className="blur-[3px] w-full h-full object-cover "
+          className="blur-[3px] w-full h-full object-cover"
         />
-        {/* Robot Image (Over Background) */}
         <img
           src={robot}
           alt="robot"
           className="absolute inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
         />
       </div>
-      {/* Main Content Container */}
+
+      {/* Content */}
       <div className="relative min-h-screen flex flex-col justify-center items-center px-6 mt-16 z-10">
         <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           {/* Desktop Layout */}
@@ -56,7 +55,7 @@ const ProfessionalJourney = () => {
               <div className="w-[500px]"></div>
             </div>
             <div>
-              {/* Title and Description */}
+              {/* Text Block */}
               <div className="bg-black/40 backdrop-blur-md rounded-[2rem] p-8">
                 <h1 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
                   Professional Journey
@@ -66,9 +65,10 @@ const ProfessionalJourney = () => {
                   knowledge and practical skills, forming the foundation of my
                   professional expertise.
                 </p>
-                {/* Swipeable Sections */}
+
+                {/* Section */}
                 <div className="mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem] relative">
-                  {/* Navigation Arrows */}
+                  {/* Arrows */}
                   <button
                     onClick={handlePrev}
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
@@ -82,14 +82,20 @@ const ProfessionalJourney = () => {
                     &#10095;
                   </button>
 
-                  {/* Active Section */}
-                  <h2 className="text-2xl text-white font-italiana mb-7">
+                  {/* Title with Logo */}
+                  <h2 className="text-2xl text-white font-italiana mb-7 flex items-center gap-3">
+                    <img
+                      src="https://www.hostasia.lk/assets/imgs/bandwidth-provider/slt-logo.png"
+                      alt="SLT Logo"
+                      className="w-10 h-10 object-contain rounded-md bg-white p-1"
+                    />
                     {sections[activeSection].title}
                   </h2>
                   <p className="text-gray-300">
                     {sections[activeSection].description}
                   </p>
-                  {/* Image Grid */}
+
+                  {/* Images */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
                     {sections[activeSection].images.map((img, index) => (
                       <div
@@ -106,7 +112,8 @@ const ProfessionalJourney = () => {
                     ))}
                   </div>
                 </div>
-                {/* Coordination Dots */}
+
+                {/* Dots */}
                 <div className="flex justify-center mt-6">
                   {sections.map((_, index) => (
                     <button
@@ -121,9 +128,9 @@ const ProfessionalJourney = () => {
               </div>
             </div>
           </div>
+
           {/* Mobile Layout */}
           <div className="md:hidden flex flex-col items-center justify-center w-full">
-            {/* Titles */}
             <div className="w-full text-center mb-8">
               <h1 className="font-italiana text-4xl text-white tracking-wide">
                 Professional Journey
@@ -134,9 +141,8 @@ const ProfessionalJourney = () => {
                 expertise.
               </p>
             </div>
-            {/* Swipeable Sections */}
+
             <div className="w-full bg-black/40 backdrop-blur-md rounded-[2rem] p-6 border border-white/10 relative">
-              {/* Navigation Arrows */}
               <button
                 onClick={handlePrev}
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
@@ -150,14 +156,19 @@ const ProfessionalJourney = () => {
                 &#10095;
               </button>
 
-              {/* Active Section */}
-              <h2 className="text-2xl text-white font-italiana mb-4">
+              {/* Mobile Title with Logo */}
+              <h2 className="text-2xl text-white font-italiana mb-4 flex items-center justify-center gap-3">
+                <img
+                  src="https://www.hostasia.lk/assets/imgs/bandwidth-provider/slt-logo.png"
+                  alt="SLT Logo"
+                  className="w-8 h-8 object-contain rounded-md bg-white p-1"
+                />
                 {sections[activeSection].title}
               </h2>
               <p className="text-gray-300">
                 {sections[activeSection].description}
               </p>
-              {/* Image Grid */}
+
               <div className="grid grid-cols-1 gap-6 mt-6">
                 {sections[activeSection].images.map((img, index) => (
                   <div
@@ -173,7 +184,7 @@ const ProfessionalJourney = () => {
                   </div>
                 ))}
               </div>
-              {/* Coordination Dots */}
+
               <div className="flex justify-center mt-6">
                 {sections.map((_, index) => (
                   <button

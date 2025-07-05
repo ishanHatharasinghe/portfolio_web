@@ -88,15 +88,15 @@ const Home = () => {
         <img
           src={bg}
           alt="background"
-          className="blur-[9px] w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover opacity-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-orange-700/20 via-purple-900/10 to-cyan-900/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5" />
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15" />
       </div>
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">
-        <div className="rounded-[70px] w-full h-full p-2 border border-white/20 backdrop-blur-sm bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
+        <div className="rounded-[70px] w-full h-full p-2 border border-white/20  bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
           {/* Top header with modern styling */}
           <div className="w-full text-center">
             <h3 className="font-italiana text-white text-sm md:text-base font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
