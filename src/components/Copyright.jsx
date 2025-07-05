@@ -15,7 +15,7 @@ import {
   Download
 } from "lucide-react";
 import emailjs from "emailjs-com";
-
+import dp from "./../assets/myimage.png";
 const XoraProfessionalFooter = ({
   companyName = "Ishan Hatharasinghe",
   contactEmail = "ishanhatharasinghe222@gmail.com",
@@ -108,20 +108,9 @@ const XoraProfessionalFooter = ({
           {/* Column 1: About Me - Increased width */}
           <motion.div variants={itemVariants} className="md:col-span-4">
             <div className="flex items-center mb-6">
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M20 5L5 12.5L20 20L35 12.5L20 5Z" fill="#FF6B6B" />
-                <path
-                  d="M5 27.5L20 35L35 27.5L20 20L5 27.5Z"
-                  fill="#FF6B6B"
-                  fillOpacity="0.5"
-                />
-              </svg>
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-xs">
+                <img src={dp} alt="profile" className=" rounded-full" />
+              </div>
               <span className="ml-3 text-2xl font-bold tracking-wide">
                 {companyName}
               </span>
