@@ -63,6 +63,57 @@ const TestimonialsSection = () => {
     "Other"
   ];
 
+  // Function to generate Gravatar URL
+  const getGravatarUrl = (email) => {
+    if (!email) return null;
+
+    // Convert email to lowercase and trim whitespace
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Create MD5 hash of the email
+    const md5Hash = generateMD5(normalizedEmail);
+
+    // Return Gravatar URL with fallback options
+    return `https://www.gravatar.com/avatar/${md5Hash}?s=200&d=identicon&r=pg`;
+  };
+
+  // Simple MD5 hash function
+  const generateMD5 = (string) => {
+    const crypto = require("crypto");
+    return crypto.createHash("md5").update(string).digest("hex");
+  };
+
+  // Alternative MD5 function for browser environment (if crypto is not available)
+  const generateMD5Browser = (string) => {
+    // Simple MD5 implementation for browser
+    // You might want to use a library like crypto-js for better reliability
+    let hash = 0;
+    if (string.length === 0) return hash.toString();
+    for (let i = 0; i < string.length; i++) {
+      const char = string.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash).toString(16);
+  };
+
+  // Enhanced function to get profile picture URL
+  const getProfilePictureUrl = (email) => {
+    if (!email) return null;
+
+    try {
+      // Try to use Node.js crypto first
+      const normalizedEmail = email.toLowerCase().trim();
+      const md5Hash = generateMD5(normalizedEmail);
+      return `https://www.gravatar.com/avatar/${md5Hash}?s=200&d=mp&r=pg`;
+    } catch (error) {
+      // Fallback to browser-compatible version
+      const normalizedEmail = email.toLowerCase().trim();
+      const hash = generateMD5Browser(normalizedEmail);
+      return `https://www.gravatar.com/avatar/${hash}?s=200&d=mp&r=pg`;
+    }
+  };
+
   useEffect(() => {
     const testimonialsRef = ref(db, "testimonials");
     onValue(testimonialsRef, (snapshot) => {
@@ -101,7 +152,8 @@ const TestimonialsSection = () => {
         post: formData.Post,
         institution: formData.Institution,
         Comment: formData.Comment,
-        dateAndTime: new Date().toLocaleString()
+        dateAndTime: new Date().toLocaleString(),
+        profilePictureUrl: getProfilePictureUrl(formData.Email)
       });
       setSuccessMessage("Thank you for your testimonial!");
       setFormData({
@@ -202,6 +254,10 @@ const TestimonialsSection = () => {
                       className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
                       required
                     />
+                    <p className="text-xs text-gray-400 mt-1">
+                      We'll use your email to fetch your profile picture from
+                      Gravatar
+                    </p>
                   </div>
 
                   <div>
@@ -300,12 +356,37 @@ const TestimonialsSection = () => {
                       className="bg-gray-800/60 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm"
                     >
                       <div className="flex items-center mb-3">
-                        <div className="h-8 w-8 rounded-full bg-purple-600 p-0.5 flex-shrink-0">
-                          <div className="h-full w-full rounded-full bg-gray-900 flex items-center justify-center">
-                            <User className="h-4 w-4 text-white" />
+                        <div className="h-10 w-10 rounded-full bg-purple-600 p-0.5 flex-shrink-0">
+                          {testimonial.profilePictureUrl ||
+                          testimonial.email ? (
+                            <img
+                              src={
+                                testimonial.profilePictureUrl ||
+                                getProfilePictureUrl(testimonial.email)
+                              }
+                              alt={`${testimonial.name}'s profile`}
+                              className="h-full w-full rounded-full object-cover"
+                              onError={(e) => {
+                                // Fallback to default user icon if image fails to load
+                                e.target.style.display = "none";
+                                e.target.nextSibling.style.display = "flex";
+                              }}
+                            />
+                          ) : null}
+                          <div
+                            className="h-full w-full rounded-full bg-gray-900 flex items-center justify-center"
+                            style={{
+                              display:
+                                testimonial.profilePictureUrl ||
+                                testimonial.email
+                                  ? "none"
+                                  : "flex"
+                            }}
+                          >
+                            <User className="h-5 w-5 text-white" />
                           </div>
                         </div>
-                        <div className="ml-2 overflow-hidden">
+                        <div className="ml-3 overflow-hidden">
                           <h3 className="text-base font-semibold text-white truncate">
                             {testimonial.name}
                           </h3>

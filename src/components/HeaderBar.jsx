@@ -13,7 +13,7 @@ import {
   Search
 } from "lucide-react";
 import throttle from "lodash.throttle"; // 🆕 Add lodash.throttle to reduce scroll event spam
-
+import dp from "./../assets/myimage.png";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -234,7 +234,7 @@ function Header() {
           aria-label="Home"
         >
           <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-xs">
-            IN
+            <img src={dp} alt="profile" className=" rounded-full" />
           </div>
         </button>
 
