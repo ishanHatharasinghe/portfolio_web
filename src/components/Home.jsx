@@ -276,6 +276,7 @@ const Home = () => {
                   <img
                     src={robot}
                     alt="robot"
+                    loading="lazy"
                     className="h-[140vh] filter drop-shadow-2xl"
                   />
                 </div>
@@ -305,6 +306,7 @@ const Home = () => {
                       <img
                         src={my}
                         alt="profile"
+                        loading="lazy"
                         className="w-full rounded-2xl transition-all duration-500 group-hover:scale-[1.05] group-hover:brightness-110"
                       />
                     </div>
