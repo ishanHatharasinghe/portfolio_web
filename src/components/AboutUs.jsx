@@ -125,7 +125,7 @@ const HeroSection = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-90 transition-transform duration-100"
+          className="w-full h-full object-cover opacity-100 transition-transform duration-100"
           style={{
             transform: `translate(${(mousePosition.x - 50) * 0.02}px, ${
               (mousePosition.y - 50) * 0.02

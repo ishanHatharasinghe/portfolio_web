@@ -58,7 +58,7 @@ const Education = () => {
         <img
           src={bg}
           alt="background"
-          className="blur-[3px] w-full h-full object-cover opacity-60"
+          className="blur-[3px] w-full h-full object-cover opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
@@ -342,124 +342,6 @@ const Education = () => {
                     </div>
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Modern Event Section */}
-      <div className="bg-black relative z-20 w-full h-full p-3 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 ">
-        {/* Event Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* First Column - Event Card */}
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md border border-gray-700/50 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1">
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            {/* Content */}
-            <div className="relative z-10 p-6 h-full flex flex-col">
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300 border border-blue-500/30">
-                    Exhibition
-                  </span>
-                  <span className="text-xs text-gray-500">May 2025</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Inventx 2025: The Engineering Exhibition
-                </h3>
-                <p className="text-sm text-gray-400 mb-6">
-                  Higher National Diploma in Engineering, ATI Labuduwa
-                </p>
-              </div>
-
-              {/* Image Grid */}
-              <div className="grid grid-cols-3 gap-2">
-                {eventImages.slice(0, 3).map((img, index) => (
-                  <div
-                    key={index}
-                    className="aspect-square relative rounded-lg overflow-hidden cursor-pointer transform transition-all hover:scale-105 hover:z-10 hover:shadow-lg"
-                    onClick={() => openImage(img, index)}
-                  >
-                    <img
-                      src={img}
-                      alt={`Event ${index + 1}`}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
-                  </div>
-                ))}
-              </div>
-
-              {/* Footer */}
-              <div className="mt-6 pt-4 border-t border-gray-800/50 flex justify-between items-center">
-                <a
-                  href="https://www.facebook.com/share/p/1Bz6umM3UK/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors group/link"
-                >
-                  View on Facebook
-                  <ExternalLink className="ml-1.5 h-4 w-4 opacity-70 group-hover/link:opacity-100 transition-opacity" />
-                </a>
-                <button
-                  onClick={() => openImage(eventImages[0], 0)}
-                  className="text-xs text-gray-400 hover:text-white transition-colors"
-                >
-                  View all photos
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Second Column - Field Visit Event */}
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-md border border-gray-700/50 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative z-10 p-6 h-full flex flex-col">
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-900/30 text-green-300 border border-green-500/30">
-                    Field Visit
-                  </span>
-                  <span className="text-xs text-gray-500">December 2023</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Field Visit: Kulasinghe Moragahakanda Reservoir
-                </h3>
-                <p className="text-sm text-gray-400 mb-6">
-                  Higher National Diploma in Engineering, ATI Labuduwa
-                </p>
-              </div>
-
-              {/* Image Grid */}
-              <div className="grid grid-cols-3 gap-2">
-                {eventImages.slice(9, 12).map((img, index) => (
-                  <div
-                    key={index}
-                    className="aspect-square relative rounded-lg overflow-hidden cursor-pointer transform transition-all hover:scale-105 hover:z-10 hover:shadow-lg"
-                    onClick={() => openImage(img, 9 + index)}
-                  >
-                    <img
-                      src={img}
-                      alt={`Field Visit ${index + 1}`}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-gray-800/50 flex justify-between items-center">
-                <button
-                  onClick={() => openImage(eventImages[9], 9)}
-                  className="text-xs text-gray-400 hover:text-white transition-colors"
-                >
-                  View all photos
-                </button>
               </div>
             </div>
           </div>
