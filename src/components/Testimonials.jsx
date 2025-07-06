@@ -111,7 +111,17 @@ const TestimonialsSection = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider).catch((error) => {
+        if (
+          error.code === "auth/popup-closed-by-user" ||
+          error.code === "auth/cancelled-popup-request"
+        ) {
+          // Fallback to redirect if popup fails
+          window.location.href = `https://personal-portfolio-37a0a.firebaseapp.com/__/auth/handler?apiKey=${firebaseConfig.apiKey}&authType=signInWithPopup&provider=google.com`;
+        } else {
+          setError(error.message);
+        }
+      });
     } catch (error) {
       setError(error.message);
     }
