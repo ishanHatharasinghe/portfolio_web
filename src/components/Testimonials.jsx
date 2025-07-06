@@ -1,11 +1,32 @@
 import { useState, useEffect } from "react";
-import { User, Briefcase, Send } from "lucide-react";
+import {
+  User,
+  Briefcase,
+  Send,
+  Edit,
+  Trash2,
+  LogIn,
+  LogOut
+} from "lucide-react";
 import bg from "./../assets/Testimonials/bg.jpg";
-import { db, ref, onValue, push } from "././firebase";
+import {
+  db,
+  ref,
+  onValue,
+  push,
+  remove,
+  update,
+  auth,
+  provider,
+  signInWithPopup,
+  signOut
+} from "./firebase";
+import { useAuth } from "./AuthContext";
 import "./../index.css";
 import "./button.css";
 
 const TestimonialsSection = () => {
+  const { currentUser, isAdmin } = useAuth();
   const [testimonials, setTestimonials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -19,6 +40,7 @@ const TestimonialsSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState("");
+  const [editingId, setEditingId] = useState(null);
 
   const occupations = [
     "Select an occupation",
@@ -63,55 +85,14 @@ const TestimonialsSection = () => {
     "Other"
   ];
 
-  // Function to generate Gravatar URL
-  const getGravatarUrl = (email) => {
-    if (!email) return null;
-
-    // Convert email to lowercase and trim whitespace
-    const normalizedEmail = email.toLowerCase().trim();
-
-    // Create MD5 hash of the email
-    const md5Hash = generateMD5(normalizedEmail);
-
-    // Return Gravatar URL with fallback options
-    return `https://www.gravatar.com/avatar/${md5Hash}?s=200&d=identicon&r=pg`;
-  };
-
-  // Simple MD5 hash function
-  const generateMD5 = (string) => {
-    const crypto = require("crypto");
-    return crypto.createHash("md5").update(string).digest("hex");
-  };
-
-  // Alternative MD5 function for browser environment (if crypto is not available)
-  const generateMD5Browser = (string) => {
-    // Simple MD5 implementation for browser
-    // You might want to use a library like crypto-js for better reliability
-    let hash = 0;
-    if (string.length === 0) return hash.toString();
-    for (let i = 0; i < string.length; i++) {
-      const char = string.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32-bit integer
-    }
-    return Math.abs(hash).toString(16);
-  };
-
-  // Enhanced function to get profile picture URL
   const getProfilePictureUrl = (email) => {
     if (!email) return null;
-
-    try {
-      // Try to use Node.js crypto first
-      const normalizedEmail = email.toLowerCase().trim();
-      const md5Hash = generateMD5(normalizedEmail);
-      return `https://www.gravatar.com/avatar/${md5Hash}?s=200&d=mp&r=pg`;
-    } catch (error) {
-      // Fallback to browser-compatible version
-      const normalizedEmail = email.toLowerCase().trim();
-      const hash = generateMD5Browser(normalizedEmail);
-      return `https://www.gravatar.com/avatar/${hash}?s=200&d=mp&r=pg`;
-    }
+    const normalizedEmail = email.toLowerCase().trim();
+    const hash = normalizedEmail.split("").reduce((acc, char) => {
+      const code = char.charCodeAt(0);
+      return (acc << 5) - acc + code;
+    }, 0);
+    return `https://www.gravatar.com/avatar/${Math.abs(hash)}?s=200&d=mp&r=pg`;
   };
 
   useEffect(() => {
@@ -119,12 +100,31 @@ const TestimonialsSection = () => {
     onValue(testimonialsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const result = Object.values(data).reverse();
+        const result = Object.entries(data)
+          .map(([id, value]) => ({ id, ...value }))
+          .reverse();
         setTestimonials(result);
       }
       setIsLoading(false);
     });
   }, []);
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setEditingId(null);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,7 +145,7 @@ const TestimonialsSection = () => {
     setError("");
 
     try {
-      await push(ref(db, "testimonials"), {
+      const testimonialData = {
         name: formData.Name,
         email: formData.Email,
         Occupation: formData.Occupation,
@@ -153,9 +153,18 @@ const TestimonialsSection = () => {
         institution: formData.Institution,
         Comment: formData.Comment,
         dateAndTime: new Date().toLocaleString(),
-        profilePictureUrl: getProfilePictureUrl(formData.Email)
-      });
-      setSuccessMessage("Thank you for your testimonial!");
+        profilePictureUrl: getProfilePictureUrl(formData.Email),
+        userId: currentUser.uid
+      };
+
+      if (editingId) {
+        await update(ref(db, `testimonials/${editingId}`), testimonialData);
+        setSuccessMessage("Testimonial updated successfully!");
+      } else {
+        await push(ref(db, "testimonials"), testimonialData);
+        setSuccessMessage("Thank you for your testimonial!");
+      }
+
       setFormData({
         Name: "",
         Email: "",
@@ -164,11 +173,35 @@ const TestimonialsSection = () => {
         Institution: "",
         Comment: ""
       });
+      setEditingId(null);
     } catch (err) {
       console.error(err);
       setError("Something went wrong!");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleEdit = (testimonial) => {
+    setFormData({
+      Name: testimonial.name,
+      Email: testimonial.email,
+      Occupation: testimonial.Occupation,
+      Post: testimonial.post,
+      Institution: testimonial.institution,
+      Comment: testimonial.Comment
+    });
+    setEditingId(testimonial.id);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this testimonial?")) {
+      try {
+        await remove(ref(db, `testimonials/${id}`));
+        setSuccessMessage("Testimonial deleted successfully!");
+      } catch (error) {
+        setError("Failed to delete testimonial.");
+      }
     }
   };
 
@@ -196,21 +229,42 @@ const TestimonialsSection = () => {
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16">
         <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 backdrop-blur-sm bg-black/30">
           <div className="max-w-7xl mx-auto">
-            <div>
+            <div className="flex flex flex-col items-center justify-center items-center">
               <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
                 <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
                   Testimonials
                 </h2>
               </span>
-              <p className="mb-12 text-[16px] text-gray-300 leading-relaxed mt-3 text-center">
-                Comments from our customers
-              </p>
+              {currentUser ? (
+                <button
+                  onClick={handleLogout}
+                  className="button flex items-center gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleGoogleLogin}
+                  className="button flex items-center gap-2"
+                >
+                  <LogIn className="h-4 w-4" />
+                  <span>Login with Google</span>
+                </button>
+              )}
             </div>
+            <p className="mb-12 text-[16px] text-gray-300 leading-relaxed mt-3 text-center">
+              Comments from our customers
+            </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="bg-gray-900/40 p-6 rounded-lg shadow-lg backdrop-blur-sm">
                 <h2 className="text-xl font-semibold text-white mb-4">
-                  Share Your Experience
+                  {currentUser
+                    ? editingId
+                      ? "Edit Your Testimonial"
+                      : "Share Your Experience"
+                    : "Please login to share your experience"}
                 </h2>
 
                 {successMessage && (
@@ -225,124 +279,132 @@ const TestimonialsSection = () => {
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.Name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Name: e.target.value })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
-                    />
-                  </div>
+                {currentUser && (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.Name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, Name: e.target.value })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      />
+                    </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={formData.Email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Email: e.target.value })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
-                    />
-                    <p className="text-xs text-gray-400 mt-1">
-                      We'll use your email to fetch your profile picture from
-                      Gravatar
-                    </p>
-                  </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.Email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, Email: e.target.value })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      />
+                      <p className="text-xs text-gray-400 mt-1">
+                        We'll use your email to generate your profile picture
+                      </p>
+                    </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Occupation
-                    </label>
-                    <select
-                      value={formData.Occupation}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Occupation: e.target.value })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Occupation
+                      </label>
+                      <select
+                        value={formData.Occupation}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            Occupation: e.target.value
+                          })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      >
+                        {occupations.map((occ, i) => (
+                          <option key={i} value={occ}>
+                            {occ}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Post
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.Post}
+                        onChange={(e) =>
+                          setFormData({ ...formData, Post: e.target.value })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Institution
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.Institution}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            Institution: e.target.value
+                          })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Comment
+                      </label>
+                      <textarea
+                        rows="3"
+                        value={formData.Comment}
+                        onChange={(e) =>
+                          setFormData({ ...formData, Comment: e.target.value })
+                        }
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        required
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="button w-full flex flex-row items-center justify-center text-center gap-3 font-bold"
                     >
-                      {occupations.map((occ, i) => (
-                        <option key={i} value={occ}>
-                          {occ}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Post
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.Post}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Post: e.target.value })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Institution
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.Institution}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          Institution: e.target.value
-                        })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
-                      Comment
-                    </label>
-                    <textarea
-                      rows="3"
-                      value={formData.Comment}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Comment: e.target.value })
-                      }
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      required
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="button w-full flex flex-row items-center justify-center text-center gap-3 font-bold"
-                  >
-                    {isSubmitting ? (
-                      <span>Submitting...</span>
-                    ) : (
-                      <>
-                        <span>Share Your Story</span>
-                        <Send className="h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-                </form>
+                      {isSubmitting ? (
+                        <span>Submitting...</span>
+                      ) : (
+                        <>
+                          <span>
+                            {editingId
+                              ? "Update Testimonial"
+                              : "Share Your Story"}
+                          </span>
+                          <Send className="h-4 w-4" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
               </div>
 
               <div>
@@ -350,11 +412,29 @@ const TestimonialsSection = () => {
                   Recent Testimonials
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {latestTestimonials.map((testimonial, index) => (
+                  {latestTestimonials.map((testimonial) => (
                     <div
-                      key={index}
-                      className="bg-gray-800/60 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm"
+                      key={testimonial.id}
+                      className="bg-gray-800/60 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm relative"
                     >
+                      {(isAdmin || currentUser?.uid === testimonial.userId) && (
+                        <div className="absolute top-2 right-2 flex gap-2">
+                          <button
+                            onClick={() => handleEdit(testimonial)}
+                            className="p-1 rounded-full bg-gray-700 hover:bg-gray-600"
+                            title="Edit"
+                          >
+                            <Edit className="h-3 w-3 text-white" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(testimonial.id)}
+                            className="p-1 rounded-full bg-gray-700 hover:bg-gray-600"
+                            title="Delete"
+                          >
+                            <Trash2 className="h-3 w-3 text-white" />
+                          </button>
+                        </div>
+                      )}
                       <div className="flex items-center mb-3">
                         <div className="h-10 w-10 rounded-full bg-purple-600 p-0.5 flex-shrink-0">
                           {testimonial.profilePictureUrl ||
@@ -367,7 +447,6 @@ const TestimonialsSection = () => {
                               alt={`${testimonial.name}'s profile`}
                               className="h-full w-full rounded-full object-cover"
                               onError={(e) => {
-                                // Fallback to default user icon if image fails to load
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
                               }}

@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
+import { AuthProvider } from "./components/AuthContext.jsx"; // Updated import
 
 // Lazy-loaded components
 const Header = lazy(() => import("./components/HeaderBar"));
@@ -27,36 +28,39 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <FloatingSocialSidebar />
+    <AuthProvider>
+      <div>
+        <FloatingSocialSidebar />
 
-      <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
-        <Header />
+        <Suspense
+          fallback={<div className="text-center mt-10">Loading...</div>}
+        >
+          <Header />
 
-        <main>
-          <Section id="home" Component={Home} />
-          <Section id="videosection" Component={VideoScreen} />
-          <Section id="about" Component={AboutMe} />
-          <Section id="education-journey" Component={Education} />
-          <Section id="dexterity" Component={SkillsData} />
-          <Section
-            id="professional-designations"
-            Component={LicensesCertifications}
-          />
-          <Section id="professional-journey" Component={WorkExperience} />
-          <Section id="creative-ventures" Component={ProjectsData} />
-          <Section id="design-scape" Component={Designs} />
-          <Section id="testimonials" Component={Testimonials} />
-          <Section id="contact" Component={Contact} />
-        </main>
+          <main>
+            <Section id="home" Component={Home} />
+            <Section id="videosection" Component={VideoScreen} />
+            <Section id="about" Component={AboutMe} />
+            <Section id="education-journey" Component={Education} />
+            <Section id="dexterity" Component={SkillsData} />
+            <Section
+              id="professional-designations"
+              Component={LicensesCertifications}
+            />
+            <Section id="professional-journey" Component={WorkExperience} />
+            <Section id="creative-ventures" Component={ProjectsData} />
+            <Section id="design-scape" Component={Designs} />
+            <Section id="testimonials" Component={Testimonials} />
+            <Section id="contact" Component={Contact} />
+          </main>
 
-        <Copyright />
-      </Suspense>
-    </div>
+          <Copyright />
+        </Suspense>
+      </div>
+    </AuthProvider>
   );
 }
 
-// Helper for cleaner code
 function Section({ id, Component }) {
   return (
     <section id={id}>

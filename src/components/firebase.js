@@ -1,6 +1,7 @@
-// Firebase config and init (firebaseConfig.js)
+// firebase.js
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, push, ref } from "firebase/database";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { getDatabase, onValue, push, ref, remove, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMDp5WhCZy0tDz-_VcN3bz8HUW2Yp0lw0",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-export { db, onValue, push, ref };
-
+export { auth, db, onValue, provider, push, ref, remove, signInWithPopup, signOut, update };
