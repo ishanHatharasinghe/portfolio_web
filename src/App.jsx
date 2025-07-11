@@ -2,8 +2,10 @@ import { useEffect, Suspense, lazy } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
+
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
-import { AuthProvider } from "./components/AuthContext.jsx"; // Updated import
+import { AuthProvider } from "./components/AuthContext.jsx";
+import SplashCursor from "./components/SplashCursour";
 
 // Lazy-loaded components
 const Header = lazy(() => import("./components/HeaderBar"));
@@ -32,9 +34,11 @@ function App() {
       <div>
         <FloatingSocialSidebar />
 
+        {/* Page Content */}
         <Suspense
           fallback={<div className="text-center mt-10">Loading...</div>}
         >
+          <SplashCursor />
           <Header />
 
           <main>
@@ -61,6 +65,7 @@ function App() {
   );
 }
 
+// Helper Section wrapper
 function Section({ id, Component }) {
   return (
     <section id={id}>

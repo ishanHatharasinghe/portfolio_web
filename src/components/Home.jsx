@@ -6,9 +6,9 @@ import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
 import txmeter from "./../assets/Home Section/txmeter.png";
 import { ArrowRight } from "lucide-react";
-import "./button.css";
-import { useState, useEffect } from "react";
 
+import { useState, useEffect } from "react";
+import StarBorder from "./StarBorder";
 import resumePDF from "./../assets/cv.pdf";
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -128,20 +128,22 @@ const Home = () => {
                   </p>
 
                   <div className="flex flex-col gap-3 relative z-10">
-                    <button
-                      className="button relative overflow-hidden group/btn bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
+                    <StarBorder
+                      as="button"
                       onClick={() => scrollToSection("contact")}
+                      color="cyan"
+                      speed="5s"
                     >
-                      <span className="relative z-10">Connect with me</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                    </button>
-                    <button
-                      className="button relative overflow-hidden group/btn bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 transition-all duration-500 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
+                      Connect with me
+                    </StarBorder>
+                    <StarBorder
+                      as="button"
+                      color="cyan"
+                      speed="5s"
                       href={resumePDF}
                     >
-                      <span className="relative z-10">Download resume</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                    </button>
+                      Download resume
+                    </StarBorder>
                   </div>
                 </div>
               </div>
@@ -316,18 +318,23 @@ const Home = () => {
                   </p>
 
                   <div className="flex flex-col gap-2 relative z-10">
-                    <button
-                      className="button relative overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/25"
+                    <StarBorder
+                      as="button"
                       onClick={() => scrollToSection("contact")}
+                      color="cyan"
+                      speed="5s"
                     >
                       Connect with me
-                    </button>
-                    <button
-                      className="button relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 transition-all duration-500 shadow-lg shadow-orange-500/25"
+                    </StarBorder>
+
+                    <StarBorder
+                      as="button"
+                      color="cyan"
+                      speed="5s"
                       href={resumePDF}
                     >
                       Download resume
-                    </button>
+                    </StarBorder>
                   </div>
                 </div>
               </div>

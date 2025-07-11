@@ -108,7 +108,7 @@ import gallery5_54 from "./../assets/Designs5/light (24).jpg";
 import gallery5_55 from "./../assets/Designs5/light (25).jpg";
 import gallery5_56 from "./../assets/Designs5/light (26).jpg";
 import gallery5_57 from "./../assets/Designs5/light (27).jpg";
-import bg from "./../assets/Education/bg.jpeg";
+import bg from "./../assets/Education/bg2.jpg";
 
 const ProjectsData = () => {
   // Use lazy initialization so that saved data is loaded immediately.
