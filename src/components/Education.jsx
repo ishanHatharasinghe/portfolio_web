@@ -6,23 +6,7 @@ import robot from "./../assets/Home Section/robot.png";
 import { ArrowRight, ExternalLink, GraduationCap } from "lucide-react";
 import "./button.css";
 
-// Add these imports at the top with others
-import e1 from "./../assets/events/1.jpg";
-import e2 from "./../assets/events/2.jpg";
-import e3 from "./../assets/events/3.jpg";
-import e4 from "./../assets/events/4.jpg";
-import e5 from "./../assets/events/5.jpg";
-import e6 from "./../assets/events/6.jpg";
-import e7 from "./../assets/events/7.jpg";
-import e8 from "./../assets/events/8.jpg";
-import e9 from "./../assets/events/9.jpg";
-import e10 from "./../assets/events/10.jpg";
-import e11 from "./../assets/events/11.jpg";
-import e12 from "./../assets/events/12.jpg";
-
-import { useState } from "react"; // Ensure React state is imported
-
-const eventImages = [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12];
+import { useState } from "react";
 
 const Education = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -242,7 +226,7 @@ const Education = () => {
                 {/* Sri Lanka Tech Authority NVQ Card */}
                 <div className="bg-blue/20 backdrop-blur-md p-2 rounded-2xl shadow-lg w-[220px] hover:scale-105 transition-transform duration-300 border border-white/30 flex flex-col items-center">
                   <img
-                    src="https://play-lh.googleusercontent.com/kDP1mkQAMF7kW8Xgi2Ld77wdcOMtt_AvrgCK0wuG65IekDRm2-wFXzFq8PQuL7htrXs"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSQVEP-Yy_6t5qmEKlW7xwp-MI6pvmyCs6BQ&s"
                     alt="VTA Sri Lanka"
                     className="w-16 h-16 object-cover rounded-full mb-2 border border-white shadow-md"
                   />

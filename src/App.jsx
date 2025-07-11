@@ -5,7 +5,6 @@ import "./index.css";
 
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
-import SplashCursor from "./components/SplashCursour";
 
 // Lazy-loaded components
 const Header = lazy(() => import("./components/HeaderBar"));
@@ -26,38 +25,38 @@ const Copyright = lazy(() => import("./components/Copyright"));
 
 function App() {
   useEffect(() => {
-    AOS.init({ duration: 800, once: true });
+    // Delay AOS init for better first paint
+    const aosTimer = setTimeout(() => {
+      AOS.init({ duration: 600, once: true });
+    }, 500); // Slight delay
+
+    return () => clearTimeout(aosTimer);
   }, []);
 
   return (
     <AuthProvider>
       <div>
         <FloatingSocialSidebar />
-
-        {/* Page Content */}
-        <Suspense
-          fallback={<div className="text-center mt-10">Loading...</div>}
-        >
-          <SplashCursor />
+        <Suspense fallback={<Loading />}>
           <Header />
-
-          <main>
-            <Section id="home" Component={Home} />
-            <Section id="videosection" Component={VideoScreen} />
-            <Section id="about" Component={AboutMe} />
-            <Section id="education-journey" Component={Education} />
-            <Section id="dexterity" Component={SkillsData} />
-            <Section
-              id="professional-designations"
-              Component={LicensesCertifications}
-            />
-            <Section id="professional-journey" Component={WorkExperience} />
-            <Section id="creative-ventures" Component={ProjectsData} />
-            <Section id="design-scape" Component={Designs} />
-            <Section id="testimonials" Component={Testimonials} />
-            <Section id="contact" Component={Contact} />
-          </main>
-
+        </Suspense>
+        <main>
+          <LazySection id="home" Component={Home} />
+          <LazySection id="videosection" Component={VideoScreen} />
+          <LazySection id="about" Component={AboutMe} />
+          <LazySection id="education-journey" Component={Education} />
+          <LazySection id="dexterity" Component={SkillsData} />
+          <LazySection
+            id="professional-designations"
+            Component={LicensesCertifications}
+          />
+          <LazySection id="professional-journey" Component={WorkExperience} />
+          <LazySection id="creative-ventures" Component={ProjectsData} />
+          <LazySection id="design-scape" Component={Designs} />
+          <LazySection id="testimonials" Component={Testimonials} />
+          <LazySection id="contact" Component={Contact} />
+        </main>
+        <Suspense fallback={<Loading />}>
           <Copyright />
         </Suspense>
       </div>
@@ -65,12 +64,23 @@ function App() {
   );
 }
 
-// Helper Section wrapper
-function Section({ id, Component }) {
+// Custom Section wrapper with individual Suspense
+function LazySection({ id, Component }) {
   return (
     <section id={id}>
-      <Component />
+      <Suspense fallback={<Loading />}>
+        <Component />
+      </Suspense>
     </section>
+  );
+}
+
+// Light Loading component
+function Loading() {
+  return (
+    <div className="text-center py-10 text-gray-500 animate-pulse text-sm">
+      Loading...
+    </div>
   );
 }
 
