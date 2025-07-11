@@ -137,10 +137,11 @@ const Home = () => {
                       Connect with me
                     </StarBorder>
                     <StarBorder
-                      as="button"
+                      as="a"
                       color="cyan"
                       speed="5s"
                       href={resumePDF}
+                      download
                     >
                       Download resume
                     </StarBorder>
@@ -328,10 +329,11 @@ const Home = () => {
                     </StarBorder>
 
                     <StarBorder
-                      as="button"
+                      as="a"
                       color="cyan"
                       speed="5s"
                       href={resumePDF}
+                      download
                     >
                       Download resume
                     </StarBorder>

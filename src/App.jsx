@@ -2,7 +2,7 @@ import { useEffect, Suspense, lazy } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
-
+import Curser from "./components/SplashCursour";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
 
@@ -39,6 +39,7 @@ function App() {
         <FloatingSocialSidebar />
         <Suspense fallback={<Loading />}>
           <Header />
+          <Curser />
         </Suspense>
         <main>
           <LazySection id="home" Component={Home} />
@@ -78,9 +79,7 @@ function LazySection({ id, Component }) {
 // Light Loading component
 function Loading() {
   return (
-    <div className="text-center py-10 text-gray-500 animate-pulse text-sm">
-      Loading...
-    </div>
+    <div className="text-center py-10 text-gray-500 animate-pulse text-sm"></div>
   );
 }
 
