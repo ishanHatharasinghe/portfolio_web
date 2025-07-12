@@ -39,7 +39,7 @@ function App() {
         <FloatingSocialSidebar />
         <Suspense fallback={<Loading />}>
           <Header />
-          <Curser />
+          
         </Suspense>
         <main>
           <LazySection id="home" Component={Home} />
