@@ -1,4 +1,4 @@
-import { useEffect, Suspense, lazy } from "react";
+import { useEffect, Suspense, lazy, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
@@ -6,9 +6,11 @@ import Curser from "./components/SplashCursour";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
 
+// Eagerly load the Hero Section
+import Home from "./components/Home";
+
 // Lazy-loaded components
 const Header = lazy(() => import("./components/HeaderBar"));
-const Home = lazy(() => import("./components/Home"));
 const AboutMe = lazy(() => import("./components/AboutUs"));
 const Education = lazy(() => import("./components/Education"));
 const SkillsData = lazy(() => import("./components/SkillsData"));
@@ -24,13 +26,21 @@ const Contact = lazy(() => import("./components/Contact"));
 const Copyright = lazy(() => import("./components/Copyright"));
 
 function App() {
+  const [homeLoaded, setHomeLoaded] = useState(false);
+
   useEffect(() => {
-    // Delay AOS init for better first paint
     const aosTimer = setTimeout(() => {
       AOS.init({ duration: 600, once: true });
-    }, 500); // Slight delay
-
+    }, 500);
     return () => clearTimeout(aosTimer);
+  }, []);
+
+  useEffect(() => {
+    // Fake delay to simulate loading
+    const timer = setTimeout(() => {
+      setHomeLoaded(true);
+    }, 800); // you can adjust this
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -39,24 +49,35 @@ function App() {
         <FloatingSocialSidebar />
         <Suspense fallback={<Loading />}>
           <Header />
-          
         </Suspense>
+
         <main>
-          <LazySection id="home" Component={Home} />
-          <LazySection id="videosection" Component={VideoScreen} />
-          <LazySection id="about" Component={AboutMe} />
-          <LazySection id="education-journey" Component={Education} />
-          <LazySection id="dexterity" Component={SkillsData} />
-          <LazySection
-            id="professional-designations"
-            Component={LicensesCertifications}
-          />
-          <LazySection id="professional-journey" Component={WorkExperience} />
-          <LazySection id="creative-ventures" Component={ProjectsData} />
-          <LazySection id="design-scape" Component={Designs} />
-          <LazySection id="testimonials" Component={Testimonials} />
-          <LazySection id="contact" Component={Contact} />
+          <section id="home">
+            <Home />
+          </section>
+
+          {homeLoaded && (
+            <>
+              <LazySection id="videosection" Component={VideoScreen} />
+              <LazySection id="about" Component={AboutMe} />
+              <LazySection id="education-journey" Component={Education} />
+              <LazySection id="dexterity" Component={SkillsData} />
+              <LazySection
+                id="professional-designations"
+                Component={LicensesCertifications}
+              />
+              <LazySection
+                id="professional-journey"
+                Component={WorkExperience}
+              />
+              <LazySection id="creative-ventures" Component={ProjectsData} />
+              <LazySection id="design-scape" Component={Designs} />
+              <LazySection id="testimonials" Component={Testimonials} />
+              <LazySection id="contact" Component={Contact} />
+            </>
+          )}
         </main>
+
         <Suspense fallback={<Loading />}>
           <Copyright />
         </Suspense>
@@ -65,7 +86,6 @@ function App() {
   );
 }
 
-// Custom Section wrapper with individual Suspense
 function LazySection({ id, Component }) {
   return (
     <section id={id}>
@@ -76,10 +96,11 @@ function LazySection({ id, Component }) {
   );
 }
 
-// Light Loading component
 function Loading() {
   return (
-    <div className="text-center py-10 text-gray-500 animate-pulse text-sm"></div>
+    <div className="text-center py-10 text-gray-400 animate-pulse text-sm">
+      Loading...
+    </div>
   );
 }
 
