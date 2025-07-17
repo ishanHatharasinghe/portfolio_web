@@ -1,14 +1,14 @@
 import React from "react";
 import bg from "./../assets/Home Section/bg3.jpg";
 import my from "./../assets/Home Section/my2.png";
-import robot from "./../assets/Home Section/robot3.png";
+import robot from "./../assets/Home Section/robot2.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
 import txmeter from "./../assets/Home Section/txmeter.png";
 import { ArrowRight } from "lucide-react";
 import "./button.css";
 import { useState, useEffect } from "react";
-
+import { FaReact } from "react-icons/fa";
 import resumePDF from "./../assets/cv.pdf";
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -110,16 +110,18 @@ const Home = () => {
             <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-[70px] w-full px-4 flex justify-center">
               {/* Enhanced Profile card */}
               <div className="group relative w-60 md:w-80 mt-[300px] z-30">
-                {/* Enhanced card content */}
                 <div className="flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700  shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30">
+                  {/* React Icon in Top Left */}
+                  <FaReact className="absolute top-4 left-4 text-cyan-400 text-2xl animate-spin-slow" />
+
+                  {/* Rest of your content */}
                   <p className="mb-3 font-italiana text-gray-300 text-[13px] md:text-sm text-center leading-relaxed relative z-10">
                     <div className="relative overflow-hidden rounded-2xl mb-4 group/img">
                       <img
-                        src={my}
+                        src={robot}
                         alt="profile"
                         className="w-full rounded-2xl transition-all duration-700 group-hover:scale-[1.1] group/img:brightness-110"
                       />
-                      {/* Image overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
@@ -127,6 +129,7 @@ const Home = () => {
                     </span>
                   </p>
 
+                  {/* Buttons */}
                   <div className="flex flex-col gap-3 relative z-10">
                     <button
                       className="button relative overflow-hidden group/btn bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
@@ -271,13 +274,13 @@ const Home = () => {
               <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-20 group">
                 {/* Multi-layered robot glow */}
                 <div className="absolute w-[100%] h-[100%] bg-gradient-to-r from-orange-500/25 via-purple-500/15 to-cyan-500/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="absolute w-[80%] h-[80%] bg-gradient-to-r from-blue-400/20 to-purple-400/15 rounded-full blur-2xl opacity-0 group-hover:opacity-80 transition-opacity duration-500 delay-200" />
+                <div className="absolute w-[100%] h-[100%] bg-gradient-to-r from-blue-400/20 to-purple-400/15 rounded-full blur-2xl opacity-0 group-hover:opacity-80 transition-opacity duration-500 delay-200" />
                 <div className="relative transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-110 drop-shadow-2xl">
                   <img
-                    src={robot}
-                    alt="robot"
+                    src={my}
+                    alt="my"
                     loading="lazy"
-                    className="h-[140vh] filter drop-shadow-2xl"
+                    className="h-auto filter drop-shadow-2xl"
                   />
                 </div>
               </div>
@@ -303,6 +306,8 @@ const Home = () => {
 
                   <p className="mb-3 font-italiana text-gray-300 text-[13px] md:text-sm text-center leading-relaxed relative z-10">
                     <div className="relative overflow-hidden rounded-2xl mb-4">
+                      <FaReact className="absolute top-4 left-4 text-cyan-400 text-2xl animate-spin-slow" />
+
                       <img
                         src={my}
                         alt="profile"

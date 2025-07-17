@@ -7,11 +7,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'italiana': ['Italiana'],
-        'Hugiller': ['"Hugiller DEMO"', 'cursive'],
+        italiana: ['Italiana'],
+        Hugiller: ['"Hugiller DEMO"', 'cursive'],
       },
       keyframes: {
-        // Existing animations
+        spin3d: {
+          '0%':   { transform: 'perspective(200px) rotateY(0deg) rotateX(0deg)' },
+          '100%': { transform: 'perspective(200px) rotateY(360deg) rotateX(360deg)' },
+        },
+        flare: {
+          '0%, 90%':   { filter: 'drop-shadow(0 0 0 yellow)' },
+          '95%':       { filter: 'drop-shadow(0 0 20px yellow)' },
+          '100%':      { filter: 'drop-shadow(0 0 0 yellow)' },
+        },
         move1: {
           "0%, 100%": { transform: "translate(0, 0)" },
           "50%": { transform: "translate(50vw, 50vh)" },
@@ -24,8 +32,6 @@ export default {
           "0%, 100%": { transform: "translate(-10vw, -10vh)" },
           "50%": { transform: "translate(30vw, 40vh)" },
         },
-
-        // Star border animations
         'star-movement-bottom': {
           '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
           '100%': { transform: 'translate(-100%, 0%)', opacity: '0' },
@@ -36,14 +42,14 @@ export default {
         },
       },
       animation: {
-        // Existing animations
-        "move-1": "move1 10s infinite ease-in-out alternate",
-        "move-2": "move2 12s infinite ease-in-out alternate",
-        "move-3": "move3 15s infinite ease-in-out alternate",
-
-        // Star border animations
-        "star-movement-bottom": "star-movement-bottom linear infinite alternate",
-        "star-movement-top": "star-movement-top linear infinite alternate",
+        'spin-3d': 'spin3d 5s linear infinite',
+        'flare': 'flare 1s ease-in-out 3s forwards',
+        'spin-slow': 'spin 6s linear infinite',
+        'move-1': 'move1 10s infinite ease-in-out alternate',
+        'move-2': 'move2 12s infinite ease-in-out alternate',
+        'move-3': 'move3 15s infinite ease-in-out alternate',
+        'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
+        'star-movement-top': 'star-movement-top linear infinite alternate',
       },
     },
   },
