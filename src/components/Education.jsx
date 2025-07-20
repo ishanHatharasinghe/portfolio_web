@@ -42,7 +42,7 @@ const Education = () => {
         <img
           src={bg}
           alt="background"
-          className="blur-[3px] w-full h-full object-cover opacity-100"
+          className=" w-full h-full object-cover opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
@@ -57,7 +57,7 @@ const Education = () => {
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 backdrop-blur-sm">
+        <div className="rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 ">
           {/* Top header */}
           <div className="w-full text-center"></div>
 
