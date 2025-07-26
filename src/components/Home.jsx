@@ -118,7 +118,7 @@ const Home = () => {
                   <p className="mb-3 font-italiana text-gray-300 text-[13px] md:text-sm text-center leading-relaxed relative z-10">
                     <div className="relative overflow-hidden rounded-2xl mb-4 group/img">
                       <img
-                        src={robot}
+                        src={my}
                         alt="profile"
                         className="w-full rounded-2xl transition-all duration-700 group-hover:scale-[1.1] group/img:brightness-110"
                       />
@@ -277,10 +277,10 @@ const Home = () => {
                 <div className="absolute w-[100%] h-[100%] bg-gradient-to-r from-blue-400/20 to-purple-400/15 rounded-full blur-2xl opacity-0 group-hover:opacity-80 transition-opacity duration-500 delay-200" />
                 <div className="relative transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-110 drop-shadow-2xl">
                   <img
-                    src={my}
+                    src={robot}
                     alt="my"
                     loading="lazy"
-                    className="h-auto filter drop-shadow-2xl"
+                    className="h-[800px] filter drop-shadow-2xl"
                   />
                 </div>
               </div>
