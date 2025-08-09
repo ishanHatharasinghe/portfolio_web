@@ -12,7 +12,7 @@ import {
   MessageSquareQuote,
   Search
 } from "lucide-react";
-import throttle from "lodash.throttle"; // 🆕 Add lodash.throttle to reduce scroll event spam
+import throttle from "lodash.throttle";
 import dp from "./../assets/myimage.png";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -31,8 +31,6 @@ function App() {
   return (
     <AuthProvider>
       <div>
-        <FloatingSocialSidebar />
-
         <Suspense fallback={<Loading />}>
           <Header />
         </Suspense>
