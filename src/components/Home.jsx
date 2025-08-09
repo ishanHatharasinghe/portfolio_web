@@ -529,7 +529,7 @@ const Home = () => {
             <div className="md:hidden h-full flex flex-col items-center justify-center w-full px-4 py-8">
               {/* Mobile Header Section */}
               <div className="w-full text-center mb-12">
-                <h1 className="font-italiana text-4xl text-white tracking-wide bg-gradient-to-br from-white via-blue-100 to-purple-200 bg-clip-text text-transparent drop-shadow-lg mb-4">
+                <h1 className="font-italiana text-4xl text-white tracking-wide bg-gradient-to-br from-white via-blue-100 to-purple-200 bg-clip-text text-transparent drop-shadow-lg mb-1">
                   At the intersection
                 </h1>
                 <p className="font-italiana text-white text-lg tracking-wider bg-gradient-to-r from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent">
