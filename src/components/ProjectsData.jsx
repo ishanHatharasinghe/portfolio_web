@@ -142,6 +142,7 @@ const ProjectsData = () => {
         "ChayaSmartPlus – Smart Tea Leaf Collection & Employee Management System",
       description:
         "A comprehensive system for tea factories to manage tea leaf collection from smallholder farmers and employees.",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_reactnative-firebase-supabase-activity-7359832626150420480-cKST?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
       features: [
         "Farmer registration & profile management",
         "Daily tea leaf collection tracking",
