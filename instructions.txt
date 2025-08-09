@@ -1,0 +1,9 @@
+git add .
+
+git commit -m "Updated Vite app with new changes"
+
+git push origin main
+
+npm run build
+
+npm run deploy
