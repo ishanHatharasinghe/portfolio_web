@@ -149,7 +149,7 @@ const ProjectsData = () => {
         "Employee attendance & payroll management",
         "Real-time dashboard & reporting"
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+      technologies: ["React Expo, Superbase, Firebase"],
       images: [
         project71,
         project72,
