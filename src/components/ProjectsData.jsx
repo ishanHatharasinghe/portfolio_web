@@ -34,6 +34,17 @@ import my24 from "./../assets/Project 6 SAEDS/16.JPG";
 import my26 from "./../assets/Project 6 SAEDS/17.JPG";
 import my27 from "./../assets/Project 6 SAEDS/18.JPG";
 
+import project71 from "./../assets/Project 7/1.jpg";
+import project72 from "./../assets/Project 7/2.jpg";
+import project73 from "./../assets/Project 7/3.jpg";
+import project74 from "./../assets/Project 7/4.jpg";
+import project75 from "./../assets/Project 7/5.jpg";
+import project76 from "./../assets/Project 7/6.jpg";
+import project77 from "./../assets/Project 7/7.jpg";
+import project78 from "./../assets/Project 7/8.jpg";
+import project79 from "./../assets/Project 7/9.jpg";
+import project710 from "./../assets/Project 7/10.jpg";
+
 // Team members
 import member1 from "./../assets/About/1.jpg";
 import member2 from "./../assets/About/2.jpg";
@@ -54,6 +65,8 @@ import report2 from "./../assets/Project 5 taxi meter/taxi meter project report.
 import presentation2 from "./../assets/Project 5 taxi meter/smart taxi meter presentation.pdf";
 import report3 from "./../assets/Project1/Final Report.pdf";
 import presentation3 from "./../assets/Project1/presentation.pdf";
+import report7 from "./../assets/Project 7/report.pdf";
+import presentation7 from "./../assets/Project 7/Presentation.pdf";
 
 import { Boxes, ExternalLink, FileText, Presentation } from "lucide-react";
 
@@ -122,6 +135,38 @@ const ProjectsData = () => {
       gradient: "from-orange-500/20 to-red-500/20",
       reportLink: report,
       presentationLink: presentation
+    },
+    {
+      id: 7,
+      title:
+        "ChayaSmartPlus – Smart Tea Leaf Collection & Employee Management System",
+      description:
+        "A comprehensive system for tea factories to manage tea leaf collection from smallholder farmers and employees.",
+      features: [
+        "Farmer registration & profile management",
+        "Daily tea leaf collection tracking",
+        "Weight, quality, and moisture content recording",
+        "Employee attendance & payroll management",
+        "Real-time dashboard & reporting"
+      ],
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+      images: [
+        project71,
+        project72,
+        project73,
+        project74,
+        project75,
+        project76,
+        project77,
+        project78,
+        project79,
+        project710
+      ],
+      members: [member1],
+      category: "Mobile Application",
+      gradient: "from-orange-500/20 to-red-500/20",
+      reportLink: report7,
+      presentationLink: presentation7
     },
     {
       id: 4,

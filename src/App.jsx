@@ -2,15 +2,15 @@ import { useEffect, Suspense, lazy, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
-import Curser from "./components/SplashCursour";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
-
-// Eagerly load the Hero Section
 import Home from "./components/Home";
 
-// Lazy-loaded components
+// Preload critical components
 const Header = lazy(() => import("./components/HeaderBar"));
+const VideoScreen = lazy(() => import("./components/videos"));
+
+// Load rest only when in viewport
 const AboutMe = lazy(() => import("./components/AboutUs"));
 const Education = lazy(() => import("./components/Education"));
 const SkillsData = lazy(() => import("./components/SkillsData"));
@@ -20,33 +20,19 @@ const LicensesCertifications = lazy(() =>
 const WorkExperience = lazy(() => import("./components/WorkExperience"));
 const ProjectsData = lazy(() => import("./components/ProjectsData"));
 const Designs = lazy(() => import("./components/designpage"));
-const VideoScreen = lazy(() => import("./components/videos"));
 const Testimonials = lazy(() => import("./components/Testimonials"));
 const Contact = lazy(() => import("./components/Contact"));
 const Copyright = lazy(() => import("./components/Copyright"));
-
 function App() {
-  const [homeLoaded, setHomeLoaded] = useState(false);
-
   useEffect(() => {
-    const aosTimer = setTimeout(() => {
-      AOS.init({ duration: 600, once: true });
-    }, 500);
-    return () => clearTimeout(aosTimer);
-  }, []);
-
-  useEffect(() => {
-    // Fake delay to simulate loading
-    const timer = setTimeout(() => {
-      setHomeLoaded(true);
-    }, 800); // you can adjust this
-    return () => clearTimeout(timer);
+    AOS.init({ duration: 600, once: true });
   }, []);
 
   return (
     <AuthProvider>
       <div>
         <FloatingSocialSidebar />
+
         <Suspense fallback={<Loading />}>
           <Header />
         </Suspense>
@@ -56,26 +42,22 @@ function App() {
             <Home />
           </section>
 
-          {homeLoaded && (
-            <>
-              <LazySection id="videosection" Component={VideoScreen} />
-              <LazySection id="about" Component={AboutMe} />
-              <LazySection id="education-journey" Component={Education} />
-              <LazySection id="dexterity" Component={SkillsData} />
-              <LazySection
-                id="professional-designations"
-                Component={LicensesCertifications}
-              />
-              <LazySection
-                id="professional-journey"
-                Component={WorkExperience}
-              />
-              <LazySection id="creative-ventures" Component={ProjectsData} />
-              <LazySection id="design-scape" Component={Designs} />
-              <LazySection id="testimonials" Component={Testimonials} />
-              <LazySection id="contact" Component={Contact} />
-            </>
-          )}
+          {/* Preload Video Immediately */}
+          <LazySection id="videosection" Component={VideoScreen} />
+
+          {/* Load others only when visible */}
+          <LazyOnView id="about" Component={AboutMe} />
+          <LazyOnView id="education-journey" Component={Education} />
+          <LazyOnView id="dexterity" Component={SkillsData} />
+          <LazyOnView
+            id="professional-designations"
+            Component={LicensesCertifications}
+          />
+          <LazyOnView id="professional-journey" Component={WorkExperience} />
+          <LazyOnView id="creative-ventures" Component={ProjectsData} />
+          <LazyOnView id="design-scape" Component={Designs} />
+          <LazyOnView id="testimonials" Component={Testimonials} />
+          <LazyOnView id="contact" Component={Contact} />
         </main>
 
         <Suspense fallback={<Loading />}>
@@ -83,6 +65,35 @@ function App() {
         </Suspense>
       </div>
     </AuthProvider>
+  );
+}
+
+function LazyOnView({ id, Component }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [id]);
+
+  return (
+    <section id={id}>
+      {visible ? (
+        <Suspense fallback={<Loading />}>
+          <Component />
+        </Suspense>
+      ) : (
+        <div style={{ height: "50vh" }} /> // placeholder height to avoid layout shift
+      )}
+    </section>
   );
 }
 

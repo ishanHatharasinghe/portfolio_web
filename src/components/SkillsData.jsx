@@ -38,6 +38,7 @@ import id from "./../assets/Skills/id.png";
 import xd from "./../assets/Skills/xd.png";
 import canva from "./../assets/Skills/canva.png";
 import androidStudio from "./../assets/Skills/androidStudio.png";
+import superbase from "./../assets/Skills/superbase.png";
 
 const SkillCard = ({ image, name, category, proficiency }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -232,7 +233,13 @@ const Skills = () => {
     },
     { name: "Figma", image: figma, category: "design", proficiency: 80 },
     { name: "Adobe Xd", image: xd, category: "design", proficiency: 80 },
-    { name: "Canva", image: canva, category: "design", proficiency: 70 }
+    { name: "Canva", image: canva, category: "design", proficiency: 70 },
+    {
+      name: "Superbase",
+      image: superbase,
+      category: "development",
+      proficiency: 70
+    }
   ];
 
   const filteredSkills =
