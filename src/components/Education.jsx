@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "./../assets/Education/bg2.jpg";
+import bg from "./../assets/Education/bg3.jpg";
 import my from "./../assets/Education/group1.jpg";
 import my2 from "./../assets/Education/group2.jpg";
 import robot from "./../assets/Home Section/ChatGPT Image Aug 9, 2025, 01_07_11 PM.png";
@@ -42,17 +42,8 @@ const Education = () => {
         <img
           src={bg}
           alt="background"
-          className=" w-full h-full object-cover opacity-100"
+          className=" blur-[2px] w-full h-full object-cover opacity-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
-      </div>
-
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-cyan-400/30 rounded-full animate-pulse delay-500"></div>
       </div>
 
       {/* Main content */}
@@ -67,15 +58,10 @@ const Education = () => {
             <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-[70px] w-full px-4 flex justify-center">
               {/* Left Card - Bachelor of IT */}
               <div className="group relative w-60 md:w-80 mt-[300px] z-30">
-                {/* Enhanced glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-purple-500/30 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-400/10 to-purple-400/10 rounded-[2rem] blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000" />
-
                 {/* Card content with glassmorphism */}
                 <div className="flex flex-col items-center justify-center relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] p-6 border border-gray-600/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:scale-[1.02] group-hover:border-orange-400/40">
                   {/* Image with modern frame */}
                   <div className="relative w-full mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-purple-400/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <img
                       src={my2}
                       alt="profile"
@@ -192,9 +178,6 @@ const Education = () => {
 
               {/* Enhanced Robot section */}
               <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-20 group">
-                {/* Multi-layered robot glow */}
-                <div className="absolute w-[120%] h-[120%] bg-gradient-to-r from-orange-500/15 via-purple-500/15 to-cyan-500/15 rounded-full blur-3xl opacity-60 group-hover:opacity-100 transition-all duration-700" />
-                <div className="absolute w-[100%] h-[100%] bg-gradient-to-r from-orange-500/20 to-purple-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 <div className="relative transition-all duration-700 group-hover:scale-[1.03] drop-shadow-2xl">
                   <img
                     src={robot}

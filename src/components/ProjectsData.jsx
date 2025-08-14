@@ -45,6 +45,18 @@ import project78 from "./../assets/Project 7/8.jpg";
 import project79 from "./../assets/Project 7/9.jpg";
 import project710 from "./../assets/Project 7/10.jpg";
 
+import project81 from "./../assets/Project 8/autonexus (1).png";
+import project82 from "./../assets/Project 8/autonexus (2).png";
+import project83 from "./../assets/Project 8/autonexus (3).png";
+import project84 from "./../assets/Project 8/autonexus (4).png";
+import project85 from "./../assets/Project 8/autonexus (5).png";
+import project86 from "./../assets/Project 8/autonexus (6).png";
+import project87 from "./../assets/Project 8/autonexus (7).png";
+import project88 from "./../assets/Project 8/autonexus (8).png";
+import project89 from "./../assets/Project 8/autonexus (9).png";
+import project810 from "./../assets/Project 8/autonexus (10).png";
+import project811 from "./../assets/Project 8/autonexus (11).png";
+
 // Team members
 import member1 from "./../assets/About/1.jpg";
 import member2 from "./../assets/About/2.jpg";
@@ -67,6 +79,7 @@ import report3 from "./../assets/Project1/Final Report.pdf";
 import presentation3 from "./../assets/Project1/presentation.pdf";
 import report7 from "./../assets/Project 7/report.pdf";
 import presentation7 from "./../assets/Project 7/Presentation.pdf";
+import report8 from "./../assets/Project 8/report.pdf";
 
 import { Boxes, ExternalLink, FileText, Presentation } from "lucide-react";
 
@@ -168,6 +181,35 @@ const ProjectsData = () => {
       gradient: "from-orange-500/20 to-red-500/20",
       reportLink: report7,
       presentationLink: presentation7
+    },
+    {
+      id: 8,
+      title: "AutoNexus",
+      description: `The Sri Lankan automotive industry is undergoing a rapid transformation due to technological 
+advancements and increased demand for genuine and high-performance vehicle components. 
+However, vehicle owners and workshops often face challenges in sourcing authentic parts quickly 
+and reliably.`,
+
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_react-mongodb-firebase-activity-7361652556718047232-5qsG?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+
+      technologies: ["React, MongoDB, Nodejs, Firebase"],
+      images: [
+        project81,
+        project82,
+        project83,
+        project84,
+        project85,
+        project86,
+        project87,
+        project88,
+        project89,
+        project810,
+        project811
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20",
+      reportLink: report8
     },
     {
       id: 4,

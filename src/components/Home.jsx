@@ -6,6 +6,11 @@ import robot2 from "./../assets/Home Section/ChatGPT Image Aug 9, 2025, 01_24_56
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
 import chaya from "./../assets/Project 7/ChatGPT Image Aug 8, 2025, 05_29_32 PM.png";
+import logo1 from "../assets/AppsLogos/billgenx.png";
+import logo2 from "../assets/AppsLogos/boticon.png";
+import logo3 from "../assets/AppsLogos/ChatGPT Image Aug 4, 2025, 02_29_18 PM.png";
+import logo4 from "../assets/AppsLogos/icon.png";
+import logo5 from "../assets/AppsLogos/Lucid_Origin_I_need_a_logo_for_my_car_parts_website_with_the_n_1.jpg";
 import { ArrowRight } from "lucide-react";
 import "./button.css";
 import { useState, useEffect } from "react";
@@ -23,6 +28,7 @@ const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const robots = [robot, robot2];
+  const appLogos = [logo1, logo2, logo3, logo4, logo5];
 
   // Theme configurations for each robot
   const themes = [
@@ -257,8 +263,30 @@ const Home = () => {
                         }`}
                       />
                     </div>
+
+                    {/* App Logos Row */}
+                    <div className="flex justify-center items-center gap-3 mb-4">
+                      {appLogos.map((logo, index) => (
+                        <div
+                          key={index}
+                          className={`w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl ${
+                            currentRobot === 1
+                              ? "hover:shadow-emerald-400/40"
+                              : "hover:shadow-purple-400/40"
+                          }`}
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          <img
+                            src={logo}
+                            alt={`App logo ${index + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                          />
+                        </div>
+                      ))}
+                    </div>
+
                     <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
-                      I CRAFT THE FUTURE ONE INNOVATIVE SOLUTION AT A TIME
+                      I craft the Future one Innovative solution at a time
                     </span>
                   </p>
 
@@ -558,10 +586,27 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
+                  {/* Mobile App Logos Row */}
+                  <div className="flex justify-center items-center gap-3 mb-6">
+                    {appLogos.map((logo, index) => (
+                      <div
+                        key={index}
+                        className="w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl hover:shadow-purple-400/40"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <img
+                          src={logo}
+                          alt={`App logo ${index + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
                   {/* Description */}
                   <p className="mb-6 font-italiana text-gray-300 text-sm text-center leading-relaxed">
                     <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
-                      I CRAFT THE FUTURE ONE INNOVATIVE SOLUTION AT A TIME
+                      I craft the Future one Innovative solution at a time
                     </span>
                   </p>
 

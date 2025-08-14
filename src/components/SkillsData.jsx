@@ -39,6 +39,9 @@ import xd from "./../assets/Skills/xd.png";
 import canva from "./../assets/Skills/canva.png";
 import androidStudio from "./../assets/Skills/androidStudio.png";
 import superbase from "./../assets/Skills/superbase.png";
+import netlify from "./../assets/Skills/netlify.png";
+import mongo from "./../assets/Skills/mongo.png";
+import node from "./../assets/Skills/node.png";
 
 const SkillCard = ({ image, name, category, proficiency }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -137,6 +140,16 @@ const Skills = () => {
     { name: "Java", image: java, category: "development", proficiency: 85 },
     { name: "PHP", image: php, category: "development", proficiency: 85 },
     { name: "React", image: react, category: "development", proficiency: 92 },
+
+    {
+      name: "Netlify",
+      image: netlify,
+      category: "development",
+      proficiency: 85
+    },
+    { name: "MongoDB", image: mongo, category: "development", proficiency: 85 },
+    { name: "Node js", image: node, category: "development", proficiency: 80 },
+
     { name: "JavaScript", image: js, category: "development", proficiency: 90 },
     {
       name: "Tailwind CSS",
