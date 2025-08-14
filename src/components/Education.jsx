@@ -182,7 +182,7 @@ const Education = () => {
                   <img
                     src={robot}
                     alt="robot"
-                    className="mt-14 h-[130vh] w-auto filter drop-shadow-lg"
+                    className="mt-14 h-[110vh] w-auto filter drop-shadow-lg"
                   />
                 </div>
               </div>

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import my from "./../assets/Project1/Slide1.JPG";
 import my2 from "./../assets/Project2/page.jpg";
 import my3 from "./../assets/Project3/page.jpeg";
@@ -57,6 +57,19 @@ import project89 from "./../assets/Project 8/autonexus (9).png";
 import project810 from "./../assets/Project 8/autonexus (10).png";
 import project811 from "./../assets/Project 8/autonexus (11).png";
 
+import project91 from "./../assets/Project 9/portfolio (1).png";
+import project92 from "./../assets/Project 9/portfolio (2).png";
+import project93 from "./../assets/Project 9/portfolio (3).png";
+import project94 from "./../assets/Project 9/portfolio (4).png";
+import project95 from "./../assets/Project 9/portfolio (5).png";
+import project96 from "./../assets/Project 9/portfolio (6).png";
+import project97 from "./../assets/Project 9/portfolio (7).png";
+import project98 from "./../assets/Project 9/portfolio (8).png";
+import project99 from "./../assets/Project 9/portfolio (9).png";
+import project910 from "./../assets/Project 9/portfolio (10).png";
+import project911 from "./../assets/Project 9/portfolio (11).png";
+import project912 from "./../assets/Project 9/portfolio (12).png";
+
 // Team members
 import member1 from "./../assets/About/1.jpg";
 import member2 from "./../assets/About/2.jpg";
@@ -81,10 +94,54 @@ import report7 from "./../assets/Project 7/report.pdf";
 import presentation7 from "./../assets/Project 7/Presentation.pdf";
 import report8 from "./../assets/Project 8/report.pdf";
 
-import { Boxes, ExternalLink, FileText, Presentation } from "lucide-react";
+import {
+  Boxes,
+  ExternalLink,
+  FileText,
+  Presentation,
+  Search,
+  Filter,
+  X,
+  Grid3X3,
+  Grid2X2,
+  List
+} from "lucide-react";
 
 const ProjectsData = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedTech, setSelectedTech] = useState("All");
+  const [viewMode, setViewMode] = useState("grid-4"); // grid-4, grid-3, grid-2, list
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   const projectsData = [
+    {
+      id: 9,
+      title: "Personal Portfolio",
+      description: `The Intersection of Electronics and Code`,
+
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_excited-to-launch-my-portfolio-website-activity-7359939207974346753-iIWq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        project91,
+        project92,
+        project93,
+        project94,
+        project95,
+        project96,
+        project97,
+        project98,
+        project99,
+        project910,
+        project911,
+        project912
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+
     {
       id: 1,
       title: "Vehicle Parking Management System (VPMS)",
@@ -236,21 +293,57 @@ and reliably.`,
       members: [member1, member2, member4],
       category: "Web Platform",
       gradient: "from-pink-500/20 to-rose-500/20"
-    },
-    {
-      id: 6,
-      title: "Large Language Model (LLM)",
-      subtitle: "AI Document Reader",
-      description:
-        "Reads documents and answers questions using Python, FastAPI, and LLM APIs.",
-      technologies: "React, JavaScript, Python, FastAPI",
-      link: "https://example.com/llm",
-      images: [my2],
-      members: [member1],
-      category: "AI System",
-      gradient: "from-cyan-500/20 to-blue-500/20"
     }
   ];
+
+  // Get unique categories and technologies for filters
+  const categories = ["All", ...new Set(projectsData.map((p) => p.category))];
+  const technologies = [
+    "All",
+    ...new Set(
+      projectsData
+        .flatMap((p) =>
+          typeof p.technologies === "string"
+            ? p.technologies.split(",").map((t) => t.trim())
+            : p.technologies
+        )
+        .filter(Boolean)
+    )
+  ];
+
+  // Filter and search projects
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      const matchesSearch =
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.subtitle &&
+          project.subtitle.toLowerCase().includes(searchTerm.toLowerCase()));
+
+      const matchesCategory =
+        selectedCategory === "All" || project.category === selectedCategory;
+
+      const projectTechs =
+        typeof project.technologies === "string"
+          ? project.technologies.split(",").map((t) => t.trim())
+          : project.technologies;
+      const matchesTech =
+        selectedTech === "All" ||
+        projectTechs.some((tech) =>
+          tech.toLowerCase().includes(selectedTech.toLowerCase())
+        );
+
+      return matchesSearch && matchesCategory && matchesTech;
+    });
+  }, [searchTerm, selectedCategory, selectedTech]);
+
+  // Grid class mapping
+  const gridClasses = {
+    "grid-4": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+    "grid-3": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+    "grid-2": "grid-cols-1 lg:grid-cols-2",
+    list: "grid-cols-1"
+  };
 
   const MemberAvatars = ({ members, projectId }) => (
     <div className="flex -space-x-2 mb-4">
@@ -285,76 +378,111 @@ and reliably.`,
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
       transition={{ delay: index * 0.1 }}
       className="group relative w-full h-full"
     >
       <div
         className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
       />
-      <div className="flex flex-col relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] p-6 border border-gray-700/40 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:border-gray-600/60 h-full overflow-hidden">
+      <div
+        className={`flex ${
+          viewMode === "list" ? "flex-row" : "flex-col"
+        } relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] p-6 border border-gray-700/40 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:border-gray-600/60 h-full overflow-hidden`}
+      >
         <div className="absolute top-4 right-4 z-20">
           <span className="px-3 py-1 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-xs font-semibold rounded-full">
             {project.category}
           </span>
         </div>
-        <div className="relative z-10">
-          <MemberAvatars members={project.members} projectId={project.id} />
+
+        <div
+          className={`${
+            viewMode === "list" ? "w-80 flex-shrink-0 mr-6" : "w-full"
+          }`}
+        >
+          <div className="relative z-10">
+            <MemberAvatars members={project.members} projectId={project.id} />
+          </div>
+          <div className="relative mb-6 overflow-hidden rounded-2xl">
+            {project.images.length > 1 ? (
+              <Swiper
+                modules={[Autoplay, Pagination, EffectFade]}
+                slidesPerView={1}
+                effect="fade"
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true
+                }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                className="w-full aspect-video rounded-2xl"
+              >
+                {project.images.map((image, i) => (
+                  <SwiperSlide key={i}>
+                    <img
+                      src={image}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <img
+                src={project.images[0]}
+                alt=""
+                className="w-full aspect-video object-cover rounded-2xl"
+              />
+            )}
+          </div>
         </div>
-        <div className="relative mb-6 overflow-hidden rounded-2xl">
-          {project.images.length > 1 ? (
-            <Swiper
-              modules={[Autoplay, Pagination, EffectFade]}
-              slidesPerView={1}
-              effect="fade"
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-              }}
-              pagination={{ clickable: true, dynamicBullets: true }}
-              className="w-full aspect-video rounded-2xl"
-            >
-              {project.images.map((image, i) => (
-                <SwiperSlide key={i}>
-                  <img
-                    src={image}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <img
-              src={project.images[0]}
-              alt=""
-              className="w-full aspect-video object-cover rounded-2xl"
-            />
-          )}
-        </div>
+
         <div className="flex-1 flex flex-col">
-          <h1 className="font-bold text-white text-lg md:text-xl text-center mb-2">
+          <h1
+            className={`font-bold text-white text-lg md:text-xl ${
+              viewMode === "list" ? "text-left" : "text-center"
+            } mb-2`}
+          >
             {project.title}
           </h1>
           {project.subtitle && (
-            <h5 className="text-purple-300 text-xs md:text-sm text-center mb-3">
+            <h5
+              className={`text-purple-300 text-xs md:text-sm ${
+                viewMode === "list" ? "text-left" : "text-center"
+              } mb-3`}
+            >
               {project.subtitle}
             </h5>
           )}
-          <p className="text-gray-300 text-xs md:text-sm text-center my-4 flex-1">
+          <p
+            className={`text-gray-300 text-xs md:text-sm ${
+              viewMode === "list" ? "text-left" : "text-center"
+            } my-4 flex-1`}
+          >
             {project.description}
           </p>
-          <div className="flex items-center justify-center mb-4">
+          <div
+            className={`flex items-center ${
+              viewMode === "list" ? "justify-start" : "justify-center"
+            } mb-4`}
+          >
             <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2 border border-gray-700/50">
               <Boxes className="w-4 h-4 text-purple-400 mr-2" />
               <p className="text-[11px] font-medium text-gray-300">
-                {project.technologies}
+                {typeof project.technologies === "string"
+                  ? project.technologies
+                  : project.technologies.join(", ")}
               </p>
             </div>
           </div>
 
           {/* Responsive button group */}
-          <div className="flex flex-wrap justify-center gap-3 mt-auto w-full">
+          <div
+            className={`flex flex-wrap ${
+              viewMode === "list" ? "justify-start" : "justify-center"
+            } gap-3 mt-auto w-full`}
+          >
             {
               (project.id === 3,
               2 ? (
@@ -426,11 +554,6 @@ and reliably.`,
           alt="background"
           className="blur-[5px] w-full h-full object-cover opacity-80"
         />
-        <img
-          src={robot}
-          alt="robot"
-          className="absolute inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
-        />
       </div>
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
         <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
@@ -443,16 +566,248 @@ and reliably.`,
             <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
               Creative Ventures
             </h2>
-            <p className="text-[16px] text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-[16px] text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
               Explore some of my recent works, where I applied technical skills
               and creativity to deliver impactful solutions.
             </p>
+
+            {/* Search and Filter Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="max-w-4xl mx-auto mb-8"
+            >
+              {/* Search Bar */}
+              <div className="relative mb-4">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search projects by name, description, or subtitle..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-gray-900/60 backdrop-blur-xl border border-gray-700/40 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Filter and View Controls */}
+              <div className="flex flex-wrap gap-4 justify-between items-center">
+                {/* Filters */}
+                <div className="flex flex-wrap gap-4 items-center">
+                  <motion.button
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl hover:bg-gray-700/50 transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Filter className="w-4 h-4" />
+                    Filters
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {isFilterOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="flex flex-wrap gap-3"
+                      >
+                        <select
+                          value={selectedCategory}
+                          onChange={(e) => setSelectedCategory(e.target.value)}
+                          className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
+                        >
+                          {categories.map((cat) => (
+                            <option key={cat} value={cat}>
+                              {cat}
+                            </option>
+                          ))}
+                        </select>
+
+                        <select
+                          value={selectedTech}
+                          onChange={(e) => setSelectedTech(e.target.value)}
+                          className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
+                        >
+                          {technologies.map((tech) => (
+                            <option key={tech} value={tech}>
+                              {tech}
+                            </option>
+                          ))}
+                        </select>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* View Mode Controls */}
+                <div className="flex gap-2">
+                  {[
+                    { mode: "grid-4", icon: Grid3X3, tooltip: "4 Columns" },
+                    { mode: "grid-3", icon: Grid3X3, tooltip: "3 Columns" },
+                    { mode: "grid-2", icon: Grid2X2, tooltip: "2 Columns" },
+                    { mode: "list", icon: List, tooltip: "List View" }
+                  ].map(({ mode, icon: Icon, tooltip }) => (
+                    <motion.button
+                      key={mode}
+                      onClick={() => setViewMode(mode)}
+                      className={`p-2 rounded-lg transition-all duration-300 ${
+                        viewMode === mode
+                          ? "bg-blue-500/20 text-blue-400 border border-blue-500/50"
+                          : "bg-gray-800/50 text-gray-400 border border-gray-600/50 hover:text-white hover:bg-gray-700/50"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      title={tooltip}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Results Counter */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center mt-4"
+              >
+                <span className="text-sm text-gray-400">
+                  Showing {filteredProjects.length} of {projectsData.length}{" "}
+                  projects
+                  {searchTerm && ` for "${searchTerm}"`}
+                  {selectedCategory !== "All" && ` in ${selectedCategory}`}
+                  {selectedTech !== "All" && ` using ${selectedTech}`}
+                </span>
+              </motion.div>
+            </motion.div>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
-            {projectsData.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+
+          {/* Projects Grid */}
+          <AnimatePresence mode="wait">
+            {filteredProjects.length > 0 ? (
+              <motion.div
+                key={`${viewMode}-${selectedCategory}-${selectedTech}-${searchTerm}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className={`grid ${gridClasses[viewMode]} gap-6 max-w-screen-xl mx-auto`}
+              >
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                  />
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="text-center py-16"
+              >
+                <div className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-12 border border-gray-700/40 max-w-md mx-auto">
+                  <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    No Projects Found
+                  </h3>
+                  <p className="text-gray-400 mb-6">
+                    Try adjusting your search terms or filters to find what
+                    you're looking for.
+                  </p>
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    {searchTerm && (
+                      <motion.button
+                        onClick={() => setSearchTerm("")}
+                        className="px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/50 rounded-xl hover:bg-blue-500/30 transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Clear Search
+                      </motion.button>
+                    )}
+                    {selectedCategory !== "All" && (
+                      <motion.button
+                        onClick={() => setSelectedCategory("All")}
+                        className="px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500/30 transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Clear Category
+                      </motion.button>
+                    )}
+                    {selectedTech !== "All" && (
+                      <motion.button
+                        onClick={() => setSelectedTech("All")}
+                        className="px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/50 rounded-xl hover:bg-green-500/30 transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Clear Technology
+                      </motion.button>
+                    )}
+                    <motion.button
+                      onClick={() => {
+                        setSearchTerm("");
+                        setSelectedCategory("All");
+                        setSelectedTech("All");
+                      }}
+                      className="px-4 py-2 bg-gray-700/50 text-gray-300 border border-gray-600/50 rounded-xl hover:bg-gray-600/50 transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Reset All Filters
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Quick Filter Tags */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-8 flex flex-wrap gap-3 justify-center"
+          >
+            <span className="text-sm text-gray-400 mr-2">Quick filters:</span>
+            {[
+              "Web Application",
+              "IoT System",
+              "Mobile Application",
+              "React",
+              "Firebase",
+              "Arduino"
+            ].map((tag) => (
+              <motion.button
+                key={tag}
+                onClick={() => {
+                  if (categories.includes(tag)) {
+                    setSelectedCategory(tag);
+                  } else {
+                    setSelectedTech(tag);
+                  }
+                }}
+                className="px-3 py-1 bg-gray-800/30 text-gray-400 text-xs rounded-full border border-gray-700/30 hover:bg-gray-700/40 hover:text-white hover:border-gray-600/50 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {tag}
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

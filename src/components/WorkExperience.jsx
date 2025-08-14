@@ -42,7 +42,7 @@ const ProfessionalJourney = () => {
         <img
           src={robot}
           alt="robot"
-          className="absolute inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
+          className="absolute  p-2 inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
         />
       </div>
 
