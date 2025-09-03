@@ -70,6 +70,22 @@ import project910 from "./../assets/Project 9/portfolio (10).png";
 import project911 from "./../assets/Project 9/portfolio (11).png";
 import project912 from "./../assets/Project 9/portfolio (12).png";
 
+//Luminance Graphic
+
+import projectLG1 from "./../assets/Luminance Graphic/Screenshot (88).png";
+import projectLG2 from "./../assets/Luminance Graphic/Screenshot (90).png";
+import projectLG3 from "./../assets/Luminance Graphic/Screenshot (91).png";
+import projectLG4 from "./../assets/Luminance Graphic/Screenshot (92).png";
+import projectLG5 from "./../assets/Luminance Graphic/Screenshot (93).png";
+import projectLG6 from "./../assets/Luminance Graphic/Screenshot (94).png";
+import projectLG7 from "./../assets/Luminance Graphic/Screenshot (95).png";
+import projectLG8 from "./../assets/Luminance Graphic/Screenshot (96).png";
+import projectLG9 from "./../assets/Luminance Graphic/Screenshot (97).png";
+import projectLG10 from "./../assets/Luminance Graphic/Screenshot (98).png";
+import projectLG11 from "./../assets/Luminance Graphic/Screenshot (99).png";
+import projectLG12 from "./../assets/Luminance Graphic/Screenshot (100).png";
+import projectLG13 from "./../assets/Luminance Graphic/Screenshot (101).png";
+
 // Team members
 import member1 from "./../assets/About/1.jpg";
 import member2 from "./../assets/About/2.jpg";
@@ -141,7 +157,33 @@ const ProjectsData = () => {
       category: "Web Application",
       gradient: "from-orange-500/20 to-red-500/20"
     },
+    {
+      id: 10,
+      title: "Luminance Graphic Portfolio",
+      description: `I design logos, brand systems, apparel graphics, packaging, and marketing assets that are distinctive and production‑ready—built to perform across print and digital.`,
 
+      link: "https://luminancegraphic.netlify.app/",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        projectLG1,
+        projectLG2,
+        projectLG3,
+        projectLG4,
+        projectLG5,
+        projectLG6,
+        projectLG7,
+        projectLG8,
+        projectLG9,
+        projectLG10,
+        projectLG11,
+        projectLG12,
+        projectLG13
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
     {
       id: 1,
       title: "Vehicle Parking Management System (VPMS)",
