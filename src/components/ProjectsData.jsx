@@ -97,7 +97,6 @@ import member8 from "./../assets/About/8.jpg";
 
 // Assets
 import bg from "./../assets/Home Section/bg4.jpg";
-import robot from "./../assets/robot3.png";
 
 // Docs
 import report from "./../assets/Project 6 SAEDS/Smart Automated Elephant Deterrent System FINAL REPORT.pdf";

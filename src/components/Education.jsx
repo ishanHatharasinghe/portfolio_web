@@ -1,8 +1,8 @@
 import React from "react";
-import bg from "./../assets/Education/bg3.jpg";
+import bg from "./../assets/Education/bg2.jpg";
 import my from "./../assets/Education/group1.jpg";
 import my2 from "./../assets/Education/group2.jpg";
-import robot from "./../assets/Home Section/ChatGPT Image Aug 9, 2025, 01_07_11 PM.png";
+import robot from "./../assets/Education/ChatGPT Image Sep 10, 2025, 10_53_13 AM.png";
 import { ArrowRight, ExternalLink, GraduationCap } from "lucide-react";
 import "./button.css";
 
@@ -42,7 +42,7 @@ const Education = () => {
         <img
           src={bg}
           alt="background"
-          className=" blur-[2px] w-full h-full object-cover opacity-100"
+          className=" blur-[1px] w-full h-full object-cover opacity-100"
         />
       </div>
 
@@ -93,7 +93,7 @@ const Education = () => {
                       href="https://uom.lk/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 group/btn bg-gradient-to-r from-orange-500/20 to-purple-500/20 hover:from-orange-500/40 hover:to-purple-500/40 backdrop-blur-sm border border-orange-400/30 hover:border-orange-400/60 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-500/20"
+                      className="flex-1 group/btn bg-gradient-to-r from-black to-gray-900 hover:from-gray-800 hover:to-black backdrop-blur-sm border border-gray-700 hover:border-gray-500 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/40 text-gray-200"
                     >
                       <div className="flex items-center justify-center gap-2 text-white/80 group-hover/btn:text-white text-xs font-medium">
                         <span>Visit University</span>
@@ -165,7 +165,7 @@ const Education = () => {
                       href="https://hndelabuduwa.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 group/btn bg-gradient-to-r from-purple-500/20 to-cyan-500/20 hover:from-purple-500/40 hover:to-cyan-500/40 backdrop-blur-sm border border-cyan-400/30 hover:border-cyan-400/60 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/20"
+                      className="flex-1 group/btn bg-gradient-to-r from-black to-gray-900 hover:from-gray-800 hover:to-black backdrop-blur-sm border border-gray-700 hover:border-gray-500 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/40 text-gray-200"
                     >
                       <div className="flex items-center justify-center gap-2 text-white/80 group-hover/btn:text-white text-xs font-medium">
                         <span>Visit Institute</span>
@@ -184,44 +184,6 @@ const Education = () => {
                     alt="robot"
                     className="mt-14 h-[110vh] w-auto filter drop-shadow-lg"
                   />
-                </div>
-              </div>
-              {/* Floating Education Cards */}
-              <div className="absolute top-[80%] left-[48.3%] -translate-x-1/2 z-30 flex gap-2 items-center">
-                {/* SFS Academy Card */}
-                <div className="bg-blue/20 backdrop-blur-md p-2 rounded-2xl shadow-lg w-[220px] hover:scale-105 transition-transform duration-300 border border-white/30 flex flex-col items-center">
-                  <img
-                    src="https://studyway-resources.s3.amazonaws.com/profilePictures/1706767693615.jpg"
-                    alt="SFS Academy"
-                    className="w-16 h-16 object-cover rounded-full mb-2 border border-white shadow-md"
-                  />
-                  <h3 className="text-base font-semibold text-white text-center">
-                    SFS Academy
-                  </h3>
-                  <p className="text-xs text-white/80 mt-1 text-center">
-                    AutoCAD Certificate Course
-                  </p>
-                  <p className="text-[10px] text-white/60 mt-1 text-center">
-                    2024
-                  </p>
-                </div>
-
-                {/* Sri Lanka Tech Authority NVQ Card */}
-                <div className="bg-blue/20 backdrop-blur-md p-2 rounded-2xl shadow-lg w-[220px] hover:scale-105 transition-transform duration-300 border border-white/30 flex flex-col items-center">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSQVEP-Yy_6t5qmEKlW7xwp-MI6pvmyCs6BQ&s"
-                    alt="VTA Sri Lanka"
-                    className="w-16 h-16 object-cover rounded-full mb-2 border border-white shadow-md"
-                  />
-                  <h3 className="text-base font-semibold text-white text-center">
-                    VTA Sri Lanka
-                  </h3>
-                  <p className="text-xs text-white/80 mt-1 text-center">
-                    NVQ Level 4 - ICT Technician
-                  </p>
-                  <p className="text-[10px] text-white/60 mt-1 text-center">
-                    2020 - 2021
-                  </p>
                 </div>
               </div>
             </div>
@@ -262,7 +224,7 @@ const Education = () => {
                     href="https://uom.lk/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-gradient-to-r from-orange-500/20 to-purple-500/20 hover:from-orange-500/40 hover:to-purple-500/40 backdrop-blur-sm border border-orange-400/30 hover:border-orange-400/60 rounded-xl px-4 py-2.5 transition-all duration-300"
+                    className="flex-1 group/btn bg-gradient-to-r from-black to-gray-900 hover:from-gray-800 hover:to-black backdrop-blur-sm border border-gray-700 hover:border-gray-500 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/40 text-gray-200"
                   >
                     <div className="flex items-center justify-center gap-2 text-white/80 hover:text-white text-xs font-medium">
                       <span>Visit University</span>
@@ -301,7 +263,7 @@ const Education = () => {
                     href="https://hndelabuduwa.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 hover:from-purple-500/40 hover:to-cyan-500/40 backdrop-blur-sm border border-cyan-400/30 hover:border-cyan-400/60 rounded-xl px-4 py-2.5 transition-all duration-300"
+                    className="flex-1 group/btn bg-gradient-to-r from-black to-gray-900 hover:from-gray-800 hover:to-black backdrop-blur-sm border border-gray-700 hover:border-gray-500 rounded-xl px-4 py-2.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/40 text-gray-200"
                   >
                     <div className="flex items-center justify-center gap-2 text-white/80 hover:text-white text-xs font-medium">
                       <span>Visit Institute</span>

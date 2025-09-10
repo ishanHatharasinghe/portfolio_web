@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import throttle from "lodash.throttle";
 import dp from "./../assets/myimage.png";
+import Robot from "../assets/28ddd8026ef34e12f9a9c60c864b3e8e-removebg-preview.png";
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -407,34 +409,74 @@ function Header() {
         </form>
       </nav>
 
-      {/* Back to top */}
+      {/* Robot Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-orange-600/80 to-amber-600/40 text-white shadow-lg flex items-center justify-center transition ${
+        className={`fixed bottom-4 right-4 w-16 h-16 shadow-lg flex items-center justify-center transition transform hover:scale-110 ${
           scrollPosition > window.innerHeight / 2
             ? "opacity-100 scale-100"
             : "opacity-0 scale-90 pointer-events-none"
         } z-40`}
         aria-label="Back to top"
       >
-        <svg
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5 15l7-7 7 7"
-          />
-        </svg>
+        <img
+          src={Robot}
+          alt="Robot - Back to top"
+          className="w-full h-full object-contain drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
+        />
       </button>
 
       <style>{`
-        .search-highlight { background-color: #fde68a; border-radius: 0.2rem; transition: background-color 0.3s;}
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+        .search-highlight { 
+          background-color: #fde68a; 
+          border-radius: 0.2rem; 
+          transition: background-color 0.3s;
+        }
+        
+        .line-clamp-2 { 
+          display: -webkit-box; 
+          -webkit-line-clamp: 2; 
+          -webkit-box-orient: vertical; 
+          overflow: hidden;
+        }
+        
+        .robot-float {
+          animation: robotFloat 3s ease-in-out infinite;
+        }
+        
+        .robot-float:hover {
+          animation: robotFloatFast 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes robotFloat {
+          0%, 100% { 
+            transform: translateY(0px) rotate(0deg); 
+          }
+          25% { 
+            transform: translateY(-6px) rotate(1deg); 
+          }
+          50% { 
+            transform: translateY(-10px) rotate(0deg); 
+          }
+          75% { 
+            transform: translateY(-4px) rotate(-1deg); 
+          }
+        }
+        
+        @keyframes robotFloatFast {
+          0%, 100% { 
+            transform: translateY(0px) rotate(0deg) scale(1.25); 
+          }
+          25% { 
+            transform: translateY(-8px) rotate(2deg) scale(1.25); 
+          }
+          50% { 
+            transform: translateY(-12px) rotate(0deg) scale(1.25); 
+          }
+          75% { 
+            transform: translateY(-6px) rotate(-2deg) scale(1.25); 
+          }
+        }
       `}</style>
     </>
   );

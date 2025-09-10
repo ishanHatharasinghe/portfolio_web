@@ -1,5 +1,5 @@
 import "aos/dist/aos.css";
-import bg from "./../assets/Work1/bg.jpg";
+import bg from "./../assets/bg3.jpg";
 import { motion } from "framer-motion";
 import robot from "./../assets/Work1/scene-with-futuristic-robot-used-construction-industry.png";
 import Img1 from "./../assets/Work1/1.jpg";
@@ -37,7 +37,7 @@ const ProfessionalJourney = () => {
         <img
           src={bg}
           alt="background"
-          className="blur-[3px] w-full h-full object-cover"
+          className=" w-full h-full object-cover"
         />
         <img
           src={robot}

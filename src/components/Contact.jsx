@@ -15,7 +15,7 @@ import {
 import { SiFiverr } from "react-icons/si"; // Fiverr icon from react-icons/si
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import bg from "./../assets/Contact/bg.jpg";
+import bg from "./../assets/Contact/bg.png";
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -69,9 +69,8 @@ const Contact = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black-1/10 via-transparent to-transparent" />
       </div>
       <div className="flex flex-col items-center justify-center rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
         {/* Header */}

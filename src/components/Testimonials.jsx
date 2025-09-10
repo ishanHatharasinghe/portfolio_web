@@ -231,13 +231,13 @@ const TestimonialsSection = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/40 to-black opacity-80" />
       </div>
 
-      <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16">
-        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 backdrop-blur-sm bg-black/30">
+      <div className="relative min-h-auto flex flex-col justify-between items-center px-6 py-16">
+        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 ">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex flex-col items-center justify-center items-center">
               <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">

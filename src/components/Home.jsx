@@ -1,8 +1,8 @@
 import React from "react";
 import bg from "./../assets/Home Section/bg3.jpg";
 import my from "./../assets/Home Section/my2.png";
-import robot from "./../assets/Home Section/ChatGPT Image Aug 9, 2025, 01_07_11 PM.png";
-import robot2 from "./../assets/Home Section/ChatGPT Image Aug 9, 2025, 01_24_56 PM.png";
+import robot from "./../assets/Home Section/ChatGPT Image Sep 10, 2025, 10_32_45 AM.png";
+import robot2 from "./../assets/Home Section/ChatGPT Image Sep 10, 2025, 10_32_45 AM.png";
 import slt from "./../assets/Home Section/slt.png";
 import aw from "./../assets/Home Section/aw.png";
 import chaya from "./../assets/Project 7/ChatGPT Image Aug 8, 2025, 05_29_32 PM.png";
@@ -189,37 +189,6 @@ const Home = () => {
           }`}
         />
       </div>
-
-      {/* Robot Slider Controls - Hidden on Mobile */}
-      {!isMobile && (
-        <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
-          <div className="flex gap-2">
-            {robots.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  if (index !== currentRobot) {
-                    setCurrentRobot(index);
-                    setIsTransitioning(true);
-                    setTimeout(() => setIsTransitioning(false), 600);
-                  }
-                }}
-                className={`w-3 h-3 rounded-full transition-all duration-500 border-2 ${
-                  index === currentRobot
-                    ? `bg-gradient-to-r ${currentTheme.primaryGradient} border-white/60 shadow-lg`
-                    : "bg-white/20 border-white/30 hover:border-white/50"
-                }`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={switchRobot}
-            className={`px-3 py-1 rounded-full bg-gradient-to-r ${currentTheme.primaryGradient} text-white text-xs font-medium hover:scale-105 transition-all duration-300 shadow-lg`}
-          >
-            Switch
-          </button>
-        </div>
-      )}
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">

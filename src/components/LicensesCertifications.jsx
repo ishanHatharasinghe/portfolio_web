@@ -6,7 +6,7 @@ import certificate4 from "./../assets/Licenses & Certifications/Front-End_Web_De
 import certificate5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.jpg";
 import certificate6 from "./../assets/Licenses & Certifications/ATC_AP70251809768572_Diploma in AutoCAD.jpg";
 import certificate7 from "./../assets/Licenses & Certifications/NVQ Level 4(ICT Technician).jpg";
-import bg from "./../assets/Licenses & Certifications/bg2.jpg";
+import bg from "./../assets/bg3.jpg";
 
 const LicensesCertifications = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -76,7 +76,7 @@ const LicensesCertifications = () => {
         <img
           src={bg}
           alt="background"
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover opacity-100"
         />
       </div>
 
