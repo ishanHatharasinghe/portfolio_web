@@ -597,7 +597,7 @@ and reliably.`,
         />
       </div>
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}

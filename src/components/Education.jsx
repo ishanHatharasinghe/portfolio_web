@@ -48,7 +48,7 @@ const Education = () => {
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 ">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 ">
           {/* Top header */}
           <div className="w-full text-center"></div>
 

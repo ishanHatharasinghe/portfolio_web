@@ -72,7 +72,7 @@ const Contact = () => {
           className="w-full h-full object-cover opacity-100"
         />
       </div>
-      <div className="flex flex-col items-center justify-center rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
+      <div className="flex flex-col items-center justify-center rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide text-center">

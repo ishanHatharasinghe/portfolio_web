@@ -192,10 +192,10 @@ const Home = () => {
 
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">
-        <div className="rounded-[70px] w-full h-full p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
           {/* Top header with modern styling */}
           <div className="w-full text-center">
-            <h3 className="mt-2 font-italiana text-white text-[12px] md:text-base font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+            <h3 className="mt-2 font-italiana text-white text-[8px] md:text-[15px] font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
               Electronics Engineer | Software Developer | Designer
             </h3>
           </div>

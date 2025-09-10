@@ -307,7 +307,7 @@ const ProjectsData = () => {
     <div className="min-h-screen w-full bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16">
         {/* Header Section */}
-        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           <div>
             <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
               Journey of UI/UX

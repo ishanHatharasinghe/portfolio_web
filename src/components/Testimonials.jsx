@@ -237,7 +237,7 @@ const TestimonialsSection = () => {
       </div>
 
       <div className="relative min-h-auto flex flex-col justify-between items-center px-6 py-16">
-        <div className="rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 ">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-white/20 ">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex flex-col items-center justify-center items-center">
               <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">

@@ -81,62 +81,71 @@ const LicensesCertifications = () => {
       </div>
 
       {/* Content */}
-      <div className="relative min-h-screen flex flex-col justify-center items-center px-6 mt-16 z-10">
-        <div className="space-y-6 text-center rounded-[70px] w-full h-full p-5 border border-2 mb-4 border-gray-700/30">
-          <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+      <div className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 mt-16 z-10">
+        <div className="space-y-6 text-center rounded-[20px] sm:rounded-[70px] w-full h-full p-3 sm:p-5 border border-2 mb-4 border-gray-700/30">
+          <h2 className="font-italiana text-3xl sm:text-5xl md:text-[160px] text-white tracking-wide">
             Professional Designations
           </h2>
-          <p className="text-[16px] text-gray-300 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-sm sm:text-[16px] text-gray-300 leading-relaxed max-w-3xl mx-auto px-2">
             Showcase of certifications that highlight my technical expertise and
             dedication to continuous learning.
           </p>
 
-          {/* Certification Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem]">
+          {/* Certification Grid - Mobile Optimized */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-6 sm:mt-10 border p-4 sm:p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-lg sm:rounded-[1rem]">
             {certifications.map((cert) => (
               <div
                 key={cert.id}
-                className="relative p-4 border border-white/10 bg-black/40 backdrop-blur-md rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer"
+                className="relative p-4 sm:p-4 border border-white/10 bg-black/40 backdrop-blur-md rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer hover:scale-105 active:scale-95"
                 onClick={() => setSelectedImage(cert.image)}
               >
-                {/* Logo Badge */}
+                {/* Logo Badge - Larger on mobile */}
                 <img
                   src={cert.logo}
                   alt="logo"
-                  className="absolute top-2 right-2 w-8 h-8 rounded-full border border-white shadow-md object-cover bg-white p-1"
+                  className="absolute top-2 right-2 w-10 h-10 sm:w-8 sm:h-8 rounded-full border border-white shadow-md object-cover bg-white p-1"
                 />
 
-                {/* Certificate */}
+                {/* Certificate - Better aspect ratio for mobile */}
                 <img
                   src={cert.image}
                   alt={cert.title}
-                  className="w-full h-32 object-cover rounded-md mb-3"
+                  className="w-full h-40 sm:h-32 md:h-36 object-cover rounded-md mb-3"
                 />
-                <h3 className="text-base font-semibold text-white">
+
+                {/* Title - Larger on mobile */}
+                <h3 className="text-lg sm:text-base font-semibold text-white mb-2 leading-tight">
                   {cert.title}
                 </h3>
-                <p className="text-xs text-gray-300 mt-1">{cert.description}</p>
+
+                {/* Description - Better sizing for mobile */}
+                <p className="text-sm sm:text-xs text-gray-300 mt-1 leading-relaxed">
+                  {cert.description}
+                </p>
               </div>
             ))}
           </div>
 
-          {/* Modal */}
+          {/* Modal - Mobile Optimized */}
           {selectedImage && (
             <div
-              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
+              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 p-4"
               onClick={() => setSelectedImage(null)}
             >
-              <div className="relative">
+              <div className="relative max-w-full max-h-full">
                 <img
                   src={selectedImage}
                   alt="Full View"
-                  className="max-w-full max-h-screen rounded-lg"
+                  className="max-w-full max-h-[90vh] rounded-lg object-contain"
                 />
                 <button
-                  className="absolute top-4 right-4 bg-white text-black rounded-full px-4 py-2 font-semibold hover:bg-gray-200 transition"
-                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white text-black rounded-full px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold hover:bg-gray-200 transition shadow-lg"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImage(null);
+                  }}
                 >
-                  Close
+                  ✕
                 </button>
               </div>
             </div>

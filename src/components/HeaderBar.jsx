@@ -218,7 +218,6 @@ function Header() {
         aria-valuemax="100"
         aria-label="Scroll progress"
       />
-
       {/* Nav Bar */}
       <nav
         ref={navRef}
@@ -408,11 +407,11 @@ function Header() {
           )}
         </form>
       </nav>
-
       {/* Robot Back to top */}
+      /* Robot Back to top - Hidden on mobile */
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-4 right-4 w-16 h-16 shadow-lg flex items-center justify-center transition transform hover:scale-110 ${
+        className={`fixed bottom-4 right-4 w-16 h-16 shadow-lg flex items-center justify-center transition transform hover:scale-110 hidden sm:flex ${
           scrollPosition > window.innerHeight / 2
             ? "opacity-100 scale-100"
             : "opacity-0 scale-90 pointer-events-none"
@@ -422,10 +421,9 @@ function Header() {
         <img
           src={Robot}
           alt="Robot - Back to top"
-          className="w-full h-full object-contain drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
+          className="w-full h-full object-contain drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 robot-float"
         />
       </button>
-
       <style>{`
         .search-highlight { 
           background-color: #fde68a; 

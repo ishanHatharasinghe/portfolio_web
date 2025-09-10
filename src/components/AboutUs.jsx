@@ -152,7 +152,7 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <div className="rounded-[70px] w-full h-full p-6 border-2 border-gray-700/30 relative z-10 backdrop-blur-sm">
+      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-gray-700/30 relative z-10 backdrop-blur-sm">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Desktop Layout */}
           <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full">

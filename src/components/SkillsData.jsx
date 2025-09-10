@@ -268,7 +268,7 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-gray-700/30 bg-black/50 backdrop-blur-lg shadow-2xl"
+          className="rounded-[20px] lg:rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-gray-700/30 bg-black/50 backdrop-blur-lg shadow-2xl"
         >
           <div className="w-full text-center mb-16">
             <motion.h1
