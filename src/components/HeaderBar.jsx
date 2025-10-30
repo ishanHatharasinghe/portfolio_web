@@ -13,8 +13,8 @@ import {
   Search
 } from "lucide-react";
 import throttle from "lodash.throttle";
-import dp from "./../assets/myimage.png";
-import Robot from "../assets/28ddd8026ef34e12f9a9c60c864b3e8e-removebg-preview.png";
+import dp from "./../assets/myimage.webp";
+import Robot from "../assets/28ddd8026ef34e12f9a9c60c864b3e8e-removebg-preview.webp";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

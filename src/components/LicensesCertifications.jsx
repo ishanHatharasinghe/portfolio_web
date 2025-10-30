@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import certificate1 from "./../assets/Licenses & Certifications/Python_for_Beginners_E-Certificate.jpg";
-import certificate2 from "./../assets/Licenses & Certifications/Python_Programming_E-Certificate.jpg";
-import certificate3 from "./../assets/Licenses & Certifications/Web_Design_for_Beginners_E-Certificate.jpg";
-import certificate4 from "./../assets/Licenses & Certifications/Front-End_Web_Development_E-Certificate.jpg";
-import certificate5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.jpg";
-import certificate6 from "./../assets/Licenses & Certifications/ATC_AP70251809768572_Diploma in AutoCAD.jpg";
-import certificate7 from "./../assets/Licenses & Certifications/NVQ Level 4(ICT Technician).jpg";
-import bg from "./../assets/bg3.jpg";
+import certificate1 from "./../assets/Licenses & Certifications/Python_for_Beginners_E-Certificate.webp";
+import certificate2 from "./../assets/Licenses & Certifications/Python_Programming_E-Certificate.webp";
+import certificate3 from "./../assets/Licenses & Certifications/Web_Design_for_Beginners_E-Certificate.webp";
+import certificate4 from "./../assets/Licenses & Certifications/Front-End_Web_Development_E-Certificate.webp";
+import certificate5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.webp";
+import certificate6 from "./../assets/Licenses & Certifications/ATC_AP70251809768572_Diploma in AutoCAD.webp";
+import certificate7 from "./../assets/Licenses & Certifications/NVQ Level 4(ICT Technician).webp";
+import bg from "./../assets/bg3.webp";
 
 const LicensesCertifications = () => {
   const [selectedImage, setSelectedImage] = useState(null);

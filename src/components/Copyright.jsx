@@ -15,7 +15,7 @@ import {
   Download
 } from "lucide-react";
 import emailjs from "emailjs-com";
-import dp from "./../assets/myimage.png";
+import dp from "./../assets/myimage.webp";
 
 const XoraProfessionalFooter = ({
   companyName = "Ishan Hatharasinghe",

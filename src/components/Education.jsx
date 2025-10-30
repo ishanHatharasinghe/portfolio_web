@@ -1,8 +1,8 @@
 import React from "react";
-import bg from "./../assets/Education/bg2.jpg";
-import my from "./../assets/Education/group1.jpg";
-import my2 from "./../assets/Education/group2.jpg";
-import robot from "./../assets/Education/ChatGPT Image Sep 10, 2025, 10_53_13 AM.png";
+import bg from "./../assets/Education/bg2.webp";
+import my from "./../assets/Education/group1.webp";
+import my2 from "./../assets/Education/group2.webp";
+import robot from "./../assets/Education/ChatGPT Image Sep 10, 2025, 10_53_13 AM.webp";
 import { ArrowRight, ExternalLink, GraduationCap } from "lucide-react";
 import "./button.css";
 

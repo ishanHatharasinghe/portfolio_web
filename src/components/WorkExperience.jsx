@@ -1,13 +1,13 @@
 import "aos/dist/aos.css";
-import bg from "./../assets/bg3.jpg";
+import bg from "./../assets/bg3.webp";
 import { motion } from "framer-motion";
-import robot from "./../assets/Work1/scene-with-futuristic-robot-used-construction-industry.png";
-import Img1 from "./../assets/Work1/1.jpg";
-import Img2 from "./../assets/Work1/2.jpg";
-import Img3 from "./../assets/Work1/3.jpg";
-import Img4 from "./../assets/Work1/1.jpg";
-import Img5 from "./../assets/Work1/2.jpg";
-import Img6 from "./../assets/Work1/3.jpg";
+import robot from "./../assets/Work1/scene-with-futuristic-robot-used-construction-industry.webp";
+import Img1 from "./../assets/Work1/1.webp";
+import Img2 from "./../assets/Work1/2.webp";
+import Img3 from "./../assets/Work1/3.webp";
+import Img4 from "./../assets/Work1/1.webp";
+import Img5 from "./../assets/Work1/2.webp";
+import Img6 from "./../assets/Work1/3.webp";
 import { useState } from "react";
 
 const ProfessionalJourney = () => {

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import profilePic from "./../assets/About/myimage2.jpg";
-import logo from "./../assets/Home Section/aw.png";
-import codecoveLogo from "./../assets/About/logo.jpg";
-import bg from "./../assets/Home Section/bg.jpg";
-import member1 from "./../assets/About/1.jpg";
-import member2 from "./../assets/About/2.jpg";
-import member3 from "./../assets/About/3.jpg";
-import member4 from "./../assets/About/4.jpg";
+import profilePic from "./../assets/About/myimage2.webp";
+import logo from "./../assets/Home Section/aw.webp";
+import codecoveLogo from "./../assets/About/logo.webp";
+import bg from "./../assets/Home Section/bg.webp";
+import member1 from "./../assets/About/1.webp";
+import member2 from "./../assets/About/2.webp";
+import member3 from "./../assets/About/3.webp";
+import member4 from "./../assets/About/4.webp";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);

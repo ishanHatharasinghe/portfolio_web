@@ -8,7 +8,7 @@ import {
   LogIn,
   LogOut
 } from "lucide-react";
-import bg from "./../assets/Testimonials/bg.jpg";
+import bg from "./../assets/Testimonials/bg.webp";
 import {
   db,
   ref,
