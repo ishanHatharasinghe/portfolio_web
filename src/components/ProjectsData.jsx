@@ -167,6 +167,7 @@ const ProjectsData = () => {
     {
       id: 11,
       title: "Blue Haven Rentals",
+      subtitle: "BIT - University of Moratuwa",
       description: `Explore exceptional rental houses and boarding accommodations tailored to your lifestyle. Your ideal space is just a search away with Blue Haven Rentals.`,
 
       link: "",
@@ -201,7 +202,7 @@ const ProjectsData = () => {
     {
       id: 4,
       title: "MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM",
-      subtitle: "AI-Powered Sales Solution",
+      subtitle: "SLTMOBITEL - Digital Labs AI-Powered Sales Solution",
       description:
         "Helps SIM dealers with intelligent prepaid/postpaid package suggestions using AI.",
       technologies: "React, JavaScript, Google Script",
@@ -291,7 +292,7 @@ const ProjectsData = () => {
     {
       id: 1,
       title: "Vehicle Parking Management System (VPMS)",
-      subtitle: "University of Moratuwa",
+      subtitle: "BIT - University of Moratuwa",
       description:
         "A desktop application designed to automate parking operations, built with C# and SQL.",
       technologies: "C#, SQL",
