@@ -108,6 +108,27 @@ import gallery5_54 from "./../assets/Designs5/light (24).webp";
 import gallery5_55 from "./../assets/Designs5/light (25).webp";
 import gallery5_56 from "./../assets/Designs5/light (26).webp";
 import gallery5_57 from "./../assets/Designs5/light (27).webp";
+
+import gallery5_58 from "./../assets/Design6/1 (1).webp";
+import gallery5_59 from "./../assets/Design6/1 (2).webp";
+import gallery5_60 from "./../assets/Design6/1 (3).webp";
+import gallery5_61 from "./../assets/Design6/1 (4).webp";
+import gallery5_62 from "./../assets/Design6/1 (5).webp";
+import gallery5_63 from "./../assets/Design6/1 (6).webp";
+import gallery5_64 from "./../assets/Design6/1 (7).webp";
+import gallery5_65 from "./../assets/Design6/1 (8).webp";
+import gallery5_66 from "./../assets/Design6/1 (9).webp";
+import gallery5_67 from "./../assets/Design6/1 (10).webp";
+import gallery5_68 from "./../assets/Design6/1 (11).webp";
+import gallery5_69 from "./../assets/Design6/1 (12).webp";
+import gallery5_70 from "./../assets/Design6/1 (13).webp";
+import gallery5_71 from "./../assets/Design6/1 (14).webp";
+import gallery5_72 from "./../assets/Design6/1 (15).webp";
+import gallery5_73 from "./../assets/Design6/1 (16).webp";
+import gallery5_74 from "./../assets/Design6/1 (17).webp";
+import gallery5_75 from "./../assets/Design6/1 (18).webp";
+import gallery5_76 from "./../assets/Design6/1 (19).webp";
+
 import bg from "./../assets/Education/bg2.webp";
 
 const ProjectsData = () => {
@@ -168,6 +189,35 @@ const ProjectsData = () => {
 
   // Ensure that each project has a unique ID.
   const projects = [
+    {
+      id: 6,
+      image: gallery5_58,
+      title: "Blue Haven Rentals",
+      technologies: ["Figma"],
+      category: "Web Application",
+      description: "Discover Your Perfect Haven",
+      galleryImages: [
+        gallery5_58,
+        gallery5_59,
+        gallery5_60,
+        gallery5_61,
+        gallery5_62,
+        gallery5_63,
+        gallery5_64,
+        gallery5_65,
+        gallery5_66,
+        gallery5_67,
+        gallery5_68,
+        gallery5_69,
+        gallery5_70,
+        gallery5_71,
+        gallery5_72,
+        gallery5_73,
+        gallery5_74,
+        gallery5_75,
+        gallery5_76
+      ]
+    },
     {
       id: 1,
       image: my,

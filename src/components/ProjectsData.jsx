@@ -109,6 +109,40 @@ import report7 from "./../assets/Project 7/report.pdf";
 import presentation7 from "./../assets/Project 7/Presentation.pdf";
 import report8 from "./../assets/Project 8/report.pdf";
 
+import gallery5_58 from "./../assets/Design6/1 (1).webp";
+import gallery5_59 from "./../assets/Design6/1 (2).webp";
+import gallery5_60 from "./../assets/Design6/1 (3).webp";
+import gallery5_61 from "./../assets/Design6/1 (4).webp";
+import gallery5_62 from "./../assets/Design6/1 (5).webp";
+import gallery5_63 from "./../assets/Design6/1 (6).webp";
+import gallery5_64 from "./../assets/Design6/1 (7).webp";
+import gallery5_65 from "./../assets/Design6/1 (8).webp";
+import gallery5_66 from "./../assets/Design6/1 (9).webp";
+import gallery5_67 from "./../assets/Design6/1 (10).webp";
+import gallery5_68 from "./../assets/Design6/1 (11).webp";
+import gallery5_69 from "./../assets/Design6/1 (12).webp";
+import gallery5_70 from "./../assets/Design6/1 (13).webp";
+import gallery5_71 from "./../assets/Design6/1 (14).webp";
+import gallery5_72 from "./../assets/Design6/1 (15).webp";
+import gallery5_73 from "./../assets/Design6/1 (16).webp";
+import gallery5_74 from "./../assets/Design6/1 (17).webp";
+import gallery5_75 from "./../assets/Design6/1 (18).webp";
+import gallery5_76 from "./../assets/Design6/1 (19).webp";
+
+import gallery5_89 from "./../assets/Project 11/mesms (1).webp";
+import gallery5_77 from "./../assets/Project 11/mesms (2).webp";
+import gallery5_78 from "./../assets/Project 11/mesms (3).webp";
+import gallery5_79 from "./../assets/Project 11/mesms (4).webp";
+import gallery5_80 from "./../assets/Project 11/mesms (5).webp";
+import gallery5_81 from "./../assets/Project 11/mesms (6).webp";
+import gallery5_82 from "./../assets/Project 11/mesms (7).webp";
+import gallery5_83 from "./../assets/Project 11/mesms (8).webp";
+import gallery5_84 from "./../assets/Project 11/mesms (9).webp";
+import gallery5_85 from "./../assets/Project 11/mesms (10).webp";
+import gallery5_86 from "./../assets/Project 11/mesms (11).webp";
+import gallery5_87 from "./../assets/Project 11/mesms (12).webp";
+import gallery5_88 from "./../assets/Project 11/mesms (13).webp";
+
 import {
   Boxes,
   ExternalLink,
@@ -156,6 +190,41 @@ const ProjectsData = () => {
       category: "Web Application",
       gradient: "from-orange-500/20 to-red-500/20"
     },
+
+    {
+      id: 11,
+      title: "Blue Haven Rentals",
+      description: `Explore exceptional rental houses and boarding accommodations tailored to your lifestyle. Your ideal space is just a search away with Blue Haven Rentals.`,
+
+      link: "",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        gallery5_58,
+        gallery5_59,
+        gallery5_60,
+        gallery5_61,
+        gallery5_62,
+        gallery5_63,
+        gallery5_64,
+        gallery5_65,
+        gallery5_66,
+        gallery5_67,
+        gallery5_68,
+        gallery5_69,
+        gallery5_70,
+        gallery5_71,
+        gallery5_72,
+        gallery5_73,
+        gallery5_74,
+        gallery5_75,
+        gallery5_76
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+
     {
       id: 10,
       title: "Luminance Graphic Portfolio",
@@ -316,8 +385,23 @@ and reliably.`,
       description:
         "Helps SIM dealers with intelligent prepaid/postpaid package suggestions using AI.",
       technologies: "React, JavaScript, Google Script",
-      link: "https://example.com/llm",
-      images: [my3],
+      link: "",
+      images: [
+        my3,
+        gallery5_89,
+        gallery5_77,
+        gallery5_78,
+        gallery5_79,
+        gallery5_80,
+        gallery5_81,
+        gallery5_82,
+        gallery5_83,
+        gallery5_84,
+        gallery5_85,
+        gallery5_86,
+        gallery5_87,
+        gallery5_88
+      ],
       members: [member1],
       category: "Web Application",
       gradient: "from-violet-500/20 to-purple-500/20"
