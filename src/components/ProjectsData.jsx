@@ -165,33 +165,6 @@ const ProjectsData = () => {
 
   const projectsData = [
     {
-      id: 9,
-      title: "Personal Portfolio",
-      description: `The Intersection of Electronics and Code`,
-
-      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_excited-to-launch-my-portfolio-website-activity-7359939207974346753-iIWq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
-
-      technologies: ["React, , Tailwind css, Firebase"],
-      images: [
-        project91,
-        project92,
-        project93,
-        project94,
-        project95,
-        project96,
-        project97,
-        project98,
-        project99,
-        project910,
-        project911,
-        project912
-      ],
-      members: [member1],
-      category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
-    },
-
-    {
       id: 11,
       title: "Blue Haven Rentals",
       description: `Explore exceptional rental houses and boarding accommodations tailored to your lifestyle. Your ideal space is just a search away with Blue Haven Rentals.`,
@@ -226,62 +199,34 @@ const ProjectsData = () => {
     },
 
     {
-      id: 10,
-      title: "Luminance Graphic Portfolio",
-      description: `I design logos, brand systems, apparel graphics, packaging, and marketing assets that are distinctive and production‑ready—built to perform across print and digital.`,
-
-      link: "https://luminancegraphic.netlify.app/",
-
-      technologies: ["React, , Tailwind css, Firebase"],
+      id: 4,
+      title: "MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM",
+      subtitle: "AI-Powered Sales Solution",
+      description:
+        "Helps SIM dealers with intelligent prepaid/postpaid package suggestions using AI.",
+      technologies: "React, JavaScript, Google Script",
+      link: "",
       images: [
-        projectLG1,
-        projectLG2,
-        projectLG3,
-        projectLG4,
-        projectLG5,
-        projectLG6,
-        projectLG7,
-        projectLG8,
-        projectLG9,
-        projectLG10,
-        projectLG11,
-        projectLG12,
-        projectLG13
+        my3,
+        gallery5_89,
+        gallery5_77,
+        gallery5_78,
+        gallery5_79,
+        gallery5_80,
+        gallery5_81,
+        gallery5_82,
+        gallery5_83,
+        gallery5_84,
+        gallery5_85,
+        gallery5_86,
+        gallery5_87,
+        gallery5_88
       ],
       members: [member1],
       category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
+      gradient: "from-violet-500/20 to-purple-500/20"
     },
-    {
-      id: 1,
-      title: "Vehicle Parking Management System (VPMS)",
-      subtitle: "University of Moratuwa",
-      description:
-        "A desktop application designed to automate parking operations, built with C# and SQL.",
-      technologies: "C#, SQL",
-      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
-      images: [my],
-      members: [member1],
-      category: "Desktop Application",
-      gradient: "from-blue-500/20 to-purple-500/20",
-      reportLink: report3,
-      presentationLink: presentation3
-    },
-    {
-      id: 2,
-      title: "TaxiMeter",
-      subtitle: "HND in Electrical and Electronics Engineering",
-      description:
-        "Fuel Price Manager is your all-in-one solution to stay informed, plan smarter, and save more when it comes to fuel expenses across Sri Lanka.",
-      technologies: "React, JavaScript, Firebase",
-      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
-      images: [my5, my6, my7, my8],
-      members: [member1],
-      category: "Web Application + IOT Device",
-      gradient: "from-emerald-500/20 to-teal-500/20",
-      reportLink: report2,
-      presentationLink: presentation2
-    },
+
     {
       id: 3,
       title: "Smart Automated Elephant Deterrent System",
@@ -316,6 +261,92 @@ const ProjectsData = () => {
       reportLink: report,
       presentationLink: presentation
     },
+
+    {
+      id: 9,
+      title: "Personal Portfolio",
+      description: `The Intersection of Electronics and Code`,
+
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_excited-to-launch-my-portfolio-website-activity-7359939207974346753-iIWq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        project91,
+        project92,
+        project93,
+        project94,
+        project95,
+        project96,
+        project97,
+        project98,
+        project99,
+        project910,
+        project911,
+        project912
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+    {
+      id: 1,
+      title: "Vehicle Parking Management System (VPMS)",
+      subtitle: "University of Moratuwa",
+      description:
+        "A desktop application designed to automate parking operations, built with C# and SQL.",
+      technologies: "C#, SQL",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
+      images: [my],
+      members: [member1],
+      category: "Desktop Application",
+      gradient: "from-blue-500/20 to-purple-500/20",
+      reportLink: report3,
+      presentationLink: presentation3
+    },
+    {
+      id: 10,
+      title: "Luminance Graphic Portfolio",
+      description: `I design logos, brand systems, apparel graphics, packaging, and marketing assets that are distinctive and production‑ready—built to perform across print and digital.`,
+
+      link: "https://luminancegraphic.netlify.app/",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        projectLG1,
+        projectLG2,
+        projectLG3,
+        projectLG4,
+        projectLG5,
+        projectLG6,
+        projectLG7,
+        projectLG8,
+        projectLG9,
+        projectLG10,
+        projectLG11,
+        projectLG12,
+        projectLG13
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+
+    {
+      id: 2,
+      title: "TaxiMeter",
+      subtitle: "HND in Electrical and Electronics Engineering",
+      description:
+        "Fuel Price Manager is your all-in-one solution to stay informed, plan smarter, and save more when it comes to fuel expenses across Sri Lanka.",
+      technologies: "React, JavaScript, Firebase",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
+      images: [my5, my6, my7, my8],
+      members: [member1],
+      category: "Web Application + IOT Device",
+      gradient: "from-emerald-500/20 to-teal-500/20",
+      reportLink: report2,
+      presentationLink: presentation2
+    },
+
     {
       id: 7,
       title:
@@ -378,34 +409,7 @@ and reliably.`,
       gradient: "from-orange-500/20 to-red-500/20",
       reportLink: report8
     },
-    {
-      id: 4,
-      title: "MOBITEL AI-DRIVEN EDGE SALES MANAGEMENT SYSTEM",
-      subtitle: "AI-Powered Sales Solution",
-      description:
-        "Helps SIM dealers with intelligent prepaid/postpaid package suggestions using AI.",
-      technologies: "React, JavaScript, Google Script",
-      link: "",
-      images: [
-        my3,
-        gallery5_89,
-        gallery5_77,
-        gallery5_78,
-        gallery5_79,
-        gallery5_80,
-        gallery5_81,
-        gallery5_82,
-        gallery5_83,
-        gallery5_84,
-        gallery5_85,
-        gallery5_86,
-        gallery5_87,
-        gallery5_88
-      ],
-      members: [member1],
-      category: "Web Application",
-      gradient: "from-violet-500/20 to-purple-500/20"
-    },
+
     {
       id: 5,
       title: "LassanaMoments",
