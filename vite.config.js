@@ -8,7 +8,7 @@ export default defineConfig({
     exclude: ['firebase'] // Exclude firebase from optimization if needed
   },
   plugins: [react()],
-  base: '/portfolio_web/',
+  base: '/',
   assetsInclude: ['**/*.JPG']
   
 })
