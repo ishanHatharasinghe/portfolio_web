@@ -31,13 +31,14 @@ const ProfessionalJourney = () => {
   };
 
   return (
-    <section className="h-full relative min-h-screen w-full bg-black overflow-hidden">
+    <section className="h-full relative min-h-screen w-full  overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className=" w-full h-full object-cover"
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
+        />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
         />
         <img
           src={robot}
@@ -56,7 +57,7 @@ const ProfessionalJourney = () => {
             </div>
             <div>
               {/* Text Block */}
-              <div className="bg-black/40 backdrop-blur-md rounded-[2rem] p-8">
+              <div className="bg-black/10 backdrop-blur-md rounded-[2rem] p-8">
                 <h1 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
                   Professional Journey
                 </h1>

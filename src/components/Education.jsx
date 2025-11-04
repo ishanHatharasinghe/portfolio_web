@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "./../assets/Education/bg2.webp";
+import bg from "./../assets/Home Section/bg3.webp";
 import my from "./../assets/Education/group1.webp";
 import my2 from "./../assets/Education/group2.webp";
 import robot from "./../assets/Education/ChatGPT Image Sep 10, 2025, 10_53_13 AM.webp";
@@ -36,16 +36,7 @@ const Education = () => {
   };
 
   return (
-    <div className="h-full relative min-h-screen w-full bg-black overflow-hidden">
-      {/* Background with enhanced gradient overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className=" blur-[1px] w-full h-full object-cover opacity-100"
-        />
-      </div>
-
+    <div className="h-full relative min-h-screen w-full  overflow-hidden">
       {/* Main content */}
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
         <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-2 border-2 mb-4 border-gray-700/30 ">

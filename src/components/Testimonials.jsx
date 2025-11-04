@@ -8,7 +8,7 @@ import {
   LogIn,
   LogOut
 } from "lucide-react";
-import bg from "./../assets/Testimonials/bg.webp";
+import bg from "./../assets/Home Section/bg3.webp";
 import {
   db,
   ref,
@@ -227,13 +227,14 @@ const TestimonialsSection = () => {
 
   return (
     <div className="min-h-screen w-full relative">
+      {/* Background with enhanced gradient overlay */}
       <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className="w-full h-full object-cover opacity-100"
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/40 to-black opacity-80" />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
+        />
       </div>
 
       <div className="relative min-h-auto flex flex-col justify-between items-center px-6 py-16">

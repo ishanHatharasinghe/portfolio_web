@@ -70,13 +70,14 @@ const LicensesCertifications = () => {
   ];
 
   return (
-    <section className="h-full relative min-h-screen w-full bg-black overflow-hidden">
+    <section className="h-full relative min-h-screen w-full overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className="w-full h-full object-cover opacity-100"
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
+        />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
         />
       </div>
 

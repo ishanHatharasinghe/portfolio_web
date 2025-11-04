@@ -1,8 +1,5 @@
 import React from "react";
-import bg from "./../assets/Home Section/bg3.webp";
 import my from "./../assets/Home Section/my2.webp";
-import robot from "./../assets/Home Section/ChatGPT Image Sep 10, 2025, 10_32_45 AM.webp";
-import robot2 from "./../assets/Home Section/ChatGPT Image Sep 10, 2025, 10_32_45 AM.webp";
 import slt from "./../assets/Home Section/slt.webp";
 import aw from "./../assets/Home Section/aw.webp";
 import chaya from "./../assets/Project 7/ChatGPT Image Aug 8, 2025, 05_29_32 PM.webp";
@@ -17,56 +14,15 @@ import { useState, useEffect } from "react";
 import { FaReact } from "react-icons/fa";
 import resumePDF from "./../assets/cv.pdf";
 
-const Home = () => {
+const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [currentRobot, setCurrentRobot] = useState(0); // 0 for robot, 1 for robot2
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const robots = [robot, robot2];
   const appLogos = [logo1, logo2, logo3, logo4, logo5];
-
-  // Theme configurations for each robot
-  const themes = [
-    {
-      // Robot 1 theme (Purple/Blue)
-      primaryGradient: "from-purple-600 to-blue-600",
-      primaryHoverGradient: "from-purple-500 to-blue-500",
-      secondaryGradient: "from-orange-600 to-red-600",
-      secondaryHoverGradient: "from-orange-500 to-red-500",
-      cardGradient: "from-black/70 via-purple-900/20 to-blue-900/10",
-      cardHoverShadow: "hover:shadow-purple-500/40",
-      cardBorder: "hover:border-purple-400/50",
-      glowEffect: "from-purple-500/20 to-blue-500/15",
-      robotGlow: "from-orange-500/25 via-purple-500/15 to-cyan-500/20",
-      accentColor: "text-cyan-400",
-      badgeGradient: "from-purple-500/30 to-purple-600/20",
-      badgeText: "text-purple-200",
-      badgeBorder: "border-purple-400/40"
-    },
-    {
-      // Robot 2 theme (Green/Teal)
-      primaryGradient: "from-emerald-600 to-teal-600",
-      primaryHoverGradient: "from-emerald-500 to-teal-500",
-      secondaryGradient: "from-amber-600 to-orange-600",
-      secondaryHoverGradient: "from-amber-500 to-orange-500",
-      cardGradient: "from-black/70 via-emerald-900/20 to-teal-900/10",
-      cardHoverShadow: "hover:shadow-emerald-500/40",
-      cardBorder: "hover:border-emerald-400/50",
-      glowEffect: "from-emerald-500/20 to-teal-500/15",
-      robotGlow: "from-amber-500/25 via-emerald-500/15 to-teal-500/20",
-      accentColor: "text-emerald-400",
-      badgeGradient: "from-emerald-500/30 to-emerald-600/20",
-      badgeText: "text-emerald-200",
-      badgeBorder: "border-emerald-400/40"
-    }
-  ];
-
-  const currentTheme = themes[currentRobot];
 
   // Detect mobile screen size
   useEffect(() => {
@@ -79,29 +35,6 @@ const Home = () => {
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  // Auto-switch robots every 5 seconds (desktop only)
-  useEffect(() => {
-    if (!isMobile) {
-      const interval = setInterval(() => {
-        switchRobot();
-      }, 5000);
-
-      return () => clearInterval(interval);
-    }
-  }, [currentRobot, isMobile]);
-
-  const switchRobot = () => {
-    if (isMobile) return; // Disable robot switching on mobile
-
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentRobot((prev) => (prev + 1) % robots.length);
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 300);
-    }, 300);
-  };
 
   const FooterLink = ({ href, label }) => (
     <li>
@@ -168,30 +101,8 @@ const Home = () => {
   };
 
   return (
-    <div
-      className={`h-auto relative min-h-auto w-full bg-black overflow-hidden transition-all duration-1000`}
-    >
-      {/* Background with enhanced gradient overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className="w-full h-full object-cover opacity-100"
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5 transition-all duration-1000 ${
-            currentRobot === 1 ? "via-emerald-900/10 to-teal-900/5" : ""
-          }`}
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15 transition-all duration-1000 ${
-            currentRobot === 1 ? "via-emerald-900/5 to-teal-900/15" : ""
-          }`}
-        />
-      </div>
-
-      {/* Main content */}
-      <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">
+    <>
+      <div className="relative min-h-auto flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">
         <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
           {/* Top header with modern styling */}
           <div className="w-full text-center">
@@ -207,15 +118,11 @@ const Home = () => {
               {/* Enhanced Profile card */}
               <div className="group relative w-60 md:w-80 mt-[300px] z-30">
                 <div
-                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700 shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30 ${
-                    currentRobot === 1
-                      ? "to-emerald-900/20 shadow-emerald-500/20 group-hover:shadow-amber-500/30"
-                      : ""
-                  }`}
+                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700 shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30`}
                 >
                   {/* React Icon in Top Left */}
                   <FaReact
-                    className={`absolute top-4 left-4 ${currentTheme.accentColor} text-2xl animate-spin-slow transition-colors duration-1000`}
+                    className={`absolute top-4 left-4 ${currentTheme.accentColor} text-2xl animate-spin-slow`}
                   />
 
                   {/* Rest of your content */}
@@ -227,9 +134,7 @@ const Home = () => {
                         className="w-full rounded-2xl transition-all duration-700 group-hover:scale-[1.1] group/img:brightness-110"
                       />
                       <div
-                        className={`absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                          currentRobot === 1 ? "from-emerald-500/10" : ""
-                        }`}
+                        className={`absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                       />
                     </div>
 
@@ -238,11 +143,7 @@ const Home = () => {
                       {appLogos.map((logo, index) => (
                         <div
                           key={index}
-                          className={`w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl ${
-                            currentRobot === 1
-                              ? "hover:shadow-emerald-400/40"
-                              : "hover:shadow-purple-400/40"
-                          }`}
+                          className={`w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl hover:shadow-purple-400/40`}
                           style={{ animationDelay: `${index * 0.1}s` }}
                         >
                           <img
@@ -698,16 +599,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Theme transition overlay - Desktop only */}
-      {!isMobile && (
-        <div
-          className={`absolute inset-0 pointer-events-none transition-all duration-1000 ${
-            isTransitioning ? "bg-black/20" : "bg-transparent"
-          }`}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Code, Cpu, Palette, Boxes } from "lucide-react";
-
 import factoryio from "./../assets/Skills/factoryio.webp";
 import vb from "./../assets/Skills/vb.webp";
 import xampp from "./../assets/Skills/xampp.webp";
@@ -103,7 +102,7 @@ const CategoryButton = ({ icon: Icon, label, isActive, onClick }) => (
   </motion.button>
 );
 
-const Skills = () => {
+const SkillsData = ({ currentTheme }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const categories = [
@@ -261,14 +260,13 @@ const Skills = () => {
       : skillsData.filter((skill) => skill.category === selectedCategory);
 
   return (
-    <div className="min-h-screen w-full bg-black overflow-hidden relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80 z-0" />
+    <>
       <div className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="rounded-[20px] lg:rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-gray-700/30 bg-black/50 backdrop-blur-lg shadow-2xl"
+          className="rounded-[20px] lg:rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-white/10 bg-black/20 backdrop-blur-lg shadow-2xl"
         >
           <div className="w-full text-center mb-16">
             <motion.h1
@@ -324,30 +322,8 @@ const Skills = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/50 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: -Math.random() * window.innerHeight
-            }}
-            animate={{
-              x: Math.random() * window.innerWidth,
-              y: window.innerHeight + 100
-            }}
-            transition={{
-              duration: Math.random() * 5 + 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
-export default Skills;
+export default SkillsData;

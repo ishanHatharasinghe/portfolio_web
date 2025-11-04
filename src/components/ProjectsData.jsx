@@ -1,11 +1,4 @@
 import React, { useState, useMemo } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-
-import { motion, AnimatePresence } from "framer-motion";
 import my from "./../assets/Project1/Slide1.webp";
 import my2 from "./../assets/Project2/page.webp";
 import my3 from "./../assets/Project3/page.webp";
@@ -96,8 +89,6 @@ import member7 from "./../assets/About/7.webp";
 import member8 from "./../assets/About/8.webp";
 
 // Assets
-import bg from "./../assets/Home Section/bg4.webp";
-
 // Docs
 import report from "./../assets/Project 6 SAEDS/Smart Automated Elephant Deterrent System FINAL REPORT.pdf";
 import presentation from "./../assets/Project 6 SAEDS/Project Presentation.pdf";
@@ -156,7 +147,7 @@ import {
   List
 } from "lucide-react";
 
-const ProjectsData = () => {
+const ProjectsData = ({ currentTheme }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedTech, setSelectedTech] = useState("All");
@@ -227,7 +218,21 @@ const ProjectsData = () => {
       category: "Web Application",
       gradient: "from-violet-500/20 to-purple-500/20"
     },
-
+    {
+      id: 1,
+      title: "Vehicle Parking Management System (VPMS)",
+      subtitle: "BIT - University of Moratuwa",
+      description:
+        "A desktop application designed to automate parking operations, built with C# and SQL.",
+      technologies: "C#, SQL",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
+      images: [my],
+      members: [member1],
+      category: "Desktop Application",
+      gradient: "from-blue-500/20 to-purple-500/20",
+      reportLink: report3,
+      presentationLink: presentation3
+    },
     {
       id: 3,
       title: "Smart Automated Elephant Deterrent System",
@@ -289,21 +294,7 @@ const ProjectsData = () => {
       category: "Web Application",
       gradient: "from-orange-500/20 to-red-500/20"
     },
-    {
-      id: 1,
-      title: "Vehicle Parking Management System (VPMS)",
-      subtitle: "BIT - University of Moratuwa",
-      description:
-        "A desktop application designed to automate parking operations, built with C# and SQL.",
-      technologies: "C#, SQL",
-      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
-      images: [my],
-      members: [member1],
-      category: "Desktop Application",
-      gradient: "from-blue-500/20 to-purple-500/20",
-      reportLink: report3,
-      presentationLink: presentation3
-    },
+
     {
       id: 10,
       title: "Luminance Graphic Portfolio",
@@ -478,19 +469,7 @@ and reliably.`,
   const MemberAvatars = ({ members, projectId }) => (
     <div className="flex -space-x-2 mb-4">
       {members.map((member, index) => (
-        <motion.div
-          key={`${projectId}-member-${index}`}
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{
-            delay: index * 0.1,
-            type: "spring",
-            stiffness: 260,
-            damping: 20
-          }}
-          whileHover={{ scale: 1.1, zIndex: 10 }}
-          className="relative"
-        >
+        <div key={`${projectId}-member-${index}`} className="relative">
           <div className="w-6 h-6 rounded-full border-3 border-white/30 overflow-hidden bg-gradient-to-br from-purple-400 to-pink-400 shadow-lg ring-2 ring-purple-500/20">
             <img
               src={member}
@@ -499,19 +478,13 @@ and reliably.`,
             />
           </div>
           <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-400 border-2 border-white rounded-full animate-pulse"></div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );
 
   const ProjectCard = ({ project, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ delay: index * 0.1 }}
-      className="group relative w-full h-full"
-    >
+    <div className="group relative w-full h-full">
       <div
         className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
       />
@@ -535,36 +508,11 @@ and reliably.`,
             <MemberAvatars members={project.members} projectId={project.id} />
           </div>
           <div className="relative mb-6 overflow-hidden rounded-2xl">
-            {project.images.length > 1 ? (
-              <Swiper
-                modules={[Autoplay, Pagination, EffectFade]}
-                slidesPerView={1}
-                effect="fade"
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true
-                }}
-                pagination={{ clickable: true, dynamicBullets: true }}
-                className="w-full aspect-video rounded-2xl"
-              >
-                {project.images.map((image, i) => (
-                  <SwiperSlide key={i}>
-                    <img
-                      src={image}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            ) : (
-              <img
-                src={project.images[0]}
-                alt=""
-                className="w-full aspect-video object-cover rounded-2xl"
-              />
-            )}
+            <img
+              src={project.images[0]}
+              alt=""
+              className="w-full aspect-video object-cover rounded-2xl"
+            />
           </div>
         </div>
 
@@ -617,82 +565,59 @@ and reliably.`,
               (project.id === 3,
               2 ? (
                 <>
-                  <motion.a
+                  <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
                   >
                     <ExternalLink className="w-4 h-4" />
                     View Project
-                  </motion.a>
-                  <motion.a
+                  </a>
+                  <a
                     href={project.reportLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
                   >
                     <FileText className="w-4 h-4" />
                     View Report
-                  </motion.a>
-                  <motion.a
+                  </a>
+                  <a
                     href={project.presentationLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
                   >
                     <Presentation className="w-4 h-4" />
                     Presentation
-                  </motion.a>
+                  </a>
                 </>
               ) : (
                 project.link && (
-                  <motion.a
+                  <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
                   >
                     <ExternalLink className="w-4 h-4" />
                     View Project
-                  </motion.a>
+                  </a>
                 )
               ))
             }
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 
   return (
-    <div
-      id="projects"
-      className="h-full relative min-h-screen w-full bg-black overflow-hidden"
-    >
-      <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className="blur-[5px] w-full h-full object-cover opacity-80"
-        />
-      </div>
+    <div id="projects" className="relative min-h-screen w-full">
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
-        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-10"
-          >
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 mb-4 border-white/10 bg-black/20 backdrop-blur-sm">
+          <div className="text-center mb-10">
             <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
               Creative Ventures
             </h2>
@@ -702,12 +627,7 @@ and reliably.`,
             </p>
 
             {/* Search and Filter Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="max-w-4xl mx-auto mb-8"
-            >
+            <div className="max-w-4xl mx-auto mb-8">
               {/* Search Bar */}
               <div className="relative mb-4">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -732,50 +652,41 @@ and reliably.`,
               <div className="flex flex-wrap gap-4 justify-between items-center">
                 {/* Filters */}
                 <div className="flex flex-wrap gap-4 items-center">
-                  <motion.button
+                  <button
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                     className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl hover:bg-gray-700/50 transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     <Filter className="w-4 h-4" />
                     Filters
-                  </motion.button>
+                  </button>
 
-                  <AnimatePresence>
-                    {isFilterOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        className="flex flex-wrap gap-3"
+                  {isFilterOpen && (
+                    <div className="flex flex-wrap gap-3">
+                      <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
                       >
-                        <select
-                          value={selectedCategory}
-                          onChange={(e) => setSelectedCategory(e.target.value)}
-                          className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
-                        >
-                          {categories.map((cat) => (
-                            <option key={cat} value={cat}>
-                              {cat}
-                            </option>
-                          ))}
-                        </select>
+                        {categories.map((cat) => (
+                          <option key={cat} value={cat}>
+                            {cat}
+                          </option>
+                        ))}
+                      </select>
 
-                        <select
-                          value={selectedTech}
-                          onChange={(e) => setSelectedTech(e.target.value)}
-                          className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
-                        >
-                          {technologies.map((tech) => (
-                            <option key={tech} value={tech}>
-                              {tech}
-                            </option>
-                          ))}
-                        </select>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      <select
+                        value={selectedTech}
+                        onChange={(e) => setSelectedTech(e.target.value)}
+                        className="px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 rounded-xl focus:outline-none focus:border-blue-500/50 text-sm"
+                      >
+                        {technologies.map((tech) => (
+                          <option key={tech} value={tech}>
+                            {tech}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
 
                 {/* View Mode Controls */}
@@ -786,7 +697,7 @@ and reliably.`,
                     { mode: "grid-2", icon: Grid2X2, tooltip: "2 Columns" },
                     { mode: "list", icon: List, tooltip: "List View" }
                   ].map(({ mode, icon: Icon, tooltip }) => (
-                    <motion.button
+                    <button
                       key={mode}
                       onClick={() => setViewMode(mode)}
                       className={`p-2 rounded-lg transition-all duration-300 ${
@@ -794,22 +705,16 @@ and reliably.`,
                           ? "bg-blue-500/20 text-blue-400 border border-blue-500/50"
                           : "bg-gray-800/50 text-gray-400 border border-gray-600/50 hover:text-white hover:bg-gray-700/50"
                       }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                       title={tooltip}
                     >
                       <Icon className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
 
               {/* Results Counter */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center mt-4"
-              >
+              <div className="text-center mt-4">
                 <span className="text-sm text-gray-400">
                   Showing {filteredProjects.length} of {projectsData.length}{" "}
                   projects
@@ -817,101 +722,73 @@ and reliably.`,
                   {selectedCategory !== "All" && ` in ${selectedCategory}`}
                   {selectedTech !== "All" && ` using ${selectedTech}`}
                 </span>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </div>
+            </div>
+          </div>
 
           {/* Projects Grid */}
-          <AnimatePresence mode="wait">
-            {filteredProjects.length > 0 ? (
-              <motion.div
-                key={`${viewMode}-${selectedCategory}-${selectedTech}-${searchTerm}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className={`grid ${gridClasses[viewMode]} gap-6 max-w-screen-xl mx-auto`}
-              >
-                {filteredProjects.map((project, index) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    index={index}
-                  />
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="text-center py-16"
-              >
-                <div className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-12 border border-gray-700/40 max-w-md mx-auto">
-                  <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    No Projects Found
-                  </h3>
-                  <p className="text-gray-400 mb-6">
-                    Try adjusting your search terms or filters to find what
-                    you're looking for.
-                  </p>
-                  <div className="flex flex-wrap gap-3 justify-center">
-                    {searchTerm && (
-                      <motion.button
-                        onClick={() => setSearchTerm("")}
-                        className="px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/50 rounded-xl hover:bg-blue-500/30 transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Clear Search
-                      </motion.button>
-                    )}
-                    {selectedCategory !== "All" && (
-                      <motion.button
-                        onClick={() => setSelectedCategory("All")}
-                        className="px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500/30 transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Clear Category
-                      </motion.button>
-                    )}
-                    {selectedTech !== "All" && (
-                      <motion.button
-                        onClick={() => setSelectedTech("All")}
-                        className="px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/50 rounded-xl hover:bg-green-500/30 transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Clear Technology
-                      </motion.button>
-                    )}
-                    <motion.button
-                      onClick={() => {
-                        setSearchTerm("");
-                        setSelectedCategory("All");
-                        setSelectedTech("All");
-                      }}
-                      className="px-4 py-2 bg-gray-700/50 text-gray-300 border border-gray-600/50 rounded-xl hover:bg-gray-600/50 transition-all duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+          {filteredProjects.length > 0 ? (
+            <div
+              key={`${viewMode}-${selectedCategory}-${selectedTech}-${searchTerm}`}
+              className={`grid ${gridClasses[viewMode]} gap-6 max-w-screen-xl mx-auto`}
+            >
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-12 border border-gray-700/40 max-w-md mx-auto">
+                <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  No Projects Found
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  Try adjusting your search terms or filters to find what you're
+                  looking for.
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm("")}
+                      className="px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/50 rounded-xl hover:bg-blue-500/30 transition-all duration-300"
                     >
-                      Reset All Filters
-                    </motion.button>
-                  </div>
+                      Clear Search
+                    </button>
+                  )}
+                  {selectedCategory !== "All" && (
+                    <button
+                      onClick={() => setSelectedCategory("All")}
+                      className="px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-xl hover:bg-purple-500/30 transition-all duration-300"
+                    >
+                      Clear Category
+                    </button>
+                  )}
+                  {selectedTech !== "All" && (
+                    <button
+                      onClick={() => setSelectedTech("All")}
+                      className="px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/50 rounded-xl hover:bg-green-500/30 transition-all duration-300"
+                    >
+                      Clear Technology
+                    </button>
+                  )}
+                  <button
+                    onClick={() => {
+                      setSearchTerm("");
+                      setSelectedCategory("All");
+                      setSelectedTech("All");
+                    }}
+                    className="px-4 py-2 bg-gray-700/50 text-gray-300 border border-gray-600/50 rounded-xl hover:bg-gray-600/50 transition-all duration-300"
+                  >
+                    Reset All Filters
+                  </button>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </div>
+          )}
 
           {/* Quick Filter Tags */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 flex flex-wrap gap-3 justify-center"
-          >
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <span className="text-sm text-gray-400 mr-2">Quick filters:</span>
             {[
               "Web Application",
@@ -921,7 +798,7 @@ and reliably.`,
               "Firebase",
               "Arduino"
             ].map((tag) => (
-              <motion.button
+              <button
                 key={tag}
                 onClick={() => {
                   if (categories.includes(tag)) {
@@ -931,13 +808,11 @@ and reliably.`,
                   }
                 }}
                 className="px-3 py-1 bg-gray-800/30 text-gray-400 text-xs rounded-full border border-gray-700/30 hover:bg-gray-700/40 hover:text-white hover:border-gray-600/50 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 {tag}
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

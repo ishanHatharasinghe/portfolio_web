@@ -129,7 +129,7 @@ import gallery5_74 from "./../assets/Design6/1 (17).webp";
 import gallery5_75 from "./../assets/Design6/1 (18).webp";
 import gallery5_76 from "./../assets/Design6/1 (19).webp";
 
-import bg from "./../assets/Education/bg2.webp";
+import bg from "./../assets/Home Section/bg3.webp";
 
 const ProjectsData = () => {
   // Use lazy initialization so that saved data is loaded immediately.
@@ -354,8 +354,17 @@ const ProjectsData = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-black via-purple-900/20 to-black">
-      <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16">
+    <div className="h-full relative min-h-screen w-full  overflow-hidden">
+      {/* Background with enhanced gradient overlay */}
+      <div className="absolute inset-0">
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
+        />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
+        />
+      </div>
+      <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16 z-10">
         {/* Header Section */}
         <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
           <div>

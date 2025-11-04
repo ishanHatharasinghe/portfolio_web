@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import profilePic from "./../assets/About/myimage2.webp";
 import logo from "./../assets/Home Section/aw.webp";
 import codecoveLogo from "./../assets/About/logo.webp";
-import bg from "./../assets/Home Section/bg.webp";
 import member1 from "./../assets/About/1.webp";
 import member2 from "./../assets/About/2.webp";
 import member3 from "./../assets/About/3.webp";
 import member4 from "./../assets/About/4.webp";
 
-const HeroSection = () => {
+const AboutUs = ({ currentTheme }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -119,40 +118,8 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="h-full bg-black text-white p-8 relative overflow-hidden">
-      {/* Enhanced background with parallax effect */}
-      <div className="absolute inset-0">
-        <img
-          src={bg}
-          alt="background"
-          className="w-full h-full object-cover opacity-100 transition-transform duration-100"
-          style={{
-            transform: `translate(${(mousePosition.x - 50) * 0.02}px, ${
-              (mousePosition.y - 50) * 0.02
-            }px) scale(1.05)`
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-red-800/20 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-purple-900/10" />
-      </div>
-
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-gray-700/30 relative z-10 backdrop-blur-sm">
+    <div className="text-white p-8">
+      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-white/10 relative z-10 bg-black/20 backdrop-blur-sm">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Desktop Layout */}
           <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full">
@@ -386,4 +353,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default AboutUs;

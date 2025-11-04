@@ -15,9 +15,8 @@ import {
 import { SiFiverr } from "react-icons/si"; // Fiverr icon from react-icons/si
 import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
-import bg from "./../assets/Contact/bg.webp";
 
-const Contact = () => {
+const Contact = ({ currentTheme }) => {
   const [message, setMessage] = useState("");
   const [sendStatus, setSendStatus] = useState("");
   const [showNotification, setShowNotification] = useState(false);
@@ -63,16 +62,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="h-screen bg-black text-white p-8 relative">
-      {/* Background with gradient overlay */}
-      <div className="absolute inset-0 ">
-        <img
-          src={bg}
-          alt="background"
-          className="w-full h-full object-cover opacity-100"
-        />
-      </div>
-      <div className="flex flex-col items-center justify-center rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30 relative z-10">
+    <div className="h-screen text-white p-8 relative">
+      <div className="flex flex-col items-center justify-center rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 mb-4 border-white/10 bg-black/20 backdrop-blur-sm relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide text-center">
