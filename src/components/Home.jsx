@@ -8,6 +8,8 @@ import logo2 from "../assets/AppsLogos/boticon.webp";
 import logo3 from "../assets/AppsLogos/ChatGPT Image Aug 4, 2025, 02_29_18 PM.webp";
 import logo4 from "../assets/AppsLogos/icon.webp";
 import logo5 from "../assets/AppsLogos/Lucid_Origin_I_need_a_logo_for_my_car_parts_website_with_the_n_1.webp";
+import logo6 from "../assets/AppsLogos/bluehavenrentals.webp";
+import logo7 from "../assets/AppsLogos/ridelink.webp";
 import { ArrowRight } from "lucide-react";
 import "./button.css";
 import { useState, useEffect } from "react";
@@ -102,8 +104,8 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
   return (
     <>
-      <div className="relative min-h-auto flex flex-col justify-between items-center px-6 mt-4 mb-4 z-10">
-        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
+      <div className="h-auto relative min-h-auto w-full p-2 overflow-hidden">
+        <div className="rounded-[20px] lg:rounded-[60px] w-full h-auto p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
           {/* Top header with modern styling */}
           <div className="w-full text-center">
             <h3 className="mt-2 font-italiana text-white text-[8px] md:text-[15px] font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
@@ -136,23 +138,6 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       <div
                         className={`absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                       />
-                    </div>
-
-                    {/* App Logos Row */}
-                    <div className="flex justify-center items-center gap-3 mb-4">
-                      {appLogos.map((logo, index) => (
-                        <div
-                          key={index}
-                          className={`w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl hover:shadow-purple-400/40`}
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          <img
-                            src={logo}
-                            alt={`App logo ${index + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                          />
-                        </div>
-                      ))}
                     </div>
 
                     <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
@@ -224,25 +209,6 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                     <div
                       className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${currentTheme.glowEffect} opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 blur-lg`}
                     ></div>
-
-                    {/* Animated particles effect */}
-                    <div className="absolute inset-0 rounded-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000">
-                      <div
-                        className={`absolute top-4 right-4 w-1 h-1 bg-blue-400 rounded-full animate-pulse ${
-                          currentRobot === 1 ? "bg-emerald-400" : ""
-                        }`}
-                      ></div>
-                      <div
-                        className={`absolute bottom-6 left-6 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-300 ${
-                          currentRobot === 1 ? "bg-teal-400" : ""
-                        }`}
-                      ></div>
-                      <div
-                        className={`absolute top-1/2 right-8 w-0.5 h-0.5 bg-cyan-400 rounded-full animate-pulse delay-700 ${
-                          currentRobot === 1 ? "bg-emerald-400" : ""
-                        }`}
-                      ></div>
-                    </div>
 
                     <div className="relative z-10">
                       <div className="flex items-center gap-6 mb-6">
@@ -335,7 +301,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                             }`}
                           >
                             <img
-                              src={chaya}
+                              src={logo6}
                               alt="Masked Image"
                               className="w-full h-full object-cover transition-transform duration-600 group-hover/card:scale-105 group-hover/card:brightness-110"
                             />
@@ -364,7 +330,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                                 currentRobot === 1 ? "to-emerald-200" : ""
                               }`}
                             >
-                              ChayaSmart+
+                              Blue Haven Rentals
                             </h3>
                             <ArrowRight
                               className={`w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-cyan-400 group-hover/card:translate-x-1 group-hover/card:scale-110 ${
@@ -375,7 +341,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                             />
                           </div>
                           <p className="text-gray-400 text-xs leading-relaxed bg-gradient-to-r from-gray-400 to-gray-300 bg-clip-text text-transparent">
-                            Tea Estate Management System
+                            Discover Your Perfect Haven
                           </p>
                           <div className="mt-2">
                             <span
@@ -454,23 +420,6 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       className="w-full rounded-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:brightness-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-
-                  {/* Mobile App Logos Row */}
-                  <div className="flex justify-center items-center gap-3 mb-6">
-                    {appLogos.map((logo, index) => (
-                      <div
-                        key={index}
-                        className="w-8 h-8 rounded-full overflow-hidden border-2 border-orange-500/40 shadow-lg transition-all duration-500 hover:scale-110 hover:border-white/60 hover:shadow-xl hover:shadow-purple-400/40"
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      >
-                        <img
-                          src={logo}
-                          alt={`App logo ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                        />
-                      </div>
-                    ))}
                   </div>
 
                   {/* Description */}
@@ -561,7 +510,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         <div className="relative flex-shrink-0">
                           <div className="w-14 h-14 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/15 border border-white/20">
                             <img
-                              src={chaya}
+                              src={logo6}
                               alt="ChayaSmart+"
                               className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
                             />
@@ -574,13 +523,13 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
                             <h3 className="font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
-                              ChayaSmart+
+                              Blue Haven Rentals
                             </h3>
                             <ArrowRight className="w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-cyan-400 group-hover/card:translate-x-1 flex-shrink-0 ml-2" />
                           </div>
 
                           <p className="text-gray-400 text-sm leading-relaxed mb-3">
-                            Tea Estate Management System
+                            Discover Your Perfect Haven
                           </p>
 
                           {/* Tags */}
