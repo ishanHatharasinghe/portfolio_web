@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import profilePic from "./../assets/About/myimage2.webp";
+import profilePic from "./../assets/About/myimage (1).webp";
+import profilePic2 from "./../assets/About/myimage (2).webp";
+import profilePic3 from "./../assets/About/myimage (3).webp";
+import profilePic4 from "./../assets/About/myimage (4).webp";
 import logo from "./../assets/Home Section/aw.webp";
 import codecoveLogo from "./../assets/About/logo.webp";
 import member1 from "./../assets/About/1.webp";
@@ -10,6 +13,16 @@ import member4 from "./../assets/About/4.webp";
 const AboutUs = ({ currentTheme }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentPic, setCurrentPic] = useState(0);
+
+  const profilePics = [profilePic, profilePic, profilePic, profilePic];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPic((prevPic) => (prevPic + 1) % profilePics.length);
+    }, 3000); // Change image every 3 seconds
+    return () => clearInterval(interval);
+  }, [profilePics.length]);
 
   // Animation trigger
   useEffect(() => {
@@ -167,7 +180,7 @@ const AboutUs = ({ currentTheme }) => {
                 }`}
               >
                 <img
-                  src={profilePic}
+                  src={profilePics[currentPic]}
                   alt="Profile Picture"
                   className="w-[400px] max-w-md mx-auto mb-8 rounded-3xl transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1 shadow-2xl shadow-black/50"
                 />
@@ -223,7 +236,7 @@ const AboutUs = ({ currentTheme }) => {
               style={{ transitionDelay: "200ms" }}
             >
               <img
-                src={profilePic}
+                src={profilePics[currentPic]}
                 alt="Profile Picture"
                 className="w-full h-auto rounded-3xl transition-all duration-700 group-hover:scale-[1.02] shadow-2xl shadow-black/50"
               />

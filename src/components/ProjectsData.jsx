@@ -8,6 +8,24 @@ import my6 from "./../assets/Project 5 taxi meter/2.webp";
 import my7 from "./../assets/Project 5 taxi meter/3.webp";
 import my8 from "./../assets/Project 5 taxi meter/4.webp";
 
+import vpms9 from "./../assets/Project1/Slide2.webp";
+import vpms10 from "./../assets/Project1/Slide3.webp";
+import vpms11 from "./../assets/Project1/Slide4.webp";
+import vpms12 from "./../assets/Project1/Slide5.webp";
+import vpms13 from "./../assets/Project1/Slide6.webp";
+import vpms14 from "./../assets/Project1/Slide7.webp";
+import vpms15 from "./../assets/Project1/Slide8.webp";
+import vpms16 from "./../assets/Project1/Slide9.webp";
+import vpms17 from "./../assets/Project1/Slide10.webp";
+import vpms18 from "./../assets/Project1/1.webp";
+import vpms19 from "./../assets/Project1/2.webp";
+import vpms20 from "./../assets/Project1/3.webp";
+import vpms21 from "./../assets/Project1/4.webp";
+import vpms22 from "./../assets/Project1/5.webp";
+import vpms23 from "./../assets/Project1/6.webp";
+import vpms24 from "./../assets/Project1/7.webp";
+import vpms25 from "./../assets/Project1/8.webp";
+
 import my9 from "./../assets/Project 6 SAEDS/1.webp";
 import my10 from "./../assets/Project 6 SAEDS/2.webp";
 import my11 from "./../assets/Project 6 SAEDS/3.webp";
@@ -82,16 +100,20 @@ import projectLG13 from "./../assets/Luminance Graphic/Screenshot (101).webp";
 // Team members
 import member1 from "./../assets/About/1.webp";
 import member2 from "./../assets/About/2.webp";
+import member3 from "./../assets/About/3.webp";
 import member4 from "./../assets/About/4.webp";
 import member5 from "./../assets/About/5.webp";
 import member6 from "./../assets/About/6.webp";
 import member7 from "./../assets/About/7.webp";
 import member8 from "./../assets/About/8.webp";
 
-// Assets
 // Docs
 import report from "./../assets/Project 6 SAEDS/Smart Automated Elephant Deterrent System FINAL REPORT.pdf";
 import presentation from "./../assets/Project 6 SAEDS/Project Presentation.pdf";
+
+import report12 from "./../assets/Project12 Cyberclash/Robot - CyberClash_compressed.pdf";
+import presentation12 from "./../assets/Project12 Cyberclash/cyberclash presentation.pdf";
+
 import report2 from "./../assets/Project 5 taxi meter/taxi meter project report.pdf";
 import presentation2 from "./../assets/Project 5 taxi meter/smart taxi meter presentation.pdf";
 import report3 from "./../assets/Project1/Final Report.pdf";
@@ -99,6 +121,23 @@ import presentation3 from "./../assets/Project1/presentation.pdf";
 import report7 from "./../assets/Project 7/report.pdf";
 import presentation7 from "./../assets/Project 7/Presentation.pdf";
 import report8 from "./../assets/Project 8/report.pdf";
+
+import cyberclash1 from "./../assets/Project12 Cyberclash/Slide1.webp";
+import cyberclash2 from "./../assets/Project12 Cyberclash/Slide2.webp";
+import cyberclash3 from "./../assets/Project12 Cyberclash/Slide3.webp";
+import cyberclash4 from "./../assets/Project12 Cyberclash/Slide4.webp";
+import cyberclash5 from "./../assets/Project12 Cyberclash/Slide5.webp";
+import cyberclash6 from "./../assets/Project12 Cyberclash/Slide6.webp";
+import cyberclash7 from "./../assets/Project12 Cyberclash/Slide7.webp";
+import cyberclash8 from "./../assets/Project12 Cyberclash/Slide8.webp";
+import cyberclash9 from "./../assets/Project12 Cyberclash/Slide9.webp";
+import cyberclash10 from "./../assets/Project12 Cyberclash/Slide10.webp";
+import cyberclash11 from "./../assets/Project12 Cyberclash/Slide11.webp";
+import cyberclash12 from "./../assets/Project12 Cyberclash/Slide12.webp";
+import cyberclash13 from "./../assets/Project12 Cyberclash/Slide13.webp";
+import cyberclash14 from "./../assets/Project12 Cyberclash/Slide14.webp";
+import cyberclash15 from "./../assets/Project12 Cyberclash/Slide15.webp";
+import cyberclash16 from "./../assets/Project12 Cyberclash/Slide16.webp";
 
 import gallery5_58 from "./../assets/Design6/1 (1).webp";
 import gallery5_59 from "./../assets/Design6/1 (2).webp";
@@ -134,6 +173,8 @@ import gallery5_86 from "./../assets/Project 11/mesms (11).webp";
 import gallery5_87 from "./../assets/Project 11/mesms (12).webp";
 import gallery5_88 from "./../assets/Project 11/mesms (13).webp";
 
+import report10 from "./../assets/Project 10/Blue Haven Rentals_compressed.pdf";
+
 import {
   Boxes,
   ExternalLink,
@@ -161,7 +202,7 @@ const ProjectsData = ({ currentTheme }) => {
       subtitle: "BIT - University of Moratuwa",
       description: `Explore exceptional rental houses and boarding accommodations tailored to your lifestyle. Your ideal space is just a search away with Blue Haven Rentals.`,
 
-      link: "",
+      link: "https://bluehavenrentals.netlify.app/",
 
       technologies: ["React, , Tailwind css, Firebase"],
       images: [
@@ -185,7 +226,8 @@ const ProjectsData = ({ currentTheme }) => {
         gallery5_75,
         gallery5_76
       ],
-      members: [member1],
+      members: [member1, member2, member3],
+      reportLink: report10,
       category: "Web Application",
       gradient: "from-orange-500/20 to-red-500/20"
     },
@@ -216,6 +258,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1],
       category: "Web Application",
+
       gradient: "from-violet-500/20 to-purple-500/20"
     },
     {
@@ -226,7 +269,26 @@ const ProjectsData = ({ currentTheme }) => {
         "A desktop application designed to automate parking operations, built with C# and SQL.",
       technologies: "C#, SQL",
       link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_mysql-vpms-clanguage-activity-7268195521146572800-T8Mi?utm_source=share&utm_medium=member_desktop",
-      images: [my],
+      images: [
+        my,
+        vpms9,
+        vpms10,
+        vpms11,
+        vpms12,
+        vpms13,
+        vpms14,
+        vpms15,
+        vpms16,
+        vpms17,
+        vpms18,
+        vpms19,
+        vpms20,
+        vpms21,
+        vpms22,
+        vpms23,
+        vpms24,
+        vpms25
+      ],
       members: [member1],
       category: "Desktop Application",
       gradient: "from-blue-500/20 to-purple-500/20",
@@ -267,13 +329,45 @@ const ProjectsData = ({ currentTheme }) => {
       reportLink: report,
       presentationLink: presentation
     },
+    {
+      id: 12,
+      title: "CyberClash - battle robot",
+      subtitle: "HND in Electrical and Electronics Engineering",
+      description:
+        "This project was developed for the upcoming Inter ATI Robot Battle Competition, an event designed to push students to apply theoretical knowledge in a practical, high-stakes environment.",
+      technologies: "Arduino, Bluetooth",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_thrilled-to-share-our-latest-project-the-ugcPost-7395864630293762048-Z7YW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+      images: [
+        cyberclash1,
+        cyberclash2,
+        cyberclash3,
+        cyberclash4,
+        cyberclash5,
+        cyberclash6,
+        cyberclash7,
+        cyberclash8,
+        cyberclash9,
+        cyberclash10,
+        cyberclash11,
+        cyberclash12,
+        cyberclash13,
+        cyberclash14,
+        cyberclash15,
+        cyberclash16
+      ],
+      members: [member1, member5, member6, member7, member8],
+      category: "IoT System",
+      gradient: "from-orange-500/20 to-red-500/20",
+      reportLink: report12,
+      presentationLink: presentation12
+    },
 
     {
       id: 9,
       title: "Personal Portfolio",
       description: `The Intersection of Electronics and Code`,
 
-      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_excited-to-launch-my-portfolio-website-activity-7359939207974346753-iIWq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+      link: "https://ishanhatharasinghe.netlify.app/",
 
       technologies: ["React, , Tailwind css, Firebase"],
       images: [
@@ -483,135 +577,166 @@ and reliably.`,
     </div>
   );
 
-  const ProjectCard = ({ project, index }) => (
-    <div className="group relative w-full h-full">
-      <div
-        className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
-      />
-      <div
-        className={`flex ${
-          viewMode === "list" ? "flex-row" : "flex-col"
-        } relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] p-6 border border-gray-700/40 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:border-gray-600/60 h-full overflow-hidden`}
-      >
-        <div className="absolute top-4 right-4 z-20">
-          <span className="px-3 py-1 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-xs font-semibold rounded-full">
-            {project.category}
-          </span>
-        </div>
+  const ProjectCard = ({ project, index }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    const nextImage = () => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
+      );
+    };
+
+    const prevImage = () => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
+      );
+    };
+    return (
+      <div className="group relative w-full h-full">
         <div
-          className={`${
-            viewMode === "list" ? "w-80 flex-shrink-0 mr-6" : "w-full"
-          }`}
+          className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
+        />
+        <div
+          className={`flex ${
+            viewMode === "list" ? "flex-row" : "flex-col"
+          } relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] p-6 border border-gray-700/40 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:border-gray-600/60 h-full overflow-hidden`}
         >
-          <div className="relative z-10">
-            <MemberAvatars members={project.members} projectId={project.id} />
+          <div className="absolute top-4 right-4 z-20">
+            <span className="px-3 py-1 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-xs font-semibold rounded-full">
+              {project.category}
+            </span>
           </div>
-          <div className="relative mb-6 overflow-hidden rounded-2xl">
-            <img
-              src={project.images[0]}
-              alt=""
-              className="w-full aspect-video object-cover rounded-2xl"
-            />
-          </div>
-        </div>
 
-        <div className="flex-1 flex flex-col">
-          <h1
-            className={`font-bold text-white text-lg md:text-xl ${
-              viewMode === "list" ? "text-left" : "text-center"
-            } mb-2`}
-          >
-            {project.title}
-          </h1>
-          {project.subtitle && (
-            <h5
-              className={`text-purple-300 text-xs md:text-sm ${
-                viewMode === "list" ? "text-left" : "text-center"
-              } mb-3`}
-            >
-              {project.subtitle}
-            </h5>
-          )}
-          <p
-            className={`text-gray-300 text-xs md:text-sm ${
-              viewMode === "list" ? "text-left" : "text-center"
-            } my-4 flex-1`}
-          >
-            {project.description}
-          </p>
           <div
-            className={`flex items-center ${
-              viewMode === "list" ? "justify-start" : "justify-center"
-            } mb-4`}
+            className={`${
+              viewMode === "list" ? "w-80 flex-shrink-0 mr-6" : "w-full"
+            }`}
           >
-            <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2 border border-gray-700/50">
-              <Boxes className="w-4 h-4 text-purple-400 mr-2" />
-              <p className="text-[11px] font-medium text-gray-300">
-                {typeof project.technologies === "string"
-                  ? project.technologies
-                  : project.technologies.join(", ")}
-              </p>
+            <div className="relative z-10">
+              <MemberAvatars members={project.members} projectId={project.id} />
+            </div>
+            <div className="relative mb-6 overflow-hidden rounded-2xl">
+              <img
+                src={project.images[currentImageIndex]}
+                alt=""
+                className="w-full aspect-video object-cover rounded-2xl"
+              />
+              {project.images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                  >
+                    &#10095;
+                  </button>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Responsive button group */}
-          <div
-            className={`flex flex-wrap ${
-              viewMode === "list" ? "justify-start" : "justify-center"
-            } gap-3 mt-auto w-full`}
-          >
-            {
-              (project.id === 3,
-              2 ? (
-                <>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    View Project
-                  </a>
-                  <a
-                    href={project.reportLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
-                  >
-                    <FileText className="w-4 h-4" />
-                    View Report
-                  </a>
-                  <a
-                    href={project.presentationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
-                  >
-                    <Presentation className="w-4 h-4" />
-                    Presentation
-                  </a>
-                </>
-              ) : (
-                project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    View Project
-                  </a>
-                )
-              ))
-            }
+          <div className="flex-1 flex flex-col">
+            <h1
+              className={`font-bold text-white text-lg md:text-xl ${
+                viewMode === "list" ? "text-left" : "text-center"
+              } mb-2`}
+            >
+              {project.title}
+            </h1>
+            {project.subtitle && (
+              <h5
+                className={`text-purple-300 text-xs md:text-sm ${
+                  viewMode === "list" ? "text-left" : "text-center"
+                } mb-3`}
+              >
+                {project.subtitle}
+              </h5>
+            )}
+            <p
+              className={`text-gray-300 text-xs md:text-sm ${
+                viewMode === "list" ? "text-left" : "text-center"
+              } my-4 flex-1`}
+            >
+              {project.description}
+            </p>
+            <div
+              className={`flex items-center ${
+                viewMode === "list" ? "justify-start" : "justify-center"
+              } mb-4`}
+            >
+              <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2 border border-gray-700/50">
+                <Boxes className="w-4 h-4 text-purple-400 mr-2" />
+                <p className="text-[11px] font-medium text-gray-300">
+                  {typeof project.technologies === "string"
+                    ? project.technologies
+                    : project.technologies.join(", ")}
+                </p>
+              </div>
+            </div>
+
+            {/* Responsive button group */}
+            <div
+              className={`flex flex-wrap ${
+                viewMode === "list" ? "justify-start" : "justify-center"
+              } gap-3 mt-auto w-full`}
+            >
+              {
+                (project.id === 3,
+                2 ? (
+                  <>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View Project
+                    </a>
+                    <a
+                      href={project.reportLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
+                    >
+                      <FileText className="w-4 h-4" />
+                      View Report
+                    </a>
+                    <a
+                      href={project.presentationLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
+                    >
+                      <Presentation className="w-4 h-4" />
+                      Presentation
+                    </a>
+                  </>
+                ) : (
+                  project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View Project
+                    </a>
+                  )
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div id="projects" className="relative min-h-screen w-full">

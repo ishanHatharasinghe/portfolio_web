@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import logo from "../assets/myimage.webp";
 
-// Using App's color theme
-const COLORS = {
-  darkBg: "#0f172a",
-  darkCard: "#1e293b",
-  mediumTeal: "#22d3ee", // cyan-400
-  darkTeal: "#2563eb", // blue-600
-  yellowGold: "#ea580c", // orange-600
-  orange: "#dc2626", // red-600
-  red: "#ef4444",
-  textPrimary: "#f1f5f9",
-  textSecondary: "#94a3b8",
-  borderColor: "#334155"
+// Monochrome Color Theme
+const MONO_COLORS = {
+  // Pure Black
+  darkBg: "#000000",
+  // A dark gray for subtle background elements
+  darkCard: "#111111",
+  // Main accent color: Pure White (high contrast)
+  accent: "#ffffff",
+  // Secondary accent/subtle effect: Light Gray
+  secondaryAccent: "#aaaaaa",
+  // Border/Divider color: Mid-Dark Gray
+  borderColor: "#333333",
+  // Text colors
+  textPrimary: "#ffffff",
+  textSecondary: "#888888"
 };
 
 const PreloaderScreen = ({ onComplete }) => {
@@ -42,211 +45,196 @@ const PreloaderScreen = ({ onComplete }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-all duration-1000 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-1000 ${
         isComplete ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       style={{
-        background: `radial-gradient(ellipse at 50% 50%, ${COLORS.darkCard} 0%, ${COLORS.darkBg} 40%, #020617 100%)`
+        // Radial gradient from a dark gray to pure black
+        background: `radial-gradient(circle at 50% 50%, ${MONO_COLORS.darkCard} 0%, ${MONO_COLORS.darkBg} 100%)`
       }}
     >
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl animate-float"
-          style={{
-            background: `radial-gradient(circle, ${COLORS.mediumTeal}15, transparent)`
-          }}
-        />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full blur-2xl animate-float-reverse"
-          style={{
-            background: `radial-gradient(circle, ${COLORS.yellowGold}12, transparent)`
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl animate-pulse"
-          style={{
-            background: `radial-gradient(circle, ${COLORS.darkTeal}10, transparent)`
-          }}
-        />
-      </div>
+      {/* Geometric grid pattern overlay (Subtle background detail) */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, ${MONO_COLORS.borderColor}, ${MONO_COLORS.borderColor} 1px, transparent 1px, transparent 100px), repeating-linear-gradient(90deg, ${MONO_COLORS.borderColor}, ${MONO_COLORS.borderColor} 1px, transparent 1px, transparent 100px)`
+        }}
+      />
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center space-y-8">
-        {/* Logo container with complex animations */}
+      <div className="relative z-10 flex flex-col items-center space-y-10">
+        {/* Logo container with complex geometry and animation */}
         <div className="relative">
-          {/* Outer rotating ring */}
+          {/* Outer geometric spinning rings */}
           <div
-            className="absolute -inset-8 rounded-full animate-spin-slow"
+            className="absolute -inset-10 animate-spin-slow"
             style={{
-              border: `1px solid ${COLORS.mediumTeal}40`
+              // Use dashes for a 'blueprint' or 'wireframe' look
+              border: `1px dashed ${MONO_COLORS.secondaryAccent}`,
+              borderRadius: "50%"
             }}
           />
 
-          {/* Middle pulsing ring */}
           <div
-            className="absolute -inset-6 rounded-full animate-pulse"
+            className="absolute -inset-12 animate-spin-slower"
             style={{
-              boxShadow: `0 0 0 1px ${COLORS.yellowGold}25`
+              border: `1px solid ${MONO_COLORS.borderColor}`,
+              borderRadius: "50%",
+              transform: "rotate(45deg)"
             }}
           />
 
-          {/* Glow effect */}
+          {/* Logo container */}
           <div
-            className="absolute -inset-12 rounded-full blur-2xl animate-pulse"
+            className="relative w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center animate-float-no-scale"
             style={{
-              background: `radial-gradient(circle, ${COLORS.mediumTeal}25, ${COLORS.yellowGold}15, transparent)`
-            }}
-          />
-
-          {/* Logo Placeholder - Replace with actual logo */}
-          <div
-            className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl flex items-center justify-center animate-float"
-            style={{
-              boxShadow: `0 12px 24px ${COLORS.mediumTeal}40`,
-              transform: `scale(${0.8 + (progress / 100) * 0.2})`
+              // Use a subtle box shadow instead of a full color glow
+              boxShadow: `0 0 30px ${MONO_COLORS.accent}15`,
+              borderRadius: "50%",
+              transform: `scale(${1})` // Keeping scale constant for monochrome look
             }}
           >
-            {/* Glow effect */}
-            <div className="absolute -inset-12 bg-gradient-to-r from-[#B08B57]/20 via-[#E7DFD6]/10 to-[#6B7785]/15 rounded-full blur-2xl animate-pulse" />
-
-            {/* Logo */}
-            <div className=" rounded-full relative w-24 h-24 sm:w-32 sm:h-32">
-              <img
-                src={logo}
-                alt="Loading..."
-                className="rounded-3xl w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(176,139,87,0.4)] animate-float"
-                style={{
-                  transform: `scale(${0.8 + (progress / 100) * 0.2})`
-                }}
-              />
-            </div>
+            {/* Logo image (assuming it can be monochrome or will fit the theme) */}
+            <img
+              src={logo}
+              alt="Loading..."
+              className="rounded-full w-full h-full object-contain"
+              style={
+                {
+                  // Subtle contrast filter if needed, otherwise rely on the logo's appearance
+                  // Logo scale animation removed for a more stable, professional look
+                }
+              }
+            />
           </div>
         </div>
 
-        {/* Loading text */}
-        <div className="text-center space-y-4">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-wider">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${COLORS.mediumTeal}, ${COLORS.yellowGold}, ${COLORS.mediumTeal})`
-              }}
-            >
-              Loading Portfolio...
-            </span>
+        {/* Loading text and progress */}
+        <div className="text-center space-y-6">
+          <h2
+            className="text-xl sm:text-3xl font-light tracking-[0.4em] uppercase"
+            style={{ color: MONO_COLORS.textPrimary }}
+          >
+            <span className="opacity-75">Loading</span>
+            <span className="ml-1 font-bold opacity-100">Portfolio</span>
           </h2>
 
           {/* Progress bar */}
-          <div className="w-64 sm:w-80 mx-auto">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xs" style={{ color: COLORS.textSecondary }}>
-                Progress
+          <div className="w-64 sm:w-96 mx-auto">
+            <div className="flex justify-between items-center mb-1">
+              <span
+                className="text-xs tracking-widest uppercase"
+                style={{ color: MONO_COLORS.textSecondary }}
+              >
+                Data Integrity Check
               </span>
               <span
-                className="text-xs font-medium"
-                style={{ color: COLORS.mediumTeal }}
+                className="text-sm font-mono"
+                style={{ color: MONO_COLORS.accent }}
               >
                 {Math.round(progress)}%
               </span>
             </div>
 
-            {/* Progress bar container */}
+            {/* Progress bar container (Squared for geometric look) */}
             <div
-              className="relative h-1 rounded-full overflow-hidden backdrop-blur-sm"
+              className="relative h-1 overflow-hidden"
               style={{
-                backgroundColor: `${COLORS.borderColor}40`
+                backgroundColor: MONO_COLORS.borderColor
               }}
             >
               {/* Progress fill */}
               <div
-                className="absolute left-0 top-0 h-full rounded-full transition-all duration-300 ease-out"
+                className="absolute left-0 top-0 h-full transition-all duration-300 ease-out"
                 style={{
                   width: `${progress}%`,
-                  background: `linear-gradient(90deg, ${COLORS.mediumTeal}, ${COLORS.yellowGold}, ${COLORS.mediumTeal})`
+                  backgroundColor: MONO_COLORS.accent
                 }}
               >
-                {/* Animated shine effect */}
+                {/* Animated scanline shine effect */}
                 <div
                   className="absolute inset-0 animate-shine"
                   style={{
                     background:
-                      "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)"
+                      "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)"
                   }}
                 />
               </div>
 
-              {/* Glow effect */}
+              {/* Minimalist glow effect (white blur) */}
               <div
-                className="absolute top-1/2 transform -translate-y-1/2 h-3 blur-sm rounded-full transition-all duration-300"
+                className="absolute top-1/2 transform -translate-y-1/2 h-4 blur-md transition-all duration-300"
                 style={{
                   width: `${progress}%`,
                   left: 0,
-                  backgroundColor: `${COLORS.mediumTeal}40`
+                  backgroundColor: `${MONO_COLORS.accent}10`
                 }}
               />
             </div>
           </div>
         </div>
 
-        {/* Loading dots */}
-        <div className="flex space-x-2">
+        {/* Animated geometric indicator (replaces loading dots) */}
+        <div className="flex space-x-3 mt-4">
           <div
-            className="w-2 h-2 rounded-full animate-bounce"
-            style={{
-              backgroundColor: COLORS.mediumTeal,
-              animationDelay: "0ms"
-            }}
+            className="w-3 h-3 border-2 border-white animate-spin-dot"
+            style={{ animationDelay: "0ms" }}
           />
           <div
-            className="w-2 h-2 rounded-full animate-bounce"
-            style={{
-              backgroundColor: COLORS.yellowGold,
-              animationDelay: "150ms"
-            }}
+            className="w-3 h-3 border-2 border-white animate-spin-dot"
+            style={{ animationDelay: "150ms", transform: "rotate(45deg)" }}
           />
           <div
-            className="w-2 h-2 rounded-full animate-bounce"
-            style={{
-              backgroundColor: COLORS.orange,
-              animationDelay: "300ms"
-            }}
+            className="w-3 h-3 border-2 border-white animate-spin-dot"
+            style={{ animationDelay: "300ms" }}
           />
         </div>
       </div>
 
-      {/* Completion animation overlay */}
+      {/* Completion animation overlay (Subtle white flash) */}
       {isComplete && (
         <div
-          className="absolute inset-0 animate-pulse"
+          className="absolute inset-0 animate-pulse-flash"
           style={{
-            background: `linear-gradient(135deg, ${COLORS.mediumTeal}20, ${COLORS.yellowGold}20)`
+            background: `radial-gradient(circle, ${MONO_COLORS.accent}20, ${MONO_COLORS.darkBg} 60%)`
           }}
         />
       )}
 
       {/* Custom styles */}
       <style>{`
-        @keyframes float { 
-          0%, 100% { transform: translateY(0) scale(1); } 
-          50% { transform: translateY(-12px) scale(1.02); } 
-        }
-        @keyframes float-reverse { 
-          0%, 100% { transform: translateY(0) scale(1); } 
-          50% { transform: translateY(12px) scale(0.98); } 
-        }
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+        @keyframes spin-slower {
+            from { transform: rotate(45deg); }
+            to { transform: rotate(405deg); }
+        }
+        @keyframes spin-dot {
+            0%, 100% { transform: rotate(0deg); opacity: 1; }
+            50% { transform: rotate(180deg); opacity: 0.5; }
         }
         @keyframes shine {
           0% { transform: translateX(-100%); }
           50%, 100% { transform: translateX(100%); }
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        @keyframes float-no-scale { 
+          0%, 100% { transform: translateY(0); } 
+          50% { transform: translateY(-8px); } 
+        }
+        @keyframes pulse-flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .animate-spin-slow { animation: spin-slow 10s linear infinite; }
+        .animate-spin-slower { animation: spin-slower 12s linear infinite; }
+        .animate-spin-dot { animation: spin-dot 1.5s ease-in-out infinite; }
         .animate-shine { animation: shine 2s ease-in-out infinite; }
+        .animate-float-no-scale { animation: float-no-scale 6s ease-in-out infinite; }
+        .animate-pulse-flash { animation: pulse-flash 0.8s ease-out; }
       `}</style>
     </div>
   );
