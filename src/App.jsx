@@ -1,25 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Preloader from "./components/Preloader";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
 import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
-import Home from "./components/Home";
 import Header from "./components/HeaderBar";
 import bg from "./assets/Home Section/bg3.webp";
 import robot from "./assets/Home Section/ChatGPT Image Nov 4, 2025, 02_19_47 PM.webp";
-import VideoScreen from "./components/videos";
-import AboutMe from "./components/AboutUs";
-import Education from "./components/Education";
-import SkillsData from "./components/SkillsData";
-import LicensesCertifications from "./components/LicensesCertifications";
-import WorkExperience from "./components/WorkExperience";
-import ProjectsData from "./components/ProjectsData";
-import Designs from "./components/designpage";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
-import Copyright from "./components/Copyright";
+
+const Home = lazy(() => import("./components/Home"));
+const VideoScreen = lazy(() => import("./components/videos"));
+const AboutMe = lazy(() => import("./components/AboutUs"));
+const Education = lazy(() => import("./components/Education"));
+const SkillsData = lazy(() => import("./components/SkillsData"));
+const LicensesCertifications = lazy(() =>
+  import("./components/LicensesCertifications")
+);
+const WorkExperience = lazy(() => import("./components/WorkExperience"));
+const ProjectsData = lazy(() => import("./components/ProjectsData"));
+const Designs = lazy(() => import("./components/designpage"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const Contact = lazy(() => import("./components/Contact"));
+const Copyright = lazy(() => import("./components/Copyright"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -115,59 +118,64 @@ function App() {
 
           <div className="relative z-10">
             <Header />
+            <Suspense
+              fallback={
+                <div className="h-screen w-full flex justify-center items-center text-white"></div>
+              }
+            >
+              <main>
+                <section id="home">
+                  <Home
+                    currentTheme={currentTheme}
+                    currentRobot={currentRobot}
+                    isTransitioning={isTransitioning}
+                    robots={robots}
+                  />
+                </section>
 
-            <main>
-              <section id="home">
-                <Home
-                  currentTheme={currentTheme}
-                  currentRobot={currentRobot}
-                  isTransitioning={isTransitioning}
-                  robots={robots}
-                />
-              </section>
+                <section id="videosection">
+                  <VideoScreen />
+                </section>
 
-              <section id="videosection">
-                <VideoScreen />
-              </section>
+                <section id="about">
+                  <AboutMe currentTheme={currentTheme} />
+                </section>
 
-              <section id="about">
-                <AboutMe currentTheme={currentTheme} />
-              </section>
+                <section id="education-journey">
+                  <Education />
+                </section>
 
-              <section id="education-journey">
-                <Education />
-              </section>
+                <section id="dexterity">
+                  <SkillsData currentTheme={currentTheme} />
+                </section>
 
-              <section id="dexterity">
-                <SkillsData currentTheme={currentTheme} />
-              </section>
+                <section id="professional-designations">
+                  <LicensesCertifications />
+                </section>
 
-              <section id="professional-designations">
-                <LicensesCertifications />
-              </section>
+                <section id="professional-journey">
+                  <WorkExperience />
+                </section>
 
-              <section id="professional-journey">
-                <WorkExperience />
-              </section>
+                <section id="creative-ventures">
+                  <ProjectsData currentTheme={currentTheme} />
+                </section>
 
-              <section id="creative-ventures">
-                <ProjectsData currentTheme={currentTheme} />
-              </section>
+                <section id="design-scape">
+                  <Designs />
+                </section>
 
-              <section id="design-scape">
-                <Designs />
-              </section>
+                <section id="testimonials">
+                  <Testimonials />
+                </section>
 
-              <section id="testimonials">
-                <Testimonials />
-              </section>
+                <section id="contact">
+                  <Contact currentTheme={currentTheme} />
+                </section>
+              </main>
 
-              <section id="contact">
-                <Contact currentTheme={currentTheme} />
-              </section>
-            </main>
-
-            <Copyright />
+              <Copyright />
+            </Suspense>
           </div>
         </div>
       )}

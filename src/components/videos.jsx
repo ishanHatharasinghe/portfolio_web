@@ -1,14 +1,28 @@
 import { useRef, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import video from "./../../public/videos/2ndscreen.mp4";
+import videoSrc from "./../../public/videos/2ndscreen.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const videoContainerRef = useRef(null);
+  const videoRef = useRef(null);
   const textRef = useRef(null);
   const scrollTriggerRef = useRef(null);
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  useEffect(() => {
+    if (inView && videoRef.current) {
+      videoRef.current.play();
+    } else if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [inView]);
 
   useEffect(() => {
     const clipAnimation = gsap.timeline({
@@ -67,7 +81,11 @@ const About = () => {
   }, []);
 
   return (
-    <div id="video-screent" className="min-h-screen w-screen relative bg-black">
+    <div
+      id="video-screent"
+      className="min-h-screen w-screen relative bg-black"
+      ref={inViewRef}
+    >
       <div className="relative z-10">
         <div className="mb-8 mt-6 flex flex-col items-center gap-5"></div>
 
@@ -80,16 +98,17 @@ const About = () => {
             style={{ width: "60vw", height: "50vh" }}
             ref={videoContainerRef}
           >
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="absolute left-0 top-0 w-full h-full object-cover"
-              // poster="path/to/poster.jpg" // optional for fast loading placeholder
-            />
+            {inView && (
+              <video
+                ref={videoRef}
+                src={videoSrc}
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute left-0 top-0 w-full h-full object-cover"
+              />
+            )}
 
             <div
               className="overlay-text relative z-10 text-center px-8 max-w-xl flex flex-col items-center justify-center text-white"

@@ -175,6 +175,18 @@ import gallery5_88 from "./../assets/Project 11/mesms (13).webp";
 
 import report10 from "./../assets/Project 10/Blue Haven Rentals_compressed.pdf";
 
+import wordguess1 from "./../assets/Project13 WordGuessMaster/thumb.webp";
+import wordguess2 from "./../assets/Project13 WordGuessMaster/Slide1.webp";
+import wordguess3 from "./../assets/Project13 WordGuessMaster/Slide2.webp";
+import wordguess4 from "./../assets/Project13 WordGuessMaster/Slide3.webp";
+import wordguess5 from "./../assets/Project13 WordGuessMaster/Slide4.webp";
+import wordguess6 from "./../assets/Project13 WordGuessMaster/Slide5.webp";
+import wordguess7 from "./../assets/Project13 WordGuessMaster/Slide6.webp";
+import wordguess8 from "./../assets/Project13 WordGuessMaster/Slide7.webp";
+import wordguess9 from "./../assets/Project13 WordGuessMaster/Slide8.webp";
+import wordguess10 from "./../assets/Project13 WordGuessMaster/Slide9.webp";
+
+import report13 from "./../assets/Project13 WordGuessMaster/Word Guessing Master.pdf";
 import {
   Boxes,
   ExternalLink,
@@ -194,6 +206,7 @@ const ProjectsData = ({ currentTheme }) => {
   const [selectedTech, setSelectedTech] = useState("All");
   const [viewMode, setViewMode] = useState("grid-4"); // grid-4, grid-3, grid-2, list
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [visibleProjects, setVisibleProjects] = useState(5);
 
   const projectsData = [
     {
@@ -363,61 +376,6 @@ const ProjectsData = ({ currentTheme }) => {
     },
 
     {
-      id: 9,
-      title: "Personal Portfolio",
-      description: `The Intersection of Electronics and Code`,
-
-      link: "https://ishanhatharasinghe.netlify.app/",
-
-      technologies: ["React, , Tailwind css, Firebase"],
-      images: [
-        project91,
-        project92,
-        project93,
-        project94,
-        project95,
-        project96,
-        project97,
-        project98,
-        project99,
-        project910,
-        project911,
-        project912
-      ],
-      members: [member1],
-      category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
-    },
-
-    {
-      id: 10,
-      title: "Luminance Graphic Portfolio",
-      description: `I design logos, brand systems, apparel graphics, packaging, and marketing assets that are distinctive and production‑ready—built to perform across print and digital.`,
-
-      link: "https://luminancegraphic.netlify.app/",
-
-      technologies: ["React, , Tailwind css, Firebase"],
-      images: [
-        projectLG1,
-        projectLG2,
-        projectLG3,
-        projectLG4,
-        projectLG5,
-        projectLG6,
-        projectLG7,
-        projectLG8,
-        projectLG9,
-        projectLG10,
-        projectLG11,
-        projectLG12,
-        projectLG13
-      ],
-      members: [member1],
-      category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
-    },
-
-    {
       id: 2,
       title: "TaxiMeter",
       subtitle: "HND in Electrical and Electronics Engineering",
@@ -431,6 +389,32 @@ const ProjectsData = ({ currentTheme }) => {
       gradient: "from-emerald-500/20 to-teal-500/20",
       reportLink: report2,
       presentationLink: presentation2
+    },
+
+    {
+      id: 13,
+      title: "Word Guessing Master",
+      subtitle: "BIT - University of Moratuwa",
+      description:
+        "Word Guessing Master - This isn't just about guessing it's a challenge of wits and speed:🕵️‍♂️ Guess the secret word within 10 attempts.⏱️ Compete against the clock with a built-in Timer.🌐 Random words fetched dynamically via an Online API.🏆 Built-in Leaderboard (via API service) to track top scores and times!",
+      technologies: "Java",
+      link: "https://youtu.be/hoRkGcqZb-8?si=QUWhqvNU1lKzVhWR",
+      images: [
+        wordguess1,
+        wordguess2,
+        wordguess3,
+        wordguess4,
+        wordguess5,
+        wordguess6,
+        wordguess7,
+        wordguess8,
+        wordguess9,
+        wordguess10
+      ],
+      members: [member1],
+      category: "Android App",
+      gradient: "from-orange-500/20 to-red-500/20",
+      reportLink: report13
     },
 
     {
@@ -508,6 +492,60 @@ and reliably.`,
       members: [member1, member2, member4],
       category: "Web Platform",
       gradient: "from-pink-500/20 to-rose-500/20"
+    },
+    {
+      id: 9,
+      title: "Personal Portfolio",
+      description: `The Intersection of Electronics and Code`,
+
+      link: "https://ishanhatharasinghe.netlify.app/",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        project91,
+        project92,
+        project93,
+        project94,
+        project95,
+        project96,
+        project97,
+        project98,
+        project99,
+        project910,
+        project911,
+        project912
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+
+    {
+      id: 10,
+      title: "Luminance Graphic Portfolio",
+      description: `I design logos, brand systems, apparel graphics, packaging, and marketing assets that are distinctive and production‑ready—built to perform across print and digital.`,
+
+      link: "https://luminancegraphic.netlify.app/",
+
+      technologies: ["React, , Tailwind css, Firebase"],
+      images: [
+        projectLG1,
+        projectLG2,
+        projectLG3,
+        projectLG4,
+        projectLG5,
+        projectLG6,
+        projectLG7,
+        projectLG8,
+        projectLG9,
+        projectLG10,
+        projectLG11,
+        projectLG12,
+        projectLG13
+      ],
+      members: [member1],
+      category: "Web Application",
+      gradient: "from-orange-500/20 to-red-500/20"
     }
   ];
 
@@ -551,6 +589,18 @@ and reliably.`,
       return matchesSearch && matchesCategory && matchesTech;
     });
   }, [searchTerm, selectedCategory, selectedTech]);
+
+  const projectsToShow = useMemo(() => {
+    return filteredProjects.slice(0, visibleProjects);
+  }, [filteredProjects, visibleProjects]);
+
+  const handleSeeMore = () => {
+    setVisibleProjects(projectsData.length);
+  };
+
+  const handleSeeLess = () => {
+    setVisibleProjects(5);
+  };
 
   // Grid class mapping
   const gridClasses = {
@@ -841,8 +891,6 @@ and reliably.`,
               {/* Results Counter */}
               <div className="text-center mt-4">
                 <span className="text-sm text-gray-400">
-                  Showing {filteredProjects.length} of {projectsData.length}{" "}
-                  projects
                   {searchTerm && ` for "${searchTerm}"`}
                   {selectedCategory !== "All" && ` in ${selectedCategory}`}
                   {selectedTech !== "All" && ` using ${selectedTech}`}
@@ -852,15 +900,41 @@ and reliably.`,
           </div>
 
           {/* Projects Grid */}
-          {filteredProjects.length > 0 ? (
-            <div
-              key={`${viewMode}-${selectedCategory}-${selectedTech}-${searchTerm}`}
-              className={`grid ${gridClasses[viewMode]} gap-6 max-w-screen-xl mx-auto`}
-            >
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </div>
+          {projectsToShow.length > 0 ? (
+            <>
+              <div
+                key={`${viewMode}-${selectedCategory}-${selectedTech}-${searchTerm}`}
+                className={`grid ${gridClasses[viewMode]} gap-6 max-w-screen-xl mx-auto`}
+              >
+                {projectsToShow.map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                  />
+                ))}
+              </div>
+              {/* See More / See Less Button */}
+              {filteredProjects.length > 5 && (
+                <div className="text-center mt-8">
+                  {visibleProjects < filteredProjects.length ? (
+                    <button
+                      onClick={handleSeeMore}
+                      className="px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-500 text-white font-semibold rounded-full hover:scale-105 transition-transform duration-300"
+                    >
+                      See More
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleSeeLess}
+                      className="px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-500 text-white font-semibold rounded-full hover:scale-105 transition-transform duration-300"
+                    >
+                      See Less
+                    </button>
+                  )}
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-16">
               <div className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-12 border border-gray-700/40 max-w-md mx-auto">

@@ -23,6 +23,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Nexusbold";
+  src: url("./fonts/Nexusbold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .font-bold {
   font-family: "Poppins", sans-serif;
   font-weight: bold;

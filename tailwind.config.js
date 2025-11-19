@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         italiana: ['Italiana'],
         Hugiller: ['"Hugiller DEMO"', 'cursive'],
+        Nexusbold: ['Nexusbold'],
       },
       keyframes: {
         spin3d: {
