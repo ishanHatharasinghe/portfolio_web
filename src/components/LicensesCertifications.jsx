@@ -6,6 +6,7 @@ import certificate4 from "./../assets/Licenses & Certifications/Front-End_Web_De
 import certificate5 from "./../assets/Licenses & Certifications/Introduction_to_Cybersecurity_Badge20231026-29-5mapes.webp";
 import certificate6 from "./../assets/Licenses & Certifications/ATC_AP70251809768572_Diploma in AutoCAD.webp";
 import certificate7 from "./../assets/Licenses & Certifications/NVQ Level 4(ICT Technician).webp";
+import certificate9 from "./../assets/Licenses & Certifications/Foundations_of_Project_Management_E-Certificate_page-0001.webp";
 import bg from "./../assets/bg3.webp";
 
 const LicensesCertifications = () => {
@@ -57,6 +58,13 @@ const LicensesCertifications = () => {
       description:
         "Master front-end development skills like HTML, CSS, and JavaScript to build interactive websites.",
       image: certificate4,
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQdVemH7BxB-Wkoo2MienAsSTFWlbgJGDwA&s"
+    },
+    {
+      id: 6,
+      title: "Foundations of Project Management",
+      description: "Learn the basics of Project Management",
+      image: certificate9,
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQdVemH7BxB-Wkoo2MienAsSTFWlbgJGDwA&s"
     },
     {
