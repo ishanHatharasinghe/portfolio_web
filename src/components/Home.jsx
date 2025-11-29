@@ -159,6 +159,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       <span className="relative z-10">Connect with me</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
                     </button>
+                    
                     <button
                       className={`button relative overflow-hidden group/btn bg-gradient-to-r ${
                         currentTheme.secondaryGradient
@@ -436,6 +437,17 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       onClick={() => scrollToSection("contact")}
                     >
                       Connect with me
+                    </button>
+                    <button
+                      className="button w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 transition-all duration-500 shadow-lg shadow-blue-500/25"
+                      onClick={() =>
+                        window.open(
+                          "https://www.linkedin.com/in/ishan-hatharasinghe/",
+                          "_blank"
+                        )
+                      }
+                    >
+                      LinkedIn
                     </button>
                     <button
                       className="button w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 transition-all duration-500 shadow-lg shadow-orange-500/25"
