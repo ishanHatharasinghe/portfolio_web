@@ -3,12 +3,12 @@ import Preloader from "./components/Preloader";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./index.css";
-import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
+// import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
 import Header from "./components/HeaderBar";
 import bg from "./assets/Home Section/bg3.webp";
 import robot from "./assets/Home Section/ChatGPT Image Nov 4, 2025, 02_19_47 PM.webp";
-// import axios from "axios"; // Not used in this snippet, can be removed if unused
+import axios from "axios";
 
 const Home = lazy(() => import("./components/Home"));
 const VideoScreen = lazy(() => import("./components/videos"));
@@ -96,40 +96,40 @@ function App() {
     return () => clearInterval(interval);
   }, [isMobile, robots.length]);
 
-  // --- UPDATED WHATSAPP LOGIC START ---
+  // --- AUTOMATIC WHATSAPP NOTIFICATION (TextMeBot) ---
   useEffect(() => {
-    // 1. Check if we have already notified in this session
-    const hasNotified = sessionStorage.getItem("portfolio_visited");
+    const notifyAdmin = async () => {
+      // 1. Check Session Storage: Prevents sending repeated messages if the user refreshes
+      const hasNotified = sessionStorage.getItem("portfolio_visit_notified");
 
-    if (!hasNotified && !loading) {
-      // 2. Set a small timeout to allow the page to render first
-      const timer = setTimeout(() => {
-        const phoneNumber = "94703052181";
-        const message = "Someone seeing your Portfolio";
-        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-          message
-        )}`;
+      if (!hasNotified) {
+        // 2. CONFIGURATION FOR TEXTMEBOT
+        const apiKey = "ckFnN22nJxqQ";
+        const recipient = "+94703052181"; // Your number
+        const message = encodeURIComponent("Someone seeing your Portfolio");
 
-        // 3. Mark as visited IMMEDIATELY so it doesn't loop
-        sessionStorage.setItem("portfolio_visited", "true");
+        // 3. Construct URL
+        const url = `https://api.textmebot.com/send.php?recipient=${recipient}&apikey=${apiKey}&text=${message}`;
 
-        // 4. Open WhatsApp
-        const newWindow = window.open(whatsappURL, "_blank");
+        try {
+          // 4. Send Request (using fetch with no-cors to bypass browser security blocks)
+          await fetch(url, { mode: "no-cors" });
 
-        // 5. Check for popup blockers
-        if (
-          !newWindow ||
-          newWindow.closed ||
-          typeof newWindow.closed === "undefined"
-        ) {
-          console.warn("WhatsApp auto-open was blocked by the browser.");
+          console.log("Portfolio visit notification sent.");
+
+          // 5. Mark as sent in this session
+          sessionStorage.setItem("portfolio_visit_notified", "true");
+        } catch (error) {
+          console.error("Failed to send notification:", error);
+          // Set to true anyway to avoid retry loops
+          sessionStorage.setItem("portfolio_visit_notified", "true");
         }
-      }, 2500); // 2.5 second delay makes it feel slightly more natural
+      }
+    };
 
-      return () => clearTimeout(timer);
-    }
-  }, [loading]); // Only run once loading is false
-  // --- UPDATED WHATSAPP LOGIC END ---
+    notifyAdmin();
+  }, []);
+  // --- END NOTIFICATION ---
 
   return (
     <AuthProvider>
