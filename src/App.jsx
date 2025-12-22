@@ -95,6 +95,19 @@ function App() {
     return () => clearInterval(interval);
   }, [isMobile, robots.length]);
 
+  useEffect(() => {
+    const sendWhatsAppMessage = () => {
+      const phoneNumber = "94703052181";
+      const message = encodeURIComponent("Someone seeing your Portfolio");
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+
+      // Open WhatsApp URL in a new tab
+      window.open(whatsappURL, "_blank");
+    };
+
+    sendWhatsAppMessage();
+  }, []);
+
   return (
     <AuthProvider>
       {loading ? (
