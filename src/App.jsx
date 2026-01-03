@@ -105,7 +105,7 @@ function App() {
       if (!hasNotified) {
         // 2. CONFIGURATION FOR TEXTMEBOT
         const apiKey = "ckFnN22nJxqQ";
-        const recipient = "+94703052181"; // Your number
+        const recipient = "+94703052181";
         const message = encodeURIComponent("Someone seeing your Portfolio");
 
         // 3. Construct URL

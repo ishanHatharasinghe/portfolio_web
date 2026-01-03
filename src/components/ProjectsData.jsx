@@ -186,6 +186,26 @@ import wordguess8 from "./../assets/Project13 WordGuessMaster/Slide7.webp";
 import wordguess9 from "./../assets/Project13 WordGuessMaster/Slide8.webp";
 import wordguess10 from "./../assets/Project13 WordGuessMaster/Slide9.webp";
 
+import RideLink1 from "./../assets/Project14/Slide18.webp";
+import RideLink2 from "./../assets/Project14/Slide1.webp";
+import RideLink3 from "./../assets/Project14/Slide2.webp";
+import RideLink4 from "./../assets/Project14/Slide3.webp";
+import RideLink5 from "./../assets/Project14/Slide4.webp";
+import RideLink6 from "./../assets/Project14/Slide5.webp";
+import RideLink7 from "./../assets/Project14/Slide6.webp";
+import RideLink8 from "./../assets/Project14/Slide7.webp";
+import RideLink9 from "./../assets/Project14/Slide8.webp";
+import RideLink10 from "./../assets/Project14/Slide9.webp";
+import RideLink11 from "./../assets/Project14/Slide10.webp";
+import RideLink12 from "./../assets/Project14/Slide11.webp";
+import RideLink13 from "./../assets/Project14/Slide12.webp";
+import RideLink14 from "./../assets/Project14/Slide13.webp";
+import RideLink15 from "./../assets/Project14/Slide14.webp";
+import RideLink16 from "./../assets/Project14/Slide15.webp";
+import RideLink17 from "./../assets/Project14/Slide16.webp";
+import RideLink18 from "./../assets/Project14/Slide17.webp";
+import report14 from "./../assets/Project14/Ridelink Project Final Report _compressed.pdf";
+import presentation14 from "./../assets/Project14/Ride Link_compressed.pdf";
 import report13 from "./../assets/Project13 WordGuessMaster/Word Guessing Master.pdf";
 import {
   Boxes,
@@ -307,6 +327,40 @@ const ProjectsData = ({ currentTheme }) => {
       gradient: "from-blue-500/20 to-purple-500/20",
       reportLink: report3,
       presentationLink: presentation3
+    },
+    {
+      id: 14,
+      title: "RideLink+",
+      subtitle: "HND in Electrical and Electronics Engineering",
+      description:
+        "We built a complete end to end IoT ecosystem that doesn't just track vehicles it counts passengers in realtime",
+      technologies: "React, Leaflet.js, Firebase, Arduino",
+      link: "https://www.linkedin.com/posts/ishan-nilaksha-686461308_code-to-road-the-tech-stack-behind-ridelink-activity-7412758726023188480-el0H?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE5goIYBOugp24AsFvYPjo8YMjWyqds3wS4",
+      images: [
+        RideLink2,
+        RideLink3,
+        RideLink4,
+        RideLink5,
+        RideLink6,
+        RideLink7,
+        RideLink8,
+        RideLink9,
+        RideLink10,
+        RideLink11,
+        RideLink12,
+        RideLink13,
+        RideLink14,
+        RideLink15,
+        RideLink16,
+        RideLink17,
+        RideLink18,
+        RideLink1
+      ],
+      members: [member1],
+      category: "Web Application + IOT Device",
+      gradient: "from-blue-500/20 to-purple-500/20",
+      reportLink: report14,
+      presentationLink: presentation14
     },
     {
       id: 3,
