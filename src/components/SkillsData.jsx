@@ -51,8 +51,8 @@ const SkillCard = ({ image, name, category, proficiency }) => {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-orange-500/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative border border-white/10 bg-black/40 backdrop-blur-md rounded-xl p-3 transition-transform duration-500 h-full">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#CCFF00]/20 to-[#CCFF00]/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative border border-white/10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-xl p-3 transition-transform duration-500 h-full">
         <div className="flex flex-col items-center gap-2">
           <img
             src={image}
@@ -93,7 +93,7 @@ const CategoryButton = ({ icon: Icon, label, isActive, onClick }) => (
     onClick={onClick}
     className={`flex items-center gap-2 px-4 py-2 rounded-full border ${
       isActive
-        ? "border-orange-500/50 bg-orange-500/10 text-white"
+        ? "border-[#CCFF00]/50 bg-[#CCFF00]/10 text-white"
         : "border-white/10 text-gray-400 hover:border-white/30"
     } transition-colors duration-300`}
   >
@@ -273,11 +273,11 @@ const SkillsData = ({ currentTheme }) => {
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="font-italiana text-5xl md:text-[200px] text-white tracking-wide relative z-10"
+              className="font-italiana text-5xl md:text-[200px] text-[#CCFF00] tracking-wide relative z-10"
             >
               Dexterity
             </motion.h1>
-            <p className="text-[16px] text-gray-300 leading-relaxed text-center mb-7">
+            <p className="text-[16px] text-[#FFFFFF] leading-relaxed text-center mb-7">
               Here are some of the technical skills I have acquired over time. I
               have worked with a variety of tools and technologies to bring
               innovative ideas to life.

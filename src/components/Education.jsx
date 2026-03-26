@@ -64,10 +64,10 @@ const Education = () => {
                   </div>
 
                   <div className="text-center space-y-3">
-                    <h1 className="font-bold text-white text-lg md:text-xl leading-tight bg-gradient-to-r from-orange-200 to-purple-200 bg-clip-text text-transparent">
-                      Bachelor of Information Technology
-                    </h1>
-                    <h5 className="font-semibold text-xs md:text-sm text-orange-300/80 mb-3">
+                  <h1 className="font-bold text-white text-lg md:text-xl leading-tight bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
+                    Bachelor of Information Technology
+                  </h1>
+                    <h5 className="font-semibold text-xs md:text-sm text-[#CCFF00]/80 mb-3">
                       University of Moratuwa
                     </h5>
                     <p className="text-white/70 text-xs md:text-sm leading-relaxed">
@@ -135,11 +135,11 @@ const Education = () => {
                   </div>
 
                   <div className="text-center space-y-3">
-                    <h1 className="font-bold text-white text-lg md:text-xl leading-tight bg-gradient-to-r from-purple-200 to-cyan-200 bg-clip-text text-transparent">
+                    <h1 className="font-bold text-white text-lg md:text-xl leading-tight bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
                       Higher National Diploma Electrical and Electronics
                       Engineering
                     </h1>
-                    <h5 className="font-semibold text-xs md:text-sm text-cyan-300/80 mb-3">
+                    <h5 className="font-semibold text-xs md:text-sm text-[#CCFF00]/80 mb-3">
                       Advanced Technological Institute, Galle
                     </h5>
                     <p className="text-white/70 text-xs md:text-sm leading-relaxed">
@@ -183,9 +183,9 @@ const Education = () => {
             <div className="md:hidden flex flex-col items-center justify-center w-full">
               {/* Enhanced mobile titles */}
               <div className="w-full text-center mb-8">
-                <h1 className="font-italiana text-4xl text-transparent bg-gradient-to-b from-white via-white/90 to-white/70 bg-clip-text tracking-wide drop-shadow-lg">
-                  Journey of Education
-                </h1>
+                  <h1 className="font-italiana text-4xl text-transparent bg-gradient-to-b from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text tracking-wide drop-shadow-lg">
+                    Journey of Education
+                  </h1>
               </div>
 
               {/* Mobile Left Card (Bachelor of IT) */}
@@ -199,10 +199,10 @@ const Education = () => {
                       className="w-full rounded-2xl transition-all duration-500 group-hover:scale-[1.02] shadow-lg"
                     />
                   </div>
-                  <h1 className="font-bold text-white text-lg text-center bg-gradient-to-r from-orange-200 to-purple-200 bg-clip-text text-transparent">
+                  <h1 className="font-bold text-white text-lg text-center bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
                     Bachelor of Information Technology
                   </h1>
-                  <h5 className="font-semibold text-xs text-orange-300/80 mb-3">
+                  <h5 className="font-semibold text-xs text-[#CCFF00]/80 mb-3">
                     University of Moratuwa
                   </h5>
                   <p className="text-white/70 text-xs text-center leading-relaxed mb-4">
@@ -237,11 +237,11 @@ const Education = () => {
                     />
                   </div>
 
-                  <h1 className="font-bold text-white text-lg text-center bg-gradient-to-r from-purple-200 to-cyan-200 bg-clip-text text-transparent">
+                  <h1 className="font-bold text-white text-lg text-center bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
                     Higher National Diploma Electrical and Electronics
                     Engineering
                   </h1>
-                  <h5 className="font-semibold text-xs text-cyan-300/80 mb-3">
+                  <h5 className="font-semibold text-xs text-[#CCFF00]/80 mb-3">
                     Advanced Technological Institute, Galle
                   </h5>
                   <p className="text-white/70 text-xs text-center leading-relaxed mb-4">

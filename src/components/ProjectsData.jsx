@@ -262,7 +262,7 @@ const ProjectsData = ({ currentTheme }) => {
       members: [member1, member2, member3],
       reportLink: report10,
       category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
+      gradient: "from-[#CCFF00]/20 to-[#020408]/10"
     },
 
     {
@@ -292,7 +292,7 @@ const ProjectsData = ({ currentTheme }) => {
       members: [member1],
       category: "Web Application",
 
-      gradient: "from-violet-500/20 to-purple-500/20"
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5"
     },
     {
       id: 1,
@@ -324,7 +324,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1],
       category: "Desktop Application",
-      gradient: "from-blue-500/20 to-purple-500/20",
+      gradient: "from-[#CCFF00]/10 to-[#020408]/5",
       reportLink: report3,
       presentationLink: presentation3
     },
@@ -358,7 +358,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1],
       category: "Web Application + IOT Device",
-      gradient: "from-blue-500/20 to-purple-500/20",
+      gradient: "from-[#CCFF00]/10 to-[#020408]/5",
       reportLink: report14,
       presentationLink: presentation14
     },
@@ -392,7 +392,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1, member5, member6, member7, member8],
       category: "IoT System",
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5",
       reportLink: report,
       presentationLink: presentation
     },
@@ -424,7 +424,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1, member5, member6, member7, member8],
       category: "IoT System",
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5",
       reportLink: report12,
       presentationLink: presentation12
     },
@@ -440,7 +440,7 @@ const ProjectsData = ({ currentTheme }) => {
       images: [my5, my6, my7, my8],
       members: [member1],
       category: "Web Application + IOT Device",
-      gradient: "from-emerald-500/20 to-teal-500/20",
+      gradient: "from-[#CCFF00]/10 to-[#020408]/5",
       reportLink: report2,
       presentationLink: presentation2
     },
@@ -467,7 +467,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1],
       category: "Android App",
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5",
       reportLink: report13
     },
 
@@ -500,7 +500,7 @@ const ProjectsData = ({ currentTheme }) => {
       ],
       members: [member1],
       category: "Mobile Application",
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5",
       reportLink: report7,
       presentationLink: presentation7
     },
@@ -530,7 +530,7 @@ and reliably.`,
       ],
       members: [member1],
       category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-[#CCFF00]/15 to-[#020408]/5",
       reportLink: report8
     },
 
@@ -545,7 +545,7 @@ and reliably.`,
       images: [my4],
       members: [member1, member2, member4],
       category: "Web Platform",
-      gradient: "from-pink-500/20 to-rose-500/20"
+      gradient: "from-[#CCFF00]/20 to-[#020408]/20"
     },
     {
       id: 9,
@@ -571,7 +571,7 @@ and reliably.`,
       ],
       members: [member1],
       category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
+      gradient: "from-[#CCFF00]/20 to-[#020408]/20"
     },
 
     {
@@ -599,7 +599,7 @@ and reliably.`,
       ],
       members: [member1],
       category: "Web Application",
-      gradient: "from-orange-500/20 to-red-500/20"
+      gradient: "from-[#CCFF00]/20 to-[#020408]/20"
     }
   ];
 
@@ -698,7 +698,7 @@ and reliably.`,
     return (
       <div className="group relative w-full h-full">
         <div
-          className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
+          className={`absolute inset-0 bg-gradient-to-r from-[#CCFF00]/20 to-[#CCFF00]/5 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110`}
         />
         <div
           className={`flex ${
@@ -847,10 +847,10 @@ and reliably.`,
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
         <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 mb-4 border-white/10 bg-black/20 backdrop-blur-sm">
           <div className="text-center mb-10">
-            <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+            <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
               Creative Ventures
             </h2>
-            <p className="text-[16px] text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-[16px] text-[#FFFFFF] leading-relaxed max-w-3xl mx-auto mb-8">
               Explore some of my recent works, where I applied technical skills
               and creativity to deliver impactful solutions.
             </p>

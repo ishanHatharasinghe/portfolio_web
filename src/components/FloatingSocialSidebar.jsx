@@ -178,7 +178,7 @@ const FloatingSocialSidebar = () => {
             <div
               className="
               w-14 sm:w-16 md:w-18 p-2 space-y-2
-              bg-gradient-to-b from-gray-900/95 via-black/95 to-gray-900/95
+              bg-gradient-to-b from-[#020408]/95 via-[#020408]/95 to-[#020408]/95
               backdrop-blur-2xl
               border border-orange-500/30
               rounded-2xl md:rounded-3xl

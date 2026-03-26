@@ -57,18 +57,18 @@ const ProfessionalJourney = () => {
             </div>
             <div>
               {/* Text Block */}
-              <div className="bg-black/10 backdrop-blur-md rounded-[2rem] p-8">
-                <h1 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+              <div className="bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-[2rem] p-8 border border-white/10">
+                <h1 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
                   Professional Journey
                 </h1>
-                <p className="text-[16px] text-gray-300 leading-relaxed">
+                <p className="text-[16px] text-[#FFFFFF] leading-relaxed">
                   My academic path has equipped me with both theoretical
                   knowledge and practical skills, forming the foundation of my
                   professional expertise.
                 </p>
 
                 {/* Section */}
-                <div className="mt-10 border p-8 border-white/10 bg-black/40 backdrop-blur-md rounded-[1rem] relative">
+                <div className="mt-10 border p-8 border-white/10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-[1rem] relative">
                   {/* Arrows */}
                   <button
                     onClick={handlePrev}
@@ -133,10 +133,10 @@ const ProfessionalJourney = () => {
           {/* Mobile Layout */}
           <div className="md:hidden flex flex-col items-center justify-center w-full">
             <div className="w-full text-center mb-8">
-              <h1 className="font-italiana text-4xl text-white tracking-wide">
+              <h1 className="font-italiana text-4xl text-[#CCFF00] tracking-wide">
                 Professional Journey
               </h1>
-              <p className="text-[16px] text-gray-300 leading-relaxed">
+              <p className="text-[16px] text-[#FFFFFF] leading-relaxed">
                 My academic path has equipped me with both theoretical knowledge
                 and practical skills, forming the foundation of my professional
                 expertise.

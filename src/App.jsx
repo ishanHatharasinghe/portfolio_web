@@ -6,7 +6,7 @@ import "./index.css";
 // import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
 import Header from "./components/HeaderBar";
-import bg from "./assets/Home Section/bg3.webp";
+import bg from "./assets/bg4.jpg";
 import robot from "./assets/Home Section/ChatGPT Image Nov 4, 2025, 02_19_47 PM.webp";
 import axios from "axios";
 
@@ -33,42 +33,22 @@ function App() {
 
   const robots = [robot];
 
-  const themes = [
-    {
-      // Robot 1 theme (Purple/Blue)
-      primaryGradient: "from-purple-600 to-blue-600",
-      primaryHoverGradient: "from-purple-500 to-blue-500",
-      secondaryGradient: "from-orange-600 to-red-600",
-      secondaryHoverGradient: "from-orange-500 to-red-500",
-      cardGradient: "from-black/70 via-purple-900/20 to-blue-900/10",
-      cardHoverShadow: "hover:shadow-purple-500/40",
-      cardBorder: "hover:border-purple-400/50",
-      glowEffect: "from-purple-500/20 to-blue-500/15",
-      robotGlow: "from-orange-500/25 via-purple-500/15 to-cyan-500/20",
-      accentColor: "text-cyan-400",
-      badgeGradient: "from-purple-500/30 to-purple-600/20",
-      badgeText: "text-purple-200",
-      badgeBorder: "border-purple-400/40"
-    },
-    {
-      // Robot 2 theme (Green/Teal)
-      primaryGradient: "from-emerald-600 to-teal-600",
-      primaryHoverGradient: "from-emerald-500 to-teal-500",
-      secondaryGradient: "from-amber-600 to-orange-600",
-      secondaryHoverGradient: "from-amber-500 to-orange-500",
-      cardGradient: "from-black/70 via-emerald-900/20 to-teal-900/10",
-      cardHoverShadow: "hover:shadow-emerald-500/40",
-      cardBorder: "hover:border-emerald-400/50",
-      glowEffect: "from-emerald-500/20 to-teal-500/15",
-      robotGlow: "from-amber-500/25 via-emerald-500/15 to-teal-500/20",
-      accentColor: "text-emerald-400",
-      badgeGradient: "from-emerald-500/30 to-emerald-600/20",
-      badgeText: "text-emerald-200",
-      badgeBorder: "border-emerald-400/40"
-    }
-  ];
-
-  const currentTheme = themes[currentRobot];
+  // New color scheme using only #CCFF00, #020408, and White
+  const theme = {
+    primaryGradient: "from-[#CCFF00] to-white",
+    primaryHoverGradient: "from-[#CCFF00] to-white",
+    secondaryGradient: "from-white to-[#020408]",
+    secondaryHoverGradient: "from-white to-[#020408]",
+    cardGradient: "from-[#020408]/80 via-[#020408]/60 to-[#020408]/40",
+    cardHoverShadow: "hover:shadow-[#CCFF00]/40",
+    cardBorder: "hover:border-[#CCFF00]/50",
+    glowEffect: "from-[#CCFF00]/20 to-white/15",
+    robotGlow: "from-[#CCFF00]/25 via-white/15 to-[#CCFF00]/20",
+    accentColor: "text-[#CCFF00]",
+    badgeGradient: "from-[#CCFF00]/30 to-white/20",
+    badgeText: "text-white",
+    badgeBorder: "border-[#CCFF00]/40"
+  };
 
   useEffect(() => {
     AOS.init({ duration: 600, once: true });
@@ -142,7 +122,7 @@ function App() {
             <img
               src={bg}
               alt="background"
-              className="w-full h-full object-cover opacity-100 blur-[1px]"
+              className="w-full h-full object-cover opacity-100 blur-[2px]"
             />
             <div
               className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
@@ -162,7 +142,7 @@ function App() {
               <main>
                 <section id="home">
                   <Home
-                    currentTheme={currentTheme}
+                    currentTheme={theme}
                     currentRobot={currentRobot}
                     isTransitioning={isTransitioning}
                     robots={robots}
@@ -174,7 +154,7 @@ function App() {
                 </section>
 
                 <section id="about">
-                  <AboutMe currentTheme={currentTheme} />
+                  <AboutMe currentTheme={theme} />
                 </section>
 
                 <section id="education-journey">
@@ -182,7 +162,7 @@ function App() {
                 </section>
 
                 <section id="dexterity">
-                  <SkillsData currentTheme={currentTheme} />
+                  <SkillsData currentTheme={theme} />
                 </section>
 
                 <section id="professional-designations">
@@ -194,7 +174,7 @@ function App() {
                 </section>
 
                 <section id="creative-ventures">
-                  <ProjectsData currentTheme={currentTheme} />
+                  <ProjectsData currentTheme={theme} />
                 </section>
 
                 <section id="design-scape">
@@ -206,7 +186,7 @@ function App() {
                 </section>
 
                 <section id="contact">
-                  <Contact currentTheme={currentTheme} />
+                  <Contact currentTheme={theme} />
                 </section>
               </main>
 

@@ -91,7 +91,7 @@ const XoraProfessionalFooter = ({
   };
 
   return (
-    <footer className="relative overflow-hidden bg-black text-white">
+    <footer className="relative overflow-hidden bg-[#020408] text-white">
       {/* Subtle black glow effects */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-[120px]"></div>
       <div className="absolute bottom-0 right-1/4 w-112 h-112 bg-gray-500/10 rounded-full blur-[120px]"></div>

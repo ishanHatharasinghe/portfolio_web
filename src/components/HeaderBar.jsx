@@ -204,7 +204,7 @@ function Header() {
         style={{
           width: `${scrollProgress}%`,
           height: "2px",
-          background: "linear-gradient(to right, #F97316, #FB923C, #FDBA74)",
+          background: "linear-gradient(to right, #CCFF00, #020408, #FFFFFF)",
           position: "fixed",
           top: 0,
           left: 0,
@@ -221,7 +221,7 @@ function Header() {
       {/* Nav Bar */}
       <nav
         ref={navRef}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-black/90 via-black/80 to-black/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-[#020408]/90 via-[#020408]/80 to-[#020408]/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
         aria-label="Main navigation"
       >
         {/* Home logo */}
@@ -229,7 +229,7 @@ function Header() {
           onClick={() => scrollToSection("home")}
           className={`p-2 rounded-full transition mr-2 ${
             activeSection === "home"
-              ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
+              ? "text-white bg-gradient-to-br from-[#CCFF00]/80 to-[#020408]/40 shadow-lg scale-110"
               : "text-gray-400 hover:text-white hover:bg-white/10"
           }`}
           aria-label="Home"
@@ -247,7 +247,7 @@ function Header() {
               onClick={() => scrollToSection(item.id)}
               className={`relative p-2 rounded-full transition ${
                 activeSection === item.id
-                  ? "text-white bg-gradient-to-br from-orange-600/80 to-amber-600/40 shadow-lg scale-110"
+                  ? "text-white bg-gradient-to-br from-[#CCFF00]/80 to-[#020408]/40 shadow-lg scale-110"
                   : "text-gray-400 hover:text-white hover:bg-white/10"
               }`}
               aria-label={item.tooltip}
@@ -305,7 +305,7 @@ function Header() {
                   }}
                   className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition ${
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-orange-600/70 to-amber-600/30 text-white"
+                      ? "bg-gradient-to-r from-[#CCFF00]/70 to-[#020408]/30 text-white"
                       : "text-gray-300 hover:bg-white/10 hover:text-white"
                   }`}
                 >
@@ -332,7 +332,7 @@ function Header() {
                 />
                 <button
                   type="submit"
-                  className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition flex items-center justify-center"
+                  className="ml-2 px-3 py-1.5 rounded-full bg-[#CCFF00] hover:bg-[#020408] text-white text-sm transition flex items-center justify-center"
                   aria-label="Submit search"
                 >
                   <Search className="w-4 h-4" />
@@ -363,7 +363,7 @@ function Header() {
           />
           <button
             type="submit"
-            className="ml-2 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition flex items-center justify-center"
+            className="ml-2 px-3 py-1.5 rounded-full bg-[#CCFF00] hover:bg-[#020408] text-white text-sm transition flex items-center justify-center"
             aria-label="Submit search"
           >
             <Search className="w-4 h-4" />
@@ -374,7 +374,7 @@ function Header() {
             <ul
               id="search-results"
               role="listbox"
-              className="absolute bottom-full mb-1 w-72 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-orange-500 text-white z-50"
+              className="absolute bottom-full mb-1 w-72 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-[#CCFF00] text-white z-50"
             >
               {searchResults.length === 0 && (
                 <li className="px-3 py-2 text-gray-400">No results found.</li>
@@ -384,7 +384,7 @@ function Header() {
                   key={id}
                   role="option"
                   tabIndex={0}
-                  className="cursor-pointer px-3 py-2 hover:bg-orange-600"
+                  className="cursor-pointer px-3 py-2 hover:bg-[#CCFF00]"
                   onClick={() => {
                     scrollToSection(id, searchQuery);
                     setShowResults(false);
@@ -407,8 +407,7 @@ function Header() {
           )}
         </form>
       </nav>
-      {/* Robot Back to top */}
-      /* Robot Back to top - Hidden on mobile */
+      {/* Robot Back to top - Hidden on mobile */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={`fixed bottom-4 right-4 w-16 h-16 shadow-lg flex items-center justify-center transition transform hover:scale-110 hidden sm:flex ${

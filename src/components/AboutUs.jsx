@@ -132,7 +132,7 @@ const AboutUs = ({ currentTheme }) => {
 
   return (
     <div className="text-white p-8">
-      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-white/10 relative z-10 bg-black/20 backdrop-blur-sm">
+      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-white/10 relative z-10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-sm">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Desktop Layout */}
           <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full">
@@ -140,7 +140,7 @@ const AboutUs = ({ currentTheme }) => {
             <div className="md:w-1/2">
               {/* Enhanced Quote with gradient text */}
               <h1
-                className={`font-italiana text-[102px] mb-8 leading-tight bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent transition-all duration-1000 ${
+                className={`font-italiana text-[102px] mb-8 leading-tight bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent transition-all duration-1000 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-12"
@@ -185,8 +185,8 @@ const AboutUs = ({ currentTheme }) => {
                   className="w-[400px] max-w-md mx-auto mb-8 rounded-3xl transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1 shadow-2xl shadow-black/50"
                 />
                 {/* Enhanced glow effects */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-purple-500/10 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 via-[#FFFFFF]/10 to-[#020408]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020408]/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
               {/* Enhanced About Me Text */}
@@ -218,8 +218,8 @@ const AboutUs = ({ currentTheme }) => {
           {/* Mobile Layout */}
           <div className="md:hidden flex flex-col items-center justify-center w-full">
             {/* Mobile Title */}
-            <h1
-              className={`font-italiana text-4xl text-center mb-8 leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent transition-all duration-1000 ${
+              <h1
+              className={`font-italiana text-4xl text-center mb-8 leading-tight bg-gradient-to-r from-[#CCFF00] to-[#FFFFFF] bg-clip-text text-transparent transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -240,7 +240,7 @@ const AboutUs = ({ currentTheme }) => {
                 alt="Profile Picture"
                 className="w-full h-auto rounded-3xl transition-all duration-700 group-hover:scale-[1.02] shadow-2xl shadow-black/50"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-purple-500/10 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 via-[#FFFFFF]/10 to-[#020408]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
             </div>
 
             {/* Mobile Team Cards */}
@@ -252,7 +252,7 @@ const AboutUs = ({ currentTheme }) => {
               }`}
               style={{ transitionDelay: "400ms" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
               <div className="flex flex-col items-center justify-center mb-4 relative z-10">
                 <div className="flex items-center mb-3">
@@ -278,7 +278,7 @@ const AboutUs = ({ currentTheme }) => {
                   className="button mt-4 relative overflow-hidden group/btn"
                 >
                   <span className="relative z-10">Connect with Us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
                 </a>
               </div>
               <p className="text-sm mt-4 text-center text-white/70 leading-relaxed relative z-10">
@@ -299,7 +299,7 @@ const AboutUs = ({ currentTheme }) => {
               }`}
               style={{ transitionDelay: "600ms" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
               <div className="flex flex-col items-center justify-center mb-4 relative z-10">
                 <div className="flex items-center mb-3">
@@ -325,7 +325,7 @@ const AboutUs = ({ currentTheme }) => {
                   className="button mt-4 relative overflow-hidden group/btn"
                 >
                   <span className="relative z-10">Connect with Us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
                 </a>
               </div>
               <p className="text-sm mt-4 text-center text-white/70 leading-relaxed relative z-10">

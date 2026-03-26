@@ -1,4 +1,3 @@
-import React from "react";
 import my from "./../assets/Home Section/my2.webp";
 import slt from "./../assets/Home Section/slt.webp";
 import aw from "./../assets/Home Section/aw.webp";
@@ -117,10 +116,10 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
           <div className="h-full flex-1 flex flex-col items-center justify-center w-full max-w-7xl mx-auto">
             {/* Desktop Layout */}
             <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-[70px] w-full px-4 flex justify-center">
-              {/* Enhanced Profile card */}
+                  {/* Enhanced Profile card */}
               <div className="group relative w-60 md:w-80 mt-[300px] z-30">
                 <div
-                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/20 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700 shadow-2xl shadow-purple-500/20 group-hover:shadow-orange-500/30`}
+                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-xl rounded-[2rem] p-1 transition-all duration-700 shadow-2xl shadow-[#CCFF00]/20 group-hover:shadow-[#CCFF00]/30`}
                 >
                   {/* React Icon in Top Left */}
                   <FaReact
@@ -140,7 +139,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       />
                     </div>
 
-                    <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
                       I craft the Future one Innovative solution at a time
                     </span>
                   </p>
@@ -183,11 +182,11 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                     <span className="absolute top-6 left-12 font-italiana text-white/90 text-[20px] bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                       At the
                     </span>
-                    <h1 className="font-italiana text-5xl md:text-[200px] text-white tracking-wide bg-gradient-to-br from-white via-blue-100 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
-                      intersection
-                    </h1>
+            <h1 className="font-italiana text-5xl md:text-[200px] text-[#CCFF00] tracking-wide bg-gradient-to-br from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent drop-shadow-2xl">
+              intersection
+            </h1>
                   </div>
-                  <p className="absolute top-30 right-0 text-right font-italiana text-white text-sm md:text-lg tracking-wider bg-gradient-to-l from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent">
+                  <p className="absolute top-30 right-0 text-right font-italiana text-white text-sm md:text-lg tracking-wider bg-gradient-to-l from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
                     of electronics and code
                   </p>
                 </div>
@@ -203,19 +202,15 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                   <div
                     className={`border border-white/30 bg-gradient-to-br ${currentTheme.cardGradient} backdrop-blur-2xl rounded-3xl p-4 transition-all duration-700 hover:scale-[1.12] hover:rotate-2 hover:shadow-2xl ${currentTheme.cardHoverShadow} ${currentTheme.cardBorder} relative overflow-hidden`}
                   >
-                    {/* Enhanced glow effects */}
-                    <div
-                      className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${currentTheme.glowEffect} opacity-0 group-hover/card:opacity-100 transition-opacity duration-700`}
-                    ></div>
-                    <div
-                      className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${currentTheme.glowEffect} opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 blur-lg`}
-                    ></div>
+                    
+                   
 
                     <div className="relative z-10">
                       <div className="flex items-center gap-6 mb-6">
                         <div className="relative">
                           <div
-                            className={`w-16 h-16 rounded-2xl overflow-hidden transition-all duration-700 group-hover/card:scale-[1.2] group-hover/card:rotate-12 shadow-xl shadow-purple-500/30 border border-white/20 ${
+                            className={`w-16 h-16 rounded-2xl overflow-hidden transition-all duration-700 group-hover/card:scale-[1.2] group-hover/card:rotate-12  border border-white/20 ${
+                              
                               currentRobot === 1 ? "shadow-emerald-500/30" : ""
                             }`}
                           >
@@ -236,9 +231,9 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center justify-between mb-2"></div>
-                          <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-                            MOBITEL Market Edge Sales Management System
-                          </h3>
+                            <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
+                              MOBITEL Market Edge Sales Management System
+                            </h3>
                           <ArrowRight
                             className={`w-5 h-5 text-white/60 transition-all duration-500 group-hover/card:${currentTheme.accentColor} group-hover/card:translate-x-2 group-hover/card:scale-110 drop-shadow-lg`}
                           />
@@ -253,9 +248,9 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                               Enterprise
                             </span>
                             <span
-                              className={`px-3 py-1 bg-gradient-to-r from-blue-500/30 to-blue-600/20 text-blue-200 text-xs rounded-full border border-blue-400/40 shadow-lg shadow-blue-500/20 backdrop-blur-sm transition-all duration-1000 ${
+                              className={`px-3 py-1 bg-gradient-to-r from-blue-500/30 to-blue-600/20 text-blue-200 text-xs rounded-full border border-blue-400/40  transition-all duration-1000 ${
                                 currentRobot === 1
-                                  ? "from-teal-500/30 to-teal-600/20 text-teal-200 border-teal-400/40 shadow-teal-500/20"
+                                  ? "from-teal-500/30 to-teal-600/20 text-teal-200 border-teal-400/40 "
                                   : ""
                               }`}
                             >
@@ -271,7 +266,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                 {/* Enhanced Secondary Card - Tea Estate Management System */}
                 <div className="relative absolute left-12 top-40 group/card">
                   <div
-                    className={`border border-white/25 bg-gradient-to-br from-black/60 via-cyan-900/10 to-teal-900/5 backdrop-blur-xl rounded-2xl p-6 transition-all duration-600 hover:scale-[1.08] hover:-rotate-2 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-400/40 relative overflow-hidden ${
+                    className={`border border-white/25 bg-gradient-to-br from-black/60 via-cyan-900/10 to-teal-900/5 backdrop-blur-xl rounded-2xl p-6 transition-all duration-600 hover:scale-[1.08] hover:-rotate-2 hover:border-cyan-400/40 relative overflow-hidden ${
                       currentRobot === 1
                         ? "via-emerald-900/10 to-emerald-900/5 hover:shadow-emerald-500/30 hover:border-emerald-400/40"
                         : ""
@@ -327,7 +322,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center gap-3 mb-1">
                             <h3
-                              className={`font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent transition-all duration-1000 ${
+                              className={`font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent transition-all duration-1000 ${
                                 currentRobot === 1 ? "to-emerald-200" : ""
                               }`}
                             >
@@ -364,15 +359,8 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
               {/* Enhanced Robot section with switching animation - Desktop Only */}
               <div className="absolute top-[600px] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-20 group">
-                {/* Multi-layered robot glow with dynamic theming */}
                 <div
-                  className={`absolute w-[100%] h-[100%] bg-gradient-to-r ${currentTheme.robotGlow} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000`}
-                />
-                <div
-                  className={`absolute w-[100%] h-[100%] bg-gradient-to-r ${currentTheme.glowEffect} rounded-full blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-700 delay-200`}
-                />
-                <div
-                  className={`relative transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-110 drop-shadow-2xl ${
+                  className={`relative transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-110 ${
                     isTransitioning
                       ? "scale-95 opacity-70"
                       : "scale-100 opacity-100"
@@ -382,7 +370,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                     src={robots[currentRobot]}
                     alt="robot"
                     loading="lazy"
-                    className={`h-[1000px] filter drop-shadow-2xl transition-all duration-600 ${
+                    className={`h-[1000px] filter transition-all duration-600 ${
                       isTransitioning ? "blur-sm" : "blur-0"
                     }`}
                   />
@@ -394,10 +382,10 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
             <div className="md:hidden h-full flex flex-col items-center justify-center w-full px-4 py-8">
               {/* Mobile Header Section */}
               <div className="w-full text-center mb-12">
-                <h1 className="font-italiana text-4xl text-white tracking-wide bg-gradient-to-br from-white via-blue-100 to-purple-200 bg-clip-text text-transparent drop-shadow-lg mb-1">
+                <h1 className="font-italiana text-4xl text-[#CCFF00] tracking-wide bg-gradient-to-br from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent drop-shadow-lg mb-1">
                   At the intersection
                 </h1>
-                <p className="font-italiana text-white text-lg tracking-wider bg-gradient-to-r from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent">
+                <p className="font-italiana text-white text-lg tracking-wider bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
                   of electronics and code
                 </p>
               </div>
@@ -405,7 +393,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
               {/* Mobile Profile Card */}
               <div className="group relative w-full max-w-sm mx-auto mb-10">
                 <div
-                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-black/70 via-black/50 to-purple-900/20 backdrop-blur-xl rounded-3xl p-6 transition-all duration-500 shadow-xl shadow-purple-500/20`}
+                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-xl rounded-3xl p-6 transition-all duration-500 shadow-xl shadow-[#CCFF00]/20`}
                 >
                   {/* React Icon */}
                   <FaReact
@@ -425,7 +413,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
                   {/* Description */}
                   <p className="mb-6 font-italiana text-gray-300 text-sm text-center leading-relaxed">
-                    <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
                       I craft the Future one Innovative solution at a time
                     </span>
                   </p>
@@ -475,7 +463,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         {/* Project Info */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+                            <h3 className="font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
                               MOBITEL Market Edge
                             </h3>
                             <ArrowRight className="w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-cyan-400 group-hover/card:translate-x-1 flex-shrink-0 ml-2" />
@@ -524,7 +512,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         {/* Project Info */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+                            <h3 className="font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
                               Blue Haven Rentals
                             </h3>
                             <ArrowRight className="w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-cyan-400 group-hover/card:translate-x-1 flex-shrink-0 ml-2" />

@@ -242,7 +242,7 @@ const TestimonialsSection = () => {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex flex-col items-center justify-center items-center">
               <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
-                <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+                <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
                   Testimonials
                 </h2>
               </span>
@@ -264,12 +264,12 @@ const TestimonialsSection = () => {
                 </button>
               )}
             </div>
-            <p className="mb-12 text-[16px] text-gray-300 leading-relaxed mt-3 text-center">
+            <p className="mb-12 text-[16px] text-[#FFFFFF] leading-relaxed mt-3 text-center">
               Comments from our customers
             </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-gray-900/40 p-6 rounded-lg shadow-lg backdrop-blur-sm">
+              <div className="bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 p-6 rounded-lg shadow-lg backdrop-blur-sm border border-white/20">
                 <h2 className="text-xl font-semibold text-white mb-4">
                   {currentUser
                     ? editingId
@@ -302,7 +302,7 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Name: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       />
                     </div>
@@ -317,7 +317,7 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Email: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       />
                       <p className="text-xs text-gray-400 mt-1">
@@ -337,7 +337,7 @@ const TestimonialsSection = () => {
                             Occupation: e.target.value
                           })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       >
                         {occupations.map((occ, i) => (
@@ -358,7 +358,7 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Post: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       />
                     </div>
@@ -376,7 +376,7 @@ const TestimonialsSection = () => {
                             Institution: e.target.value
                           })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       />
                     </div>
@@ -391,7 +391,7 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Comment: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
                         required
                       />
                     </div>

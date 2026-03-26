@@ -370,11 +370,11 @@ const ProjectsData = () => {
           <div>
             <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
               Journey of UI/UX
-              <h2 className="font-italiana text-5xl md:text-[160px] text-white tracking-wide">
+              <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
                 DesignScape
               </h2>
             </span>
-            <p className="text-[16px] text-gray-300 leading-relaxed mt-3 items-center text-center">
+            <p className="text-[16px] text-[#FFFFFF] leading-relaxed mt-3 items-center text-center">
               Explore my portfolio of innovative solutions where technology
               meets creativity.
             </p>
