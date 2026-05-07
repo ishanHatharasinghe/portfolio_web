@@ -7,7 +7,13 @@ import "./index.css";
 import { AuthProvider } from "./components/AuthContext.jsx";
 import Header from "./components/HeaderBar";
 import bg from "./assets/bg4.jpg";
-import robot from "./assets/Home Section/ChatGPT Image Nov 4, 2025, 02_19_47 PM.webp";
+import robot from "./assets/Home Section/1.webp";
+import robot1 from "./assets/Home Section/1.webp";
+import robot2 from "./assets/Home Section/2.webp";
+import robot3 from "./assets/Home Section/3.webp";
+import robot4 from "./assets/Home Section/4.webp";
+import robot5 from "./assets/Home Section/5.webp";
+import robot6 from "./assets/Home Section/6.webp";
 import axios from "axios";
 
 const Home = lazy(() => import("./components/Home"));
@@ -30,24 +36,26 @@ function App() {
   const [currentRobot, setCurrentRobot] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [slideDir, setSlideDir] = useState("right");
 
-  const robots = [robot];
+  const robots = [robot1, robot2, robot3, robot4, robot5, robot6];
 
-  // New color scheme using only #CCFF00, #020408, and White
+  // New color scheme using only #D5A99A, #020408, and White
+  const accentHex = "#D5A99A";
   const theme = {
-    primaryGradient: "from-[#CCFF00] to-white",
-    primaryHoverGradient: "from-[#CCFF00] to-white",
+    primaryGradient: "from-[#D5A99A] to-white",
+    primaryHoverGradient: "from-[#D5A99A] to-white",
     secondaryGradient: "from-white to-[#020408]",
     secondaryHoverGradient: "from-white to-[#020408]",
     cardGradient: "from-[#020408]/80 via-[#020408]/60 to-[#020408]/40",
-    cardHoverShadow: "hover:shadow-[#CCFF00]/40",
-    cardBorder: "hover:border-[#CCFF00]/50",
-    glowEffect: "from-[#CCFF00]/20 to-white/15",
-    robotGlow: "from-[#CCFF00]/25 via-white/15 to-[#CCFF00]/20",
-    accentColor: "text-[#CCFF00]",
-    badgeGradient: "from-[#CCFF00]/30 to-white/20",
+    cardHoverShadow: "hover:shadow-[#D5A99A]/40",
+    cardBorder: "hover:border-[#D5A99A]/50",
+    glowEffect: "from-[#D5A99A]/20 to-white/15",
+    robotGlow: "from-[#D5A99A]/25 via-white/15 to-[#D5A99A]/20",
+    accentColor: "text-[#D5A99A]",
+    badgeGradient: "from-[#D5A99A]/30 to-white/20",
     badgeText: "text-white",
-    badgeBorder: "border-[#CCFF00]/40"
+    badgeBorder: "border-[#D5A99A]/40"
   };
 
   useEffect(() => {
@@ -62,19 +70,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (isMobile) return;
-
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentRobot((prev) => (prev + 1) % robots.length);
-        setIsTransitioning(false);
-      }, 600);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [isMobile, robots.length]);
 
   // --- AUTOMATIC WHATSAPP NOTIFICATION (TextMeBot) ---
   useEffect(() => {
@@ -111,6 +106,20 @@ function App() {
   }, []);
   // --- END NOTIFICATION ---
 
+  const switchRobot = (dir) => {
+    if (isTransitioning) return;
+    setSlideDir(dir);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentRobot((prev) =>
+        dir === "right"
+          ? (prev + 1) % robots.length
+          : (prev - 1 + robots.length) % robots.length
+      );
+      setIsTransitioning(false);
+    }, 500);
+  };
+
   return (
     <AuthProvider>
       {loading ? (
@@ -145,7 +154,10 @@ function App() {
                     currentTheme={theme}
                     currentRobot={currentRobot}
                     isTransitioning={isTransitioning}
+                    slideDir={slideDir}
                     robots={robots}
+                    onPrev={() => switchRobot("left")}
+                    onNext={() => switchRobot("right")}
                   />
                 </section>
 

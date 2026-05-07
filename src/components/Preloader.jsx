@@ -1,242 +1,397 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import logo from "../assets/myimage.webp";
-
-// Monochrome Color Theme
-const MONO_COLORS = {
-  // Pure Black
-  darkBg: "#000000",
-  // A dark gray for subtle background elements
-  darkCard: "#111111",
-  // Main accent color: Pure White (high contrast)
-  accent: "#ffffff",
-  // Secondary accent/subtle effect: Light Gray
-  secondaryAccent: "#aaaaaa",
-  // Border/Divider color: Mid-Dark Gray
-  borderColor: "#333333",
-  // Text colors
-  textPrimary: "#ffffff",
-  textSecondary: "#888888"
-};
 
 const PreloaderScreen = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [phase, setPhase] = useState(0); // 0=loading, 1=reveal, 2=exit
+  const [lettersVisible, setLettersVisible] = useState(false);
+  const [taglineVisible, setTaglineVisible] = useState(false);
+
+  const name = "PORTFOLIO";
 
   useEffect(() => {
-    // Simulate loading progress
+    // Staggered text reveal
+    const t1 = setTimeout(() => setLettersVisible(true), 300);
+    const t2 = setTimeout(() => setTaglineVisible(true), 900);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           setIsComplete(true);
-          // Delay before calling onComplete to show completion animation
+          setPhase(1);
           setTimeout(() => {
-            onComplete();
-          }, 800);
+            setPhase(2);
+            setTimeout(() => onComplete(), 700);
+          }, 600);
           return 100;
         }
-        // Random increment for more natural feel
-        return prev + Math.random() * 15 + 5;
+        const increment = prev < 30
+          ? Math.random() * 8 + 4
+          : prev < 70
+          ? Math.random() * 5 + 2
+          : Math.random() * 3 + 1;
+        return Math.min(prev + increment, 100);
       });
-    }, 100);
+    }, 120);
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
+  const displayProgress = Math.round(progress);
+
   return (
-    <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-1000 ${
-        isComplete ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
-      style={{
-        // Radial gradient from a dark gray to pure black
-        background: `radial-gradient(circle at 50% 50%, ${MONO_COLORS.darkCard} 0%, ${MONO_COLORS.darkBg} 100%)`
-      }}
-    >
-      {/* Geometric grid pattern overlay (Subtle background detail) */}
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@100;300;400&display=swap');
+
+        @keyframes pl-rotate-ring {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes pl-rotate-ring-rev {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        @keyframes pl-float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50%       { transform: translateY(-10px) scale(1.02); }
+        }
+        @keyframes pl-pulse-ring {
+          0%   { transform: scale(0.95); opacity: 0.6; }
+          50%  { transform: scale(1.05); opacity: 0.2; }
+          100% { transform: scale(0.95); opacity: 0.6; }
+        }
+        @keyframes pl-letter-in {
+          from { opacity: 0; transform: translateY(24px) skewY(4deg); }
+          to   { opacity: 1; transform: translateY(0) skewY(0); }
+        }
+        @keyframes pl-tagline-in {
+          from { opacity: 0; letter-spacing: 0.6em; }
+          to   { opacity: 1; letter-spacing: 0.35em; }
+        }
+        @keyframes pl-counter-in {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pl-bar-glow {
+          0%, 100% { opacity: 0.5; }
+          50%       { opacity: 1; }
+        }
+        @keyframes pl-scan {
+          0%   { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+        @keyframes pl-grid-fade {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes pl-orb-drift {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33%       { transform: translate(30px, -20px) scale(1.1); }
+          66%       { transform: translate(-20px, 15px) scale(0.95); }
+        }
+        @keyframes pl-exit-up {
+          from { transform: translateY(0); opacity: 1; }
+          to   { transform: translateY(-100vh); opacity: 0; }
+        }
+        @keyframes pl-corner-draw {
+          from { stroke-dashoffset: 80; }
+          to   { stroke-dashoffset: 0; }
+        }
+        @keyframes pl-dot-pulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50%       { transform: scale(0.4); opacity: 0.3; }
+        }
+        @keyframes pl-shine {
+          0%   { left: -40%; }
+          100% { left: 120%; }
+        }
+
+        .pl-letter {
+          display: inline-block;
+          opacity: 0;
+          animation: pl-letter-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .pl-tagline {
+          opacity: 0;
+          animation: pl-tagline-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .pl-counter {
+          opacity: 0;
+          animation: pl-counter-in 0.5s ease forwards 0.4s;
+        }
+        .pl-exit {
+          animation: pl-exit-up 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards !important;
+        }
+      `}</style>
+
       <div
-        className="absolute inset-0 opacity-10"
+        className={phase === 2 ? "pl-exit" : ""}
         style={{
-          backgroundImage: `repeating-linear-gradient(0deg, ${MONO_COLORS.borderColor}, ${MONO_COLORS.borderColor} 1px, transparent 1px, transparent 100px), repeating-linear-gradient(90deg, ${MONO_COLORS.borderColor}, ${MONO_COLORS.borderColor} 1px, transparent 1px, transparent 100px)`
+          position: "fixed",
+          inset: 0,
+          zIndex: 9999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#030507",
+          overflow: "hidden",
+          fontFamily: "'Josefin Sans', sans-serif",
         }}
-      />
+      >
+        {/* ── Ambient orbs ── */}
+        <div style={{
+          position: "absolute", width: 500, height: 500,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(213,169,154,0.07) 0%, transparent 70%)",
+          top: "10%", left: "15%",
+          animation: "pl-orb-drift 12s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute", width: 400, height: 400,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(213,169,154,0.05) 0%, transparent 70%)",
+          bottom: "10%", right: "10%",
+          animation: "pl-orb-drift 15s ease-in-out infinite reverse",
+          pointerEvents: "none",
+        }} />
 
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center space-y-10">
-        {/* Logo container with complex geometry and animation */}
-        <div className="relative">
-          {/* Outer geometric spinning rings */}
-          <div
-            className="absolute -inset-10 animate-spin-slow"
-            style={{
-              // Use dashes for a 'blueprint' or 'wireframe' look
-              border: `1px dashed ${MONO_COLORS.secondaryAccent}`,
-              borderRadius: "50%"
-            }}
-          />
+        {/* ── Fine grid overlay ── */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          animation: "pl-grid-fade 1.5s ease forwards",
+          backgroundImage:
+            "linear-gradient(rgba(213,169,154,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(213,169,154,0.04) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }} />
 
-          <div
-            className="absolute -inset-12 animate-spin-slower"
-            style={{
-              border: `1px solid ${MONO_COLORS.borderColor}`,
+        {/* ── Corner brackets ── */}
+        {[
+          { top: 24, left: 24, rotate: "0deg" },
+          { top: 24, right: 24, rotate: "90deg" },
+          { bottom: 24, right: 24, rotate: "180deg" },
+          { bottom: 24, left: 24, rotate: "270deg" },
+        ].map((pos, i) => (
+          <svg key={i} width="32" height="32" viewBox="0 0 32 32"
+            style={{ position: "absolute", ...pos, transform: `rotate(${pos.rotate})`, opacity: 0.4 }}>
+            <polyline points="0,16 0,0 16,0"
+              fill="none" stroke="#D5A99A" strokeWidth="1.5"
+              strokeDasharray="80" strokeDashoffset="80"
+              style={{ animation: `pl-corner-draw 0.8s ease ${0.2 + i * 0.1}s forwards` }} />
+          </svg>
+        ))}
+
+        {/* ── Main stage ── */}
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 40 }}>
+
+          {/* ── Logo assembly ── */}
+          <div style={{ position: "relative", width: 160, height: 160, display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+            {/* Outermost slow ring */}
+            <div style={{
+              position: "absolute", inset: -28,
+              border: "1px dashed rgba(213,169,154,0.2)",
               borderRadius: "50%",
-              transform: "rotate(45deg)"
-            }}
-          />
+              animation: "pl-rotate-ring 20s linear infinite",
+            }} />
 
-          {/* Logo container */}
-          <div
-            className="relative w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center animate-float-no-scale"
-            style={{
-              // Use a subtle box shadow instead of a full color glow
-              boxShadow: `0 0 30px ${MONO_COLORS.accent}15`,
+            {/* Dashed accent ring */}
+            <div style={{
+              position: "absolute", inset: -14,
+              border: "1px solid rgba(213,169,154,0.12)",
               borderRadius: "50%",
-              transform: `scale(${1})` // Keeping scale constant for monochrome look
-            }}
-          >
-            {/* Logo image (assuming it can be monochrome or will fit the theme) */}
-            <img
-              src={logo}
-              alt="Loading..."
-              className="rounded-full w-full h-full object-contain"
-              style={
-                {
-                  // Subtle contrast filter if needed, otherwise rely on the logo's appearance
-                  // Logo scale animation removed for a more stable, professional look
-                }
-              }
-            />
+              animation: "pl-rotate-ring-rev 14s linear infinite",
+            }}>
+              {/* Tick marks on ring */}
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+                <div key={deg} style={{
+                  position: "absolute", width: 4, height: 1,
+                  background: "#D5A99A", opacity: 0.5,
+                  top: "50%", left: "50%",
+                  transformOrigin: "0 0",
+                  transform: `rotate(${deg}deg) translateX(74px)`,
+                }} />
+              ))}
+            </div>
+
+            {/* Pulse ring */}
+            <div style={{
+              position: "absolute", inset: -4,
+              border: "1px solid rgba(213,169,154,0.25)",
+              borderRadius: "50%",
+              animation: "pl-pulse-ring 3s ease-in-out infinite",
+            }} />
+
+            {/* Logo container */}
+            <div style={{
+              width: 160, height: 160, borderRadius: "50%",
+              overflow: "hidden",
+              border: "1.5px solid rgba(213,169,154,0.35)",
+              boxShadow: "0 0 40px rgba(213,169,154,0.12), inset 0 0 20px rgba(0,0,0,0.4)",
+              animation: "pl-float 6s ease-in-out infinite",
+              background: "#0a0a0a",
+            }}>
+              <img src={logo} alt="Logo"
+                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.95) contrast(1.05)" }} />
+            </div>
           </div>
-        </div>
 
-        {/* Loading text and progress */}
-        <div className="text-center space-y-6">
-          <h2
-            className="text-xl sm:text-3xl font-light tracking-[0.4em] uppercase"
-            style={{ color: MONO_COLORS.textPrimary }}
-          >
-            <span className="opacity-75">Loading</span>
-            <span className="ml-1 font-bold opacity-100">Portfolio</span>
-          </h2>
+          {/* ── Typography block ── */}
+          <div style={{ textAlign: "center", userSelect: "none" }}>
+            {/* Large staggered name */}
+            <div style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(38px, 7vw, 68px)",
+              fontWeight: 300,
+              color: "#ffffff",
+              letterSpacing: "0.2em",
+              lineHeight: 1,
+              marginBottom: 10,
+            }}>
+              {lettersVisible && name.split("").map((char, i) => (
+                <span key={i} className="pl-letter"
+                  style={{ animationDelay: `${i * 55}ms`, color: i < 4 ? "#D5A99A" : "#ffffff" }}>
+                  {char}
+                </span>
+              ))}
+            </div>
 
-          {/* Progress bar */}
-          <div className="w-64 sm:w-96 mx-auto">
-            <div className="flex justify-between items-center mb-1">
-              <span
-                className="text-xs tracking-widest uppercase"
-                style={{ color: MONO_COLORS.textSecondary }}
-              >
-                Data Integrity Check
+            {/* Thin rule */}
+            <div style={{
+              width: lettersVisible ? "100%" : "0%",
+              height: "0.5px",
+              background: "linear-gradient(90deg, transparent, #D5A99A, transparent)",
+              margin: "10px auto",
+              transition: "width 1s ease 0.5s",
+            }} />
+
+            {/* Tagline */}
+            {taglineVisible && (
+              <p className="pl-tagline" style={{
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 10,
+                fontWeight: 100,
+                color: "rgba(213,169,154,0.7)",
+                letterSpacing: "0.35em",
+                textTransform: "uppercase",
+                marginTop: 6,
+              }}>
+                Electronics · Software · Design
+              </p>
+            )}
+          </div>
+
+          {/* ── Progress section ── */}
+          <div className="pl-counter" style={{ width: "min(340px, 80vw)" }}>
+
+            {/* Label row */}
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "baseline",
+              marginBottom: 8,
+            }}>
+              <span style={{
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 300,
+                color: "rgba(255,255,255,0.3)",
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+              }}>
+                Initializing
               </span>
-              <span
-                className="text-sm font-mono"
-                style={{ color: MONO_COLORS.accent }}
-              >
-                {Math.round(progress)}%
+              <span style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 22, fontWeight: 300,
+                color: "#D5A99A",
+                letterSpacing: "0.05em",
+                transition: "all 0.1s",
+              }}>
+                {displayProgress}<span style={{ fontSize: 12, opacity: 0.6 }}>%</span>
               </span>
             </div>
 
-            {/* Progress bar container (Squared for geometric look) */}
-            <div
-              className="relative h-1 overflow-hidden"
-              style={{
-                backgroundColor: MONO_COLORS.borderColor
-              }}
-            >
-              {/* Progress fill */}
-              <div
-                className="absolute left-0 top-0 h-full transition-all duration-300 ease-out"
-                style={{
-                  width: `${progress}%`,
-                  backgroundColor: MONO_COLORS.accent
-                }}
-              >
-                {/* Animated scanline shine effect */}
-                <div
-                  className="absolute inset-0 animate-shine"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)"
-                  }}
-                />
+            {/* Progress track */}
+            <div style={{
+              position: "relative",
+              height: 2,
+              background: "rgba(255,255,255,0.06)",
+              borderRadius: 1,
+              overflow: "hidden",
+            }}>
+              {/* Fill */}
+              <div style={{
+                position: "absolute", left: 0, top: 0, height: "100%",
+                width: `${progress}%`,
+                background: "linear-gradient(90deg, rgba(213,169,154,0.6), #D5A99A)",
+                borderRadius: 1,
+                transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}>
+                {/* Shine sweep */}
+                <div style={{
+                  position: "absolute", top: 0, width: "30%", height: "100%",
+                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)",
+                  animation: "pl-shine 1.8s ease-in-out infinite",
+                }} />
               </div>
 
-              {/* Minimalist glow effect (white blur) */}
-              <div
-                className="absolute top-1/2 transform -translate-y-1/2 h-4 blur-md transition-all duration-300"
-                style={{
-                  width: `${progress}%`,
-                  left: 0,
-                  backgroundColor: `${MONO_COLORS.accent}10`
-                }}
-              />
+              {/* Leading dot */}
+              <div style={{
+                position: "absolute", top: "50%",
+                left: `${Math.min(progress, 99)}%`,
+                transform: "translate(-50%, -50%)",
+                width: 5, height: 5, borderRadius: "50%",
+                background: "#D5A99A",
+                boxShadow: "0 0 8px #D5A99A, 0 0 16px rgba(213,169,154,0.4)",
+                transition: "left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              }} />
             </div>
+
+            {/* Segmented secondary bar */}
+            <div style={{ display: "flex", gap: 3, marginTop: 8 }}>
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div key={i} style={{
+                  flex: 1, height: 2, borderRadius: 1,
+                  background: i < Math.floor(progress / 5)
+                    ? `rgba(213,169,154,${0.3 + (i / 20) * 0.5})`
+                    : "rgba(255,255,255,0.05)",
+                  transition: "background 0.2s ease",
+                  animation: i < Math.floor(progress / 5) ? `pl-bar-glow 1.5s ease ${i * 40}ms infinite` : "none",
+                }} />
+              ))}
+            </div>
+          </div>
+
+          {/* ── Status dots ── */}
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            {[0, 180, 360].map((delay) => (
+              <div key={delay} style={{
+                width: 4, height: 4, borderRadius: "50%",
+                background: "#D5A99A",
+                animation: `pl-dot-pulse 1.4s ease-in-out ${delay}ms infinite`,
+              }} />
+            ))}
           </div>
         </div>
 
-        {/* Animated geometric indicator (replaces loading dots) */}
-        <div className="flex space-x-3 mt-4">
-          <div
-            className="w-3 h-3 border-2 border-white animate-spin-dot"
-            style={{ animationDelay: "0ms" }}
-          />
-          <div
-            className="w-3 h-3 border-2 border-white animate-spin-dot"
-            style={{ animationDelay: "150ms", transform: "rotate(45deg)" }}
-          />
-          <div
-            className="w-3 h-3 border-2 border-white animate-spin-dot"
-            style={{ animationDelay: "300ms" }}
-          />
+        {/* ── Bottom watermark ── */}
+        <div style={{
+          position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
+          fontFamily: "'Josefin Sans', sans-serif",
+          fontSize: 8, fontWeight: 100,
+          color: "rgba(255,255,255,0.15)",
+          letterSpacing: "0.5em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+        }}>
+          Crafting the Future · One Solution at a Time
         </div>
       </div>
-
-      {/* Completion animation overlay (Subtle white flash) */}
-      {isComplete && (
-        <div
-          className="absolute inset-0 animate-pulse-flash"
-          style={{
-            background: `radial-gradient(circle, ${MONO_COLORS.accent}20, ${MONO_COLORS.darkBg} 60%)`
-          }}
-        />
-      )}
-
-      {/* Custom styles */}
-      <style>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes spin-slower {
-            from { transform: rotate(45deg); }
-            to { transform: rotate(405deg); }
-        }
-        @keyframes spin-dot {
-            0%, 100% { transform: rotate(0deg); opacity: 1; }
-            50% { transform: rotate(180deg); opacity: 0.5; }
-        }
-        @keyframes shine {
-          0% { transform: translateX(-100%); }
-          50%, 100% { transform: translateX(100%); }
-        }
-        @keyframes float-no-scale { 
-          0%, 100% { transform: translateY(0); } 
-          50% { transform: translateY(-8px); } 
-        }
-        @keyframes pulse-flash {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        .animate-spin-slow { animation: spin-slow 10s linear infinite; }
-        .animate-spin-slower { animation: spin-slower 12s linear infinite; }
-        .animate-spin-dot { animation: spin-dot 1.5s ease-in-out infinite; }
-        .animate-shine { animation: shine 2s ease-in-out infinite; }
-        .animate-float-no-scale { animation: float-no-scale 6s ease-in-out infinite; }
-        .animate-pulse-flash { animation: pulse-flash 0.8s ease-out; }
-      `}</style>
-    </div>
+    </>
   );
 };
 

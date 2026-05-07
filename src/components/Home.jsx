@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import { FaReact } from "react-icons/fa";
 import resumePDF from "./../assets/cv.pdf";
 
-const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
+const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, onPrev, onNext }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
@@ -197,7 +197,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
               {/* Enhanced Project cards with dynamic theming */}
               <div className="absolute bottom-0 mt-[300px] group relative z-30">
-                {/* Enhanced Main Card - Market Edge */}
+                  {/* Enhanced Main Card - Market Edge */}
                 <div className="mb-3 relative absolute top-40 left-24 group/card">
                   <div
                     className={`border border-white/30 bg-gradient-to-br ${currentTheme.cardGradient} backdrop-blur-2xl rounded-3xl p-4 transition-all duration-700 hover:scale-[1.12] hover:rotate-2 hover:shadow-2xl ${currentTheme.cardHoverShadow} ${currentTheme.cardBorder} relative overflow-hidden`}
@@ -207,11 +207,11 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
 
                     <div className="relative z-10">
                       <div className="flex items-center gap-6 mb-6">
-                        <div className="relative">
+                        <div className="relative ">
                           <div
                             className={`w-16 h-16 rounded-2xl overflow-hidden transition-all duration-700 group-hover/card:scale-[1.2] group-hover/card:rotate-12  border border-white/20 ${
                               
-                              currentRobot === 1 ? "shadow-emerald-500/30" : ""
+                              currentRobot === 1 ? "shadow-[#D5A99A]/30" : ""
                             }`}
                           >
                             <img
@@ -225,13 +225,13 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                             ></div>
                           </div>
                           {/* Enhanced floating dot indicator */}
-                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400 rounded-full animate-pulse shadow-xl shadow-green-400/60 border-2 border-white/30"></div>
-                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400/50 to-emerald-400/50 rounded-full animate-ping"></div>
+                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-[#D5A99A] via-[#D5A99A] to-[#D5A99A] rounded-full animate-pulse shadow-xl shadow-[#D5A99A]/60 border-2 border-white/30"></div>
+                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-[#D5A99A]/50 to-[#D5A99A]/50 rounded-full animate-ping"></div>
                         </div>
 
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center justify-between mb-2"></div>
-                            <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent">
+                            <h3 className="font-italiana text-white text-xs font-light tracking-wide bg-gradient-to-r from-[#D5A99A] to-[#020408] bg-clip-text text-transparent">
                               MOBITEL Market Edge Sales Management System
                             </h3>
                           <ArrowRight
@@ -243,14 +243,14 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                           </p>
                           <div className="mt-3 flex gap-2">
                             <span
-                              className={`px-3 py-1 bg-gradient-to-r ${currentTheme.badgeGradient} ${currentTheme.badgeText} text-xs rounded-full ${currentTheme.badgeBorder} shadow-lg shadow-purple-500/20 backdrop-blur-sm transition-all duration-1000`}
+                              className={`px-3 py-1 bg-gradient-to-r ${currentTheme.badgeGradient} ${currentTheme.badgeText} text-xs rounded-full ${currentTheme.badgeBorder} shadow-lg shadow-[#D5A99A]/20 backdrop-blur-sm transition-all duration-1000`}
                             >
                               Enterprise
                             </span>
                             <span
-                              className={`px-3 py-1 bg-gradient-to-r from-blue-500/30 to-blue-600/20 text-blue-200 text-xs rounded-full border border-blue-400/40  transition-all duration-1000 ${
+                              className={`px-3 py-1 bg-gradient-to-r from-[#D5A99A]/30 to-[#D5A99A]/20 text-[#D5A99A] text-xs rounded-full border border-[#D5A99A]/40  transition-all duration-1000 ${
                                 currentRobot === 1
-                                  ? "from-teal-500/30 to-teal-600/20 text-teal-200 border-teal-400/40 "
+                                  ? "from-[#D5A99A]/30 to-[#D5A99A]/20 text-[#D5A99A] border-[#D5A99A]/40 "
                                   : ""
                               }`}
                             >
@@ -266,24 +266,24 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                 {/* Enhanced Secondary Card - Tea Estate Management System */}
                 <div className="relative absolute left-12 top-40 group/card">
                   <div
-                    className={`border border-white/25 bg-gradient-to-br from-black/60 via-cyan-900/10 to-teal-900/5 backdrop-blur-xl rounded-2xl p-6 transition-all duration-600 hover:scale-[1.08] hover:-rotate-2 hover:border-cyan-400/40 relative overflow-hidden ${
+                    className={`border border-white/25 bg-gradient-to-br from-black/60 via-cyan-900/10 to-teal-900/5 backdrop-blur-xl rounded-2xl p-6 transition-all duration-600 hover:scale-[1.08] hover:-rotate-2 hover:border-[#D5A99A]/40 relative overflow-hidden ${
                       currentRobot === 1
-                        ? "via-emerald-900/10 to-emerald-900/5 hover:shadow-emerald-500/30 hover:border-emerald-400/40"
+                        ? "via-[#D5A99A]/10 to-[#D5A99A]/5 hover:shadow-[#D5A99A]/30 hover:border-[#D5A99A]/40"
                         : ""
                     }`}
                   >
                     {/* Enhanced glow effect */}
                     <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/15 to-teal-500/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-600 ${
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-[#D5A99A]/15 to-[#D5A99A]/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-600 ${
                         currentRobot === 1
-                          ? "from-emerald-500/15 to-emerald-500/10"
+                          ? "from-[#D5A99A]/15 to-[#D5A99A]/10"
                           : ""
                       }`}
                     ></div>
                     <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-tr from-orange-400/5 to-yellow-400/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-600 blur-sm ${
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#D5A99A]/5 to-[#D5A99A]/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-600 blur-sm ${
                         currentRobot === 1
-                          ? "from-amber-400/5 to-amber-400/10"
+                          ? "from-[#D5A99A]/5 to-[#D5A99A]/10"
                           : ""
                       }`}
                     ></div>
@@ -292,8 +292,8 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       <div className="flex items-center gap-4 mb-4">
                         <div className="relative">
                           <div
-                            className={`w-12 h-12 rounded-xl overflow-hidden transition-all duration-600 group-hover/card:scale-[1.15] group-hover/card:-rotate-6 shadow-lg shadow-cyan-500/20 border border-white/20 ${
-                              currentRobot === 1 ? "shadow-emerald-500/20" : ""
+                            className={`w-12 h-12 rounded-xl overflow-hidden transition-all duration-600 group-hover/card:scale-[1.15] group-hover/card:-rotate-6 shadow-lg shadow-[#D5A99A]/20 border border-white/20 ${
+                              currentRobot === 1 ? "shadow-[#D5A99A]/20" : ""
                             }`}
                           >
                             <img
@@ -302,18 +302,18 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                               className="w-full h-full object-cover transition-transform duration-600 group-hover/card:scale-105 group-hover/card:brightness-110"
                             />
                             <div
-                              className={`absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-orange-500/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 ${
+                              className={`absolute inset-0 bg-gradient-to-br from-[#D5A99A]/10 to-[#D5A99A]/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 ${
                                 currentRobot === 1
-                                  ? "from-emerald-500/10 to-amber-500/10"
+                                  ? "from-[#D5A99A]/10 to-[#D5A99A]/10"
                                   : ""
                               }`}
                             ></div>
                           </div>
                           {/* Enhanced status indicator */}
                           <div
-                            className={`absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-orange-400 via-yellow-400 to-amber-400 rounded-full shadow-lg shadow-orange-400/50 border border-white/30 transition-all duration-1000 ${
+                            className={`absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-[#D5A99A] via-[#D5A99A] to-[#D5A99A] rounded-full shadow-lg shadow-[#D5A99A]/50 border border-white/30 transition-all duration-1000 ${
                               currentRobot === 1
-                                ? "from-amber-400 via-amber-400 to-yellow-400 shadow-amber-400/50"
+                                ? "from-[#D5A99A] via-[#D5A99A] to-[#D5A99A] shadow-[#D5A99A]/50"
                                 : ""
                             }`}
                           ></div>
@@ -322,16 +322,16 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                         <div className="flex flex-col flex-1">
                           <div className="flex items-center gap-3 mb-1">
                             <h3
-                              className={`font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-[#CCFF00] to-[#020408] bg-clip-text text-transparent transition-all duration-1000 ${
-                                currentRobot === 1 ? "to-emerald-200" : ""
+                              className={`font-italiana text-white text-sm font-light tracking-wide bg-gradient-to-r from-[#D5A99A] to-[#020408] bg-clip-text text-transparent transition-all duration-1000 ${
+                                currentRobot === 1 ? "to-[#D5A99A]" : ""
                               }`}
                             >
                               Blue Haven Rentals
                             </h3>
                             <ArrowRight
-                              className={`w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-cyan-400 group-hover/card:translate-x-1 group-hover/card:scale-110 ${
+                              className={`w-4 h-4 text-white/60 transition-all duration-400 group-hover/card:text-[#D5A99A] group-hover/card:translate-x-1 group-hover/card:scale-110 ${
                                 currentRobot === 1
-                                  ? "group-hover/card:text-emerald-400"
+                                  ? "group-hover/card:text-[#D5A99A]"
                                   : ""
                               }`}
                             />
@@ -341,9 +341,9 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                           </p>
                           <div className="mt-2">
                             <span
-                              className={`px-2 py-0.5 bg-gradient-to-r from-cyan-500/25 to-teal-500/20 text-cyan-200 text-xs rounded-md border border-cyan-400/30 shadow-md shadow-cyan-500/20 backdrop-blur-sm transition-all duration-1000 ${
+                              className={`px-2 py-0.5 bg-gradient-to-r from-[#D5A99A]/25 to-[#D5A99A]/20 text-[#D5A99A] text-xs rounded-md border border-[#D5A99A]/30 shadow-md shadow-[#D5A99A]/20 backdrop-blur-sm transition-all duration-1000 ${
                                 currentRobot === 1
-                                  ? "from-emerald-500/25 to-emerald-500/20 text-emerald-200 border-emerald-400/30 shadow-emerald-500/20"
+                                  ? "from-[#D5A99A]/25 to-[#D5A99A]/20 text-[#D5A99A] border-[#D5A99A]/30 shadow-[#D5A99A]/20"
                                   : ""
                               }`}
                             >
@@ -375,6 +375,29 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                     }`}
                   />
                 </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <div className="absolute top-[600px] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-30 pointer-events-none">
+                {/* Previous Arrow */}
+                <button
+                  onClick={onPrev}
+                  className="absolute left-[-100px] pointer-events-auto bg-gradient-to-r from-[#D5A99A]/20 to-white/10 border border-[#D5A99A]/40 rounded-full p-4 hover:from-[#D5A99A]/30 hover:to-white/20 hover:border-[#D5A99A]/60 transition-all duration-300 shadow-lg shadow-[#D5A99A]/20"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D5A99A]">
+                    <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {/* Next Arrow */}
+                <button
+                  onClick={onNext}
+                  className="absolute right-[-100px] pointer-events-auto bg-gradient-to-r from-[#D5A99A]/20 to-white/10 border border-[#D5A99A]/40 rounded-full p-4 hover:from-[#D5A99A]/30 hover:to-white/20 hover:border-[#D5A99A]/60 transition-all duration-300 shadow-lg shadow-[#D5A99A]/20"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D5A99A]">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
               </div>
             </div>
 
@@ -449,7 +472,8 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, robots }) => {
                       <div className="flex items-start gap-4">
                         {/* Project Icon */}
                         <div className="relative flex-shrink-0">
-                          <div className="w-14 h-14 rounded-xl overflow-hidden shadow-lg shadow-purple-500/20 border border-white/20">
+                          <div className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/25 w-14 h-14 rounded-xl overflow-hidden shadow-lg shadow-purple-500/20 border border-white/20">
+                          
                             <img
                               src={slt}
                               alt="MOBITEL Market Edge"
