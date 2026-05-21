@@ -204,13 +204,12 @@ function Header() {
         style={{
           width: `${scrollProgress}%`,
           height: "2px",
-          background: "linear-gradient(to right, #CCFF00, #020408, #FFFFFF)",
+          background: "#ffffff",
           position: "fixed",
           top: 0,
           left: 0,
           zIndex: 1000,
           transition: "width 0.3s ease-in-out",
-          boxShadow: "0 0 10px rgba(249,115,22,0.5)"
         }}
         role="progressbar"
         aria-valuenow={scrollProgress}
@@ -218,36 +217,36 @@ function Header() {
         aria-valuemax="100"
         aria-label="Scroll progress"
       />
-      {/* Nav Bar */}
+      {/* Nav Bar - Minimal Design */}
       <nav
         ref={navRef}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-[#020408]/90 via-[#020408]/80 to-[#020408]/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 px-2 py-1.5 flex items-center space-x-3"
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/95 backdrop-blur-md rounded-full shadow-lg border border-white/10 px-2 py-2 flex items-center space-x-1"
         aria-label="Main navigation"
       >
         {/* Home logo */}
         <button
           onClick={() => scrollToSection("home")}
-          className={`p-2 rounded-full transition mr-2 ${
+          className={`p-2 rounded-full transition ${
             activeSection === "home"
-              ? "text-white bg-gradient-to-br from-[#CCFF00]/80 to-[#020408]/40 shadow-lg scale-110"
+              ? "text-black bg-white scale-110"
               : "text-gray-400 hover:text-white hover:bg-white/10"
           }`}
           aria-label="Home"
         >
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-xs">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-300 to-gray-600 flex items-center justify-center text-white font-bold text-xs">
             <img src={dp} alt="profile" className=" rounded-full" />
           </div>
         </button>
 
         {/* Desktop nav icons */}
-        <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-0.5">
           {navItems.slice(1).map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={`relative p-2 rounded-full transition ${
                 activeSection === item.id
-                  ? "text-white bg-gradient-to-br from-[#CCFF00]/80 to-[#020408]/40 shadow-lg scale-110"
+                  ? "text-black bg-white scale-105"
                   : "text-gray-400 hover:text-white hover:bg-white/10"
               }`}
               aria-label={item.tooltip}
@@ -288,7 +287,7 @@ function Header() {
           <div
             id="mobile-menu"
             ref={menuRef}
-            className={`absolute bottom-full mb-3 left-[1px] w-48 origin-bottom transform transition-all duration-300 bg-black/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/20 z-50 ${
+            className={`absolute bottom-full mb-3 left-[1px] w-48 origin-bottom transform transition-all duration-300 bg-black/95 backdrop-blur-md rounded-xl shadow-lg overflow-hidden border border-white/10 z-50 ${
               isMenuOpen
                 ? "max-h-96 opacity-100 scale-100"
                 : "max-h-0 opacity-0 scale-95 pointer-events-none"
@@ -305,7 +304,7 @@ function Header() {
                   }}
                   className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition ${
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-[#CCFF00]/70 to-[#020408]/30 text-white"
+                      ? "bg-white text-black"
                       : "text-gray-300 hover:bg-white/10 hover:text-white"
                   }`}
                 >
@@ -324,19 +323,18 @@ function Header() {
                 <input
                   type="search"
                   autoComplete="off"
-                  placeholder="Search site..."
-                  className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm w-full"
+                  placeholder="Search..."
+                  className="rounded-full px-3 py-1.5 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition text-sm w-full border border-white/20"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setShowResults(searchResults.length > 0)}
                 />
                 <button
                   type="submit"
-                  className="ml-2 px-3 py-1.5 rounded-full bg-[#CCFF00] hover:bg-[#020408] text-white text-sm transition flex items-center justify-center"
+                  className="ml-2 px-3 py-1.5 rounded-full bg-white hover:bg-gray-200 text-black text-sm transition flex items-center justify-center"
                   aria-label="Submit search"
                 >
                   <Search className="w-4 h-4" />
-                  <span className="ml-1 hidden sm:inline">Search</span>
                 </button>
               </form>
             </div>
@@ -354,27 +352,25 @@ function Header() {
           <input
             type="search"
             autoComplete="off"
-            placeholder="Search site..."
-            className="rounded-full px-3 py-1.5 bg-black/70 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm
-              w-28 sm:w-48 md:w-64"
+            placeholder="Search..."
+            className="rounded-full px-3 py-1.5 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition text-sm w-28 sm:w-48 md:w-64 border border-white/20"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowResults(searchResults.length > 0)}
           />
           <button
             type="submit"
-            className="ml-2 px-3 py-1.5 rounded-full bg-[#CCFF00] hover:bg-[#020408] text-white text-sm transition flex items-center justify-center"
+            className="ml-2 px-3 py-1.5 rounded-full bg-white hover:bg-gray-200 text-black text-sm transition flex items-center justify-center"
             aria-label="Submit search"
           >
             <Search className="w-4 h-4" />
-            <span className="ml-1 hidden sm:inline">Search</span>
           </button>
 
           {showResults && (
             <ul
               id="search-results"
               role="listbox"
-              className="absolute bottom-full mb-1 w-72 max-h-64 overflow-auto bg-black/90 backdrop-blur-lg rounded-md shadow-lg border border-[#CCFF00] text-white z-50"
+              className="absolute bottom-full mb-1 w-72 max-h-64 overflow-auto bg-black/90 backdrop-blur-md rounded-md shadow-lg border border-white/20 text-white z-50"
             >
               {searchResults.length === 0 && (
                 <li className="px-3 py-2 text-gray-400">No results found.</li>
@@ -384,7 +380,7 @@ function Header() {
                   key={id}
                   role="option"
                   tabIndex={0}
-                  className="cursor-pointer px-3 py-2 hover:bg-[#CCFF00]"
+                  className="cursor-pointer px-3 py-2 hover:bg-white hover:text-black transition"
                   onClick={() => {
                     scrollToSection(id, searchQuery);
                     setShowResults(false);

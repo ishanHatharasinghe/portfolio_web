@@ -15,10 +15,3 @@
 button {
   transition: all 0.3s ease-in-out;
 }
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}

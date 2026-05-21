@@ -108,7 +108,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
           {/* Top header with modern styling */}
           <div className="w-full text-center">
             <h3 className="mt-2 font-italiana text-white text-[8px] md:text-[15px] font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-              Electronics Engineer | Software Developer | Designer
+              Telecommunication Technical Officer | Software Developer | Designer
             </h3>
           </div>
 
@@ -187,7 +187,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
             </h1>
                   </div>
                   <p className="absolute top-30 right-0 text-right font-italiana text-white text-sm md:text-lg tracking-wider bg-gradient-to-l from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
-                    of electronics and code
+                    of Telecommunication and code
                   </p>
                 </div>
                 <div className="absolute top-0 flex justify-center items-center z-20 mt-[100px]">
@@ -377,28 +377,8 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
                 </div>
               </div>
 
-              {/* Navigation Arrows */}
-              <div className="absolute top-[600px] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-30 pointer-events-none">
-                {/* Previous Arrow */}
-                <button
-                  onClick={onPrev}
-                  className="absolute left-[-100px] pointer-events-auto bg-gradient-to-r from-[#D5A99A]/20 to-white/10 border border-[#D5A99A]/40 rounded-full p-4 hover:from-[#D5A99A]/30 hover:to-white/20 hover:border-[#D5A99A]/60 transition-all duration-300 shadow-lg shadow-[#D5A99A]/20"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D5A99A]">
-                    <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
 
-                {/* Next Arrow */}
-                <button
-                  onClick={onNext}
-                  className="absolute right-[-100px] pointer-events-auto bg-gradient-to-r from-[#D5A99A]/20 to-white/10 border border-[#D5A99A]/40 rounded-full p-4 hover:from-[#D5A99A]/30 hover:to-white/20 hover:border-[#D5A99A]/60 transition-all duration-300 shadow-lg shadow-[#D5A99A]/20"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D5A99A]">
-                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
+              
             </div>
 
             {/* Enhanced Mobile Layout - Robot Hidden */}
@@ -409,7 +389,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
                   At the intersection
                 </h1>
                 <p className="font-italiana text-white text-lg tracking-wider bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
-                  of electronics and code
+                  of Telecommunication and code
                 </p>
               </div>
 

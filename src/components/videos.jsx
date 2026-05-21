@@ -124,7 +124,7 @@ const About = () => {
                 intersection
               </h1>
               <p className="font-italiana text-base md:text-lg tracking-wider select-none pointer-events-none">
-                of electronics and code
+                of Telecommunication and code
               </p>
             </div>
           </div>
