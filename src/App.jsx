@@ -6,15 +6,7 @@ import "./index.css";
 // import FloatingSocialSidebar from "./components/FloatingSocialSidebar";
 import { AuthProvider } from "./components/AuthContext.jsx";
 import Header from "./components/HeaderBar";
-import bg from "./assets/bg4.jpg";
-import robot from "./assets/Home Section/1.webp";
-import robot1 from "./assets/Home Section/1.webp";
-import robot2 from "./assets/Home Section/2.webp";
-import robot3 from "./assets/Home Section/3.webp";
-import robot4 from "./assets/Home Section/4.webp";
-import robot5 from "./assets/Home Section/5.webp";
-import robot6 from "./assets/Home Section/6.webp";
-import axios from "axios";
+
 
 const Home = lazy(() => import("./components/Home"));
 const VideoScreen = lazy(() => import("./components/videos"));
@@ -33,29 +25,25 @@ const Copyright = lazy(() => import("./components/Copyright"));
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [currentRobot, setCurrentRobot] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [slideDir, setSlideDir] = useState("right");
 
-  const robots = [robot1, robot2, robot3, robot4, robot5, robot6];
 
-  // New color scheme using only #D5A99A, #020408, and White
-  const accentHex = "#D5A99A";
+  // New neutral color scheme without green hover/glow accents
   const theme = {
-    primaryGradient: "from-[#D5A99A] to-white",
-    primaryHoverGradient: "from-[#D5A99A] to-white",
-    secondaryGradient: "from-white to-[#020408]",
-    secondaryHoverGradient: "from-white to-[#020408]",
-    cardGradient: "from-[#020408]/80 via-[#020408]/60 to-[#020408]/40",
-    cardHoverShadow: "hover:shadow-[#D5A99A]/40",
-    cardBorder: "hover:border-[#D5A99A]/50",
-    glowEffect: "from-[#D5A99A]/20 to-white/15",
-    robotGlow: "from-[#D5A99A]/25 via-white/15 to-[#D5A99A]/20",
-    accentColor: "text-[#D5A99A]",
-    badgeGradient: "from-[#D5A99A]/30 to-white/20",
+    primaryGradient: "from-white to-slate-200",
+    primaryHoverGradient: "from-slate-200 to-white",
+    secondaryGradient: "from-white to-[#000000]",
+    secondaryHoverGradient: "from-white to-[#111827]",
+    cardGradient: "from-[#000000]/80 via-[#000000]/60 to-[#000000]/40",
+    cardHoverShadow: "hover:shadow-white/20",
+    cardBorder: "hover:border-white/20",
+    glowEffect: "from-white/10 to-white/5",
+    accentColor: "text-white",
+    badgeGradient: "from-white/10 to-white/5",
     badgeText: "text-white",
-    badgeBorder: "border-[#D5A99A]/40"
+    badgeBorder: "border-white/10"
   };
 
   useEffect(() => {
@@ -106,19 +94,7 @@ function App() {
   }, []);
   // --- END NOTIFICATION ---
 
-  const switchRobot = (dir) => {
-    if (isTransitioning) return;
-    setSlideDir(dir);
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentRobot((prev) =>
-        dir === "right"
-          ? (prev + 1) % robots.length
-          : (prev - 1 + robots.length) % robots.length
-      );
-      setIsTransitioning(false);
-    }, 500);
-  };
+  
 
   return (
     <AuthProvider>
@@ -128,11 +104,7 @@ function App() {
         <div className="relative bg-black">
           {/* Background with enhanced gradient overlay */}
           <div className="fixed inset-0 z-0">
-            <img
-              src={bg}
-              alt="background"
-              className="w-full h-full object-cover opacity-100 blur-[2px]"
-            />
+            
             <div
               className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
             />
@@ -152,12 +124,8 @@ function App() {
                 <section id="home">
                   <Home
                     currentTheme={theme}
-                    currentRobot={currentRobot}
                     isTransitioning={isTransitioning}
                     slideDir={slideDir}
-                    robots={robots}
-                    onPrev={() => switchRobot("left")}
-                    onNext={() => switchRobot("right")}
                   />
                 </section>
 

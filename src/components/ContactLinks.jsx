@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   FaFacebook,
   FaLinkedin,
   FaInstagramSquare,
   FaBehanceSquare,
-  FaAddressBook,
-  FaReact
+  FaAddressBook
 } from "react-icons/fa";
 import { SiFiverr } from "react-icons/si";
 import { MdEmail } from "react-icons/md";
@@ -14,38 +13,42 @@ import { FaSquareWhatsapp } from "react-icons/fa6";
 import "./../index.css";
 import { motion } from "framer-motion";
 
-const ToolTip = ({ text }) => <div className="tooltip">{text}</div>;
-
 const ContactLinks = () => {
   const [isVisible, setIsVisible] = useState(true);
 
+  const scrollTicking = useRef(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      const homeSection = document.getElementById("home");
-      const contactSection = document.getElementById("contact");
-      const copyrightSection = document.getElementById("copyright");
+      if (scrollTicking.current) return;
+      scrollTicking.current = true;
+      window.requestAnimationFrame(() => {
+        const homeSection = document.getElementById("home");
+        const contactSection = document.getElementById("contact");
+        const copyrightSection = document.getElementById("copyright");
 
-      if (homeSection && contactSection && copyrightSection) {
-        const homeRect = homeSection.getBoundingClientRect();
-        const contactRect = contactSection.getBoundingClientRect();
-        const copyrightRect = copyrightSection.getBoundingClientRect();
+        if (homeSection && contactSection && copyrightSection) {
+          const homeRect = homeSection.getBoundingClientRect();
+          const contactRect = contactSection.getBoundingClientRect();
+          const copyrightRect = copyrightSection.getBoundingClientRect();
 
-        const isInHomeSection =
-          homeRect.top < window.innerHeight && homeRect.bottom > 0;
-        const isInContactSection =
-          contactRect.top < window.innerHeight && contactRect.bottom > 0;
-        const isInCopyrightSection =
-          copyrightRect.top < window.innerHeight && copyrightRect.bottom > 0;
+          const isInHomeSection =
+            homeRect.top < window.innerHeight && homeRect.bottom > 0;
+          const isInContactSection =
+            contactRect.top < window.innerHeight && contactRect.bottom > 0;
+          const isInCopyrightSection =
+            copyrightRect.top < window.innerHeight && copyrightRect.bottom > 0;
 
-        if (isInHomeSection || isInContactSection || isInCopyrightSection) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
+          setIsVisible(
+            !(isInHomeSection || isInContactSection || isInCopyrightSection)
+          );
         }
-      }
+
+        scrollTicking.current = false;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     handleScroll();
 

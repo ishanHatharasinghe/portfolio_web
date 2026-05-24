@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Code, Cpu, Palette, Boxes } from "lucide-react";
+import { useState } from "react";
+import { Code, Cpu, Palette, Boxes } from "lucide-react";
 import factoryio from "./../assets/Skills/factoryio.webp";
 import vb from "./../assets/Skills/vb.webp";
 import xampp from "./../assets/Skills/xampp.webp";
@@ -45,13 +44,12 @@ import node from "./../assets/Skills/node.webp";
 const SkillCard = ({ image, name, category, proficiency }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
+    <div
       className="group relative overflow-hidden"
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-[#CCFF00]/20 to-[#CCFF00]/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative border border-white/10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-xl p-3 transition-transform duration-500 h-full">
         <div className="flex flex-col items-center gap-2">
           <img
@@ -60,46 +58,25 @@ const SkillCard = ({ image, name, category, proficiency }) => {
             className="w-14 h-14 object-contain transition-transform duration-500 group-hover:scale-110"
           />
           <p className="text-gray-300 text-xs text-center">{name}</p>
-          <AnimatePresence>
-            {isHovered && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="text-center"
-              >
-                <div className="w-full bg-gray-700/30 h-1 rounded-full mt-2">
-                  <div
-                    className="bg-orange-500/50 h-1 rounded-full transition-all duration-500"
-                    style={{ width: `${proficiency}%` }}
-                  />
-                </div>
-                <p className="text-xs text-gray-400 mt-1">
-                  {proficiency}% Proficiency
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const CategoryButton = ({ icon: Icon, label, isActive, onClick }) => (
-  <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
+  <button
     onClick={onClick}
     className={`flex items-center gap-2 px-4 py-2 rounded-full border ${
       isActive
-        ? "border-[#CCFF00]/50 bg-[#CCFF00]/10 text-white"
+        ? "border-white/20 bg-white/10 text-white"
         : "border-white/10 text-gray-400 hover:border-white/30"
     } transition-colors duration-300`}
   >
     <Icon size={16} />
     <span>{label}</span>
-  </motion.button>
+  </button>
 );
 
 const SkillsData = ({ currentTheme }) => {
@@ -262,21 +239,11 @@ const SkillsData = ({ currentTheme }) => {
   return (
     <>
       <div className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="rounded-[20px] lg:rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-white/10 bg-black/20 backdrop-blur-lg shadow-2xl"
-        >
+        <div className="rounded-[20px] lg:rounded-[70px] w-full max-w-7xl mx-auto p-12 border-2 border-white/10 bg-black/20 backdrop-blur-lg shadow-2xl">
           <div className="w-full text-center mb-16">
-            <motion.h1
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-italiana text-5xl md:text-[200px] text-[#CCFF00] tracking-wide relative z-10"
-            >
+            <h1 className="font-tusker text-5xl md:text-[200px] text-white tracking-wide relative z-10">
               Dexterity
-            </motion.h1>
+            </h1>
             <p className="text-[16px] text-[#FFFFFF] leading-relaxed text-center mb-7">
               Here are some of the technical skills I have acquired over time. I
               have worked with a variety of tools and technologies to bring
@@ -284,12 +251,7 @@ const SkillsData = ({ currentTheme }) => {
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
-          >
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category) => (
               <CategoryButton
                 key={category.id}
@@ -299,28 +261,16 @@ const SkillsData = ({ currentTheme }) => {
                 onClick={() => setSelectedCategory(category.id)}
               />
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            layout
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5 max-w-7xl mx-auto"
-          >
-            <AnimatePresence mode="wait">
-              {filteredSkills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3, delay: index * 0.02 }}
-                >
-                  <SkillCard {...skill} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </motion.div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5 max-w-7xl mx-auto">
+            {filteredSkills.map((skill) => (
+              <div key={skill.name}>
+                <SkillCard {...skill} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

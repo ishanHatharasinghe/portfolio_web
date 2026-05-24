@@ -1,8 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import cv from "./../assets/cv.pdf";
-import bg from "./../assets/bg6.jpg";
 import { FaDownload, FaEnvelope } from "react-icons/fa";
 
 const Home = () => {

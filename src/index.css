@@ -2,6 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg: #000000;
+  --color-text: #d9e0e3;
+  --color-muted: #23272d;
+  --color-white: #ffffff;
+  --color-accent: #cef441;
+  --color-black: #000000;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+section,
+.main-section,
+.section-card,
+.card,
+.content-panel,
+.panel,
+.page-panel {
+  background-color: var(--color-bg) !important;
+  background-image: none !important;
+  color: var(--color-text) !important;
+}
+
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6,
+section p,
+section span,
+section a,
+section li,
+section label,
+section button,
+section input,
+section textarea {
+  color: inherit !important;
+}
+
+.text-base,
+.text-primary,
+.text-content,
+.text-white,
+.text-gray-100,
+.text-slate-100 {
+  color: var(--color-text) !important;
+}
+
+.text-muted,
+.text-secondary,
+.text-slate-700,
+.text-gray-700,
+.text-gray-600 {
+  color: var(--color-muted) !important;
+}
+
+.bg-gradient-to-t,
+.bg-gradient-to-tr,
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-b,
+.bg-gradient-to-bl,
+.bg-gradient-to-l,
+[class*="bg-gradient-to-"],
+[class*="from-black"],
+[class*="to-black"],
+[class*="via-black"],
+[class*="from-[#020408]"],
+[class*="via-[#020408]"],
+[class*="to-[#020408]"],
+[class*="bg-[#020408]"],
+[class*="bg-gray-900"] {
+  background-image: none !important;
+  background-color: var(--color-bg) !important;
+}
+
+[style*="linear-gradient"],
+[style*="radial-gradient"] {
+  background-image: none !important;
+  background-color: var(--color-bg) !important;
+}
+
+.button,
+.btn,
+a.button {
+  position: relative !important;
+  overflow: hidden !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 140px !important;
+  padding: 0.95rem 1.75rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 9999px !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important,
+    0 18px 40px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(10px) !important;
+  z-index: 0 !important;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, background-color 0.25s ease !important;
+}
+
+.button::before,
+a.button::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), transparent 22%),
+    radial-gradient(circle at 70% 70%, rgba(200, 200, 200, 0.30), transparent 18%) !important;
+  opacity: 0.75 !important;
+  filter: blur(10px) !important;
+  transform: translateX(-18%) scale(0.9) !important;
+  transition: transform 0.35s ease, opacity 0.35s ease !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.button::after,
+a.button::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(180, 180, 180, 0.12), rgba(255, 255, 255, 0.10)) !important;
+  opacity: 0.9 !important;
+  pointer-events: none !important;
+  transition: opacity 0.35s ease !important;
+  z-index: -1 !important;
+}
+
+.button:hover,
+.btn:hover,
+a.button:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12) !important,
+    0 26px 55px rgba(0, 0, 0, 0.22) !important,
+    0 0 45px rgba(255, 255, 255, 0.28) !important;
+  background-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+.button:hover::before,
+a.button:hover::before {
+  transform: translateX(0) scale(1) !important;
+  opacity: 1 !important;
+}
+
+.button:hover::after,
+a.button:hover::after {
+  opacity: 1 !important;
+}
+
+.button span,
+.btn span {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Utility helpers */
+.bg-primary { background-color: var(--color-accent) !important; }
+.text-primary { color: var(--color-accent) !important; }
+
+
 /* Custom Animation for Rocket Movement */
 @keyframes moveRocket {
   0% {
@@ -16,27 +191,40 @@
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("./fonts/Poppins-Bold.ttf") format("Poppins-bold"),
-    url("./fonts/Poppins-Medium.ttf") format("Poppins-medium");
+  font-family: "TuskerGrotesk";
+  src: url("/TuskerGrotesk-6700Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MontBlanc";
+  src: url("../public/Monts fonts/fonnts.com-Mont_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MontBlanc";
+  src: url("../public/Monts fonts/fonnts.com-Mont_Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Nexusbold";
-  src: url("./fonts/Nexusbold.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "MontBlanc";
+  src: url("../public/Monts fonts/fonnts.com-Mont_Thin.ttf") format("truetype");
+  font-weight: 100;
   font-style: normal;
 }
 
 .font-bold {
-  font-family: "Poppins", sans-serif;
+  font-family: "TuskerGrotesk", sans-serif;
   font-weight: bold;
 }
 
 .font-medium {
-  font-family: "Poppins", sans-serif;
+  font-family: "MontBlanc", sans-serif;
   font-weight: 500;
 }
 
@@ -71,7 +259,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e00ff; /* Hover effect on the thumb */
+  background: #ffffff; /* Hover effect on the thumb */
 }
 
 ::-webkit-scrollbar-button {
@@ -208,7 +396,7 @@ html {
   }
 
   .hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply uppercase font-tusker font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
   }
 
   
@@ -217,7 +405,7 @@ html {
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem] font-tusker;
   }
 
   .animated-word {
@@ -236,7 +424,7 @@ html {
   }
 
   .bento-title {
-    @apply uppercase md:text-6xl text-4xl font-black font-zentry;
+    @apply uppercase md:text-6xl text-4xl font-black font-tusker;
   }
 
   .story-img-container {

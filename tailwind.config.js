@@ -7,9 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        italiana: ['Italiana'],
-        Hugiller: ['"Hugiller DEMO"', 'cursive'],
-        Nexusbold: ['Nexusbold'],
+        tusker: ['TuskerGrotesk'],
+        mont: ['MontBlanc'],
       },
       keyframes: {
         spin3d: {
@@ -53,6 +52,11 @@ export default {
         'star-movement-top': 'star-movement-top linear infinite alternate',
       },
     },
+      colors: {
+        primary: '#cef441',
+        black: '#000000',
+        white: '#ffffff',
+      },
   },
   plugins: [],
 };

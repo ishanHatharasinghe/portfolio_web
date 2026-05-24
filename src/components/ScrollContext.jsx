@@ -3,9 +3,12 @@ import { useEffect, useRef } from "react";
 import { useScroll } from "../contexts/ScrollContext";
 
 const ScrollContext = () => {
-  const { scrollY, scrollDirection, scrollProgress } = useScroll();
+  const { scrollProgress } = useScroll();
   const scrollProgressRef = useRef(null);
-  const distortionItems = useRef([]);
+  const scrollElementsRef = useRef([]);
+  const threeDElementsRef = useRef([]);
+  const distortionItemsRef = useRef([]);
+  const tickingRef = useRef(false);
 
   // Initialize scroll effects
   useEffect(() => {
@@ -16,8 +19,7 @@ const ScrollContext = () => {
 
     // Apply scroll-triggered animations
     const animateOnScroll = () => {
-      const elements = document.querySelectorAll("[data-scroll]");
-      elements.forEach((el) => {
+      scrollElementsRef.current.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const isVisible =
           rect.top < window.innerHeight * 0.75 && rect.bottom >= 0;
@@ -34,14 +36,11 @@ const ScrollContext = () => {
 
     // Apply 3D scroll effects
     const apply3DEffects = () => {
-      const elements = document.querySelectorAll(".scroll-3d-item");
-      elements.forEach((el) => {
+      threeDElementsRef.current.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const centerY = rect.top + rect.height / 2;
         const viewportCenter = window.innerHeight / 2;
         const distanceFromCenter = centerY - viewportCenter;
-
-        // Rotate based on position in viewport
         const rotation = distanceFromCenter / 20;
         el.style.transform = `rotateX(${rotation}deg)`;
       });
@@ -49,21 +48,17 @@ const ScrollContext = () => {
 
     // Apply distortion effects
     const applyDistortion = () => {
-      distortionItems.current.forEach((item) => {
+      distortionItemsRef.current.forEach((item) => {
         const rect = item.getBoundingClientRect();
         const centerY = rect.top + rect.height / 2;
         const distanceFromCenter =
           (centerY - window.innerHeight / 2) / window.innerHeight;
-
-        // Apply subtle distortion based on scroll position
-        item.style.transform = `scale(${
-          1 + Math.abs(distanceFromCenter) * 0.05
-        })`;
+        item.style.transform = `scale(${1 + Math.abs(distanceFromCenter) * 0.05})`;
       });
     };
 
     // Initialize distortion items
-    distortionItems.current = Array.from(
+    distortionItemsRef.current = Array.from(
       document.querySelectorAll(".distortion-image")
     );
 
@@ -72,17 +67,23 @@ const ScrollContext = () => {
     apply3DEffects();
     applyDistortion();
 
-    // Set up scroll event listeners
-    window.addEventListener("scroll", animateOnScroll);
-    window.addEventListener("scroll", apply3DEffects);
-    window.addEventListener("scroll", applyDistortion);
+    const handleScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      window.requestAnimationFrame(() => {
+        animateOnScroll();
+        apply3DEffects();
+        applyDistortion();
+        tickingRef.current = false;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", animateOnScroll);
-      window.removeEventListener("scroll", apply3DEffects);
-      window.removeEventListener("scroll", applyDistortion);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollY, scrollDirection]);
+  }, [scrollProgress]);
 
   return (
     <>

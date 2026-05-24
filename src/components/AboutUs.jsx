@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import profilePic from "./../assets/About/myimage (1).webp";
-import profilePic2 from "./../assets/About/myimage (2).webp";
-import profilePic3 from "./../assets/About/myimage (3).webp";
-import profilePic4 from "./../assets/About/myimage (4).webp";
 import logo from "./../assets/Home Section/aw.webp";
 import codecoveLogo from "./../assets/About/logo.webp";
 import member1 from "./../assets/About/1.webp";
@@ -52,7 +49,7 @@ const AboutUs = ({ currentTheme }) => {
       {members.map((member, index) => (
         <div
           key={index}
-          className="relative w-10 h-10 rounded-full border-2 border-white/20 overflow-hidden bg-gradient-to-br from-gray-700 to-gray-900 transition-all duration-500 hover:scale-125 hover:z-20 hover:border-white/60 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
+          className="relative w-10 h-10 rounded-full border-2 border-white/20 overflow-hidden bg-[#23272d]/90 transition-all duration-500 hover:scale-125 hover:z-20 hover:border-white/60 hover:shadow-lg hover:shadow-white/20 cursor-pointer"
           style={{
             zIndex: members.length - index,
             transform: `translateY(${index * -2}px)`
@@ -63,11 +60,11 @@ const AboutUs = ({ currentTheme }) => {
             alt={`Team member ${index + 1}`}
             className="w-full h-full object-cover transition-all duration-500 hover:brightness-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
         </div>
       ))}
       <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse" />
+        <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse" />
       </div>
     </div>
   );
@@ -82,13 +79,13 @@ const AboutUs = ({ currentTheme }) => {
     delay = 0
   }) => (
     <div
-      className={`mt-6 p-8 border border-white/10 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 hover:shadow-2xl hover:shadow-white/5 group relative overflow-hidden ${
+      className={`mt-6 p-8 border border-white/10 bg-[#23272d]/90 rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 hover:shadow-2xl hover:shadow-white/5 group relative overflow-hidden ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Subtle animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      <div className="absolute inset-0 bg-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-4 relative z-10">
         <div className="flex items-center">
@@ -98,14 +95,14 @@ const AboutUs = ({ currentTheme }) => {
               alt={`${teamName} Logo`}
               className="w-14 h-14 mr-4 rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
           <div className="flex items-center gap-6">
             <div>
               <p className="font-bold text-white/80 text-sm tracking-wider uppercase">
                 Team
               </p>
-              <p className="font-italiana text-3xl bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              <p className="font-italiana text-3xl text-white">
                 {teamName}
               </p>
             </div>
@@ -120,11 +117,11 @@ const AboutUs = ({ currentTheme }) => {
           className="button relative overflow-hidden group/btn mt-4 md:mt-0"
         >
           <span className="relative z-10">Connect with Us</span>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+          <div className="absolute inset-0 bg-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
         </a>
       </div>
 
-      <p className="text-sm mt-6 text-white/70 leading-relaxed relative z-10">
+      <p className="text-sm mt-6 text-[#d9e0e3]/80 leading-relaxed relative z-10">
         {description}
       </p>
     </div>
@@ -132,7 +129,7 @@ const AboutUs = ({ currentTheme }) => {
 
   return (
     <div className="text-white p-8">
-      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-white/10 relative z-10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-sm">
+      <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 border-white/10 relative z-10 bg-[#23272d]/90 backdrop-blur-sm">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Desktop Layout */}
           <div className="hidden md:flex flex-col md:flex-row justify-between items-center w-full">
@@ -140,7 +137,7 @@ const AboutUs = ({ currentTheme }) => {
             <div className="md:w-1/2">
               {/* Enhanced Quote with gradient text */}
               <h1
-                className={`font-italiana text-[102px] mb-8 leading-tight bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent transition-all duration-1000 ${
+                className={`font-tusker text-[102px] mb-8 leading-tight text-white transition-all duration-1000 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-12"
@@ -185,31 +182,29 @@ const AboutUs = ({ currentTheme }) => {
                   className="w-[400px] max-w-md mx-auto mb-8 rounded-3xl transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1 shadow-2xl shadow-black/50"
                 />
                 {/* Enhanced glow effects */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 via-[#FFFFFF]/10 to-[#020408]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020408]/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-white/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
+                <div className="absolute inset-0 bg-black/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
               {/* Enhanced About Me Text */}
-              <div
-                className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 transition-all duration-1000 ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: "600ms" }}
-              >
+              <div>
                 <p className="p-10 text-sm text-white/80 leading-relaxed">
                   I am an undergraduate pursuing a Higher National Diploma in
                   Electrical and Electronic Engineering at the Sri Lanka
                   Advanced Technology Institute, Galle. I successfully combine
                   practical knowledge with theoretical concepts in the field of
                   Electrical and Electronic Engineering. Additionally, I am an
-                  undergraduate at BIT, University of Moratuwa. I am well-versed
-                  in Adobe Photoshop and Adobe Illustrator, capable of designing
-                  posts, banners, cover designs, and much more. I am an
-                  energetic, hardworking, and enthusiastic individual who enjoys
-                  challenges and is committed to achieving personal goals while
-                  ready to tackle any challenges in my career path.
+                  undergraduate at BIT, University of Moratuwa.
+                  <span className="font-semibold block mt-2">
+                    I am currently working as a Trainee Telecommunication Technical
+                    Officer at ATSL International (PVT) LTD.
+                  </span>
+                  I am well-versed in Adobe Photoshop and Adobe Illustrator,
+                  capable of designing posts, banners, cover designs, and much
+                  more. I am an energetic, hardworking, and enthusiastic
+                  individual who enjoys challenges and is committed to achieving
+                  personal goals while ready to tackle any challenges in my career
+                  path.
                 </p>
               </div>
             </div>
@@ -219,7 +214,7 @@ const AboutUs = ({ currentTheme }) => {
           <div className="md:hidden flex flex-col items-center justify-center w-full">
             {/* Mobile Title */}
               <h1
-              className={`font-italiana text-4xl text-center mb-8 leading-tight bg-gradient-to-r from-[#CCFF00] to-[#FFFFFF] bg-clip-text text-transparent transition-all duration-1000 ${
+              className={`font-tusker text-4xl text-center mb-8 leading-tight text-white transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -240,19 +235,19 @@ const AboutUs = ({ currentTheme }) => {
                 alt="Profile Picture"
                 className="w-full h-auto rounded-3xl transition-all duration-700 group-hover:scale-[1.02] shadow-2xl shadow-black/50"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 via-[#FFFFFF]/10 to-[#020408]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
+              <div className="absolute inset-0 bg-white/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
             </div>
 
             {/* Mobile Team Cards */}
             <div
-              className={`w-full p-6 border border-white/10 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 mb-6 group relative overflow-hidden ${
+              className={`w-full p-6 border border-white/10 bg-[#23272d]/90 backdrop-blur-xl rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 mb-6 group relative overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: "400ms" }}
             >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
               <div className="flex flex-col items-center justify-center mb-4 relative z-10">
                 <div className="flex items-center mb-3">
@@ -265,7 +260,7 @@ const AboutUs = ({ currentTheme }) => {
                     <p className="font-bold text-white/80 text-sm tracking-wider uppercase">
                       Team
                     </p>
-                    <p className="font-italiana text-2xl bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    <p className="font-italiana text-2xl text-white">
                       ALPHAWIZZARDS
                     </p>
                   </div>
@@ -278,10 +273,10 @@ const AboutUs = ({ currentTheme }) => {
                   className="button mt-4 relative overflow-hidden group/btn"
                 >
                   <span className="relative z-10">Connect with Us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
                 </a>
               </div>
-              <p className="text-sm mt-4 text-center text-white/70 leading-relaxed relative z-10">
+              <p className="text-sm mt-4 text-center text-[#d9e0e3]/80 leading-relaxed relative z-10">
                 We are a dynamic team of seven aspiring tech enthusiasts
                 studying at the University of Moratuwa. With diverse talents and
                 shared ambitions, we are united by a passion for innovation,
@@ -292,14 +287,14 @@ const AboutUs = ({ currentTheme }) => {
 
             {/* Second Mobile Team Card */}
             <div
-              className={`w-full p-6 border border-white/10 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 mb-8 group relative overflow-hidden ${
+              className={`w-full p-6 border border-white/10 bg-[#23272d]/90 backdrop-blur-xl rounded-[2rem] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 mb-8 group relative overflow-hidden ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: "600ms" }}
             >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
               <div className="flex flex-col items-center justify-center mb-4 relative z-10">
                 <div className="flex items-center mb-3">
@@ -312,7 +307,7 @@ const AboutUs = ({ currentTheme }) => {
                     <p className="font-bold text-white/80 text-sm tracking-wider uppercase">
                       Team
                     </p>
-                    <p className="font-italiana text-2xl bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    <p className="font-italiana text-2xl text-white">
                       CodeCove
                     </p>
                   </div>
@@ -325,10 +320,10 @@ const AboutUs = ({ currentTheme }) => {
                   className="button mt-4 relative overflow-hidden group/btn"
                 >
                   <span className="relative z-10">Connect with Us</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
                 </a>
               </div>
-              <p className="text-sm mt-4 text-center text-white/70 leading-relaxed relative z-10">
+              <p className="text-sm mt-4 text-center text-[#d9e0e3]/80 leading-relaxed relative z-10">
                 CodeCove is an innovative development team focused on creating
                 cutting-edge web applications and digital solutions. Our
                 expertise spans across modern web technologies, delivering
@@ -338,7 +333,7 @@ const AboutUs = ({ currentTheme }) => {
 
             {/* Mobile About Me Text */}
             <div
-              className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-md border border-white/10 transition-all duration-1000 ${
+              className={`relative overflow-hidden rounded-2xl bg-[#23272d]/90 backdrop-blur-md border border-white/10 transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -346,18 +341,23 @@ const AboutUs = ({ currentTheme }) => {
               style={{ transitionDelay: "800ms" }}
             >
               <p className="text-sm text-center px-6 py-8 text-white/80 leading-relaxed">
-                I am an undergraduate pursuing a Higher National Diploma in
-                Electrical and Electronic Engineering at the Sri Lanka Advanced
-                Technology Institute, Galle. I successfully combine practical
-                knowledge with theoretical concepts in the field of Electrical
-                and Electronic Engineering. Additionally, I am an undergraduate
-                at BIT, University of Moratuwa. I am well-versed in Adobe
-                Photoshop and Adobe Illustrator, capable of designing posts,
-                banners, cover designs, and much more. I am an energetic,
-                hardworking, and enthusiastic individual who enjoys challenges
-                and is committed to achieving personal goals while ready to
-                tackle any challenges in my career path.
-              </p>
+                  I am an undergraduate pursuing a Higher National Diploma in
+                  Electrical and Electronic Engineering at the Sri Lanka
+                  Advanced Technology Institute, Galle. I successfully combine
+                  practical knowledge with theoretical concepts in the field of
+                  Electrical and Electronic Engineering. Additionally, I am an
+                  undergraduate at BIT, University of Moratuwa.
+                  <span className="font-semibold block mt-2">
+                    I am currently working as a Trainee Telecommunication Technical
+                    Officer at ATSL International (PVT) LTD.
+                  </span>
+                  I am well-versed in Adobe Photoshop and Adobe Illustrator,
+                  capable of designing posts, banners, cover designs, and much
+                  more. I am an energetic, hardworking, and enthusiastic
+                  individual who enjoys challenges and is committed to achieving
+                  personal goals while ready to tackle any challenges in my career
+                  path.
+                </p>
             </div>
           </div>
         </div>

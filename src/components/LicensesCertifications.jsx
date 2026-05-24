@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import certificate1 from "./../assets/Licenses & Certifications/Python_for_Beginners_E-Certificate.webp";
 import certificate2 from "./../assets/Licenses & Certifications/Python_Programming_E-Certificate.webp";
 import certificate3 from "./../assets/Licenses & Certifications/Web_Design_for_Beginners_E-Certificate.webp";
@@ -153,8 +153,11 @@ const LicensesCertifications = () => {
 
       {/* Content */}
       <div className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 mt-16 z-10">
-        <div className="space-y-6 text-center rounded-[20px] sm:rounded-[70px] w-full h-full p-3 sm:p-5 border border-2 mb-4 border-gray-700/30">
-          <h2 className="font-italiana text-3xl sm:text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
+        <div className="space-y-6 text-center rounded-[20px] lg:rounded-[60px] w-full h-full p-3 sm:p-5 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
+       
+            
+          
+          <h2 className="font-tusker text-5xl md:text-[130px] text-white tracking-wide">
             Professional Designations
           </h2>
           <p className="text-sm sm:text-[16px] text-[#FFFFFF] leading-relaxed max-w-3xl mx-auto px-2">

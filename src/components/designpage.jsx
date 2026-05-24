@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Heart,
-  Share,
   Github,
   X,
   ExternalLink,
@@ -11,8 +9,6 @@ import {
 } from "lucide-react";
 import { IoIosHeart } from "react-icons/io";
 import my from "./../assets/Project1/1.webp";
-import my2 from "./../assets/Project2/page.webp";
-import my3 from "./../assets/Project3/page.webp";
 import my4 from "./../assets/Project4/page.webp";
 
 // Import gallery images for each project
@@ -129,7 +125,6 @@ import gallery5_74 from "./../assets/Design6/1 (17).webp";
 import gallery5_75 from "./../assets/Design6/1 (18).webp";
 import gallery5_76 from "./../assets/Design6/1 (19).webp";
 
-import bg from "./../assets/Home Section/bg3.webp";
 
 const ProjectsData = () => {
   // Use lazy initialization so that saved data is loaded immediately.
@@ -366,11 +361,11 @@ const ProjectsData = () => {
       </div>
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 py-16 z-10">
         {/* Header Section */}
-        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-white/20  shadow-2xl shadow-purple-500/10">
           <div>
             <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
               Journey of UI/UX
-              <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
+              <h2 className="font-tusker text-5xl md:text-[160px] text-white tracking-wide">
                 DesignScape
               </h2>
             </span>

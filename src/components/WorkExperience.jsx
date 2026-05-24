@@ -1,5 +1,5 @@
 import "aos/dist/aos.css";
-import robot from "./../assets/Work1/scene-with-futuristic-robot-used-construction-industry.webp";
+import robot from "./../assets/Work1/man.png";
 import Img1 from "./../assets/Work1/1.webp";
 import Img2 from "./../assets/Work1/2.webp";
 import Img3 from "./../assets/Work1/3.webp";
@@ -34,15 +34,16 @@ const ProfessionalJourney = () => {
           className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
         />
         <img
-          src={robot}
-          alt="robot"
-          className="absolute  p-2 inset-0 mx-auto w-full h-auto object-contain opacity-100 z-10"
-        />
+  src={robot}
+  alt="robot"
+  className="absolute right-[930px] top-0 p-2 w-[600px] h-auto object-contain object-left opacity-100 z-10"
+/>
       </div>
 
       {/* Content */}
       <div className="relative min-h-screen flex flex-col justify-center items-center px-6 mt-16 z-10">
-        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-gray-700/30">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-white/20 shadow-2xl shadow-purple-500/10">
+          
           {/* Desktop Layout */}
           <div className="hidden md:flex flex-row gap-1 items-center">
             <div>
@@ -51,7 +52,7 @@ const ProfessionalJourney = () => {
             <div>
               {/* Text Block */}
               <div className="bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-[2rem] p-8 border border-white/10">
-                <h1 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
+                <h1 className="font-tusker text-5xl md:text-[140px] text-white tracking-wide">
                   Professional Journey
                 </h1>
                 <p className="text-[16px] text-[#FFFFFF] leading-relaxed">
@@ -103,7 +104,7 @@ const ProfessionalJourney = () => {
           {/* Mobile Layout */}
           <div className="md:hidden flex flex-col items-center justify-center w-full">
             <div className="w-full text-center mb-8">
-              <h1 className="font-italiana text-4xl text-[#CCFF00] tracking-wide">
+              <h1 className="font-tusker text-4xl text-white tracking-wide">
                 Professional Journey
               </h1>
               <p className="text-[16px] text-[#FFFFFF] leading-relaxed">

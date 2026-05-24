@@ -1,11 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
-  FaEnvelope,
   FaLinkedin,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaFacebook,
-  FaInstagram,
   FaWhatsapp,
   FaGithub,
   FaBehance
@@ -105,22 +100,22 @@ const Contact = ({ currentTheme }) => {
   };
 
   return (
-    <div className="min-h-screen text-white p-8 relative">
+    <div className="min-h-screen text-[#d9e0e3] p-8 relative bg-[#23272d]">
       {/* Cursor spotlight effect */}
       <div
         className="pointer-events-none absolute inset-0 mix-blend-screen transition-opacity duration-700"
         style={{
-          background: `radial-gradient(600px circle at ${mouse.x} ${mouse.y}, rgba(204, 255, 0, 0.15), transparent 55%)`
+          background: `radial-gradient(600px circle at ${mouse.x} ${mouse.y}, rgba(206, 244, 65, 0.15), transparent 55%)`
         }}
       />
 
-      <div className="flex flex-col items-center justify-center rounded-[20px] lg:rounded-[70px] w-full min-h-screen p-6 border-2 mb-4 border-white/10 bg-black/20 backdrop-blur-sm relative z-10">
+      <div className="flex flex-col items-center justify-center rounded-[20px] lg:rounded-[70px] w-full min-h-screen p-6 border border-white/10 bg-[#23272d] relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-            <h2 className="font-italiana text-5xl md:text-[120px] lg:text-[160px] text-[#CCFF00] tracking-wide bg-gradient-to-br from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+            <h2 className="font-tusker text-5xl md:text-[120px] lg:text-[160px] text-white tracking-wide">
               Get in Touch
             </h2>
-            <p className="text-[16px] text-[#FFFFFF] leading-relaxed mt-4 max-w-2xl mx-auto bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+            <p className="text-[16px] leading-relaxed mt-4 max-w-2xl mx-auto text-[#d9e0e3]">
               Let's connect! Whether you have a job opportunity, project
               collaboration, or just want to say hello, I'd love to hear from you.
             </p>
@@ -128,11 +123,11 @@ const Contact = ({ currentTheme }) => {
 
         {/* Contact Form */}
             <div className="w-full max-w-3xl mb-12">
-          <div className="rounded-2xl p-6 md:p-8 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.6)]">
+          <div className="rounded-2xl p-6 md:p-8 bg-[#23272d] ring-1 ring-white/10 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.6)]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {/* Name */}
               <div>
-              <label className="block text-sm mb-2 text-[#FFFFFF] bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+              <label className="block text-sm mb-2 text-[#d9e0e3]">
                 Your Name
               </label>
                 <input
@@ -155,7 +150,7 @@ const Contact = ({ currentTheme }) => {
 
               {/* Email */}
               <div>
-              <label className="block text-sm mb-2 text-[#FFFFFF] bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+              <label className="block text-sm mb-2 text-[#d9e0e3]">
                 Email Address
               </label>
                 <input
@@ -180,10 +175,10 @@ const Contact = ({ currentTheme }) => {
             {/* Subject - Multi-select */}
             <div className="mt-6">
               <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm text-[#FFFFFF] bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+              <label className="block text-sm text-[#d9e0e3]">
                 Subject{" "}
                   {form.subject.length > 0 && (
-                    <span className="text-purple-400">
+                    <span className="text-[#cef441]">
                       ({form.subject.length} selected)
                     </span>
                   )}
@@ -209,8 +204,8 @@ const Contact = ({ currentTheme }) => {
                       onClick={() => toggleSubjectOption(opt)}
                       className={`px-3 py-1.5 rounded-full text-xs ring-1 transition-all duration-300 ${
                         isSelected
-                          ? "bg-purple-600 text-white ring-transparent scale-105 shadow-lg shadow-purple-500/30"
-                          : "bg-white/5 text-gray-300 ring-white/10 hover:bg-white/10 hover:ring-purple-500/30"
+                          ? "bg-[#cef441] text-black ring-transparent scale-105 shadow-lg shadow-[#cef441]/30"
+                          : "bg-white/5 text-[#d9e0e3] ring-white/10 hover:bg-white/10 hover:ring-[#cef441]/40"
                       }`}
                     >
                       {opt}
@@ -222,15 +217,15 @@ const Contact = ({ currentTheme }) => {
 
               {/* Selected items summary */}
               {form.subject.length > 0 && (
-                <div className="mt-3 p-3 rounded-xl bg-purple-500/10 ring-1 ring-purple-500/20">
-              <p className="text-xs text-[#FFFFFF] mb-1">
-                Selected subjects:
-              </p>
+                <div className="mt-3 p-3 rounded-xl bg-[#23272d] ring-1 ring-white/10">
+                  <p className="text-xs text-[#d9e0e3] mb-1">
+                    Selected subjects:
+                  </p>
                   <div className="flex flex-wrap gap-1">
                     {form.subject.map((item) => (
                       <span
                         key={item}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-500/20 text-xs text-white"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#cef441]/15 text-xs text-[#d9e0e3]"
                       >
                         {item}
                         <button
@@ -254,7 +249,7 @@ const Contact = ({ currentTheme }) => {
 
             {/* Message */}
             <div className="mt-6">
-              <label className="block text-sm mb-2 text-[#FFFFFF] bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+              <label className="block text-sm mb-2 text-[#d9e0e3]">
                 Your Message
               </label>
               <textarea
@@ -265,18 +260,18 @@ const Contact = ({ currentTheme }) => {
                 onBlur={() => setTouched((t) => ({ ...t, message: true }))}
                 placeholder="Tell me about your opportunity, project, or inquiry..."
                 rows={6}
-                className={`w-full rounded-xl bg-black/40 ring-1 ${
+                className={`w-full rounded-xl bg-[#23272d]/90 ring-1 ${
                   touched.message && errors.message
                     ? "ring-red-500/60"
                     : "ring-white/10"
-                } px-4 py-3 outline-none text-white placeholder:text-gray-500 focus:ring-purple-500/40 transition-all`}
+                } px-4 py-3 outline-none text-[#d9e0e3] placeholder:text-gray-500 focus:ring-[#cef441]/40 transition-all`}
                 required
               />
               <div className="mt-1.5 flex items-center justify-between">
                 {touched.message && errors.message ? (
                   <p className="text-xs text-red-400">{errors.message}</p>
                 ) : (
-                <span className="text-xs text-[#FFFFFF]">
+                <span className="text-xs text-[#d9e0e3]">
                   Share any details that would help me understand your needs.
                 </span>
                 )}
@@ -292,22 +287,19 @@ const Contact = ({ currentTheme }) => {
                 type="button"
                 onClick={handleSubmit}
                 disabled={!isFormValid || sending}
-                className={`group relative inline-flex items-center justify-center px-6 py-3 rounded-full overflow-hidden transition-all duration-300 ${
+                className={`button group relative inline-flex items-center justify-center px-6 py-3 rounded-full overflow-hidden transition-all duration-300 ${
                   !isFormValid || sending
-                    ? "opacity-60 cursor-not-allowed bg-[#CCFF00]"
-                    : "hover:scale-105 bg-gradient-to-r from-[#CCFF00] to-white"
-                } shadow-lg shadow-[#CCFF00]/30`}
+                    ? "opacity-60 cursor-not-allowed bg-[#cef441]"
+                    : ""
+                    } shadow-lg shadow-[#cef441]/30`}
               >
-                <span className="relative z-10 text-sm font-medium flex items-center gap-2">
+                <span className="relative z-10 text-sm font-medium flex items-center gap-2 text-black">
                   <FaWhatsapp className="w-4 h-4" />
                   {sending ? "Opening WhatsApp..." : "Send via WhatsApp"}
                 </span>
-                {!(!isFormValid || sending) && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                )}
               </button>
 
-              <span className="text-xs text-gray-400 text-center">
+              <span className="text-xs text-[#d9e0e3] text-center">
                 This opens WhatsApp with your message prefilled to +94 70 305
                 2181
               </span>
@@ -317,7 +309,7 @@ const Contact = ({ currentTheme }) => {
 
         {/* Social Media Section */}
         <div className="mt-8 text-center w-full max-w-3xl">
-            <p className="text-[#FFFFFF] mb-6 bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+            <p className="text-[#d9e0e3] mb-6">
               Or connect with me on social media
             </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -351,17 +343,17 @@ const Contact = ({ currentTheme }) => {
         </div>
 
         {/* Contact Info */}
-          <div className="mt-8 text-sm text-[#FFFFFF] text-center bg-gradient-to-r from-[#CCFF00] via-[#FFFFFF] to-[#020408] bg-clip-text text-transparent">
+          <div className="mt-8 text-sm text-[#d9e0e3] text-center">
             Prefer email or phone?{" "}
           <a
-            className="underline hover:text-purple-400 transition-colors"
+            className="underline hover:text-[#cef441] transition-colors"
             href="mailto:ishanhatharasinghe222@gmail.com"
           >
             ishanhatharasinghe222@gmail.com
           </a>
           {" | "}
           <a
-            className="underline hover:text-purple-400 transition-colors"
+            className="underline hover:text-[#cef441] transition-colors"
             href="tel:+94703052181"
           >
             +94 70 305 2181

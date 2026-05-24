@@ -1,56 +1,62 @@
 .button {
-  min-width: 120px;
-
+  min-width: 140px;
+  padding: 0.95rem 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 18px 40px rgba(0, 0, 0, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   position: relative;
-  cursor: pointer;
-
-  padding: 12px 17px;
-  border: 0;
-  border-radius: 12px;
-
-  box-shadow: inset 0 0 0 1px rgba(204, 255, 0, 0.3);
-  background: radial-gradient(
-    ellipse at bottom,
-    rgba(2, 4, 8, 1) 0%,
-    rgba(204, 255, 0, 0.1) 45%
-  );
-
-  color: rgba(255, 255, 255, 0.8);
-
-  transition: all 1s cubic-bezier(0.15, 0.83, 0.66, 1);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+  backdrop-filter: blur(10px);
 }
 
 .button::before {
   content: "";
-  width: 70%;
-  height: 1px;
-
   position: absolute;
-  bottom: 0;
-  left: 15%;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), transparent 22%),
+    radial-gradient(circle at 70% 70%, rgba(200, 200, 200, 0.30), transparent 18%);
+  opacity: 0.75;
+  filter: blur(10px);
+  transform: translateX(-18%) scale(0.9);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
 
-  background: linear-gradient(
-    90deg,
-    rgba(204, 255, 0, 0) 0%,
-    rgba(204, 255, 0, 1) 50%,
-    rgba(204, 255, 0, 0) 100%
-  );
-  opacity: 0.4;
-
-  transition: all 1s cubic-bezier(0.15, 0.83, 0.66, 1);
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(180, 180, 180, 0.12), rgba(255, 255, 255, 0.10));
+  opacity: 0.9;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
 .button:hover {
-  color: rgba(255, 255, 255, 1);
-  transform: scale(1.1) translateY(-3px);
-  box-shadow: inset 0 0 0 1px rgba(204, 255, 0, 0.6), 0 0 15px rgba(204, 255, 0, 0.3);
-  background: radial-gradient(
-    ellipse at bottom,
-    rgba(204, 255, 0, 0.2) 0%,
-    rgba(2, 4, 8, 1) 45%
-  );
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 26px 55px rgba(0, 0, 0, 0.22),
+    0 0 45px rgba(255, 255, 255, 0.28);
+  background-color: rgba(255, 255, 255, 0.24);
 }
 
 .button:hover::before {
+  transform: translateX(0) scale(1);
   opacity: 1;
+}
+
+.button:hover::after {
+  opacity: 1;
+}
+
+.button span {
+  color: rgba(255, 255, 255, 0.95);
 }

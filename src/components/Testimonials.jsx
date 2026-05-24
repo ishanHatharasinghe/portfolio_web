@@ -8,7 +8,6 @@ import {
   LogIn,
   LogOut
 } from "lucide-react";
-import bg from "./../assets/Home Section/bg3.webp";
 import {
   db,
   ref,
@@ -217,8 +216,8 @@ const TestimonialsSection = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900/40">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      <div className="flex items-center justify-center min-h-screen bg-[#23272d]/70">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#cef441]"></div>
       </div>
     );
   }
@@ -228,21 +227,14 @@ const TestimonialsSection = () => {
   return (
     <div className="min-h-screen w-full relative">
       {/* Background with enhanced gradient overlay */}
-      <div className="absolute inset-0">
-        <div
-          className={`absolute inset-0 bg-gradient-to-t from-black via-purple-900/10 to-cyan-900/5`}
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/5 to-purple-900/15`}
-        />
-      </div>
+      <div className="absolute inset-0 bg-[#23272d]" />
 
       <div className="relative min-h-auto flex flex-col justify-between items-center px-6 py-16">
-        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-white/20 ">
+        <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border border-2 mb-4 border-white/20 bg-[#23272d]/90">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex flex-col items-center justify-center items-center">
-              <span className="font-italiana flex flex-col items-center justify-center text-center text-white/90 text-[20px]">
-                <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
+              <span className="font-italiana flex flex-col items-center justify-center text-center text-[#d9e0e3] text-[20px]">
+                <h2 className="font-tusker text-5xl md:text-[160px] text-[#cef441] tracking-wide">
                   Testimonials
                 </h2>
               </span>
@@ -264,13 +256,13 @@ const TestimonialsSection = () => {
                 </button>
               )}
             </div>
-            <p className="mb-12 text-[16px] text-[#FFFFFF] leading-relaxed mt-3 text-center">
+            <p className="mb-12 text-[16px] text-[#d9e0e3] leading-relaxed mt-3 text-center">
               Comments from our customers
             </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 p-6 rounded-lg shadow-lg backdrop-blur-sm border border-white/20">
-                <h2 className="text-xl font-semibold text-white mb-4">
+              <div className="bg-[#23272d]/90 p-6 rounded-lg shadow-lg border border-white/20">
+                <h2 className="text-xl  text-[#d9e0e3] mb-4">
                   {currentUser
                     ? editingId
                       ? "Edit Your Testimonial"
@@ -293,7 +285,7 @@ const TestimonialsSection = () => {
                 {currentUser && (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Name
                       </label>
                       <input
@@ -302,13 +294,13 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Name: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Email
                       </label>
                       <input
@@ -317,16 +309,16 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Email: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       />
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-[#d9e0e3]/70 mt-1">
                         We'll use your email to generate your profile picture
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Occupation
                       </label>
                       <select
@@ -337,7 +329,7 @@ const TestimonialsSection = () => {
                             Occupation: e.target.value
                           })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       >
                         {occupations.map((occ, i) => (
@@ -349,7 +341,7 @@ const TestimonialsSection = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Post
                       </label>
                       <input
@@ -358,13 +350,13 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Post: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Institution
                       </label>
                       <input
@@ -376,13 +368,13 @@ const TestimonialsSection = () => {
                             Institution: e.target.value
                           })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                      <label className="block text-sm font-medium text-[#d9e0e3] mb-1">
                         Comment
                       </label>
                       <textarea
@@ -391,7 +383,7 @@ const TestimonialsSection = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, Comment: e.target.value })
                         }
-                        className="w-full px-3 py-2 bg-[#020408]/60 border border-white/20 rounded-lg text-white"
+                        className="w-full px-3 py-2 bg-[#23272d]/90 border border-white/20 rounded-lg text-[#d9e0e3]"
                         required
                       />
                     </div>
@@ -399,7 +391,7 @@ const TestimonialsSection = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="button w-full flex flex-row items-center justify-center text-center gap-3 font-bold"
+                      className="button w-full flex flex-row items-center justify-center text-center gap-3 "
                     >
                       {isSubmitting ? (
                         <span>Submitting...</span>
@@ -419,35 +411,35 @@ const TestimonialsSection = () => {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold text-white mb-4">
+                <h2 className="text-xl font-semibold text-[#d9e0e3] mb-4">
                   Recent Testimonials
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {latestTestimonials.map((testimonial) => (
                     <div
                       key={testimonial.id}
-                      className="bg-gray-800/60 rounded-lg p-4 shadow-lg h-full flex flex-col backdrop-blur-sm relative"
+                      className="bg-[#23272d]/90 rounded-lg p-4 shadow-lg h-full flex flex-col relative"
                     >
                       {(isAdmin || currentUser?.uid === testimonial.userId) && (
                         <div className="absolute top-2 right-2 flex gap-2">
                           <button
                             onClick={() => handleEdit(testimonial)}
-                            className="p-1 rounded-full bg-gray-700 hover:bg-gray-600"
+                            className="p-1 rounded-full bg-[#23272d] hover:bg-[#23272d]/80"
                             title="Edit"
                           >
-                            <Edit className="h-3 w-3 text-white" />
+                            <Edit className="h-3 w-3 text-[#d9e0e3]" />
                           </button>
                           <button
                             onClick={() => handleDelete(testimonial.id)}
-                            className="p-1 rounded-full bg-gray-700 hover:bg-gray-600"
+                            className="p-1 rounded-full bg-[#23272d] hover:bg-[#23272d]/80"
                             title="Delete"
                           >
-                            <Trash2 className="h-3 w-3 text-white" />
+                            <Trash2 className="h-3 w-3 text-[#d9e0e3]" />
                           </button>
                         </div>
                       )}
                       <div className="flex items-center mb-3">
-                        <div className="h-10 w-10 rounded-full bg-purple-600 p-0.5 flex-shrink-0">
+                        <div className="h-10 w-10 rounded-full bg-[#cef441]/20 p-0.5 flex-shrink-0">
                           {testimonial.profilePictureUrl ||
                           testimonial.email ? (
                             <img
@@ -464,7 +456,7 @@ const TestimonialsSection = () => {
                             />
                           ) : null}
                           <div
-                            className="h-full w-full rounded-full bg-gray-900 flex items-center justify-center"
+                            className="h-full w-full rounded-full bg-[#23272d] flex items-center justify-center"
                             style={{
                               display:
                                 testimonial.profilePictureUrl ||
@@ -473,15 +465,15 @@ const TestimonialsSection = () => {
                                   : "flex"
                             }}
                           >
-                            <User className="h-5 w-5 text-white" />
+                            <User className="h-5 w-5 text-[#d9e0e3]" />
                           </div>
                         </div>
                         <div className="ml-3 overflow-hidden">
-                          <h3 className="text-base font-semibold text-white truncate">
+                          <h3 className="text-base font-semibold text-[#d9e0e3] truncate">
                             {testimonial.name}
                           </h3>
                           {testimonial.Occupation && (
-                            <div className="flex items-center text-xs text-gray-400">
+                            <div className="flex items-center text-xs text-[#d9e0e3]/70">
                               <Briefcase className="h-3 w-3 mr-1" />
                               <span className="truncate">
                                 {testimonial.Occupation}
@@ -490,20 +482,20 @@ const TestimonialsSection = () => {
                           )}
                         </div>
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">
+                      <p className="text-[#d9e0e3]/80 text-sm leading-relaxed">
                         {testimonial.Comment}
                       </p>
                       {testimonial.post && (
-                        <p className="text-xs text-purple-300 mt-2">
+                        <p className="text-xs text-[#d9e0e3]/70 mt-2">
                           Post: {testimonial.post}
                         </p>
                       )}
                       {testimonial.institution && (
-                        <p className="text-xs text-purple-300">
+                        <p className="text-xs text-[#d9e0e3]/70">
                           Institution: {testimonial.institution}
                         </p>
                       )}
-                      <span className="mt-3 text-xs text-gray-400 font-medium">
+                      <span className="mt-3 text-xs text-[#d9e0e3]/70 font-medium">
                         {testimonial.dateAndTime}
                       </span>
                     </div>

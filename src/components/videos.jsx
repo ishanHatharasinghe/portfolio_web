@@ -114,13 +114,13 @@ const About = () => {
               className="overlay-text relative z-10 text-center px-8 max-w-xl flex flex-col items-center justify-center text-white"
               ref={textRef}
             >
-              <h1 className="font-italiana text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
+              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
                 At
               </h1>
-              <h1 className="font-italiana text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
+              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
                 the
               </h1>
-              <h1 className="font-italiana text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
+              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
                 intersection
               </h1>
               <p className="font-italiana text-base md:text-lg tracking-wider select-none pointer-events-none">

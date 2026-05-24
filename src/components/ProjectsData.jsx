@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import my from "./../assets/Project1/Slide1.webp";
-import my2 from "./../assets/Project2/page.webp";
 import my3 from "./../assets/Project3/page.webp";
 import my4 from "./../assets/Project4/page.webp";
 import my5 from "./../assets/Project 5 taxi meter/1.webp";
@@ -208,7 +207,6 @@ import report14 from "./../assets/Project14/Ridelink Project Final Report _compr
 import presentation14 from "./../assets/Project14/Ride Link_compressed.pdf";
 import report13 from "./../assets/Project13 WordGuessMaster/Word Guessing Master.pdf";
 import {
-  Boxes,
   ExternalLink,
   FileText,
   Presentation,
@@ -224,7 +222,7 @@ const ProjectsData = ({ currentTheme }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedTech, setSelectedTech] = useState("All");
-  const [viewMode, setViewMode] = useState("grid-4"); // grid-4, grid-3, grid-2, list
+  const [viewMode, setViewMode] = useState("grid-3"); // grid-3, grid-2, list
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [visibleProjects, setVisibleProjects] = useState(5);
 
@@ -603,17 +601,22 @@ and reliably.`,
     }
   ];
 
+  const normalizeTechnologies = (techs) => {
+    if (!techs) return [];
+    const list = typeof techs === "string" ? techs.split(",") : techs;
+    return list
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .map((item) => item.replace(/\s+/, " "));
+  };
+
   // Get unique categories and technologies for filters
   const categories = ["All", ...new Set(projectsData.map((p) => p.category))];
   const technologies = [
     "All",
     ...new Set(
       projectsData
-        .flatMap((p) =>
-          typeof p.technologies === "string"
-            ? p.technologies.split(",").map((t) => t.trim())
-            : p.technologies
-        )
+        .flatMap((p) => normalizeTechnologies(p.technologies))
         .filter(Boolean)
     )
   ];
@@ -658,9 +661,8 @@ and reliably.`,
 
   // Grid class mapping
   const gridClasses = {
-    "grid-4": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-    "grid-3": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-    "grid-2": "grid-cols-1 lg:grid-cols-2",
+    "grid-3": "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3",
+    "grid-2": "grid-cols-1 md:grid-cols-2",
     list: "grid-cols-1"
   };
 
@@ -773,13 +775,20 @@ and reliably.`,
                 viewMode === "list" ? "justify-start" : "justify-center"
               } mb-4`}
             >
-              <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2 border border-gray-700/50">
-                <Boxes className="w-4 h-4 text-purple-400 mr-2" />
-                <p className="text-[11px] font-medium text-gray-300">
-                  {typeof project.technologies === "string"
-                    ? project.technologies
-                    : project.technologies.join(", ")}
-                </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-4">
+              {normalizeTechnologies(project.technologies).slice(0, 4).map((tech) => (
+                <span
+                  key={`${project.id}-${tech}`}
+                  className="text-[11px] text-gray-200 bg-gray-800/70 border border-gray-700/50 rounded-full px-3 py-1"
+                >
+                  {tech}
+                </span>
+              ))}
+              {normalizeTechnologies(project.technologies).length > 4 && (
+                <span className="text-[11px] text-gray-400 bg-gray-800/40 rounded-full px-3 py-1">
+                  +{normalizeTechnologies(project.technologies).length - 4} more
+                </span>
+              )}
               </div>
             </div>
 
@@ -789,52 +798,44 @@ and reliably.`,
                 viewMode === "list" ? "justify-start" : "justify-center"
               } gap-3 mt-auto w-full`}
             >
-              {
-                (project.id === 3,
-                2 ? (
-                  <>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      View Project
-                    </a>
-                    <a
-                      href={project.reportLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
-                    >
-                      <FileText className="w-4 h-4" />
-                      View Report
-                    </a>
-                    <a
-                      href={project.presentationLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-600/50 text-gray-300 text-sm font-semibold rounded-full"
-                    >
-                      <Presentation className="w-4 h-4" />
-                      Presentation
-                    </a>
-                  </>
-                ) : (
-                  project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      View Project
-                    </a>
-                  )
-                ))
-              }
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-800 to-blue-500 text-white text-sm font-semibold rounded-full hover:scale-[1.01] transition-transform duration-200"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View Project
+                </a>
+              )}
+              {project.reportLink && (
+                <a
+                  href={project.reportLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-800/60 border border-gray-700/60 text-gray-300 text-sm font-semibold rounded-full hover:bg-gray-700/70 transition-all duration-200"
+                >
+                  <FileText className="w-4 h-4" />
+                  View Report
+                </a>
+              )}
+              {project.presentationLink && (
+                <a
+                  href={project.presentationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-800/60 border border-gray-700/60 text-gray-300 text-sm font-semibold rounded-full hover:bg-gray-700/70 transition-all duration-200"
+                >
+                  <Presentation className="w-4 h-4" />
+                  Presentation
+                </a>
+              )}
+              {!project.link && !project.reportLink && !project.presentationLink && (
+                <span className="text-sm text-gray-400 px-4 py-2 bg-gray-800/40 rounded-full">
+                  More details coming soon
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -847,7 +848,7 @@ and reliably.`,
       <div className="relative min-h-screen flex flex-col justify-between items-center px-6 mt-16 z-10">
         <div className="rounded-[20px] lg:rounded-[70px] w-full h-full p-6 border-2 mb-4 border-white/10 bg-black/20 backdrop-blur-sm">
           <div className="text-center mb-10">
-            <h2 className="font-italiana text-5xl md:text-[160px] text-[#CCFF00] tracking-wide">
+            <h2 className="font-tusker text-5xl md:text-[160px] text-white tracking-wide">
               Creative Ventures
             </h2>
             <p className="text-[16px] text-[#FFFFFF] leading-relaxed max-w-3xl mx-auto mb-8">
@@ -921,7 +922,6 @@ and reliably.`,
                 {/* View Mode Controls */}
                 <div className="flex gap-2">
                   {[
-                    { mode: "grid-4", icon: Grid3X3, tooltip: "4 Columns" },
                     { mode: "grid-3", icon: Grid3X3, tooltip: "3 Columns" },
                     { mode: "grid-2", icon: Grid2X2, tooltip: "2 Columns" },
                     { mode: "list", icon: List, tooltip: "List View" }

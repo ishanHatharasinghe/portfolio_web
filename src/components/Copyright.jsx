@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import "./button.css";
 import {
-  Github,
-  Linkedin,
-  Twitter,
   Mail,
-  ChevronUp,
   ExternalLink,
   Shield,
   Clock,
