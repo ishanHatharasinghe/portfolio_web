@@ -64,6 +64,40 @@ const PreloaderScreen = ({ onComplete }) => {
           to   { opacity: 1; transform: translateY(0); }
         }
 
+        .pl-background {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(#111 2px, transparent 2px),
+            linear-gradient(90deg, #111 2px, transparent 2px);
+          background-size: 100px 100px;
+          overflow: hidden;
+        }
+        .pl-background::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(-45deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(-135deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(135deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(45deg, rgba(255,255,255,0.05) 20px, transparent 20px);
+          background-size: 100px 100px;
+          background-position: 50px 50px;
+          opacity: 0.4;
+        }
+        .pl-background::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(-45deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(135deg, rgba(255,255,255,0.05) 20px, transparent 20px),
+            linear-gradient(-135deg, rgba(255,255,255,0.05) 20px, transparent 20px);
+          background-size: 100px 100px;
+          background-position: 1px 1px;
+          opacity: 0.35;
+        }
+
         .pl-letter {
           display: inline-block;
           opacity: 0;
@@ -89,6 +123,7 @@ const PreloaderScreen = ({ onComplete }) => {
           overflow: "hidden",
         }}
       >
+        <div className="pl-background" />
         {/* ── Center block ── */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
 

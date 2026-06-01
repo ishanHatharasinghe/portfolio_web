@@ -83,14 +83,14 @@ const About = () => {
   return (
     <div
       id="video-screent"
-      className="min-h-screen w-screen relative bg-black"
+      className="min-h-screen w-full relative bg-black"
       ref={inViewRef}
     >
       <div className="relative z-10">
         <div className="mb-8 mt-6 flex flex-col items-center gap-5"></div>
 
         <div
-          className="h-[50vh] md:h-[100vh] w-screen flex items-center justify-center"
+          className="h-[50vh] md:h-[100vh] w-full flex items-center justify-center"
           id="clip"
         >
           <div

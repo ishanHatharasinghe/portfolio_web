@@ -107,7 +107,7 @@ const LicensesCertifications = () => {
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQdVemH7BxB-Wkoo2MienAsSTFWlbgJGDwA&s"
     },
     {
-      id: 6,
+      id: 9,
       title: "Foundations of Project Management",
       description: "Learn the basics of Project Management",
       image: certificate9,
@@ -169,7 +169,7 @@ const LicensesCertifications = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-6 sm:mt-10 border p-4 sm:p-8 border-white/10 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-md rounded-lg sm:rounded-[1rem]">
             {certifications.map((cert) => (
               <div
-                key={cert.id}
+                key={`${cert.id}-${cert.title}`}
                 className="relative p-4 sm:p-4 border border-white/10 bg-black/40 backdrop-blur-md rounded-lg transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer hover:scale-105 active:scale-95"
                 onClick={() => setSelectedImage(cert.image)}
               >

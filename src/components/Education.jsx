@@ -106,9 +106,7 @@ const Education = () => {
                     </h1>
                   </div>
                 </div>
-                <div className="absolute top-0 flex justify-center items-center z-20 mt-[100px]">
-                  <div className="relative group h-[80vh] w-[100vw] object-cover"></div>
-                </div>
+
               </div>
 
               {/* Right Card - HND EEE */}

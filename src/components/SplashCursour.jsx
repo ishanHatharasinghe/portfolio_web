@@ -1247,7 +1247,7 @@ function SplashCursor({
       <canvas
         ref={canvasRef}
         id="fluid"
-        className="w-screen h-screen block"
+        className="w-full h-full block"
       ></canvas>
     </div>
   );

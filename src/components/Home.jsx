@@ -178,9 +178,7 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
                     of Telecommunication and code
                   </p>
                 </div>
-                <div className="absolute top-0 flex justify-center items-center z-20 mt-[100px]">
-                  <div className="relative group h-[80vh] w-[100vw] object-cover"></div>
-                </div>
+
               </div>
 
               {/* Enhanced Project cards with dynamic theming */}
