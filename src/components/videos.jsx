@@ -25,17 +25,14 @@ const About = () => {
   }, [inView]);
 
   useEffect(() => {
-    // Disable pin on mobile devices (screen width < 768px)
-    const isMobile = window.innerWidth < 768;
-    
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip",
         start: "center center",
         end: "+=800 center",
         scrub: 0.5,
-        pin: !isMobile,
-        pinSpacing: !isMobile
+        pin: true,
+        pinSpacing: true
       }
     });
 
@@ -75,14 +72,7 @@ const About = () => {
 
     scrollTriggerRef.current = clipAnimation.scrollTrigger;
 
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener("resize", handleResize);
-
     return () => {
-      window.removeEventListener("resize", handleResize);
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
       }
@@ -93,14 +83,14 @@ const About = () => {
   return (
     <div
       id="video-screent"
-      className="min-h-screen w-full relative bg-black"
+      className="min-h-screen w-screen relative bg-black"
       ref={inViewRef}
     >
       <div className="relative z-10">
         <div className="mb-8 mt-6 flex flex-col items-center gap-5"></div>
 
         <div
-          className="h-[50vh] md:h-[100vh] w-full flex items-center justify-center"
+          className="h-[50vh] md:h-[100vh] w-screen flex items-center justify-center"
           id="clip"
         >
           <div
@@ -121,19 +111,19 @@ const About = () => {
             )}
 
             <div
-              className="overlay-text relative z-10 text-center px-8 max-w-xl flex flex-col items-center justify-center text-white"
+              className=" overlay-text relative z-10 text-center px-8 max-w-xl flex flex-col items-center justify-center text-white"
               ref={textRef}
             >
-              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
+              <h1 className=" font-tusker text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
                 At
               </h1>
-              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
+              <h1 className="font-tusker text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
                 the
               </h1>
-              <h1 className="font-tusker text-5xl md:text-[180px] tracking-wide select-none pointer-events-none">
+              <h1 className=" font-tusker text-5xl md:text-[200px] tracking-wide select-none pointer-events-none">
                 intersection
               </h1>
-              <p className="font-italiana text-base md:text-lg tracking-wider select-none pointer-events-none">
+              <p className=" text-base md:text-lg tracking-wider select-none pointer-events-none">
                 of Telecommunication and code
               </p>
             </div>
