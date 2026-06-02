@@ -25,14 +25,17 @@ const About = () => {
   }, [inView]);
 
   useEffect(() => {
+    // Disable pin on mobile devices (screen width < 768px)
+    const isMobile = window.innerWidth < 768;
+    
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip",
         start: "center center",
         end: "+=800 center",
         scrub: 0.5,
-        pin: true,
-        pinSpacing: true
+        pin: !isMobile,
+        pinSpacing: !isMobile
       }
     });
 
@@ -72,7 +75,14 @@ const About = () => {
 
     scrollTriggerRef.current = clipAnimation.scrollTrigger;
 
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
+      window.removeEventListener("resize", handleResize);
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
       }

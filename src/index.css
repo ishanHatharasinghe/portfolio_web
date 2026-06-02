@@ -391,6 +391,18 @@ html {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
+  /* Mobile-specific video fixes */
+  @media (max-width: 767px) {
+    #video-screent {
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    #video-screent > div {
+      pointer-events: auto;
+    }
+  }
+
   .special-font b {
     font-family: "Zentry";
     font-feature-settings: "ss01" on;
