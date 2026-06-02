@@ -91,12 +91,12 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
   return (
     <>
       <div className="h-auto relative min-h-auto w-full p-2 overflow-hidden">
-        <div className="rounded-[20px] lg:rounded-[60px] w-full h-auto p-2 border border-white/20 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
+        <div className="rounded-[20px] lg:rounded-[60px] w-full h-auto p-2 border border-white/10 bg-gradient-to-br from-white/5 to-transparent shadow-2xl shadow-purple-500/10">
           
           {/* Top header with modern styling */}
           <div className="w-full text-center">
             <h3 className="mt-2 font-italiana text-white text-[8px] md:text-[15px] font-extralight tracking-wider bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-              Telecommunication Technical Officer | Designer
+              Telecommunication Technical Officer | Designer | Software Engineer UG
             </h3>
           </div>
 
@@ -268,111 +268,111 @@ const Home = ({ currentTheme, currentRobot, isTransitioning, slideDir, robots, o
             </div>
 
             {/* Enhanced Mobile Layout - Robot Hidden */}
-            <div className="md:hidden h-full flex flex-col items-center justify-center w-full px-4 py-8">
-              {/* Mobile Header Section */}
-              <div className="w-full text-center mb-12">
-                <h1 className="font-tusker text-4xl text-white tracking-wide drop-shadow-lg mb-1">
-                  At the intersection
+            <div className="md:hidden w-full px-4 pt-6 pb-10">
+
+              
+
+              {/* Title */}
+              <div className="text-center mt-3">
+                <h1 className="font-tusker text-[52px] leading-[0.5] text-white">
+                  intersection
                 </h1>
-                <p className=" text-white text-lg tracking-wider">
-                  of Telecommunication and code
+
+                <p className="mt-2 text-white/70 tracking-wider text-sm">
+                  of Telecommunication and Code
                 </p>
               </div>
 
-              {/* Mobile Profile Card */}
-              <div className="group relative w-full max-w-sm mx-auto mb-10">
-                <div
-                  className={`flex flex-col items-center justify-center relative border border-white/20 bg-gradient-to-br from-[#020408]/80 via-[#020408]/60 to-[#020408]/40 backdrop-blur-xl rounded-3xl p-6 transition-all duration-500 shadow-xl shadow-white/10`}
-                >
-                  {/* React Icon */}
-                  <FaReact
-                    className={`absolute top-4 left-4 text-cyan-400 text-2xl animate-spin-slow`}
-                  />
+              {/* Hero Section */}
+              <div className="relative flex justify-center items-center">
 
-                  {/* Profile Image */}
-                  <div className="relative overflow-hidden rounded-2xl mb-6 w-full">
-                    <img
-                      src={my}
-                      alt="profile"
-                      loading="lazy"
-                      className="w-full rounded-2xl transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 transition-opacity duration-500" />
+                {/* Main Image */}
+                <img
+                  src={man}
+                  alt="profile"
+                  className="max-w-[420px] object-contain z-"
+                />
+
+                {/* Floating Project Card */}
+                <div className="absolute bottom-6 z-20 w-[260px]">
+
+                  <div className="
+                    border border-white/20
+                    bg-black/50
+                    backdrop-blur-xl
+                    rounded-3xl
+                    p-4
+                    shadow-2xl
+                    shadow-cyan-500/20
+                  ">
+
+                    <div className="flex items-center gap-3">
+
+                      <div className="relative">
+                        <img
+                          src={fixitnow}
+                          alt="FIXITNOWplus+"
+                          className="w-14 h-14 rounded-xl object-cover"
+                        />
+
+                        <span className="
+                          absolute
+                          -bottom-1
+                          -right-1
+                          w-3
+                          h-3
+                          rounded-full
+                          bg-green-400
+                        "/>
+                      </div>
+
+                      <div className="flex-1">
+                        <h3 className="text-white text-sm font-semibold">
+                          FIXITNOWplus+
+                        </h3>
+
+                        <p className="text-white/60 text-xs">
+                          Local Service Finder Platform
+                        </p>
+
+                        <span className="
+                          inline-block
+                          mt-2
+                          px-2
+                          py-1
+                          rounded-full
+                          bg-cyan-500/20
+                          text-cyan-300
+                          text-[10px]
+                        ">
+                          Platform
+                        </span>
+                      </div>
+
+                      <ArrowRight className="w-4 h-4 text-white/50" />
+                    </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="mb-6 font-italiana text-gray-300 text-sm text-center leading-relaxed">
-                    <span className="bg-gradient-to-r from-white via-slate-300 to-[#020408] bg-clip-text text-transparent">
-                      I craft the Future one Innovative solution at a time
-                    </span>
-                  </p>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-col gap-3 w-full">
-                    <button
-                      className="button w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/25"
-                      onClick={() => scrollToSection("contact")}
-                    >
-                      Connect with me
-                    </button>
-
-                    <button
-                      className="button w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 transition-all duration-500 shadow-lg shadow-orange-500/25"
-                      onClick={() => window.open(resumePDF, "_blank")}
-                    >
-                      Download resume
-                    </button>
-                  </div>
                 </div>
               </div>
 
-              {/* Mobile Project Cards Section */}
-              <div className="w-full max-w-md mx-auto space-y-6 mb-8">
-                {/* Project Card 2 - ChayaSmart+ */}
-                <div className="group/card">
-                  <div className="border border-white/20 bg-gradient-to-br from-black/70 via-cyan-900/10 to-teal-900/8 backdrop-blur-xl rounded-2xl p-5 transition-all duration-500 relative overflow-hidden">
-                    {/* Card glow effect */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-teal-500/8 opacity-0 transition-opacity duration-500"></div>
+              {/* Buttons */}
+              <div className="mt-10 flex flex-col gap-3">
 
-                    <div className="relative z-10">
-                      <div className="flex items-start gap-4">
-                        {/* Project Icon */}
-                        <div className="relative flex-shrink-0">
-                          <div className="w-14 h-14 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/15 border border-white/20">
-                            <img
-                              src={fixitnow}
-                              alt="FIXITNOWplus+"
-                              className="w-full h-full object-cover transition-transform duration-500"
-                            />
-                          </div>
-                          {/* Status indicator */}
-                          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full shadow-lg shadow-orange-400/40 border border-white/20"></div>
-                        </div>
+                <button
+                  className="button w-full"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Connect with me
+                </button>
 
-                        {/* Project Info */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-italiana text-white text-sm font-light tracking-wide">
-                              FIXITNOWplus+
-                            </h3>
-                            <ArrowRight className="w-4 h-4 text-white/60 transition-all duration-400 flex-shrink-0 ml-2" />
-                          </div>
+                <button
+                  className="button w-full"
+                  onClick={() => window.open(resumePDF, "_blank")}
+                >
+                  Download Resume
+                </button>
 
-                          <p className="text-gray-400 text-sm leading-relaxed mb-3">
-                            Local Service Finder Platform
-                          </p>
-
-                          {/* Tags */}
-                          <div className="flex flex-wrap gap-2">
-                            <span className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-teal-500/15 text-cyan-200 text-xs rounded-full border border-cyan-400/25 shadow-sm">
-                              Platform
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
